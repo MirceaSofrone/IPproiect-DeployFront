@@ -1,0 +1,11 @@
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Price.exe
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\appsettings.Development.json
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\appsettings.json
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Price.dll
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Price.deps.json
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Price.runtimeconfig.json
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Price.pdb
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Microsoft.OpenApi.dll
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\dciopei\Desktop\VSCodeWebApi\Price\bin\Debug\net5.0\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
