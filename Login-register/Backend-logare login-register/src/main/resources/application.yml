@@ -1,0 +1,15 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+  port: 8081
+spring:
+  datasource:
+    driverClassName: 'com.mysql.cj.jdbc.Driver'
+    url: jdbc:mysql://localhost:3307/registration
+    username: root
+    password: ip
+  jpa:
+    hibernate.ddl-auto: create-drop
+    generate-ddl: true
+    show-sql: true
