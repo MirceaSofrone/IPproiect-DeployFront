@@ -1,0 +1,10 @@
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\bin\Debug\netstandard2.0\MLModel.zip
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\bin\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.deps.json
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\bin\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.dll
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\bin\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.pdb
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.csprojAssemblyReference.cache
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.AssemblyInfoInputs.cache
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.AssemblyInfo.cs
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.csproj.CoreCompileInputs.cache
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.dll
+C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.pdb
