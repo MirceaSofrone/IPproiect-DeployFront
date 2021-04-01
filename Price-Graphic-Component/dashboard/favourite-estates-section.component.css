@@ -1,0 +1,21 @@
+.favourite-estates {
+  height: 50vh;
+  width: 50vw;
+  border: 3px solid #000;
+  border-radius: 30px;
+  position: relative;
+  top: 25em;
+  left: 55em;
+}
+.fas.fa-chevron-left {
+  position: absolute;
+  top: 25vh;
+  left: 10px;
+  font-size: 30px;
+}
+.fas.fa-chevron-right {
+  position: absolute;
+  right: 10px;
+  top: 25vh;
+  font-size: 30px;
+}

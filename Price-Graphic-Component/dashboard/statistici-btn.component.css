@@ -1,0 +1,11 @@
+#statistics-btn {
+  text-decoration: none;
+  border: 2px solid #f08f90;
+  color: #fff;
+  background-color: #f08f90;
+  padding: 0.5em;
+  border-radius: 30px;
+  position: absolute;
+  top: 26em;
+  right: 40em;
+}
