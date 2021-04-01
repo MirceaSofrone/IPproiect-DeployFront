@@ -1,0 +1,19 @@
+footer {
+    width:100%;
+    position:fixed;
+    bottom:0;
+    background-color:#a13385;
+    display: grid;
+   
+}
+.column{
+    color:white;
+    width:25%;
+    list-style: none;
+    font-size: large;
+    text-align: center;
+    
+}
+.column a{
+    color: white;
+}
