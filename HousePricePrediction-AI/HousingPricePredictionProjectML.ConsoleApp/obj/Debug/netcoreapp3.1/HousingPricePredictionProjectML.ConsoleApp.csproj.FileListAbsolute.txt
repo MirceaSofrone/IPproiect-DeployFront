@@ -1,0 +1,4 @@
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.ConsoleApp\obj\Debug\netcoreapp3.1\HousingPricePredictionProjectML.ConsoleApp.csprojAssemblyReference.cache
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.ConsoleApp\obj\Debug\netcoreapp3.1\HousingPricePredictionProjectML.ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.ConsoleApp\obj\Debug\netcoreapp3.1\HousingPricePredictionProjectML.ConsoleApp.AssemblyInfo.cs
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.ConsoleApp\obj\Debug\netcoreapp3.1\HousingPricePredictionProjectML.ConsoleApp.csproj.CoreCompileInputs.cache

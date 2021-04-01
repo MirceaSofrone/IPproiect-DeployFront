@@ -5650,23 +5650,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {},
+    "C:\\Users\\dciopei\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\facultate\\HousePricePrediction-AI\\HousingPricePredictionProjectML.ConsoleApp\\HousingPricePredictionProjectML.ConsoleApp.csproj",
+      "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\IPproiect\\HousePricePrediction-AI\\HousingPricePredictionProjectML.ConsoleApp\\HousingPricePredictionProjectML.ConsoleApp.csproj",
       "projectName": "HousingPricePredictionProjectML.ConsoleApp",
-      "projectPath": "C:\\facultate\\HousePricePrediction-AI\\HousingPricePredictionProjectML.ConsoleApp\\HousingPricePredictionProjectML.ConsoleApp.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\facultate\\HousePricePrediction-AI\\HousingPricePredictionProjectML.ConsoleApp\\obj\\",
+      "projectPath": "C:\\Users\\dciopei\\Desktop\\IPproiect\\HousePricePrediction-AI\\HousingPricePredictionProjectML.ConsoleApp\\HousingPricePredictionProjectML.ConsoleApp.csproj",
+      "packagesPath": "C:\\Users\\dciopei\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dciopei\\Desktop\\IPproiect\\HousePricePrediction-AI\\HousingPricePredictionProjectML.ConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dciopei\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5681,8 +5681,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\facultate\\HousePricePrediction-AI\\HousingPricePredictionProjectML.Model\\HousingPricePredictionProjectML.Model.csproj": {
-              "projectPath": "C:\\facultate\\HousePricePrediction-AI\\HousingPricePredictionProjectML.Model\\HousingPricePredictionProjectML.Model.csproj"
+            "C:\\Users\\dciopei\\Desktop\\IPproiect\\HousePricePrediction-AI\\HousingPricePredictionProjectML.Model\\HousingPricePredictionProjectML.Model.csproj": {
+              "projectPath": "C:\\Users\\dciopei\\Desktop\\IPproiect\\HousePricePrediction-AI\\HousingPricePredictionProjectML.Model\\HousingPricePredictionProjectML.Model.csproj"
             }
           }
         }

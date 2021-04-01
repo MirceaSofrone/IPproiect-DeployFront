@@ -8,3 +8,13 @@ C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.
 C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.csproj.CoreCompileInputs.cache
 C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.dll
 C:\facultate\A6_IP\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.pdb
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\bin\Debug\netstandard2.0\MLModel.zip
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\bin\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.deps.json
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\bin\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.dll
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\bin\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.pdb
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.csprojAssemblyReference.cache
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.AssemblyInfoInputs.cache
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.AssemblyInfo.cs
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.csproj.CoreCompileInputs.cache
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.dll
+C:\Users\dciopei\Desktop\IPproiect\HousePricePrediction-AI\HousingPricePredictionProjectML.Model\obj\Debug\netstandard2.0\HousingPricePredictionProjectML.Model.pdb

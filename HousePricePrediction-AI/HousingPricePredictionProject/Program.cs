@@ -19,11 +19,10 @@ namespace HousingPricePredictionProject
 
             var predictionResult = ConsumeModel.Predict(sampleData);
             Console.WriteLine($"\n\nPredicted Price: {predictionResult.Score}\n\n");
-            Console.ReadKey();
         }
         static void Main(string[] args)
         {
-            string[] newHouse = new string[6] { "CAS", "6", "554", "968", "2000", "tatarasi" };
+            string[] newHouse = new string[6] { "CAS", "9", "365", "750", "2004", "centru-civic" };
             showPredictedPrice(newHouse);
         }
     }
