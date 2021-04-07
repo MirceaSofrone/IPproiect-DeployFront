@@ -1,1 +1,74 @@
-<p>login works!</p>
+<span>
+  <a href="main" id="bck_btn">←Back</a>
+  <div class="form">
+    <h2>Log In</h2>
+    <p>
+      Don't have an account?
+      <a href="../register/register.component.html"> Sign Up </a>
+    </p>
+
+    <form [formGroup]="login" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="Email"
+          required
+        />
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field appearance="outline">
+        <!-- <mat-icon matSuffix>lock</mat-icon> -->
+        <mat-label>Password</mat-label>
+        <input
+          [type]="hide ? 'password' : 'text'"
+          matInput
+          formControlName="password"
+          placeholder="Password"
+          required
+        />
+        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+
+
+      <br />
+
+      <div id="rf">
+
+        <label id="remember">
+          <input type="checkbox" />
+          Remember me
+        </label>
+
+        <a id="forgot" href="../reset-passwd/reset-passwd.component.html">
+          Forgot password?
+        </a>
+
+      </div>
+
+      <p>
+        <button
+          id="log_btn"
+          mat-flat-button
+          color="primary"
+          (click)="onSubmit()"
+          [disabled]="!login.valid"
+        >
+          Log in
+        </button>
+      </p>
+    </form>
+
+    <div id="g_log">
+      <p> or </p>
+      <p><a href="google_login">Login with Google</a></p>
+    </div>
+  </div>
+</span>
