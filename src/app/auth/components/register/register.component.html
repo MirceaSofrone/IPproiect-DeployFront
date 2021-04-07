@@ -1,1 +1,35 @@
-<p>register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="ngOnSubmit()">
+    <mat-form-field appearance="standard">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" [type]="'text'" required>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" [type]="'text'" required>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+        <mat-label>Email Address</mat-label>
+        <input matInput formControlName="emailAddress" [type]="'text'" required>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" [type]="'text'" required>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="passwd" [type]="hide? 'password' : 'text'" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+            <mat-icon>{{hide ? 'visibility_off':'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput formControlName="confirmPasswd" [type]="hide? 'password' : 'text'" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+            <mat-icon>{{hideConfirm ? 'visibility_off':'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+    <p>
+        <button mat-raised-button type="submit" [disabled]="!registerForm.valid" (click)="ngOnSubmit()">Submit</button>
+    </p>
+</form>
