@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
   public hide = true;
   public hideConfirm = true;
   registerForm: FormGroup;
+  userType: string;
   firstName: string;
   lastName: string;
   emailAddress: string;
@@ -22,6 +23,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
+      userType: ['',[]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       emailAddress: ['', [Validators.required, Validators.email]],
@@ -36,9 +38,12 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.get('passwd').value !== this.registerForm.get("confirmPasswd").value) {
       alert("Passwords must match!")
     }
+    else if(this.registerForm.get('userType').value === '')
+    {alert("userType must be selected")}
     else {
       this.passwd = this.registerForm.get('passwd').value
       this.confirmPasswd = this.registerForm.get('confirmPasswd').value
+      this.userType = this.registerForm.get('userType').value
     }
   }
 

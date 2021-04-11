@@ -4,7 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 
 @NgModule({
     imports: [
@@ -12,14 +12,16 @@ import { MatIconModule } from '@angular/material/icon';
         MatFormFieldModule,
         MatInputModule,
         LayoutModule,
-        MatIconModule
+        MatIconModule,
+        MatButtonToggleModule
     ],
     exports: [
         MatFormFieldModule,
         MatInputModule,
         LayoutModule,
         MatButtonModule,
-        MatIconModule        
+        MatIconModule,
+        MatButtonToggleModule  
     ]
 })
 
