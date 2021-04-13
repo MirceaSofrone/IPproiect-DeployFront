@@ -1,14 +1,12 @@
 package com.fii.houses.fii.houses.demo.service;
 
 import com.fii.houses.fii.houses.demo.models.House;
+import com.fii.houses.fii.houses.demo.models.User;
 import com.fii.houses.fii.houses.demo.repository.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class HouseService {
@@ -22,6 +20,11 @@ public class HouseService {
         } else {
             return new ArrayList<>();
         }
+    }
+
+    public Optional<House> getUserById(UUID id){
+        Optional<House> house = repository.findById(id);
+        return house;
     }
 
     public House createOrUpdate(House house) {

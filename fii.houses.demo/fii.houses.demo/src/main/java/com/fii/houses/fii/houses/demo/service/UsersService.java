@@ -6,10 +6,8 @@ import com.fii.houses.fii.houses.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 
 @Service
 public class UsersService {
@@ -25,10 +23,49 @@ public class UsersService {
         }
     }
 
+    public Optional<User> getUserById(UUID id){
+        Optional<User> user = repository.findById(id);
+        return user;
+    }
+
     public User createOrUpdate(User user) {
         user.setUserID(UUID.randomUUID());
         user.setCreationDate(new Date());
         user=repository.save(user);
         return user;
+    }
+
+    public void addToFavorites(House house,User user){
+        Date today = new Date();
+        Map<Date,Integer> istoricFavorite = house.getIstoricFavorite();
+        List<House> favorite = user.getFavorite();
+        if(!favorite.contains(house)){
+            favorite.add(house);
+            user.setFavorite(favorite);
+        }
+        if(istoricFavorite.get(today)==null){
+            istoricFavorite.put(today,1);
+        }
+        else{
+            int numberOfFave=istoricFavorite.get(today);
+            numberOfFave++;
+            istoricFavorite.replace(today,numberOfFave);
+        }
+        house.setIstoricFavorite(istoricFavorite);
+        house.setNoOfFave(house.getNoOfFave()+1);
+    }
+
+    public void removeFromFavorites(House house, User user){
+        List<House> favorite = user.getFavorite();
+        favorite.remove(house);
+        user.setFavorite(favorite);
+        house.setNoOfFave(house.getNoOfFave()-1);
+    }
+
+    public void addToIstoricVizualizare(House house,User user){
+        Queue<House> istoricVizionare = user.getIstoricVizionare();
+        istoricVizionare.add(house);
+        user.setIstoricVizionare(istoricVizionare);
+        house.setViews(house.getViews()+1);
     }
 }
