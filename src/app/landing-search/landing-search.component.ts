@@ -10,6 +10,9 @@ export class LandingSearchComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('aici');
+    const user = document.getElementById('search-form');
+    console.log(user);
   }
 
 }
