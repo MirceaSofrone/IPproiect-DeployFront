@@ -22,7 +22,7 @@ public class HouseService {
         }
     }
 
-    public Optional<House> getUserById(UUID id){
+    public Optional<House> getHouseById(UUID id){
         Optional<House> house = repository.findById(id);
         return house;
     }
@@ -33,4 +33,6 @@ public class HouseService {
         house=repository.save(house);
         return house;
     }
+
+
 }

@@ -29,4 +29,7 @@ public class HousesController {
         House house1=service.createOrUpdate(house);
         return new ResponseEntity<House>(house1,new HttpHeaders(),HttpStatus.CREATED);
     }
+
+
+
 }

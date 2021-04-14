@@ -3,10 +3,7 @@ package com.fii.houses.fii.houses.demo.models;
 import javax.persistence.*;
 import javax.xml.crypto.Data;
 import java.io.File;
-import java.util.Date;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class House {
@@ -14,20 +11,20 @@ public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID houseID;
-    private String adress, city, country;
+    private String adress, city, country, description;
     private Integer nrCamere, etaj, suprafata, nrBai;
     private Integer tipImobil;
     private File image;
     @ElementCollection
-    private Map<Date,Float> istoricPreturi = new TreeMap<>();
+    private Map<Date, ArrayList<Float>> istoricPreturi = new TreeMap<>();
     @ElementCollection
     private Map<Date,Integer> istoricFavorite = new TreeMap<>();
     private Integer noOfFave = 0;
+    private Float pretActual;
     private Date creationDate;
     private Integer views;
 
-
-    public UUID getHouseID(UUID uuid) {
+    public UUID getHouseID() {
         return houseID;
     }
 
@@ -108,11 +105,11 @@ public class House {
     }
 
 
-    public Map<Date, Float> getIstoricPreturi() {
+    public Map<Date, ArrayList<Float>> getIstoricPreturi() {
         return istoricPreturi;
     }
 
-    public void setIstoricPreturi(Map<Date, Float> istoricPreturi) {
+    public void setIstoricPreturi(Map<Date, ArrayList<Float>> istoricPreturi) {
         this.istoricPreturi = istoricPreturi;
     }
 
@@ -146,5 +143,24 @@ public class House {
 
     public void setNoOfFave(Integer noOfFave) {
         this.noOfFave = noOfFave;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Float getPretActual() {
+        return pretActual;
+    }
+
+    public void setPretActual(Float pretActual) {
+        this.pretActual = pretActual;
+        ArrayList<Float> newList = istoricPreturi.get(new Date());
+        newList.add(pretActual);
+        istoricPreturi.put(new Date(), newList);
     }
 }

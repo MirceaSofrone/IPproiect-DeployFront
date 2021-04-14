@@ -12,6 +12,7 @@ public abstract class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userID;
     private Date creationDate;
+    private String firstName, lastName;
     @OneToMany
     private List<House> favorite = new ArrayList<>(); //for buyer
     @OneToMany
@@ -69,5 +70,21 @@ public abstract class User {
 
     public void setForSell(List<House> forSell) {
         this.forSell = forSell;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

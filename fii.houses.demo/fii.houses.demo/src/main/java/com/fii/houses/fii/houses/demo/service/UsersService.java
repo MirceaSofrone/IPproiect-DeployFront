@@ -35,7 +35,7 @@ public class UsersService {
         return user;
     }
 
-    public void addToFavorites(House house,User user){
+    public void addToFavorites(User user, House house){
         Date today = new Date();
         Map<Date,Integer> istoricFavorite = house.getIstoricFavorite();
         List<House> favorite = user.getFavorite();
@@ -55,7 +55,7 @@ public class UsersService {
         house.setNoOfFave(house.getNoOfFave()+1);
     }
 
-    public void removeFromFavorites(House house, User user){
+    public void removeFromFavorites(User user,House house){
         List<House> favorite = user.getFavorite();
         favorite.remove(house);
         user.setFavorite(favorite);
