@@ -11,6 +11,7 @@ public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID houseID;
+    private UUID userID;
     private String adress, city, country, description;
     private Integer nrCamere, etaj, suprafata, nrBai;
     private Integer tipImobil;
@@ -162,5 +163,13 @@ public class House {
         ArrayList<Float> newList = istoricPreturi.get(new Date());
         newList.add(pretActual);
         istoricPreturi.put(new Date(), newList);
+    }
+
+    public UUID getUserID() {
+        return userID;
+    }
+
+    public void setUserID(UUID userID) {
+        this.userID = userID;
     }
 }

@@ -30,21 +30,21 @@ public class UsersController {
         DELETE - DELETE
     */
 
-    @GetMapping
+    @GetMapping ("/getusers")
     public ResponseEntity<List<User>> getUsers(){
         List<User> users = service.getAllUsers();
         return new ResponseEntity<List<User>>(users, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<User> createOrUpdateUser(@RequestBody User user)
+    @PostMapping("/create")
+    public ResponseEntity<User> create(@RequestBody User user)
     {
         User user1=service.createOrUpdate(user);
         return new ResponseEntity<User>(user1, new HttpHeaders(),HttpStatus.CREATED);
     }
 
     //un get pentru a trimite o lista de favorite catre Dashboard
-    @GetMapping
+    @GetMapping("/getfavorite")
     public ResponseEntity<List<House>> getFavorite(@RequestBody User user){
         Optional<User> user1 = service.getUserById(user.getUserID());
         if(user1.isEmpty()){
@@ -57,7 +57,7 @@ public class UsersController {
     }
 
     //un put pentru a adauga la favorite o casa
-    @PutMapping//or patch?
+    @PutMapping("/addtofavorite")
     public ResponseEntity<?> addToFavorite (@RequestBody User user, @RequestBody House house){
         Optional<User> user1 = service.getUserById(user.getUserID());
         Optional<House> house1 = houseService.getHouseById(house.getHouseID());
@@ -70,7 +70,7 @@ public class UsersController {
     }
 
     //un put pentru a elimina o casa de la favorite
-    @PutMapping
+    @PutMapping("/removefromfavorite")
     public ResponseEntity<?> removeFromFavorite(@RequestBody User user, @RequestBody House house){
         Optional<User> user1 = service.getUserById(user.getUserID());
         Optional<House> house1 = houseService.getHouseById(house.getHouseID());
