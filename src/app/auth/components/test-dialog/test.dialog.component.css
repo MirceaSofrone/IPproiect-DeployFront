@@ -1,0 +1,18 @@
+button {
+    position: absolute;
+    box-shadow: black;
+    top: 10%;
+    left: 10%;
+    font-family: 'Segoe UI';
+    font-weight: 500;
+    font-size: larger;
+    background-image: linear-gradient(90deg, #4D648D, #D0E1F9);
+}
+
+.pclass {
+    color: transparent;
+    background-color: transparent;
+    position: absolute;
+    top: 40px;
+    border: none;
+}

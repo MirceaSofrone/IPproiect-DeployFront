@@ -4,7 +4,9 @@ import { MatInputModule } from '@angular/material/input';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
+import { from } from 'rxjs';
 
 @NgModule({
     imports: [
@@ -13,7 +15,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
         MatInputModule,
         LayoutModule,
         MatIconModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatDialogModule
     ],
     exports: [
         MatFormFieldModule,
@@ -21,7 +24,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
         LayoutModule,
         MatButtonModule,
         MatIconModule,
-        MatButtonToggleModule  
+        MatButtonToggleModule,
+        MatDialogModule
     ]
 })
 
