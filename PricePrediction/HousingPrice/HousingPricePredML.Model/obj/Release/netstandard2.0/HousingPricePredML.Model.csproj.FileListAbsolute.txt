@@ -1,0 +1,10 @@
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\bin\Release\netstandard2.0\MLModel.zip
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\bin\Release\netstandard2.0\HousingPricePredML.Model.deps.json
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\bin\Release\netstandard2.0\HousingPricePredML.Model.dll
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\bin\Release\netstandard2.0\HousingPricePredML.Model.pdb
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\obj\Release\netstandard2.0\HousingPricePredML.Model.csprojAssemblyReference.cache
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\obj\Release\netstandard2.0\HousingPricePredML.Model.AssemblyInfoInputs.cache
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\obj\Release\netstandard2.0\HousingPricePredML.Model.AssemblyInfo.cs
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\obj\Release\netstandard2.0\HousingPricePredML.Model.csproj.CoreCompileInputs.cache
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\obj\Release\netstandard2.0\HousingPricePredML.Model.dll
+C:\Users\dciopei\Desktop\PricePrediction\HousingPrice\HousingPricePredML.Model\obj\Release\netstandard2.0\HousingPricePredML.Model.pdb
