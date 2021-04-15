@@ -17,7 +17,7 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
-    public static final int minutesTillExpiration = 30;
+    public static final int MINUTES_TILL_EXPIRATION = 180;
 
     private final String USER_NOT_FOUND =
             "Couldn't FIND an user with this email (%s)!";
@@ -29,15 +29,15 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
+                            new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
     }
 
-    public String signUpUser(User user) {
+    public String signUpUser(User user){
         boolean userExists = userRepository.findByEmail(user.getEmail())
-                .isPresent();
+        .isPresent();
 
-        if (userExists) {
-            throw new IllegalStateException("Email already taken!");
+        if(userExists){
+            throw new IllegalStateException("Email luat deja!");
         }
 
         String encodedUserPassword = bCryptPasswordEncoder
@@ -51,14 +51,19 @@ public class UserService implements UserDetailsService {
         ConfirmationToken confirmationToken = new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(minutesTillExpiration),
+                LocalDateTime.now().plusMinutes(MINUTES_TILL_EXPIRATION),
                 user
         );
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-
         return token;
+    }
+
+    public void changeUserPassword(User user, String newPassword){
+
+        String hashedPassword = bCryptPasswordEncoder.encode(newPassword);
+        userRepository.modifyPassword(user.getEmail(), hashedPassword);
     }
 
     public int enableAppUser(String email) {

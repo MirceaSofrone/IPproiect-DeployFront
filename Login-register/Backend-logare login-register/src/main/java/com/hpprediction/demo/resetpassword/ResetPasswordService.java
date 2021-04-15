@@ -1,72 +1,76 @@
-package com.hpprediction.demo.registration;
+package com.hpprediction.demo.resetpassword;
+
 
 import com.hpprediction.demo.UsersApp.User;
-import com.hpprediction.demo.UsersApp.UserRoleEnum;
 import com.hpprediction.demo.UsersApp.services.UserService;
 import com.hpprediction.demo.email.EmailSender;
-import com.hpprediction.demo.registration.token.ConfirmationToken;
-import com.hpprediction.demo.registration.token.ConfirmationTokenService;
+import com.hpprediction.demo.email.EmailService;
+import com.hpprediction.demo.registration.EmailValidator;
+import com.hpprediction.demo.resetpassword.token.PasswordResetToken;
+import com.hpprediction.demo.resetpassword.token.PasswordResetTokenService;
+import com.hpprediction.demo.security.SecurityService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class RegistrationService {
+public class ResetPasswordService {
 
+    private static final int MINUTES_TILL_EXPIRATION = 180;
     private final UserService userService;
     private final EmailValidator emailValidator;
     private final EmailSender emailSender;
-    private final ConfirmationTokenService confirmationTokenService;
 
+    private final SecurityService securityService;
+    private final PasswordResetTokenService passwordResetTokenService;
+    private final EmailService emailService;
 
-    public String register(RegistrationRequest request) {
-        boolean isValidEmail = emailValidator.test(request.getEmail());
+    public String resetPassword(String email) {
 
-        if (!isValidEmail) {
-            throw new IllegalStateException("Email invalid");
+        User userRequestingReset;
+
+        try{
+            userRequestingReset = (User) userService.loadUserByUsername(email);
+        }
+        catch(UsernameNotFoundException ue){
+            return "Niciun user cu acel email!";
         }
 
-        String token = userService.signUpUser(
-                new User(request.getFirstName(),
-                        request.getLastName(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        UserRoleEnum.USER
-                ));
+        Optional<PasswordResetToken> tokenPrezentDeja;
 
-        String link = "http://localhost:8081/api/v1/confirm?token=" + token;
-        emailSender.send(
-                request.getEmail(),
-                buildEmail(request.getLastName(),link));
+        tokenPrezentDeja = passwordResetTokenService.getTokenByUser(userRequestingReset);
 
-        return token;
+        if(tokenPrezentDeja.isPresent()){
+            if(securityService.isPasswordTokenValid(tokenPrezentDeja.get())){
+                return "Nu poti cere din nou resetarea parolei. Mai asteapta!";
+            }
+        }
+
+        String token = UUID.randomUUID().toString();
+        PasswordResetToken passwordResetToken = new PasswordResetToken(
+                token,
+                userRequestingReset,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(MINUTES_TILL_EXPIRATION)
+        );
+
+        String link = "http://localhost:8081/api/v1/resetPassword?token=" + token;
+
+        passwordResetTokenService.saveConfirmationToken(passwordResetToken);
+
+        emailService.send(email,
+                buildResetPasswordEmail(userRequestingReset.getFirstName(), link));
+
+        return "Password reset token: "  + token;
     }
 
-    public String confirmToken(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenService
-                .getToken(token)
-                .orElseThrow(() ->
-                        new IllegalStateException("NU s-a gasit token-ul"));
 
-        if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("Email-ul este confirmat deja");
-        }
-
-        LocalDateTime expiredAt = confirmationToken.getExpiresAt();
-
-        if (expiredAt.isBefore(LocalDateTime.now())) {
-            throw new IllegalStateException("Tokenul a expirat");
-        }
-
-        confirmationTokenService.setConfirmedAt(token);
-        userService.enableAppUser(
-                confirmationToken.getUser().getEmail());
-        return "Confirmat";
-    }
-    private String buildEmail(String name, String link) {
+    private String buildResetPasswordEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +
@@ -84,7 +88,7 @@ public class RegistrationService {
                 "                  \n" +
                 "                    </td>\n" +
                 "                    <td style=\"font-size:28px;line-height:1.315789474;Margin-top:4px;padding-left:10px\">\n" +
-                "                      <span style=\"font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#ffffff;text-decoration:none;vertical-align:top;display:inline-block\">Confirm your email</span>\n" +
+                "                      <span style=\"font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#ffffff;text-decoration:none;vertical-align:top;display:inline-block\">Here is a link to reset your password</span>\n" +
                 "                    </td>\n" +
                 "                  </tr>\n" +
                 "                </tbody></table>\n" +
@@ -122,7 +126,7 @@ public class RegistrationService {
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
                 "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
                 "        \n" +
-                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Thank you for registering. Please click on the below link to activate your account: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Activate Now</a> </p></blockquote>\n Link will expire in 15 minutes. <p>See you soon</p>" +
+                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Please click on the below link to reset your account's password: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Activate Now</a> </p></blockquote>\n Link will expire in 15 minutes. <p>See you soon</p>" +
                 "        \n" +
                 "      </td>\n" +
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
@@ -133,5 +137,25 @@ public class RegistrationService {
                 "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
                 "\n" +
                 "</div></div>";
+    }
+
+    public String changePassword(ResetRequest request) {
+        String token = request.getToken();
+        String newPassword = request.getPassword();
+
+        Optional<PasswordResetToken> tokenResetare = passwordResetTokenService.getToken(token);
+
+        if(tokenResetare.isPresent()){
+            if(securityService.isPasswordTokenValid(token)){
+
+                User user = tokenResetare.get().getUser();
+                userService.changeUserPassword(user, newPassword);
+
+                passwordResetTokenService.destroyToken(token);
+
+                return "Parola schimbata cu success";
+            }
+        }
+        throw new IllegalStateException("Tokenul nu exista sau e expirat!");
     }
 }

@@ -10,6 +10,29 @@ spring:
     username: root
     password: ip
   jpa:
-    hibernate.ddl-auto: create-drop
+    hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+
+  mail:
+    protocol: smtp
+    host: smtp.gmail.com
+    port: 587
+    username: housepredictionlogin@gmail.com
+    password: lzhqlvmaczivrngo
+    properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 63381448564-rt5h5lvljeu4vl9e4dm01k2hlkk2qm5u.apps.googleusercontent.com
+            clientSecret: 4NkUBz-eZOFpFCDOLLwivuEM
+            redirectUri: "http://localhost:8081/login/oauth2/code/google"
+            scope:
+              - email
+              - profile
+

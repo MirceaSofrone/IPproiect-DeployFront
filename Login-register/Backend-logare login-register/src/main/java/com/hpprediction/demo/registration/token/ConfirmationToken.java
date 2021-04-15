@@ -20,8 +20,7 @@ public class ConfirmationToken {
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "confirmation_token_sequence"
+            strategy = GenerationType.AUTO
     )
     private Long id;
     @Column(nullable = false)
