@@ -1,0 +1,23 @@
+ul {
+    padding: 0;
+    /* width: 65vw; */
+    margin-top: 20px auto;
+    margin-bottom: 20px auto;
+}
+
+li {
+    display: inline;
+}
+
+.image,
+.main-image {
+    margin: 6px;
+    border: 1px solid #eee;
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}

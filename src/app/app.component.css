@@ -1,0 +1,15 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+app-photo-gallery {
+    display: grid;
+    grid-column: 1;
+}
+
+.user {
+    display: grid;
+    grid-column: 2;
+}

@@ -1,0 +1,88 @@
+@font-face {
+    src: ".assets\fonts\Manrope-Regular.ttf";
+    font-family: manrope;
+}
+
+@font-face {
+    font-family: montserrat;
+    src: ".\assets\fonts\Montserrat-Regular.ttf";
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+.bkg-rectangle {
+    height: 746px;
+    width: 407px;
+    background-color: #F2F2F2;
+    margin-left: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: manrope;
+}
+
+.form-elements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.seller-name {
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: montserrat;
+    color: #707070;
+}
+
+.form-elements textarea {
+    width: 307px;
+    height: 209px;
+    padding: 10px;
+    font-size: 15px;
+    font-family: montserrat;
+}
+
+#submit-btn {
+    width: 291px;
+    height: 59px;
+    margin-top: 43px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 23px;
+    border: none;
+    background-color: #283655;
+    color: #FFFFFF;
+    font-family: 'Manrope', sans-serif;
+    outline: none;
+}
+
+input {
+    font-family: montserrat;
+    font-weight: 200;
+}
+
+.favorites-btn {
+    width: 291px;
+    height: 59px;
+    margin-top: 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 23px;
+    border: none;
+    background-color: #283655;
+    color: #FFFFFF;
+    font-family: 'Manrope', sans-serif;
+    cursor: pointer;
+    outline: none;
+}
+
+.favorites-btn:hover {
+    background-color: #4d648d;
+}
+
+#submit-btn:hover {
+    background-color: #4d648d;
+}
