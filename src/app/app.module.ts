@@ -9,6 +9,7 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { ResetPasswdComponent } from './auth/components/reset-passwd/reset-passwd.component';
 import { DialogComponent } from './auth/components/test-dialog/test.dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

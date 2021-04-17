@@ -15,8 +15,8 @@ export class DialogComponent {
   openDialog() {
     const dialogRef = this.dialog.open(LoginComponent,
       {
-        width:'40%',
-        height:'100%',
+        width:'70%',
+        height:'80%',
         panelClass: "pclass"
       });
 
