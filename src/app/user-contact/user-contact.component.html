@@ -1,11 +1,11 @@
 <div class="bkg-rectangle">
     <img src=".\assets\person-circle.svg">
     <div class="seller-name">John Doe</div>
-    <form class="form-elements">
+    <form class="form-elements" #userPost="ngForm" (ngSubmit)="onSubmit(userPost)">
         <!-- <input type="text" id="text-box" placeholder="Write a message to the seller..."> -->
-        <textarea placeholder="Write a message to the seller..."></textarea>
+        <textarea name="message"  placeholder="Write a message to the seller..." ngModel></textarea>
         <div>
-            <input id="submit-btn" type="submit" value="Send message">
+          <button id="submit-btn" type="submit" >Send message</button>
         </div>
     </form>
     <button class="favorites-btn">Add to favorites</button>
