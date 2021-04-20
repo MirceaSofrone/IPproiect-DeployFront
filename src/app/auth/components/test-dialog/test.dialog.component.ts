@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/auth/components/login/login.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ResetPasswdComponent } from '../reset-passwd/reset-passwd.component';
+import { RegisterComponent } from '../register/register.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dialog',
@@ -15,9 +16,9 @@ export class DialogComponent {
   openDialog() {
     const dialogRef = this.dialog.open(LoginComponent,
       {
-        width:'70%',
+        width:'75%',
         height:'80%',
-        panelClass: "pclass"
+        panelClass:'pclass'
       });
 
   }

@@ -1,96 +1,91 @@
 <div class="body">
     <span>
-      <div mat-dialog-content class="split_left">
-        <button id="bck_btn" class="move">
-          <mat-icon id="bck_arw" matSuffix>arrow_back</mat-icon>
-          Back
-        </button>
-        <h2 mat-dialog-title class="txt">Log In</h2>
-        <p class="txt">
-          Don't have an account?
-          <a
-            style="color: #4d648d;
-            font-weight: 500;
-            margin-left: 10px"
-            href="#"
+  <div mat-dialog-content class="split_left">
+    <button id="bck_btn" class="move">
+      <mat-icon id="bck_arw" matSuffix>arrow_back</mat-icon>
+      Back
+    </button>
+    <h2 mat-dialog-title class="txt">Log In</h2>
+    <p class="txt">
+      Don't have an account?
+      <a style="color: #4d648d; font-weight: 500; margin-left: 10px" href="#">
+        Sign Up
+      </a>
+    </p>
+
+    <form class="txt" [formGroup]="login" (ngSubmit)="onSubmit()">
+
+        <mat-form-field id="mail" appearance="outline">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Email"
+            required
+          />
+        </mat-form-field>
+
+        <br />
+
+        <mat-form-field id="psswd" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            [type]="hide ? 'password' : 'text'"
+            matInput
+            formControlName="password"
+            placeholder="Password"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            type="button"
           >
-            Sign Up
-          </a>
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      <br />
+
+      <div id="rf">
+        <label id="remember">
+          <input type="checkbox" />
+          Remember me
+        </label>
+
+        <a id="forgot" href="#"> Forgot password? </a>
+      </div>
+
+      <div class="log">
+        <button
+          id="log_btn"
+          mat-flat-button
+          [disabled]="!login.valid"
+        >
+          Log in
+        </button>
+      </div>
+
+      <div class="g_log">
+        <p>or</p>
+        <p id="gclick">
+          <a href="#">
+            <img
+              id="logo"
+              src="../../../../assets/g.png"
+              width="25"
+              alt="google_logo"
+            />Log in with Google</a
+          >
         </p>
-
-        <form class="txt" [formGroup]="login" (ngSubmit)="onSubmit()">
-          <mat-form-field class="log" appearance="outline">
-            <mat-icon matSuffix>account_circle</mat-icon>
-            <mat-label>Email</mat-label>
-            <input
-              matInput
-              formControlName="email"
-              placeholder="Email"
-              required
-            />
-          </mat-form-field>
-
-          <br />
-
-          <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input
-              [type]="hide ? 'password' : 'text'"
-              matInput
-              formControlName="password"
-              placeholder="Password"
-              required
-            />
-            <button
-              mat-icon-button
-              matSuffix
-              (click)="hide = !hide"
-              type="button"
-            >
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-            </button>
-          </mat-form-field>
-
-          <br />
-
-          <div id="rf">
-            <label id="remember">
-              <input type="checkbox" />
-              Remember me
-            </label>
-
-            <a id="forgot" href="#"> Forgot password? </a>
-          </div>
-
-          <div class="log">
-            <button
-              id="log_btn"
-              mat-flat-button
-              color="primary"
-
-              [disabled]="!login.valid"
-            >
-              Log in
-            </button>
-          </div>
-
-          <div class="g_log">
-            <p>or</p>
-            <p id="gclick">
-              <a href="#">
-                <img
-                  src="../../../../assets/g.png"
-                  width="25"
-                  alt="google_logo"
-                />Log in with Google</a>
-            </p>
-          </div>
-        </form>
       </div>
-
-      <div class="split_right">
-
-      </div>
-    </span>
+    </form>
   </div>
 
+  <div class="split_right">
+    <img id="sun" width="80%" src="../../../../assets/sun_clouds.png" alt="sun and clouds">
+  </div>
+  <img id="buildings" width="63%" src="../../../../assets/buildings.png" alt="buildings">
+</span>
+</div>
