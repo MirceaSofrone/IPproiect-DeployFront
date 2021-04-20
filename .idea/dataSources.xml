@@ -8,17 +8,13 @@
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="PostgreSQL - d7sr5ev0j95tvk@ec2-54-220-35-19.eu-west-1.compute.amazonaws.com" uuid="3c8c5bd2-08b1-4e77-8ad9-70906f160e90">
+    <data-source source="LOCAL" name="d7sr5ev0j95tvk@ec2-54-220-35-19.eu-west-1.compute.amazonaws.com" uuid="d110e0ae-b2f2-4ffd-b3b5-d15e8a6a19c1">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-54-220-35-19.eu-west-1.compute.amazonaws.com:5432/d7sr5ev0j95tvk</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-54-220-35-19.eu-west-1.compute.amazonaws.com:5432/d7sr5ev0j95tvk?user=yknjdajsoaljbu&amp;password=2395ecc1cb0ae353a2f5c773f8c342a9638269ece62a030145838f49995de7b3&amp;sslmode=require</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
-      <driver-properties>
-        <property name="ssl" value="true" />
-        <property name="sslmode" value="verify-ca" />
-        <property name="sslfactory" value="org.postgresql.ssl.NonValidatingFactory" />
-      </driver-properties>
     </data-source>
   </component>
 </project>
