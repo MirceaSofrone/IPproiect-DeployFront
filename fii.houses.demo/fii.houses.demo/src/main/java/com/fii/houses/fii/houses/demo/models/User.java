@@ -6,7 +6,8 @@ import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
 @Entity
-public abstract class User {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
