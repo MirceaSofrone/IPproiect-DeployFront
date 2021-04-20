@@ -3,16 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PhotoCarouselComponent } from './photo-carousel/photo-carousel.component';
+
+import { NgImageSliderModule } from 'ng-image-slider';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PhotoCarouselComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgImageSliderModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+   
+
 })
 export class AppModule { }

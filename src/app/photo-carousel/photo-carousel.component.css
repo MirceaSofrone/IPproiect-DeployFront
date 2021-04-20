@@ -1,0 +1,5 @@
+.ng-image-slider .ng-image-slider-container .main .main-inner .img-div .caption {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
