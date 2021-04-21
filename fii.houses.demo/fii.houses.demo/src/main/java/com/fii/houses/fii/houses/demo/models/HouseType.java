@@ -14,6 +14,7 @@ public class HouseType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID houseTypeID;
+    private String typeName;
     private Date creationDate;
 
     public UUID getHouseTypeID() {
@@ -22,6 +23,14 @@ public class HouseType {
 
     public void setHouseTypeID(UUID houseTypeID) {
         this.houseTypeID = houseTypeID;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public Date getCreationDate() {

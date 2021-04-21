@@ -18,13 +18,13 @@ public class HouseTypesController {
     @Autowired
     private HouseTypeService service;
 
-    @GetMapping
+    @GetMapping("/allTypes")
     public ResponseEntity<List<HouseType>> getHousesType(){
         List<HouseType> houseTypes =service.getAllHouseTypes();
         return new ResponseEntity<List<HouseType>>(houseTypes,new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<HouseType> createOrUpdateHouseType(@RequestBody HouseType houseType)
     {
         HouseType houseType1 = service.createOrUpdate(houseType);

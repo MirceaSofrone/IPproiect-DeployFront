@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.xml.crypto.Data;
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 
 @Entity
 public class House {
@@ -14,8 +15,7 @@ public class House {
     private UUID userID;
     private String adress, city, country, description;
     private Integer nrCamere, etaj, suprafata, nrBai;
-    private Integer tipImobil;
-    private File image;
+    private UUID houseTypeID;
     @ElementCollection
     private Map<Date, ArrayList<Float>> istoricPreturi = new TreeMap<>();
     @ElementCollection
@@ -89,12 +89,12 @@ public class House {
         this.nrBai = nrBai;
     }
 
-    public Integer getTipImobil() {
-        return tipImobil;
+    public UUID getHouseTypeID() {
+        return houseTypeID;
     }
 
-    public void setTipImobil(Integer tipImobil) {
-        this.tipImobil = tipImobil;
+    public void setHouseTypeID(UUID houseTypeID) {
+        this.houseTypeID = houseTypeID;
     }
 
     public Date getCreationDate() {
@@ -120,14 +120,6 @@ public class House {
 
     public void setIstoricFavorite(Map<Date, Integer> istoricFavorite) {
         this.istoricFavorite = istoricFavorite;
-    }
-
-    public File getImage() {
-        return image;
-    }
-
-    public void setImage(File image) {
-        this.image = image;
     }
 
     public Integer getViews() {

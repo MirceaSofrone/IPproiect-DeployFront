@@ -122,8 +122,8 @@ public class HouseService {
                 updateHouse.setNrCamere(house.getNrCamere());
             if(house.getSuprafata()!=null)
                 updateHouse.setSuprafata(house.getSuprafata());
-            if(house.getTipImobil()!=null)
-                updateHouse.setTipImobil(house.getTipImobil());
+            if(house.getHouseTypeID()!=null)
+                updateHouse.setHouseTypeID(house.getHouseTypeID());
             if(house.getDescription()!=null)
                 updateHouse.setDescription(house.getDescription());
             house=repository.save(updateHouse);
