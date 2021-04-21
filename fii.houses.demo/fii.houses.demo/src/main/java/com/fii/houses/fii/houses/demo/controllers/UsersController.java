@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +19,9 @@ import java.util.Optional;
 public class UsersController {
     @Autowired
     private UsersService service;
-
     @Autowired
-    HouseService houseService;
+    private HouseService houseService;
+
     /*
         CREATE - POST
         READ - GET
@@ -58,13 +57,13 @@ public class UsersController {
 
     //un put pentru a adauga la favorite o casa
     @PutMapping("/addtofavorite")
-    public ResponseEntity<?> addToFavorite (@RequestBody User user, @RequestBody House house){
-        Optional<User> user1 = service.getUserById(user.getUserID());
-        Optional<House> house1 = houseService.getHouseById(house.getHouseID());
-        if(user1.isEmpty() || house1.isEmpty()){
+    public ResponseEntity<?> addToFavorite (@RequestBody House house){
+        List<User> newUser = service.getUserByUserID(house.getUserID());
+        List<House> newHouse = houseService.getHouseByHouseID(house);
+        if(newUser.isEmpty() || newHouse.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }else{
-            service.addToFavorites(user, house);
+            service.addToFavorites(newUser.get(0), newHouse.get(0));
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }

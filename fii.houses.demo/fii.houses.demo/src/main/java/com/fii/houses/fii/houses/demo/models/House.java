@@ -11,9 +11,13 @@ public class House {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "BINARY(16)")
     private UUID houseID;
+    @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
-    private String adress, city, country, description;
+    @Column(columnDefinition = "VARCHAR(1024)")
+    private String description;
+    private String city, country, adress;
     private Integer nrCamere, etaj, suprafata, nrBai;
     //0-house, 1-apartment 2-studio 3-commercial space
     private Integer houseType;

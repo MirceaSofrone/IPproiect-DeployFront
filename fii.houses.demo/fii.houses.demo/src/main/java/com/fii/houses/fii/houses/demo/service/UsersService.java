@@ -2,6 +2,7 @@ package com.fii.houses.fii.houses.demo.service;
 
 import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.models.User;
+import com.fii.houses.fii.houses.demo.repository.HouseRepository;
 import com.fii.houses.fii.houses.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class UsersService {
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private HouseRepository houseRepository;
 
     public List<User> getAllUsers() {
         List<User> users = repository.findAll();
@@ -26,6 +29,21 @@ public class UsersService {
     public Optional<User> getUserById(UUID id){
         Optional<User> user = repository.findById(id);
         return user;
+    }
+
+    public List<User> getUserByUserID(UUID id){
+        List<User> users = repository.findAll();
+        List<User> goodUsers = new ArrayList<>();
+        for (User user : users) {
+            if (user.getUserID().equals(id)) {
+                goodUsers.add(user);
+            }
+        }
+        if(goodUsers.size()>=1){
+            return goodUsers;
+        }else {
+            return new ArrayList<>();
+        }
     }
 
     public User createOrUpdate(User user) {
