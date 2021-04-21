@@ -116,6 +116,8 @@ public class UsersService {
         favorite.remove(house);
         user.setFavorite(favorite);
         house.setNoOfFave(house.getNoOfFave()-1);
+        repository.save(user);
+        houseRepository.save(house);
     }
 
     public void addToIstoricVizualizare(House house,User user){
@@ -123,5 +125,6 @@ public class UsersService {
         istoricVizionare.add(house);
         user.setIstoricVizionare(istoricVizionare);
         house.setViews(house.getViews()+1);
+
     }
 }

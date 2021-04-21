@@ -90,14 +90,14 @@ public class UsersController {
     }
 
     //un put pentru a elimina o casa de la favorite
-    @PutMapping("/removefromfavorite")
-    public ResponseEntity<?> removeFromFavorite(@RequestBody User user, @RequestBody House house){
-        Optional<User> user1 = service.getUserById(user.getUserID());
-        Optional<House> house1 = houseService.getHouseById(house.getHouseID());
-        if(user1.isEmpty() || house1.isEmpty()){
+    @DeleteMapping("/removefromfavorite")
+    public ResponseEntity<?> removeFromFavorite(@RequestBody House house){
+        List<User> newUser = service.getUserByUserID(house.getUserID());
+        List<House> newHouse = houseService.getHouseByHouseID(house);
+        if(newUser.isEmpty() || newHouse.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }else{
-            service.removeFromFavorites(user, house);
+            service.removeFromFavorites(newUser.get(0), newHouse.get(0));
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }

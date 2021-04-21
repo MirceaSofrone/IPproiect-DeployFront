@@ -8,8 +8,9 @@ public class HousePhotos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "BINARY(16)")
     private UUID photoID;
-
+    @Column(columnDefinition = "BINARY(16)")
     private UUID houseID;
 
     @Lob
