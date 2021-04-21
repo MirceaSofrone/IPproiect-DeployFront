@@ -1,19 +1,54 @@
-<form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="standard">
-        <mat-label>New Password</mat-label>
-        <input matInput formControlName="newPasswd" [type]="hide ? 'password' : 'text'" required>
-        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-    </mat-form-field>
-    <mat-form-field appearance="standard">
-        <mat-label>Confirm New Password</mat-label>
-        <input matInput formControlName="confirmPasswd" [type]="hideConfirm ? 'password' : 'text'" required>
-        <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" type="button">
-        <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-    </mat-form-field>
-    <p>
-        <button mat-raised-button type="submit" [disabled]="!resetForm.valid" (click)="onSubmit()">Submit</button>
-    </p>
-</form>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="split-content">
+        <div class="split-left">
+            <div class="left-align">
+                <h2>Change Password</h2>
+                <p>Choose a minimum 8 characters' password which contains: a capital letter, a number, a special
+                    character</p>
+
+                <div mat-dialog-content>
+                    <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
+
+                        <mat-form-field id="psswd" appearance="outline">
+                            <mat-label>New Password</mat-label>
+                            <input matInput formControlName="newPasswd" [type]="hide ? 'password' : 'text'" required />
+                            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field id="psswd" appearance="outline">
+                            <mat-label>Confirm New Password</mat-label>
+                            <input matInput formControlName="confirmPasswd" [type]="hideConfirm ? 'password' : 'text'"
+                                required />
+                            <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" type="button">
+                                <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <br>
+
+                        <button id="button-2" mat-raised-button type="submit" [disabled]="!resetForm.valid"
+                            (click)="onSubmit()">Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <img id="buildings2" src="../../../../assets/buildings.png" alt="buildings">
+        </div>
+
+        <div class="split-right">
+            <div class="imgs">
+                <img id="sun" src="../../../../assets/sun_clouds.png" alt="sun and clouds">
+                <img id="buildings" src="../../../../assets/buildings.png" alt="buildings">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

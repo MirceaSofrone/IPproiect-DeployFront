@@ -1,5 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+@Component({
+  selector: 'dialog-reset-passwd',
+  templateUrl: 'dialog-reset-passwd.html',
+})
+export class DialogResetPasswd {
+  constructor(public dialog: MatDialog) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ResetPasswdComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+}
 
 @Component({
   selector: 'app-reset-passwd',
