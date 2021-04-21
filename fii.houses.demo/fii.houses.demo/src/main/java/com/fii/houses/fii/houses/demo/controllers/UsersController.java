@@ -38,19 +38,40 @@ public class UsersController {
     @PostMapping("/create")
     public ResponseEntity<User> create(@RequestBody User user)
     {
-        User user1=service.createOrUpdate(user);
+        User user1=service.create(user);
         return new ResponseEntity<User>(user1, new HttpHeaders(),HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<User> update(@RequestBody User user){
+        User newUser=service.update(user);
+        if(newUser != null){
+            return new ResponseEntity<User>(newUser, new HttpHeaders(), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<User>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping ("/delete")
+    public ResponseEntity<String> delete(@RequestBody User user)
+    {
+       if(service.deleteUser(user)){
+           return new ResponseEntity<String>("" , new HttpHeaders(),HttpStatus.OK);
+       }
+       else {
+           return new ResponseEntity<String>("" , new HttpHeaders(),HttpStatus.NOT_FOUND);
+       }
     }
 
     //un get pentru a trimite o lista de favorite catre Dashboard
     @GetMapping("/getfavorite")
     public ResponseEntity<List<House>> getFavorite(@RequestBody User user){
-        Optional<User> user1 = service.getUserById(user.getUserID());
-        if(user1.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        User newUser = service.getUserFavorite(user);
+        if(newUser==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         else{
-            List<House> favorite = user.getFavorite();
+            List<House> favorite = newUser.getFavorite();
             return new ResponseEntity<>(favorite, new HttpHeaders(), HttpStatus.OK);
         }
     }

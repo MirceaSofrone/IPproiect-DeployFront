@@ -46,11 +46,38 @@ public class UsersService {
         }
     }
 
-    public User createOrUpdate(User user) {
+    public User create(User user) {
         user.setUserID(UUID.randomUUID());
         user.setCreationDate(new Date());
         user=repository.save(user);
         return user;
+    }
+
+    public User update(User user){
+        UUID id = user.getUserID();
+        if(repository.existsById(id)){
+            User newUser = repository.getOne(id);
+            if(user.getFirstName()!=null){
+                newUser.setFirstName(user.getFirstName());
+            }
+            if(user.getLastName()!=null){
+                newUser.setLastName(user.getLastName());
+            }
+            repository.save(newUser);
+            return newUser;
+        }else{
+            return null;
+        }
+    }
+
+    public boolean deleteUser(User user){
+        UUID id = user.getUserID();
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public void addToFavorites(User user, House house){
@@ -71,6 +98,17 @@ public class UsersService {
         }
         house.setIstoricFavorite(istoricFavorite);
         house.setNoOfFave(house.getNoOfFave()+1);
+        repository.save(user);
+        houseRepository.save(house);
+    }
+
+    public User getUserFavorite(User user){
+        UUID id = user.getUserID();
+        if(repository.existsById(id)){
+            return repository.getOne(id);
+        }else {
+            return null;
+        }
     }
 
     public void removeFromFavorites(User user,House house){
