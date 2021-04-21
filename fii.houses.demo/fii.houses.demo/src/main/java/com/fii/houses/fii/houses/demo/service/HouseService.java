@@ -8,6 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+class SortByDate implements Comparator<House> {
+
+    @Override
+    public int compare(House o1, House o2) {
+        return o1.getCreationDate().compareTo(o2.getCreationDate());
+    }
+}
+
 @Service
 public class HouseService {
     @Autowired
@@ -93,6 +101,21 @@ public class HouseService {
             return true;
         }
         return false;
+    }
+
+    public List<House> lastNineHouse(){
+        List<House> allHouses = repository.findAll();
+        allHouses.sort(new SortByDate());
+        List<House> goodHouses = new ArrayList<>();
+        int houses = Math.min(allHouses.size(), 9);
+        for (int index = 0; index < houses; index++) {
+            goodHouses.add(allHouses.get(index));
+        }
+        if (goodHouses.size() > 0) {
+            return goodHouses;
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     public House createHouse(House house) {

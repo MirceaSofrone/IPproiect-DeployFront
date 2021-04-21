@@ -104,6 +104,16 @@ public class HousesController {
         }
     }
 
+    @GetMapping("/lastnine")
+    public ResponseEntity<List<House>> lastNineHouses (){
+        List<House> houses = service.lastNineHouse();
+        if(houses.equals(new ArrayList<>())){
+            return new ResponseEntity<List<House>>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<List<House>>(houses, new HttpHeaders(), HttpStatus.OK);
+        }
+    }
+
     //the words will be separated trough "-"
     @GetMapping("/filter/bySearch/{words}")
     public ResponseEntity<List<House>> searchInAddressAndDescription(@PathVariable String words){
