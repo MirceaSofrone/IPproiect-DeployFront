@@ -95,16 +95,9 @@ a {
 }
 
 #buildings {
-    position: absolute;
-    bottom: 0%;
-    right: -5%;
-    z-index: 0;
-}
-
-#buildings2 {
-    position: absolute;
-    bottom: 0%;
-    right: -95%;
+    position: fixed;
+    bottom: 30px;
+    right: 0;
     z-index: 0;
 }
 
@@ -149,9 +142,10 @@ a {
         padding-right: 150px;
     }
     
-    /* #buildings {
+    #buildings {
         display: none;
-    } */
+    }
+
 
 }
 
