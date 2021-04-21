@@ -122,10 +122,15 @@ public class HouseService {
                 updateHouse.setNrCamere(house.getNrCamere());
             if(house.getSuprafata()!=null)
                 updateHouse.setSuprafata(house.getSuprafata());
-            if(house.getHouseTypeID()!=null)
-                updateHouse.setHouseTypeID(house.getHouseTypeID());
-            if(house.getDescription()!=null)
+            if(house.getHouseType()!=null){
+                updateHouse.setHouseType(house.getHouseType());
+            }
+            if(house.getSellType()!=null){
+                updateHouse.setSellType(house.getSellType());
+            }
+            if(house.getDescription()!=null) {
                 updateHouse.setDescription(house.getDescription());
+            }
             house=repository.save(updateHouse);
             return house;
         }else

@@ -15,7 +15,10 @@ public class House {
     private UUID userID;
     private String adress, city, country, description;
     private Integer nrCamere, etaj, suprafata, nrBai;
-    private UUID houseTypeID;
+    //0-house, 1-apartment 2-studio 3-commercial space
+    private Integer houseType;
+    //0-selling, 1-renting
+    private Integer sellType;
     @ElementCollection
     private Map<Date, ArrayList<Float>> istoricPreturi = new TreeMap<>();
     @ElementCollection
@@ -89,12 +92,20 @@ public class House {
         this.nrBai = nrBai;
     }
 
-    public UUID getHouseTypeID() {
-        return houseTypeID;
+    public Integer getHouseType() {
+        return houseType;
     }
 
-    public void setHouseTypeID(UUID houseTypeID) {
-        this.houseTypeID = houseTypeID;
+    public void setHouseType(int houseType) {
+        this.houseType = houseType;
+    }
+
+    public Integer getSellType() {
+        return sellType;
+    }
+
+    public void setSellType(int sellType) {
+        this.sellType = sellType;
     }
 
     public Date getCreationDate() {

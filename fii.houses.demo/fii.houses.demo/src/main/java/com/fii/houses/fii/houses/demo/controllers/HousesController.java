@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 @RestController
@@ -103,6 +101,85 @@ public class HousesController {
             return new ResponseEntity<String>("", new HttpHeaders(),HttpStatus.OK);
         }else{
             return new ResponseEntity<String>("", new HttpHeaders(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //the words will be separated trough "-"
+    @GetMapping("/filter/bySearch/{words}")
+    public ResponseEntity<List<House>> searchInAddressAndDescription(@PathVariable String words){
+        List<House> allHouses = service.getAllHouses();
+        List<House> housesTemp;
+        Map<Integer, List<House>> wordsMatched = new TreeMap<>();
+        String[] arrOfWords = words.split("-", 0);
+        Integer counterMatches;
+        //populate the map wordsMarched: for a number of matches we have a list of houses
+        for(House house : allHouses){
+            counterMatches = 0;
+            for(String word : arrOfWords){
+                if(house.getDescription() != null){
+                    if(house.getDescription().contains(word)){
+                        counterMatches++;
+                    }
+                }
+                if(house.getAdress() != null){
+                    if(house.getAdress().contains(word)){
+                        counterMatches++;
+                    }
+                }
+            }
+            if(counterMatches != 0){
+                if(wordsMatched.containsKey(counterMatches)){
+                    housesTemp = wordsMatched.get(counterMatches);
+                }else{
+                    housesTemp = new ArrayList<>();
+                }
+                housesTemp.add(house);
+                wordsMatched.put(counterMatches, housesTemp);
+            }
+        }
+        //sort descendind by number of matches
+        Map<Integer, List<House>> reverseSortedMap = new TreeMap<Integer, List<House>>(Collections.reverseOrder());
+
+        reverseSortedMap.putAll(wordsMatched);
+
+        List<House> houses = new ArrayList<>();
+        for (Map.Entry<Integer, List<House>> entry :reverseSortedMap.entrySet()) {
+            housesTemp = entry.getValue();
+            houses.addAll(housesTemp);
+        }
+        return new ResponseEntity<>(houses, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping("/filter/byFields")
+    public ResponseEntity <List<House>> searchInFields(@RequestParam(required=false) Integer houseType,
+                                                       @RequestParam(required=false) Integer sellType,
+                                                       @RequestParam(required=false) String city,
+                                                       @RequestParam(required=false) String country,
+                                                       @RequestParam(required=false) Integer nrCamere,
+                                                       @RequestParam(required=false) Integer etaj,
+                                                       @RequestParam(required=false) Integer suprafata,
+                                                       @RequestParam(required=false) Integer nrBai){
+
+        List<House> allHouses = service.getAllHouses();
+        List<House> houses = new ArrayList<>();
+
+        for(House house : allHouses){
+            if((houseType == null || house.getHouseType().equals(houseType)) &&
+                    (sellType == null || house.getSellType().equals(sellType)) &&
+                    (city == null || house.getCity().equals(city)) &&
+                    (country == null || house.getCountry().equals(country)) &&
+                    (nrCamere == null || house.getNrCamere().equals(nrCamere)) &&
+                    (etaj == null || house.getEtaj().equals(etaj)) &&
+                    (suprafata == null || house.getSuprafata().equals(suprafata)) &&
+                    (nrBai == null || house.getNrBai().equals(nrBai))) {
+                houses.add(house);
+            }
+        }
+
+        if(houses.isEmpty()){
+            return new ResponseEntity<>( new HttpHeaders(), HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(houses, new HttpHeaders(), HttpStatus.OK);
         }
     }
 }
