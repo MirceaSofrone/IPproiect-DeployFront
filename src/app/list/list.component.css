@@ -1,0 +1,42 @@
+
+.images{
+    position: relative;
+    width:25%;
+    height:25%;
+   
+    
+}
+.details{
+    position:relative;
+    left:28%;
+    top:-150px;
+    font-size: 20px;
+}
+.list{
+    position:relative;
+    top:5%;
+    border:3px solid #ccc;
+    width:75%;
+    padding: 10px;
+    display: flex;
+    margin:15px;
+    box-shadow: -0.3em 0 .4em #ccc,-0.3em 0 .4em #ccc;
+    margin-left: 12.5%;
+}
+.house-description{
+    position: relative;
+    top:10%;
+}
+.heart-icon{
+    position: absolute;
+    top:10%;
+    left:2%;
+}
+@media (max-width:800px){
+    .details{
+        position:relative;
+        left:28%;
+        top:-100px;
+        font-size: 15px;
+    }
+}
