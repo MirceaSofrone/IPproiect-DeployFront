@@ -14,6 +14,9 @@ import { PostsService } from './posts.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  title = 'landing-page-carduri';
+
   data:any;
   title = 'IPproiect';
 
@@ -35,5 +38,6 @@ export class AppComponent {
   //     this.data=result;
   //   })
   // }
+
 
 }

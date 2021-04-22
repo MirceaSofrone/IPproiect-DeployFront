@@ -1,0 +1,48 @@
+    .first {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 35%;
+        padding-bottom: -5%;
+        color: grey;
+    }
+    
+    .second {
+        height: 80%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: -5%;
+        padding-left: 30%;
+        padding-bottom: -5%;
+        color: grey;
+        font-size: 1.25em;
+    }
+    
+    #cercuri {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        margin-bottom: 0%;
+    }
+    
+    .third {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 37%;
+        padding-top: -5%;
+        color: grey;
+        font-size: 125%;
+    }
+    
+    #carduri {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        margin-bottom: 0%;
+    }

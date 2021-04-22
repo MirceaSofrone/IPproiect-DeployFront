@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
+
 import SearchIcon from '@material-ui/icons/Search';
 import { AppComponent } from './app.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingSearchComponent } from './landing-search/landing-search.component';
 import {FormsModule} from '@angular/forms';
@@ -25,9 +28,25 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import {SwiperModule} from 'swiper/angular';
 
 
+import {FormsModule} from '@angular/forms';
+import{ReactiveFormsModule} from '@angular/forms';
+
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CarduriComponent } from './carduri-part/carduri.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+
+    CarduriComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+
 
     LandingSearchComponent
   ],
