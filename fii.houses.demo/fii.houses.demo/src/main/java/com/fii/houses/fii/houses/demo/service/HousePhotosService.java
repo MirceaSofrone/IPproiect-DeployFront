@@ -23,9 +23,9 @@ public class HousePhotosService {
     }
 
     public List<HousePhotos> getPhotosFromHouseID(UUID houseID) {
-        List<HousePhotos> housesPhotos = housePhotosRepository.findAll();
+        List<HousePhotos> allHousesPhotos = housePhotosRepository.findAll();
         List<HousePhotos> housePhotos = new ArrayList<>();
-        for(HousePhotos photo : housesPhotos){
+        for(HousePhotos photo : allHousesPhotos){
             if(photo.getHouseID().equals(houseID)){
                 housePhotos.add(photo);
             }

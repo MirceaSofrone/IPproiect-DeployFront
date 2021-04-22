@@ -1,7 +1,6 @@
 package com.fii.houses.fii.houses.demo.service;
 
 import com.fii.houses.fii.houses.demo.models.House;
-import com.fii.houses.fii.houses.demo.models.User;
 import com.fii.houses.fii.houses.demo.repository.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +10,8 @@ import java.util.*;
 class SortByDate implements Comparator<House> {
 
     @Override
-    public int compare(House o1, House o2) {
-        return o1.getCreationDate().compareTo(o2.getCreationDate());
+    public int compare(House house1, House house2) {
+        return house1.getCreationDate().compareTo(house2.getCreationDate());
     }
 }
 
@@ -20,48 +19,44 @@ class SortByDate implements Comparator<House> {
 public class HouseService {
     @Autowired
     private HouseRepository repository;
+    private final static Integer carouselSize = 9;
 
     public List<House> getAllHouses() {
-        List<House> houses = repository.findAll();
-        if (houses.size() > 0) {
-            return houses;
+        List<House> allHouses = repository.findAll();
+        if (allHouses.size() > 0) {
+            return allHouses;
         } else {
             return new ArrayList<>();
         }
     }
 
-    public Optional<House> getHouseById(UUID id){
-        Optional<House> house = repository.findById(id);
-        return house;
-    }
-
     public List<House> getHouseByHouseID(House house){
         UUID id = house.getHouseID();
-        List<House> houses = repository.findAll();
-        List<House> goodHouses = new ArrayList<>();
-        for (House house1 : houses) {
-            if (house1.getHouseID().equals(id)) {
-                goodHouses.add(house1);
+        List<House> allHouses = repository.findAll();
+        List<House> housesById = new ArrayList<>();
+        for (House existingHouse : allHouses) {
+            if (existingHouse.getHouseID().equals(id)) {
+                housesById.add(existingHouse);
             }
         }
-        if(goodHouses.size()>=1){
-            return goodHouses;
+        if(housesById.size()>0){
+            return housesById;
         }else {
             return new ArrayList<>();
         }
     }
 
-    public List<House> getHouseByAdress(House house){
-        List<House> goodHouses = new ArrayList<>();
-        List<House> houses = repository.findAll();
-        String adress = house.getAdress();
-        for (House house1 : houses) {
-            if (house1.getAdress().equals(adress)) {
-                goodHouses.add(house1);
+    public List<House> getHouseByAddress(House house){
+        List<House> housesByAddress = new ArrayList<>();
+        List<House> allHouses = repository.findAll();
+        String address = house.getAddress();
+        for (House existingHouse : allHouses) {
+            if (existingHouse.getAddress().equals(address)) {
+                housesByAddress.add(existingHouse);
             }
         }
-        if(goodHouses.size()>=1){
-            return goodHouses;
+        if(housesByAddress.size()>0){
+            return housesByAddress;
         }else {
             return new ArrayList<>();
         }
@@ -69,15 +64,15 @@ public class HouseService {
 
     public List<House> getHouseByUserID(House house){
         UUID id = house.getUserID();
-        List<House> houses = repository.findAll();
-        List<House> goodHouses = new ArrayList<>();
-        for (House house1 : houses) {
-            if (house1.getUserID().equals(id)) {
-                goodHouses.add(house1);
+        List<House> allHouses = repository.findAll();
+        List<House> housesByUserId = new ArrayList<>();
+        for (House existingHouse : allHouses) {
+            if (existingHouse.getUserID().equals(id)) {
+                housesByUserId.add(existingHouse);
             }
         }
-        if(goodHouses.size()>=1){
-            return goodHouses;
+        if(housesByUserId.size()>0){
+            return housesByUserId;
         }else {
             return new ArrayList<>();
         }
@@ -86,33 +81,33 @@ public class HouseService {
     public String getHouseViews(House house){
         UUID id = house.getHouseID();
         if(repository.existsById(id)){
-            House houseViwes = repository.getOne(id);
-            return houseViwes.getViews().toString();
+            House houseViews = repository.getOne(id);
+            return houseViews.getViews().toString();
         }
         return null;
     }
 
-    public boolean updateViews(UUID houseid){
-        if(repository.existsById(houseid)){
-            House house1 = repository.getOne(houseid);
-            int views = house1.getViews();
-            house1.setViews(views+1);
-            repository.save(house1);
+    public boolean updateViews(UUID houseId){
+        if(repository.existsById(houseId)){
+            House house = repository.getOne(houseId);
+            int views = house.getViews();
+            house.setViews(views+1);
+            repository.save(house);
             return true;
         }
         return false;
     }
 
-    public List<House> lastNineHouse(){
+    public List<House> lastAddedHouses(){
         List<House> allHouses = repository.findAll();
         allHouses.sort(new SortByDate());
-        List<House> goodHouses = new ArrayList<>();
-        int houses = Math.min(allHouses.size(), 9);
-        for (int index = 0; index < houses; index++) {
-            goodHouses.add(allHouses.get(index));
+        List<House> lastAddedHouses = new ArrayList<>();
+        int noOfHouses = Math.min(allHouses.size(), carouselSize);
+        for (int index = 0; index < noOfHouses; index++) {
+            lastAddedHouses.add(allHouses.get(index));
         }
-        if (goodHouses.size() > 0) {
-            return goodHouses;
+        if (lastAddedHouses.size() > 0) {
+            return lastAddedHouses;
         } else {
             return new ArrayList<>();
         }
@@ -131,20 +126,20 @@ public class HouseService {
         if(repository.existsById(id)){
             House updateHouse = repository.getOne(id);
             house.setCreationDate(new Date());
-            if(house.getAdress()!=null)
-                updateHouse.setAdress(house.getAdress());
+            if(house.getAddress()!=null)
+                updateHouse.setAddress(house.getAddress());
             if(house.getCity()!=null)
                 updateHouse.setCity(house.getCity());
             if(house.getCountry()!=null)
                 updateHouse.setCountry(house.getCountry());
-            if(house.getEtaj()!=null)
-                updateHouse.setEtaj(house.getEtaj());
-            if(house.getNrBai()!=null)
-                updateHouse.setNrBai(house.getNrBai());
-            if(house.getNrCamere()!=null)
-                updateHouse.setNrCamere(house.getNrCamere());
-            if(house.getSuprafata()!=null)
-                updateHouse.setSuprafata(house.getSuprafata());
+            if(house.getFloor()!=null)
+                updateHouse.setFloor(house.getFloor());
+            if(house.getNoOfBathrooms()!=null)
+                updateHouse.setNoOfBathrooms(house.getNoOfBathrooms());
+            if(house.getNoOfRooms()!=null)
+                updateHouse.setNoOfRooms(house.getNoOfRooms());
+            if(house.getSurface()!=null)
+                updateHouse.setSurface(house.getSurface());
             if(house.getHouseType()!=null){
                 updateHouse.setHouseType(house.getHouseType());
             }
@@ -185,8 +180,8 @@ public class HouseService {
                         counterMatches++;
                     }
                 }
-                if(house.getAdress() != null){
-                    if(house.getAdress().contains(word)){
+                if(house.getAddress() != null){
+                    if(house.getAddress().contains(word)){
                         counterMatches++;
                     }
                 }
@@ -201,8 +196,8 @@ public class HouseService {
                 wordsMatched.put(counterMatches, housesTemp);
             }
         }
-        //sort descendind by number of matches
-        Map<Integer, List<House>> reverseSortedMap = new TreeMap<Integer, List<House>>(Collections.reverseOrder());
+        //sort descending by number of matches
+        Map<Integer, List<House>> reverseSortedMap = new TreeMap<>(Collections.reverseOrder());
 
         reverseSortedMap.putAll(wordsMatched);
 
@@ -215,24 +210,24 @@ public class HouseService {
     }
 
     public List<House> searchByFields(Integer houseType,Integer sellType, String city,String country,
-                                      Integer nrCamere,Integer etaj, Integer suprafata, Integer nrBai){
+                                      Integer noOfRooms,Integer floor, Integer surface, Integer noOfBathrooms){
 
         List<House> allHouses = this.getAllHouses();
-        List<House> houses = new ArrayList<>();
+        List<House> filteredHouses = new ArrayList<>();
 
         for(House house : allHouses){
             if((houseType == null || house.getHouseType().equals(houseType)) &&
                     (sellType == null || house.getSellType().equals(sellType)) &&
                     (city == null || house.getCity().equals(city)) &&
                     (country == null || house.getCountry().equals(country)) &&
-                    (nrCamere == null || house.getNrCamere().equals(nrCamere)) &&
-                    (etaj == null || house.getEtaj().equals(etaj)) &&
-                    (suprafata == null || house.getSuprafata().equals(suprafata)) &&
-                    (nrBai == null || house.getNrBai().equals(nrBai))) {
-                houses.add(house);
+                    (noOfRooms == null || house.getNoOfRooms().equals(noOfRooms)) &&
+                    (floor == null || house.getFloor().equals(floor)) &&
+                    (surface == null || house.getSurface().equals(surface)) &&
+                    (noOfBathrooms == null || house.getNoOfBathrooms().equals(noOfBathrooms))) {
+                filteredHouses.add(house);
             }
         }
-        return houses;
+        return filteredHouses;
     }
 }
 

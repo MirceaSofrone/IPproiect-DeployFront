@@ -9,9 +9,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
+
 
 
 @RestController
@@ -32,23 +31,23 @@ public class UsersController {
     @GetMapping ("/getusers")
     public ResponseEntity<List<User>> getUsers(){
         List<User> users = service.getAllUsers();
-        return new ResponseEntity<List<User>>(users, new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(users, new HttpHeaders(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<User> create(@RequestBody User user)
     {
-        User user1=service.create(user);
-        return new ResponseEntity<User>(user1, new HttpHeaders(),HttpStatus.CREATED);
+        User newUser=service.create(user);
+        return new ResponseEntity<>(newUser, new HttpHeaders(),HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<User> update(@RequestBody User user){
         User newUser=service.update(user);
         if(newUser != null){
-            return new ResponseEntity<User>(newUser, new HttpHeaders(), HttpStatus.OK);
+            return new ResponseEntity<>(newUser, new HttpHeaders(), HttpStatus.OK);
         }else {
-            return new ResponseEntity<User>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( new HttpHeaders(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -56,14 +55,13 @@ public class UsersController {
     public ResponseEntity<String> delete(@RequestBody User user)
     {
        if(service.deleteUser(user)){
-           return new ResponseEntity<String>("" , new HttpHeaders(),HttpStatus.OK);
+           return new ResponseEntity<>("" , new HttpHeaders(),HttpStatus.OK);
        }
        else {
-           return new ResponseEntity<String>("" , new HttpHeaders(),HttpStatus.NOT_FOUND);
+           return new ResponseEntity<>( new HttpHeaders(),HttpStatus.NOT_FOUND);
        }
     }
 
-    //un get pentru a trimite o lista de favorite catre Dashboard
     @GetMapping("/getfavorite")
     public ResponseEntity<List<House>> getFavorite(@RequestBody User user){
         User newUser = service.getUserFavorite(user);
@@ -76,7 +74,6 @@ public class UsersController {
         }
     }
 
-    //un put pentru a adauga la favorite o casa
     @PutMapping("/addtofavorite")
     public ResponseEntity<?> addToFavorite (@RequestBody House house){
         List<User> newUser = service.getUserByUserID(house.getUserID());
@@ -89,7 +86,6 @@ public class UsersController {
         }
     }
 
-    //un put pentru a elimina o casa de la favorite
     @DeleteMapping("/removefromfavorite")
     public ResponseEntity<?> removeFromFavorite(@RequestBody House house){
         List<User> newUser = service.getUserByUserID(house.getUserID());

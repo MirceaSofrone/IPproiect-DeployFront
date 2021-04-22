@@ -1,10 +1,7 @@
 package com.fii.houses.fii.houses.demo.models;
 
 import javax.persistence.*;
-import javax.xml.crypto.Data;
-import java.io.File;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
 
 @Entity
 public class House {
@@ -17,18 +14,18 @@ public class House {
     private UUID userID;
     @Column(columnDefinition = "VARCHAR(1024)")
     private String description;
-    private String city, country, adress;
-    private Integer nrCamere, etaj, suprafata, nrBai;
+    private String city, country, address;
+    private Integer noOfRooms, floor, surface, noOfBathrooms;
     //0-house, 1-apartment 2-studio 3-commercial space
     private Integer houseType;
     //0-selling, 1-renting
     private Integer sellType;
     @ElementCollection
-    private Map<Date, ArrayList<Float>> istoricPreturi = new TreeMap<>();
+    private Map<Date, ArrayList<Float>> priceHistory = new TreeMap<>();
     @ElementCollection
-    private Map<Date,Integer> istoricFavorite = new TreeMap<>();
+    private Map<Date,Integer> favoriteHistory = new TreeMap<>();
     private Integer noOfFave = 0;
-    private Float pretActual;
+    private Float currentPrice;
     private Date creationDate;
     private Integer views;
 
@@ -40,12 +37,12 @@ public class House {
         this.houseID = houseID;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
@@ -64,36 +61,36 @@ public class House {
         this.country = country;
     }
 
-    public Integer getNrCamere() {
-        return nrCamere;
+    public Integer getNoOfRooms() {
+        return noOfRooms;
     }
 
-    public void setNrCamere(Integer nrCamere) {
-        this.nrCamere = nrCamere;
+    public void setNoOfRooms(Integer noOfRooms) {
+        this.noOfRooms = noOfRooms;
     }
 
-    public Integer getEtaj() {
-        return etaj;
+    public Integer getFloor() {
+        return floor;
     }
 
-    public void setEtaj(Integer etaj) {
-        this.etaj = etaj;
+    public void setFloor(Integer floor) {
+        this.floor = floor;
     }
 
-    public Integer getSuprafata() {
-        return suprafata;
+    public Integer getSurface() {
+        return surface;
     }
 
-    public void setSuprafata(Integer suprafata) {
-        this.suprafata = suprafata;
+    public void setSurface(Integer surface) {
+        this.surface = surface;
     }
 
-    public Integer getNrBai() {
-        return nrBai;
+    public Integer getNoOfBathrooms() {
+        return noOfBathrooms;
     }
 
-    public void setNrBai(Integer nrBai) {
-        this.nrBai = nrBai;
+    public void setNoOfBathrooms(Integer noOfBathrooms) {
+        this.noOfBathrooms = noOfBathrooms;
     }
 
     public Integer getHouseType() {
@@ -121,20 +118,20 @@ public class House {
     }
 
 
-    public Map<Date, ArrayList<Float>> getIstoricPreturi() {
-        return istoricPreturi;
+    public Map<Date, ArrayList<Float>> getPriceHistory() {
+        return priceHistory;
     }
 
-    public void setIstoricPreturi(Map<Date, ArrayList<Float>> istoricPreturi) {
-        this.istoricPreturi = istoricPreturi;
+    public void setPriceHistory(Map<Date, ArrayList<Float>> priceHistory) {
+        this.priceHistory = priceHistory;
     }
 
-    public Map<Date, Integer> getIstoricFavorite() {
-        return istoricFavorite;
+    public Map<Date, Integer> getFavoriteHistory() {
+        return favoriteHistory;
     }
 
-    public void setIstoricFavorite(Map<Date, Integer> istoricFavorite) {
-        this.istoricFavorite = istoricFavorite;
+    public void setFavoriteHistory(Map<Date, Integer> favoriteHistory) {
+        this.favoriteHistory = favoriteHistory;
     }
 
     public Integer getViews() {
@@ -161,15 +158,15 @@ public class House {
         this.description = description;
     }
 
-    public Float getPretActual() {
-        return pretActual;
+    public Float getCurrentPrice() {
+        return currentPrice;
     }
 
-    public void setPretActual(Float pretActual) {
-        this.pretActual = pretActual;
-        ArrayList<Float> newList = istoricPreturi.get(new Date());
-        newList.add(pretActual);
-        istoricPreturi.put(new Date(), newList);
+    public void setCurrentPrice(Float currentPrice) {
+        this.currentPrice = currentPrice;
+        ArrayList<Float> newList = priceHistory.get(new Date());
+        newList.add(currentPrice);
+        priceHistory.put(new Date(), newList);
     }
 
     public UUID getUserID() {

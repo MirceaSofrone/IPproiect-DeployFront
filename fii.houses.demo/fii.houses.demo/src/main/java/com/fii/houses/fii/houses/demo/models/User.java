@@ -1,7 +1,6 @@
 package com.fii.houses.fii.houses.demo.models;
 
 import javax.persistence.*;
-import javax.xml.crypto.Data;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -19,8 +18,9 @@ public class User {
     private List<House> favorite = new ArrayList<>(); //for buyer
     @OneToMany
     private List<House> forSell = new ArrayList<>(); //seller
+    private final static Integer viewsHistoryCapacity = 10;
     @Transient
-    private Queue<House> istoricVizionare = new ArrayBlockingQueue<House>(10){
+    private Queue<House> viewsHistory = new ArrayBlockingQueue<>(viewsHistoryCapacity){
         @Override
         public boolean add(House house){
             if(remainingCapacity() == 0)
@@ -58,12 +58,12 @@ public class User {
     }
 
 
-    public Queue<House> getIstoricVizionare() {
-        return istoricVizionare;
+    public Queue<House> getViewsHistory() {
+        return viewsHistory;
     }
 
-    public void setIstoricVizionare(Queue<House> istoricVizionare) {
-        this.istoricVizionare = istoricVizionare;
+    public void setViewsHistory(Queue<House> viewsHistory) {
+        this.viewsHistory = viewsHistory;
     }
 
     public List<House> getForSell() {

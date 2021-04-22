@@ -1,6 +1,5 @@
 package com.fii.houses.fii.houses.demo.controllers;
 
-import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.models.HousePhotos;
 import com.fii.houses.fii.houses.demo.service.HousePhotosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +22,11 @@ public class HousesPhotosController {
     @PostMapping("/create")
     public ResponseEntity<HousePhotos> storePhoto(@RequestParam("file") MultipartFile file, @RequestParam("houseID") UUID houseID) throws IOException {
         HousePhotos housePhoto = housePhotosService.store(file,houseID);
-        return new ResponseEntity<HousePhotos>(housePhoto,new HttpHeaders(), HttpStatus.CREATED);
+        return new ResponseEntity<>(housePhoto,new HttpHeaders(), HttpStatus.CREATED);
     }
 
     @GetMapping("/{houseID}")
     public List<HousePhotos> getPhotosFromHouseID(@PathVariable UUID houseID){
-        List<HousePhotos> photos = housePhotosService.getPhotosFromHouseID(houseID);
-        return photos;
+        return housePhotosService.getPhotosFromHouseID(houseID);
     }
 }

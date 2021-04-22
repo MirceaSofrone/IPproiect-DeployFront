@@ -6,9 +6,8 @@ import com.fii.houses.fii.houses.demo.repository.HouseRepository;
 import com.fii.houses.fii.houses.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
+
 
 @Service
 public class UsersService {
@@ -18,29 +17,24 @@ public class UsersService {
     private HouseRepository houseRepository;
 
     public List<User> getAllUsers() {
-        List<User> users = repository.findAll();
-        if (users.size() > 0) {
-            return users;
+        List<User> allUsers = repository.findAll();
+        if (allUsers.size() > 0) {
+            return allUsers;
         } else {
             return new ArrayList<>();
         }
     }
 
-    public Optional<User> getUserById(UUID id){
-        Optional<User> user = repository.findById(id);
-        return user;
-    }
-
     public List<User> getUserByUserID(UUID id){
-        List<User> users = repository.findAll();
-        List<User> goodUsers = new ArrayList<>();
-        for (User user : users) {
-            if (user.getUserID().equals(id)) {
-                goodUsers.add(user);
+        List<User> allUsers = repository.findAll();
+        List<User> usersById = new ArrayList<>();
+        for (User existingUser : allUsers) {
+            if (existingUser.getUserID().equals(id)) {
+                usersById.add(existingUser);
             }
         }
-        if(goodUsers.size()>=1){
-            return goodUsers;
+        if(usersById.size()>0){
+            return usersById;
         }else {
             return new ArrayList<>();
         }
@@ -82,21 +76,21 @@ public class UsersService {
 
     public void addToFavorites(User user, House house){
         Date today = new Date();
-        Map<Date,Integer> istoricFavorite = house.getIstoricFavorite();
+        Map<Date,Integer> favoriteHistory = house.getFavoriteHistory();
         List<House> favorite = user.getFavorite();
         if(!favorite.contains(house)){
             favorite.add(house);
             user.setFavorite(favorite);
         }
-        if(istoricFavorite.get(today)==null){
-            istoricFavorite.put(today,1);
+        if(favoriteHistory.get(today)==null){
+            favoriteHistory.put(today,1);
         }
         else{
-            int numberOfFave=istoricFavorite.get(today);
+            int numberOfFave=favoriteHistory.get(today);
             numberOfFave++;
-            istoricFavorite.replace(today,numberOfFave);
+            favoriteHistory.replace(today,numberOfFave);
         }
-        house.setIstoricFavorite(istoricFavorite);
+        house.setFavoriteHistory(favoriteHistory);
         house.setNoOfFave(house.getNoOfFave()+1);
         repository.save(user);
         houseRepository.save(house);
@@ -120,11 +114,10 @@ public class UsersService {
         houseRepository.save(house);
     }
 
-    public void addToIstoricVizualizare(House house,User user){
-        Queue<House> istoricVizionare = user.getIstoricVizionare();
-        istoricVizionare.add(house);
-        user.setIstoricVizionare(istoricVizionare);
+    public void addToViewsHistory(House house,User user){
+        Queue<House> viewsHistory = user.getViewsHistory();
+        viewsHistory.add(house);
+        user.setViewsHistory(viewsHistory);
         house.setViews(house.getViews()+1);
-
     }
 }
