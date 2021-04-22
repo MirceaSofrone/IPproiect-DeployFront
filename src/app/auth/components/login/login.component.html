@@ -1,20 +1,20 @@
 <div class="body">
     <span>
-  <div mat-dialog-content class="split_left">
-    <button id="bck_btn" class="move">
-      <mat-icon id="bck_arw" matSuffix>arrow_back</mat-icon>
-      Back
-    </button>
-    <h2 mat-dialog-title class="txt">Log In</h2>
-    <p class="txt">
-      Don't have an account?
-      <a style="color: #4d648d; font-weight: 500; margin-left: 10px" href="#">
-        Sign Up
-      </a>
-    </p>
+    <div mat-dialog-content class="split_left">
+      <div class="align">
+      <button id="bck_btn" class="move">
+        <mat-icon id="bck_arw" matSuffix>arrow_back</mat-icon>
+        Back
+      </button>
+      <h2 mat-dialog-title class="txt">Log In</h2>
+      <p class="txt">
+        Don't have an account?
+        <a style="color: #4d648d; font-weight: 500; margin-left: 10px" href="#">
+          Sign Up
+        </a>
+      </p>
 
-    <form class="txt" [formGroup]="login" (ngSubmit)="onSubmit()">
-
+      <form class="txt" [formGroup]="login" (ngSubmit)="onSubmit()">
         <mat-form-field id="mail" appearance="outline">
           <mat-icon matSuffix>account_circle</mat-icon>
           <mat-label>Email</mat-label>
@@ -46,46 +46,51 @@
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
         </mat-form-field>
-      <br />
+        <br />
 
-      <div id="rf">
-        <label id="remember">
-          <input type="checkbox" />
-          Remember me
-        </label>
+        <div id="rf">
+          <label id="remember">
+            <input type="checkbox" />
+            Remember me
+          </label>
 
-        <a id="forgot" href="#"> Forgot password? </a>
-      </div>
+          <a id="forgot" href="#"> Forgot password? </a>
+        </div>
 
-      <div class="log">
-        <button
-          id="log_btn"
-          mat-flat-button
-          [disabled]="!login.valid"
-        >
-          Log in
-        </button>
-      </div>
+        <div class="log">
+          <button id="log_btn" mat-flat-button [disabled]="!login.valid">
+            Log in
+          </button>
+        </div>
 
-      <div class="g_log">
-        <p>or</p>
-        <p id="gclick">
-          <a href="#">
-            <img
-              id="logo"
-              src="../../../../assets/g.png"
-              width="25"
-              alt="google_logo"
-            />Log in with Google</a
-          >
-        </p>
-      </div>
-    </form>
-  </div>
+        <div class="g_log">
+          <p>or</p>
+          <p id="gclick">
+            <a href="#">
+              <img
+                id="logo"
+                src="../../../../assets/g.png"
+                alt="google_logo"
+              />Log in with Google</a
+            >
+          </p>
+        </div>
+      </form>
+    </div></div>
 
-  <div class="split_right">
-    <img id="sun" width="80%" src="../../../../assets/sun_clouds.png" alt="sun and clouds">
-  </div>
-  <img id="buildings" width="63%" src="../../../../assets/buildings.png" alt="buildings">
-</span>
+    <div class="split_right">
+      <img
+        id="sun"
+        width="80%"
+        src="../../../../assets/sun_clouds.png"
+        alt="sun and clouds"
+      />
+    </div>
+    <img
+      id="buildings"
+      width="63%"
+      src="../../../../assets/buildings.png"
+      alt="buildings"
+    />
+  </span>
 </div>
