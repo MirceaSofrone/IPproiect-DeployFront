@@ -22,8 +22,11 @@
         "@angular/platform-browser": "~11.2.6",
         "@angular/platform-browser-dynamic": "~11.2.6",
         "@angular/router": "~11.2.6",
+        "angular-responsive-carousel": "^2.0.2",
         "ng-image-slider": "^2.7.0",
+        "ngx-drag-scroll": "^11.0.0-beta.1",
         "rxjs": "~6.6.0",
+        "swiper": "^6.5.7",
         "tslib": "^2.0.0",
         "zone.js": "~0.11.3"
     },
