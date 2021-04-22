@@ -5,10 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { ListComponent } from './list/list.component';
+import {HttpClientModule} from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
@@ -16,7 +19,8 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBBhqL0VAJqQpXMATFPcLdsq9RYV0kBjTQ',
      
-    })
+    }),
+   HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
