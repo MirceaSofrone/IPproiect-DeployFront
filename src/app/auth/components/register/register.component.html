@@ -1,33 +1,51 @@
-<h2>Register as <span id="UserType">{{userType}}</span> </h2>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <mat-button-toggle-group formControlName="userType">
-    <mat-button-toggle (click)="userType='Buyer'" value="Buyer">Buyer</mat-button-toggle>
-    <mat-button-toggle (click)=" userType='Seller'" value="Seller">Seller</mat-button-toggle>
+
+<div class="body">
+    <span class="box">
+        <div class="leftSide">
+          
+        <button id="bck_btn">
+            <mat-icon id="bck_arw" matSuffix>arrow_back</mat-icon>
+            Back
+          </button>
+       
+      
+ 
+<form mat-dialog-content [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div id="selection">
+    <h2 mat-dialog-title>Register as <span id="UserType">{{userType}}</span> </h2>
+  <mat-button-toggle-group class="selector" formControlName="userType">
+      <div>
+    <mat-button-toggle [ngClass]="{'buyer' : (userType=='Buyer')}" (click)="userType='Buyer'" value="Buyer">Buyer</mat-button-toggle>
+</div>
+    <div>
+    <mat-button-toggle [ngClass]="{'seller' : (userType=='Seller')}" (click)=" userType='Seller'" value="Seller">Seller</mat-button-toggle>
+    </div>
   </mat-button-toggle-group>
-    <mat-form-field appearance="standard">
+</div>
+    <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" [type]="'text'" required>
+        <input  class="firstName" matInput formControlName="firstName" [type]="'text'" required>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
         <input matInput formControlName="lastName" [type]="'text'" required>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="outline">
         <mat-label>Email Address</mat-label>
         <input matInput formControlName="emailAddress" [type]="'text'" required>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="outline">
         <mat-label>Phone Number</mat-label>
         <input matInput formControlName="phoneNumber" [type]="'text'" required>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
         <input matInput formControlName="passwd" [type]="hide? 'password' : 'text'" required>
         <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
             <mat-icon>{{hide ? 'visibility_off':'visibility'}}</mat-icon>
         </button>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="outline">
         <mat-label>Confirm Password</mat-label>
         <input matInput formControlName="confirmPasswd" [type]="hideConfirm? 'password' : 'text'" required>
         <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" type="button">
@@ -35,6 +53,15 @@
         </button>
     </mat-form-field>
     <p>
-        <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Submit</button>
+        <button id="reg-button" mat-raised-button type="submit" [disabled]="!registerForm.valid">Register</button>
     </p>
 </form>
+    </div>
+ 
+    <div class="break-column"></div>
+    <div class="rightSide">
+
+    </div>
+</span>
+
+</div>

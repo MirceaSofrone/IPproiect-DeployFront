@@ -1,5 +1,6 @@
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/auth/components/login/login.component';
+import { RegisterComponent } from 'src/app/auth/components/register/register.component';
 import { Component } from '@angular/core';
 
 @Component({

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterPayload } from 'src/app/auth/models/auth.model';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthenticationService } from 'src/app/auth/services/authentication/authentication.service';
 
 
@@ -25,8 +26,13 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   confirmPasswd: string;
 
-  constructor(private fb: FormBuilder, private auth: AuthenticationService) { }
-
+  constructor(private fb: FormBuilder, private auth: AuthenticationService,public registerDialogRef: MatDialogRef<RegisterComponent>,
+    @Inject(MAT_DIALOG_DATA) public registerData: any
+    ) { }
+    onNoClick(): void{
+      this.registerDialogRef.close();
+    }
+  
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       userType: ['',[]],
@@ -40,6 +46,7 @@ export class RegisterComponent implements OnInit {
     )
   }
 
+ 
   onSubmit() {
     if (this.registerForm.get('passwd').value !== this.registerForm.get("confirmPasswd").value) {
         alert("Passwords must match!")
