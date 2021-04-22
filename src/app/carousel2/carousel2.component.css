@@ -1,0 +1,75 @@
+    /* drag-scroll {
+    height: 50px;
+    width: 100px;
+} */
+    /* img {
+    height: 50px;
+    width: 50px;
+} */
+    
+    .image {
+        width: 411px;
+        height: 281px;
+        margin: 15px;
+    }
+    
+    .element-container {
+        width: 411px;
+        height: 281px;
+        margin: 15px;
+    }
+    
+    .carousel-container {
+        height: 300px;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 3000px;
+    }
+    
+    .left-btn {
+        height: 49px;
+        width: 32px;
+        background-image: url("../../assets/caret-left.svg");
+        background-color: none;
+        border: none;
+        background-color: Transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        margin: 20px;
+    }
+    
+    .right-btn {
+        height: 49px;
+        width: 32px;
+        background-image: url("../../assets/caret-right.svg");
+        background-color: none;
+        border: none;
+        background-color: Transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        margin: 20px;
+    }
+    
+    figcaption {
+        background-color: black;
+        color: white;
+        font-style: italic;
+        padding: 2px;
+        text-align: center;
+    }
+    
+    p {
+        color: black;
+        background-color: coral;
+    }
