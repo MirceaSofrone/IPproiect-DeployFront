@@ -1,0 +1,36 @@
+<div class="container">
+    <div>
+        <button class="left-btn" (click)="moveLeft()"></button>
+    </div>
+
+    <!-- <button (click)="moveTo(2)">Last</button> -->
+    <drag-scroll #nav [scrollbar-hidden]="true" class="carousel-container" drag-scroll-y-disabled="true">
+
+
+        <div class="element-container" drag-scroll-item>
+            <img/> lalalaaaaaaaa
+
+        </div>
+
+        <div class="element-container" drag-scroll-item>
+            <img class="image" src="./assets/house2.png" />
+            <p>Details about it</p>
+        </div>
+        <div class="element-container" drag-scroll-item>
+            <img class="image" src="./assets/house3.png" />
+        </div>
+        <div class="element-container" drag-scroll-item>
+            <img class="image" src="./assets/house.png" />
+        </div>
+        <div class="element-container" drag-scroll-item>
+            <img class="image" src="./assets/house2.png" />
+        </div>
+        <div class="element-container" drag-scroll-item>
+            <img class="image" src="./assets/house3.png" />
+        </div>
+
+    </drag-scroll>
+    <div>
+        <button class="right-btn" (click)="moveRight()"></button>
+    </div>
+</div>
