@@ -114,7 +114,7 @@ public class HousesController {
     }
 
     //the words will be separated through "-"
-    @GetMapping("/filter/bySearch/{words}")
+    @GetMapping("/filter/bysearch/{words}")
     public ResponseEntity<List<House>> searchInAddressAndDescription(@PathVariable String words){
         List<House> houses = service.searchByWords(words);
         if(houses.isEmpty()){
@@ -124,7 +124,7 @@ public class HousesController {
         }
     }
 
-    @GetMapping("/filter/byFields")
+    @GetMapping("/filter/byfields")
     public ResponseEntity <List<House>> searchInFields(@RequestParam(required=false) Integer houseType,
                                                        @RequestParam(required=false) Integer sellType,
                                                        @RequestParam(required=false) String city,

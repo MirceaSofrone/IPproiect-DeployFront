@@ -1,7 +1,11 @@
 package com.fii.houses.fii.houses.demo.controllers;
 
+import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.models.HousePhotos;
+import com.fii.houses.fii.houses.demo.repository.HouseRepository;
 import com.fii.houses.fii.houses.demo.service.HousePhotosService;
+import com.fii.houses.fii.houses.demo.service.HouseService;
+import com.fii.houses.fii.houses.demo.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,9 +24,14 @@ public class HousesPhotosController {
     private HousePhotosService housePhotosService;
 
     @PostMapping("/create")
-    public ResponseEntity<HousePhotos> storePhoto(@RequestParam("file") MultipartFile file, @RequestParam("houseID") UUID houseID) throws IOException {
-        HousePhotos housePhoto = housePhotosService.store(file,houseID);
-        return new ResponseEntity<>(housePhoto,new HttpHeaders(), HttpStatus.CREATED);
+    public ResponseEntity<?> storePhoto(@RequestParam("file") MultipartFile file, @RequestParam("houseID") UUID houseID) throws IOException {
+        if(housePhotosService.getPhotosFromHouseID(houseID).size() <5){
+            HousePhotos housePhoto = housePhotosService.store(file,houseID);
+            return new ResponseEntity<>(housePhoto,new HttpHeaders(), HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<String>("Ati atins limita de 5 poze",new HttpHeaders(), HttpStatus.NOT_MODIFIED);
+        }
+
     }
 
     @GetMapping("/{houseID}")

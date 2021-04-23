@@ -50,7 +50,7 @@ public class UsersService {
     public User update(User user){
         UUID id = user.getUserID();
         if(repository.existsById(id)){
-            User newUser = repository.getOne(id);
+            User newUser = repository.findById(id).get();
             if(user.getFirstName()!=null){
                 newUser.setFirstName(user.getFirstName());
             }
