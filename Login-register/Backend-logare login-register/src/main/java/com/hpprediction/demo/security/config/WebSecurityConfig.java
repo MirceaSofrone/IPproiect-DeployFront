@@ -1,119 +1,95 @@
 package com.hpprediction.demo.security.config;
 
-import com.hpprediction.demo.UsersApp.services.UserService;
-import lombok.AllArgsConstructor;
+import com.hpprediction.demo.userapp.services.UserService;
+import com.hpprediction.demo.security.CustomOAuth2Service;
+import com.hpprediction.demo.security.OAuth2LoginSuccesHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@AllArgsConstructor
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-  private final UserService userService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/api/v*/**", "/css/**")
-                .permitAll()
-                .anyRequest().permitAll()
-                .and()
-                .oauth2Login().defaultSuccessUrl("/api/v1/login/noindex")
-                .and()
-                .formLogin().defaultSuccessUrl("/api/v1/login/noindex")
-                .and()
-
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true);
-
-    }
-
-   @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider());
-    }
 
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private OAuth2LoginSuccesHandler oAuth2LoginSuccesHandler;
+
+    @Autowired
+    private CustomOAuth2Service oAuth2Service;
+
+    @Autowired
+    private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider provider =
-                new DaoAuthenticationProvider();
-
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(userService);
-
-        return provider;
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
     }
-}
-/*
-package com.hpprediction.demo.security.config;
 
-import com.hpprediction.demo.UsersApp.services.UserService;
-import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-@Configuration
-@AllArgsConstructor
-@EnableWebSecurity
-@Order(1000000)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private final UserService userService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
+    @Bean
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .antMatcher("/**")
-                .authorizeRequests()
-                .antMatchers("/","/noindex.html")
-                .permitAll()
-                .anyRequest().permitAll()
-                .and()
-                .oauth2Login().permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true);
-
-
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider());
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
     }
 
-
-
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider provider =
-                new DaoAuthenticationProvider();
-
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(userService);
-
-        return provider;
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests().antMatchers("/login", "/api/auth/**", "/api/v1/confirm", "/css/**", "api/v1/feedback").permitAll()
+                .antMatchers("/api/test/**").permitAll()
+                .anyRequest().authenticated()
+        .and()
+                .formLogin().and()
+                .oauth2Login()
+                .userInfoEndpoint().userService(oAuth2Service)
+                        .and()
+                        .successHandler(oAuth2LoginSuccesHandler);
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
+//http.csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/api/v*/**", "/css/**")
+//                .permitAll()
+//                .anyRequest().permitAll()
+//
+//
+//
+//
+//
+//
+//
+//
+//                ce)
+//
+//
+
+
+
+
 }
 
- */

@@ -1,0 +1,6 @@
+projectKey=com.hpprediction:demo
+serverUrl=http://localhost:9000
+serverVersion=8.8.0.42792
+dashboardUrl=http://localhost:9000/dashboard?id=com.hpprediction%3Ademo
+ceTaskId=AXj5cWYfFOEOJdYZ-VZJ
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXj5cWYfFOEOJdYZ-VZJ

@@ -1,13 +1,12 @@
 package com.hpprediction.demo.resetpassword.token;
 
-import com.hpprediction.demo.UsersApp.User;
+import com.hpprediction.demo.userapp.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -33,7 +32,6 @@ public class PasswordResetToken {
 
     public PasswordResetToken(String token,
                               User user,
-                              LocalDateTime creationDate,
                               LocalDateTime expiryDate) {
         this.token = token;
         this.user = user;

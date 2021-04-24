@@ -9,10 +9,13 @@ spring:
     url: jdbc:mysql://localhost:3307/registration
     username: root
     password: ip
+    initialization-mode: always
   jpa:
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create-drop
     generate-ddl: true
     show-sql: true
+
+
 
   mail:
     protocol: smtp
@@ -36,3 +39,7 @@ spring:
               - email
               - profile
 
+hpp:
+  app:
+    jwtExpirationMs: 86400000
+    jwtSecret: cheiesecreta

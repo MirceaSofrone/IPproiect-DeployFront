@@ -1,10 +1,8 @@
 package com.hpprediction.demo.resetpassword.token;
 
-import com.hpprediction.demo.UsersApp.User;
+import com.hpprediction.demo.userapp.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -23,11 +21,6 @@ public class PasswordResetTokenService {
 
     public Optional<PasswordResetToken> getTokenByUser(User user){
         return passwordResetRepository.findByUser(user);
-    }
-
-    public int setConfirmedAt(String token) {
-        return passwordResetRepository.updateConfirmedAt(
-                token, LocalDateTime.now());
     }
 
     public void destroyToken(String token) {

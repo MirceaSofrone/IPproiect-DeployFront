@@ -1,61 +1,55 @@
 package com.hpprediction.demo.resetpassword;
 
-import com.hpprediction.demo.UsersApp.User;
-import com.hpprediction.demo.UsersApp.services.UserService;
-import com.hpprediction.demo.registration.RegistrationRequest;
-import com.hpprediction.demo.resetpassword.token.PasswordResetToken;
-import com.hpprediction.demo.resetpassword.token.PasswordResetTokenService;
+
+import com.hpprediction.demo.payload.response.MessageResponse;
 import com.hpprediction.demo.security.SecurityService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Optional;
-
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/auth")
 @AllArgsConstructor
 public class ResetPasswordController {
 
-    private ResetPasswordService resetPasswordService;
-    private final PasswordResetTokenService passwordResetTokenService;
+    private final ResetPasswordService resetPasswordService;
+
     private final SecurityService securityService;
-    private final UserService userService;
 
     @PostMapping(path = "resetPassword")
-    public ResponseEntity<?> resetPassword(@RequestParam("email") String email){
-        String raspuns = "";
+    public ResponseEntity<MessageResponse> resetPassword(@RequestParam("email") String email){
+        MessageResponse response;
 
         try{
-            raspuns = resetPasswordService.resetPassword(email);
+            response = resetPasswordService.resetPassword(email);
         }
         catch(IllegalStateException exception){
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(new MessageResponse(exception.getMessage()), HttpStatus.FORBIDDEN);
         }
 
-        return new ResponseEntity<>(raspuns, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping(path = "resetPassword")
-    public String changePassword(){
-        return "forgetPassword";
+    public ModelAndView changePassword(){
+
+        return new ModelAndView( "forgetPassword");
     }
 
     @PostMapping(path="changePassword")
-    public ResponseEntity<?> changePassword(@RequestBody ResetRequest request){
-        String raspuns = "";
+    public ResponseEntity<MessageResponse> changePassword(@RequestBody ResetRequest request){
+        MessageResponse response;
         try{
-            raspuns = resetPasswordService.changePassword(request);
+            response = resetPasswordService.changePassword(request);
         }
         catch(IllegalStateException illegalStateException){
-            return new ResponseEntity<>(illegalStateException.getMessage(),
+            return new ResponseEntity<>(new MessageResponse(illegalStateException.getMessage()),
                     HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>(raspuns, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping(path = "changePassword")
@@ -65,11 +59,10 @@ public class ResetPasswordController {
         boolean valid = securityService.isPasswordTokenValid(token);
 
         if(!valid) {
-            return new ModelAndView( "redirect:/login.html");
+            return new ModelAndView( "redirect:/api/v1/login");
         } else {
             redirectAttributes.addFlashAttribute("token", token);
-            return new ModelAndView( "/updatePassword");
+            return new ModelAndView( "updatePassword.html");
         }
     }
-
 }

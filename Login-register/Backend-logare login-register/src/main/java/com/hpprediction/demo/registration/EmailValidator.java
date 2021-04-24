@@ -12,7 +12,6 @@ public class EmailValidator implements Predicate<String> {
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     @Override
     public boolean test(String s) {
-        //TODO: VERIFICARE PRIN REGEX!
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(s);
 
         return matcher.find();

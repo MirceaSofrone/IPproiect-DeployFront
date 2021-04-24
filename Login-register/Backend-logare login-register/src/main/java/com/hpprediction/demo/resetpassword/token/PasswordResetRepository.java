@@ -1,7 +1,6 @@
 package com.hpprediction.demo.resetpassword.token;
 
-import com.hpprediction.demo.UsersApp.User;
-import com.hpprediction.demo.registration.token.ConfirmationToken;
+import com.hpprediction.demo.userapp.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

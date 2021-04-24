@@ -1,6 +1,6 @@
 package com.hpprediction.demo.registration.token;
 
-import com.hpprediction.demo.UsersApp.User;
+import com.hpprediction.demo.userapp.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
