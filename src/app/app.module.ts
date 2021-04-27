@@ -13,6 +13,9 @@ import { DummyComponent } from './dummy/dummy.component';
 import { UserNavbarComponent } from './user-navbar/user-navbar.component';
 import {MatMenuModule} from '@angular/material/menu';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { NavbarLoggedInComponent } from './navbar-logged-in/navbar-logged-in.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,7 @@ import {MatMenuModule} from '@angular/material/menu';
     NavbarComponent,
     DummyComponent,
     UserNavbarComponent,
-   
+    NavbarLoggedInComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
