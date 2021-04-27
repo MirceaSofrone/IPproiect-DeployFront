@@ -30,8 +30,6 @@ public class House {
     @ElementCollection
     private Map<Date,Integer> viewsHistory = new TreeMap<>();
     private Integer views;
-    @ElementCollection
-    private List<byte[]> housePhotos;
 
     public UUID getHouseID() {
         return houseID;
@@ -169,6 +167,12 @@ public class House {
     public void setCurrentPrice(Float currentPrice) {
         this.currentPrice = currentPrice;
         ArrayList<Float> newList = priceHistory.get(new Date());
+        if(newList == null ){
+            Map<Date, ArrayList<Float>> map = new TreeMap<>();
+            newList = new ArrayList<>();
+            //map.put(new Date(), newList);
+            setPriceHistory(map);
+        }
         newList.add(currentPrice);
         priceHistory.put(new Date(), newList);
     }
@@ -181,12 +185,12 @@ public class House {
         this.userID = userID;
     }
 
-    public List<byte[]> getHousePhotos() {
-        return housePhotos;
+    public void setHouseType(Integer houseType) {
+        this.houseType = houseType;
     }
 
-    public void setHousePhotos(List<byte[]> housePhotos) {
-        this.housePhotos = housePhotos;
+    public void setSellType(Integer sellType) {
+        this.sellType = sellType;
     }
 
     public Map<Date, Integer> getViewsHistory() {

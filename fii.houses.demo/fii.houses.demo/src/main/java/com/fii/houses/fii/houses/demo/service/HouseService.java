@@ -147,9 +147,6 @@ public class HouseService {
             if(house.getCurrentPrice()!=null) {
                 updateHouse.setCurrentPrice(house.getCurrentPrice());
             }
-            if(house.getHousePhotos()!=null) {
-                updateHouse.setHousePhotos(house.getHousePhotos());
-            }
             house=repository.save(updateHouse);
             return house;
         }else
@@ -165,16 +162,7 @@ public class HouseService {
             return false;
         }
     }
-    public List<byte[]> getPhotosFromHouseID(UUID houseID) {
-        List<House> allHouses = repository.findAll();
-        List<byte[]> housePhotos = new ArrayList<>();
-        for(House house : allHouses){
-            if(house.getHouseID().equals(houseID)){
-                housePhotos.addAll(house.getHousePhotos());
-            }
-        }
-        return housePhotos;
-    }
+
     public List<House> searchByWords(String words){
         List<House> allHouses = this.getAllHouses();
         List<House> housesTemp;

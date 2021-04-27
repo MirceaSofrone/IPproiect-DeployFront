@@ -106,15 +106,6 @@ public class HousesController {
             return new ResponseEntity<>(new HttpHeaders(), HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("photos/{houseID}")
-    public ResponseEntity<?> getPhotosFromHouseID(@PathVariable UUID houseID){
-        List<byte[]> photos = service.getPhotosFromHouseID(houseID);
-        if (!photos.equals(new ArrayList<>())) {
-            return new ResponseEntity<>(photos, new HttpHeaders(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
-        }
-    }
 
     @GetMapping("/lastadded")
     public ResponseEntity<List<House>> lastAddedHouses(){
