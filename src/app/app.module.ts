@@ -11,20 +11,28 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 
 import { HttpClientModule } from '@angular/common/http';
+import { LandingBottomComponent } from './landing-bottom/landing-bottom.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
 
-    LandingSearchComponent
+    LandingSearchComponent,
+
+    LandingBottomComponent,
+
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    AppRoutingModule
 
 
 
