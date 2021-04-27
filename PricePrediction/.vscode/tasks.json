@@ -45,7 +45,7 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "priceprediction:dev",
+                "tag": "finalpriceprediction:dev",
                 "target": "base",
                 "dockerfile": "${workspaceFolder}/WebAPI/Dockerfile",
                 "context": "${workspaceFolder}",
@@ -62,7 +62,7 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "priceprediction:latest",
+                "tag": "finalpriceprediction:latest",
                 "dockerfile": "${workspaceFolder}/WebAPI/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true

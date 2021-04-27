@@ -7,18 +7,19 @@ namespace WebAPI
 {
     public class Output
     {
-        public string TipProprietate { get; set; }
+        public string tip_proprietate { get; set; }
 
-        public float NrCamere { get; set; }
+        public float nr_camere { get; set; }
 
-        public float Suprafata { get; set; }
+        public float suprafata { get; set; }
 
-        public float SuprafataTeren { get; set; }
+        public float suprafata_teren { get; set; }
 
-        public float AnConstructie { get; set; }
+        public float an_constructie { get; set; }
 
-        public string Zona { get; set; }
+        public string zona { get; set; }
 
-        public float Pret { get; set; }
+        public float pret_vanzare { get; set; }
+        public float pret_chirie { get; set; }
     }
 }

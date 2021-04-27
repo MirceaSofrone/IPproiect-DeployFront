@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dciopei\\Desktop\\PricePrediction\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.ConsoleApp\\HousingPricePredML.ConsoleApp.csproj": {
+    "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.ConsoleApp\\HousesFinalScoreML.ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.ConsoleApp\\HousingPricePredML.ConsoleApp.csproj",
-        "projectName": "HousingPricePredML.ConsoleApp",
-        "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.ConsoleApp\\HousingPricePredML.ConsoleApp.csproj",
+        "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.ConsoleApp\\HousesFinalScoreML.ConsoleApp.csproj",
+        "projectName": "HousesFinalScoreML.ConsoleApp",
+        "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.ConsoleApp\\HousesFinalScoreML.ConsoleApp.csproj",
         "packagesPath": "C:\\Users\\dciopei\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.ConsoleApp\\obj\\",
+        "outputPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj": {
-                "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj"
+              "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj": {
+                "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj"
               }
             }
           }
@@ -76,14 +76,14 @@
         }
       }
     },
-    "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj": {
+    "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj",
-        "projectName": "HousingPricePredML.Model",
-        "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj",
+        "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj",
+        "projectName": "HousesFinalScoreML.Model",
+        "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj",
         "packagesPath": "C:\\Users\\dciopei\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\obj\\",
+        "outputPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -145,14 +145,14 @@
         }
       }
     },
-    "C:\\Users\\dciopei\\Desktop\\PricePrediction\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\WebAPI\\WebAPI.csproj",
+        "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\WebAPI\\WebAPI.csproj",
         "packagesPath": "C:\\Users\\dciopei\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\WebAPI\\obj\\",
+        "outputPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -173,11 +173,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.ConsoleApp\\HousingPricePredML.ConsoleApp.csproj": {
-                "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.ConsoleApp\\HousingPricePredML.ConsoleApp.csproj"
+              "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.ConsoleApp\\HousesFinalScoreML.ConsoleApp.csproj": {
+                "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.ConsoleApp\\HousesFinalScoreML.ConsoleApp.csproj"
               },
-              "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj": {
-                "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj"
+              "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj": {
+                "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj"
               }
             }
           }
@@ -195,6 +195,14 @@
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.10.13, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.3, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.1.3, )"
             }
           },
           "imports": [

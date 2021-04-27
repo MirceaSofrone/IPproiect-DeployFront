@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI.csproj", "{A6B6BABA-E764-4964-8E30-5B3CCF76124E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousingPricePredML.ConsoleApp", "..\HousingPrice\HousingPricePredML.ConsoleApp\HousingPricePredML.ConsoleApp.csproj", "{FE4A0F54-9EB0-4419-9C02-DD6D2F273BBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousesFinalScoreML.ConsoleApp", "..\HousingPrice\HousesFinalScoreML.ConsoleApp\HousesFinalScoreML.ConsoleApp.csproj", "{34BA2E72-A3E5-464A-897D-16CA9556F591}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousingPricePredML.Model", "..\HousingPrice\HousingPricePredML.Model\HousingPricePredML.Model.csproj", "{5A38F35F-1589-4AB6-A4DE-DF2B6E1457B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousesFinalScoreML.Model", "..\HousingPrice\HousesFinalScoreML.Model\HousesFinalScoreML.Model.csproj", "{20B613D1-D139-4E6A-8DAA-8983326997FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{A6B6BABA-E764-4964-8E30-5B3CCF76124E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6B6BABA-E764-4964-8E30-5B3CCF76124E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6B6BABA-E764-4964-8E30-5B3CCF76124E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE4A0F54-9EB0-4419-9C02-DD6D2F273BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE4A0F54-9EB0-4419-9C02-DD6D2F273BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE4A0F54-9EB0-4419-9C02-DD6D2F273BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE4A0F54-9EB0-4419-9C02-DD6D2F273BBA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A38F35F-1589-4AB6-A4DE-DF2B6E1457B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A38F35F-1589-4AB6-A4DE-DF2B6E1457B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A38F35F-1589-4AB6-A4DE-DF2B6E1457B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A38F35F-1589-4AB6-A4DE-DF2B6E1457B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34BA2E72-A3E5-464A-897D-16CA9556F591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34BA2E72-A3E5-464A-897D-16CA9556F591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34BA2E72-A3E5-464A-897D-16CA9556F591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34BA2E72-A3E5-464A-897D-16CA9556F591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20B613D1-D139-4E6A-8DAA-8983326997FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B613D1-D139-4E6A-8DAA-8983326997FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B613D1-D139-4E6A-8DAA-8983326997FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B613D1-D139-4E6A-8DAA-8983326997FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
