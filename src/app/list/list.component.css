@@ -1,17 +1,103 @@
 
 .images{
     position: relative;
-    width:25%;
-    height:25%;
+    width:250px;
+    height:250px;
    
     
 }
+button{
+    position:absolute;
+    left:-240px;
+    top:10px;
+    background: none;
+    border: none;
+    
+
+}
+
 .details{
     position:relative;
     left:28%;
     top:-150px;
     font-size: 20px;
 }
+.details.title{
+    font-size: 2em;
+    position:absolute;
+    color:rgba(43,57,81,255);
+    top:15%;
+    width:510px;
+}
+.details.location{
+    font-size:1.5em;
+    top:80px;
+   
+}
+.details.room{
+    font-size:1em;
+    top:120px;
+    border:1px solid #ccc;
+    width:60px;
+    background-color: #ccc;
+    border-radius: 25px;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color:white;
+}
+#listing_pagination{
+    left:35%;
+    position:absolute;
+    top:210%;
+}
+.details.surface{
+    font-size:1em;
+    top:100px;
+    left:100px;
+    border:1px solid #ccc;
+    width:70px;
+    text-align: center;
+    background-color: #ccc;
+    border-radius: 25px;
+}
+.details.type{
+    font-size:1em;
+    top:79px;
+    left:175px;
+    border:1px solid #ccc;
+    width:40px;
+    text-align: center;
+    background-color: #ccc;
+    border-radius: 25px;
+    
+}
+.details.seller{
+    font-size:1em;
+    top:115px;
+    padding: 10px;
+    border:1px solid #ccc;
+    width:100px;
+    background-color: rgba(43,57,81,255);
+    border-radius: 25px;
+    color:white;
+    text-align: center;
+}
+.details.detail{
+    font-size:1em;
+    top:75px;
+    left:180px;
+    margin: 0px;
+    padding: 10px;
+    border:1px solid #ccc;
+    width:100px;
+    background-color: rgba(43,57,81,255);
+    border-radius: 25px;
+    color:white;
+    text-align: center;
+}
+
 .list{
     position:relative;
     top:5%;

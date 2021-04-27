@@ -1,12 +1,35 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-        crossorigin="anonymous" />
-<div class="list" *ngFor="let item of data">
-    <img class="images" src="{{item.download_url}}" alt="image" />
-    <i class="far fa-heart heart-icon" ></i>
+
+    <div class="list" *ngFor="let item of data |  paginate: { id: 'listing_pagination', itemsPerPage: 5, currentPage: page,totalItems:totalRecords}">
+        <img class="images" src="{{item.download_url}}" alt="image" >
     <div class="house-description">
-        <div class="details">{{item.author}} </div>
-        <div class="details">{{item.id}}</div>
+        <button mat-icon-button (click)="toggleSelected()">
+
+            <mat-icon
+              *ngIf="selected"
+              aria-label="Example icon-button with a heart icon">
+              favorite
+            </mat-icon>
+          
+            <mat-icon
+              *ngIf="!selected"
+              aria-label="Example icon-button with a heart icon">
+              favorite_border
+            </mat-icon>
+          
+          </button>
+        <div class="details title">{{item.author}} </div>
+        <div class="details location">{{item.id}}</div>
+        <div class="details room">Rooms</div>
+        <div class="details surface">Surface</div>
+        <div class="details type">Type</div>
+        <div class="details seller"><a href="#">Contact seller</a></div>
+        <div class="details detail"><a href="#">View details</a></div>
+        
     </div>
     
+   
 </div>
+
+  <div>
+    <pagination-controls id="listing_pagination"  directionsLink="true" (pageChange)="page=$event"></pagination-controls>
+   </div>

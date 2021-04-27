@@ -7,6 +7,9 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { ListComponent } from './list/list.component';
 import {HttpClientModule} from '@angular/common/http'
+import {NgxPaginationModule} from 'ngx-pagination'; 
+
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +19,8 @@ import {HttpClientModule} from '@angular/common/http'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxPaginationModule,
+    MatIconModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBBhqL0VAJqQpXMATFPcLdsq9RYV0kBjTQ',
      
