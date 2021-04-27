@@ -30,20 +30,15 @@ public class HouseService {
         }
     }
 
-    public List<House> getHouseByHouseID(House house){
+    public House getHouseByHouseID(House house){
         UUID id = house.getHouseID();
         List<House> allHouses = repository.findAll();
-        List<House> housesById = new ArrayList<>();
         for (House existingHouse : allHouses) {
             if (existingHouse.getHouseID().equals(id)) {
-                housesById.add(existingHouse);
+                return existingHouse;
             }
         }
-        if(housesById.size()>0){
-            return housesById;
-        }else {
-            return new ArrayList<>();
-        }
+        return null;
     }
 
     public List<House> getHouseByAddress(House house){
@@ -149,6 +144,12 @@ public class HouseService {
             if(house.getDescription()!=null) {
                 updateHouse.setDescription(house.getDescription());
             }
+            if(house.getCurrentPrice()!=null) {
+                updateHouse.setCurrentPrice(house.getCurrentPrice());
+            }
+            if(house.getHousePhotos()!=null) {
+                updateHouse.setHousePhotos(house.getHousePhotos());
+            }
             house=repository.save(updateHouse);
             return house;
         }else
@@ -164,7 +165,16 @@ public class HouseService {
             return false;
         }
     }
-
+    public List<byte[]> getPhotosFromHouseID(UUID houseID) {
+        List<House> allHouses = repository.findAll();
+        List<byte[]> housePhotos = new ArrayList<>();
+        for(House house : allHouses){
+            if(house.getHouseID().equals(houseID)){
+                housePhotos.addAll(house.getHousePhotos());
+            }
+        }
+        return housePhotos;
+    }
     public List<House> searchByWords(String words){
         List<House> allHouses = this.getAllHouses();
         List<House> housesTemp;

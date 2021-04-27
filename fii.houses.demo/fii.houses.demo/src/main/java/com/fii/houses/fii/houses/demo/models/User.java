@@ -13,12 +13,13 @@ public class User {
     @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
     private Date creationDate;
-    private String firstName, lastName;
+    private String firstName, lastName, email,phoneNumber;
     @OneToMany
     private List<House> favorite = new ArrayList<>(); //for buyer
     @OneToMany
     private List<House> forSell = new ArrayList<>(); //seller
-    private final static Integer viewsHistoryCapacity = 10;
+    public final static Integer viewsHistoryCapacity = 10;
+    public final static Integer favoriteListCapacity = 20;
     @Transient
     private Queue<House> viewsHistory = new ArrayBlockingQueue<>(viewsHistoryCapacity){
         @Override
@@ -31,6 +32,7 @@ public class User {
             return true;
         }
     }; //for buyer
+
 
     public UUID getUserID() {
         return userID;
@@ -88,5 +90,21 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

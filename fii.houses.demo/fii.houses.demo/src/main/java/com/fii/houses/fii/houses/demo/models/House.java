@@ -27,7 +27,11 @@ public class House {
     private Integer noOfFave = 0;
     private Float currentPrice;
     private Date creationDate;
+    @ElementCollection
+    private Map<Date,Integer> viewsHistory = new TreeMap<>();
     private Integer views;
+    @ElementCollection
+    private List<byte[]> housePhotos;
 
     public UUID getHouseID() {
         return houseID;
@@ -175,5 +179,21 @@ public class House {
 
     public void setUserID(UUID userID) {
         this.userID = userID;
+    }
+
+    public List<byte[]> getHousePhotos() {
+        return housePhotos;
+    }
+
+    public void setHousePhotos(List<byte[]> housePhotos) {
+        this.housePhotos = housePhotos;
+    }
+
+    public Map<Date, Integer> getViewsHistory() {
+        return viewsHistory;
+    }
+
+    public void setViewsHistory(Map<Date, Integer> viewsHistory) {
+        this.viewsHistory = viewsHistory;
     }
 }

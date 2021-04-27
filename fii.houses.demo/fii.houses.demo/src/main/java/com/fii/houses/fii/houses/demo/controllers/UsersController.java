@@ -9,8 +9,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -32,6 +34,15 @@ public class UsersController {
     public ResponseEntity<List<User>> getUsers(){
         List<User> users = service.getAllUsers();
         return new ResponseEntity<>(users, new HttpHeaders(), HttpStatus.OK);
+    }
+    @GetMapping("/{userid}")
+    public ResponseEntity<User> getUserByUserID(@PathVariable UUID userid){
+        User existingUser = service.getUserByUserID(userid);
+        if(existingUser==null){
+            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(existingUser, new HttpHeaders(),HttpStatus.OK);
+        }
     }
 
     @PostMapping("/create")
@@ -76,24 +87,27 @@ public class UsersController {
 
     @PutMapping("/addtofavorite")
     public ResponseEntity<?> addToFavorite (@RequestBody House house){
-        List<User> newUser = service.getUserByUserID(house.getUserID());
-        List<House> newHouse = houseService.getHouseByHouseID(house);
-        if(newUser.isEmpty() || newHouse.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        User newUser = service.getUserByUserID(house.getUserID());
+        House newHouse = houseService.getHouseByHouseID(house);
+        if(newUser!=null && newHouse!=null){
+            if(newUser.getFavorite().size()==User.favoriteListCapacity)
+                return new ResponseEntity<>("Oops...you have reached the maximum numbers of favorite houses. Please remove one before you can add another.",HttpStatus.BAD_REQUEST);
+            else{
+                service.addToFavorites(newUser, newHouse);
+                return new ResponseEntity<>(HttpStatus.OK);}
         }else{
-            service.addToFavorites(newUser.get(0), newHouse.get(0));
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @DeleteMapping("/removefromfavorite")
     public ResponseEntity<?> removeFromFavorite(@RequestBody House house){
-        List<User> newUser = service.getUserByUserID(house.getUserID());
-        List<House> newHouse = houseService.getHouseByHouseID(house);
-        if(newUser.isEmpty() || newHouse.isEmpty()){
+        User newUser = service.getUserByUserID(house.getUserID());
+        House newHouse = houseService.getHouseByHouseID(house);
+        if(newUser==null || newHouse==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }else{
-            service.removeFromFavorites(newUser.get(0), newHouse.get(0));
+            service.removeFromFavorites(newUser, newHouse);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }

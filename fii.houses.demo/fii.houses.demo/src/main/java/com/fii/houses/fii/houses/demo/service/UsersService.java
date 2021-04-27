@@ -25,19 +25,14 @@ public class UsersService {
         }
     }
 
-    public List<User> getUserByUserID(UUID id){
+    public User getUserByUserID(UUID id){
         List<User> allUsers = repository.findAll();
-        List<User> usersById = new ArrayList<>();
         for (User existingUser : allUsers) {
             if (existingUser.getUserID().equals(id)) {
-                usersById.add(existingUser);
+                return existingUser;
             }
         }
-        if(usersById.size()>0){
-            return usersById;
-        }else {
-            return new ArrayList<>();
-        }
+        return new User();
     }
 
     public User create(User user) {
@@ -114,10 +109,24 @@ public class UsersService {
         houseRepository.save(house);
     }
 
-    public void addToViewsHistory(House house,User user){
+    public void addToViewsHistory(House house,UUID userID){
+        User user = getUserByUserID(userID);
         Queue<House> viewsHistory = user.getViewsHistory();
         viewsHistory.add(house);
         user.setViewsHistory(viewsHistory);
         house.setViews(house.getViews()+1);
+        Date today = new Date();
+        Map<Date,Integer> viewsStatistics = house.getViewsHistory();
+
+        if(viewsStatistics.get(today)==null){
+            viewsStatistics.put(today,house.getViews()+1);
+        }
+        else{
+            viewsStatistics.replace(today,house.getViews()+1);
+        }
+        house.setViewsHistory(viewsStatistics);
+        house.setViews(house.getViews()+1);
+        repository.save(user);
+        houseRepository.save(house);
     }
 }

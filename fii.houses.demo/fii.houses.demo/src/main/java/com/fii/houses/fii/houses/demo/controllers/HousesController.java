@@ -2,6 +2,7 @@ package com.fii.houses.fii.houses.demo.controllers;
 
 import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.service.HouseService;
+import com.fii.houses.fii.houses.demo.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,8 @@ import java.util.*;
 public class HousesController {
     @Autowired
     private HouseService service;
+    @Autowired
+    private UsersService usersService;
 
     @GetMapping("/allhouses")
     public ResponseEntity<List<House>> getHouses(){
@@ -36,12 +39,13 @@ public class HousesController {
         }
     }
     @GetMapping("/housebyhouseid")
-    public ResponseEntity<List<House>> getHouseByHouseID(@RequestBody House house){
-        List<House> existingHouses = service.getHouseByHouseID(house);
-        if(existingHouses.equals(new ArrayList<>())){
-            return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
+    public ResponseEntity<House> getHouseByHouseID(@RequestBody House house){
+        House existingHouse = service.getHouseByHouseID(house);
+        if(existingHouse==null){
+            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
         }else{
-            return new ResponseEntity<>(existingHouses, new HttpHeaders(),HttpStatus.OK);
+            usersService.addToViewsHistory(existingHouse,existingHouse.getUserID());
+            return new ResponseEntity<>(existingHouse, new HttpHeaders(),HttpStatus.OK);
         }
     }
 
@@ -100,6 +104,15 @@ public class HousesController {
             return new ResponseEntity<>(new HttpHeaders(),HttpStatus.OK);
         }else{
             return new ResponseEntity<>(new HttpHeaders(), HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("photos/{houseID}")
+    public ResponseEntity<?> getPhotosFromHouseID(@PathVariable UUID houseID){
+        List<byte[]> photos = service.getPhotosFromHouseID(houseID);
+        if (!photos.equals(new ArrayList<>())) {
+            return new ResponseEntity<>(photos, new HttpHeaders(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
         }
     }
 
