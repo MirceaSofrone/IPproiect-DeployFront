@@ -7,6 +7,7 @@ import {PostsService } from './posts.service';
 })
 
 export class AppComponent {
+<<<<<<< HEAD:gallery/src/app/app.component.ts
   title = 'gallery';
   data:any;
   constructor(private postData: PostsService){}
@@ -17,4 +18,10 @@ export class AppComponent {
      this.data=result
     })
   }
+=======
+
+  title = 'IPproiect';
+
+
+>>>>>>> 6171a5cb394f450b1f6108e6f03325372461a919:src/app/app.component.ts
 }

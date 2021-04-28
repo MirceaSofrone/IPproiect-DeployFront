@@ -1,20 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {FormsModule} from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HouseGalleryComponent } from './house-gallery/house-gallery.component';
-import { UserContactComponent } from './user-contact/user-contact.component';
+// import { GalleryPartComponent } from './gallery-part/gallery-part.component';
+import {UserContactComponent} from './user-contact/user-contact.component';
+import { GalleryPartComponent } from './gallery-part/gallery-part.component';
+// import {GalleryPartComponent} from './gallery-part/gallery-part.component';
 
+import { HttpClientModule} from '@angular/common/http';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { HammerModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [
     AppComponent,
-    HouseGalleryComponent,
+    GalleryPartComponent,
     UserContactComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgxGalleryModule ,
+    HammerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
