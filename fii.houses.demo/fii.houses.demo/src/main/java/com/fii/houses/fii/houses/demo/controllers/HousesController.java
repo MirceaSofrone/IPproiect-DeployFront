@@ -20,8 +20,8 @@ public class HousesController {
     private UsersService usersService;
 
     @GetMapping("/allhouses")
-    public ResponseEntity<List<House>> getHouses(){
-        List<House> houses = service.getAllHouses();
+    public ResponseEntity<List<House>> getHouses(@RequestParam int page){
+        List<House> houses = service.getAllHousesPage(page);
         if(houses.equals(new ArrayList<>())){
             return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
         }else {
