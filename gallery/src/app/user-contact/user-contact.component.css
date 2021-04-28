@@ -1,20 +1,20 @@
 @font-face {
-    src: ".assets\fonts\Manrope-Regular.ttf";
+    src: ".assets/fonts/Manrope-Regular.ttf";
     font-family: manrope;
 }
 
 @font-face {
     font-family: montserrat;
-    src: ".\assets\fonts\Montserrat-Regular.ttf";
+    src: "./assets/fonts/Montserrat-Regular.ttf";
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
 .bkg-rectangle {
-    height: 746px;
-    width: 407px;
+    height: 40vw;
+    width: 28vw;
     background-color: #F2F2F2;
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: 1vw;
+    margin-top: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,17 +38,17 @@
 }
 
 .form-elements textarea {
-    width: 307px;
-    height: 209px;
+    width: 22vw;
+    height: 15vw;
     padding: 10px;
     font-size: 15px;
     font-family: montserrat;
 }
 
 #submit-btn {
-    width: 291px;
-    height: 59px;
-    margin-top: 43px;
+    width: 17vw;
+    height: 3.3vw;
+    margin-top: 2vw;
     border-radius: 30px;
     font-weight: 700;
     font-size: 23px;
@@ -65,9 +65,9 @@ input {
 }
 
 .favorites-btn {
-    width: 291px;
-    height: 59px;
-    margin-top: 24px;
+    width: 17vw;
+    height: 3.3vw;
+    margin-top: 2vw;
     border-radius: 30px;
     font-weight: 600;
     font-size: 23px;
@@ -85,4 +85,57 @@ input {
 
 #submit-btn:hover {
     background-color: #4d648d;
+}
+img{
+    height:5vw;
+    width:5vw;
+}
+
+@media(max-width:1110px){
+    .bkg-rectangle {
+        height: 70vw;
+        width: 50vw;
+    }
+    .form-elements textarea {
+        width: 40vw;
+        height: 30vw;
+    }
+    #submit-btn, .favorites-btn {
+        width: 30vw;
+        height: 7vw;
+        font-size: 23px;
+    }
+    img{
+        height: 10vw;
+        width: 10vw;
+    }
+
+}
+@media(max-width:800px){
+    .bkg-rectangle {
+        height: 85vw;
+        width: 70vw;
+    }
+    .form-elements textarea {
+        width: 60vw;
+        height: 30vw;
+    }
+    #submit-btn, .favorites-btn {
+        width: 50vw;
+        height: 7vw;
+        font-size: 17px;
+    }
+}
+@media(max-width:320px){
+    .bkg-rectangle {
+        height: 90vw;
+    }
+    
+    #submit-btn, .favorites-btn {
+        font-size: 15px;
+    }
+    
+.seller-name {
+    font-size: 20px;
+}
 }

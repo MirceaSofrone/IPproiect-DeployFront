@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HouseGalleryComponent } from './house-gallery.component';
+import { NavbarLoggedInComponent } from './navbar-logged-in.component';
 
-describe('HouseGalleryComponent', () => {
-  let component: HouseGalleryComponent;
-  let fixture: ComponentFixture<HouseGalleryComponent>;
+describe('NavbarLoggedInComponent', () => {
+  let component: NavbarLoggedInComponent;
+  let fixture: ComponentFixture<NavbarLoggedInComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HouseGalleryComponent ]
+      declarations: [ NavbarLoggedInComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HouseGalleryComponent);
+    fixture = TestBed.createComponent(NavbarLoggedInComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+
 @Component({
   selector: 'app-gallery-part',
   templateUrl: './gallery-part.component.html',
@@ -18,20 +19,29 @@ export class GalleryPartComponent implements OnInit {
   ngOnInit(): void {
     this.galleryOptions = [
     {
-      width: '600px',
-      height: '400px',
+      width: '45vw',
+      height: '40vw',
       thumbnailsColumns: 4,
       imageAnimation: NgxGalleryAnimation.Slide
+    },
+    {
+      breakpoint: 1110,
+      width: '100%',
+      height: '60vw',
+      imagePercent: 80,
+      thumbnailsPercent: 20,
+      thumbnailsMargin: 20,
+      thumbnailMargin: 20
     },
     // max-width 800
     {
       breakpoint: 800,
       width: '100%',
-      height: '600px',
+      height: '80vw',
       imagePercent: 80,
       thumbnailsPercent: 20,
-      thumbnailsMargin: 20,
-      thumbnailMargin: 20
+      thumbnailsMargin: 5,
+      thumbnailMargin: 5
     },
     // max-width 400
     {
@@ -39,12 +49,13 @@ export class GalleryPartComponent implements OnInit {
       preview: false
     }
   ];
+  
 
   this.galleryImages = [
     {
-      small: "../../assets/1.jpg",
-      medium: "../../assets/1.jpg",
-      big: "../../assets/1.jpg"
+      small: "https://picsum.photos/id/0/5616/3744",
+      medium: "https://picsum.photos/id/0/5616/3744",
+      big: "https://picsum.photos/id/0/5616/3744"
     },
     {
       small: "../../assets/2.jpg",
