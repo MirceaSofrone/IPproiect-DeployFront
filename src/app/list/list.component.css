@@ -12,6 +12,13 @@
     width: min-content;
 }
 
+#submit {
+    background: none;
+    border: none;
+    left: 72%;
+    position: absolute;
+}
+
 #search-form input[type="text"] {
     padding: 1.08em;
     width: 45vw;
@@ -34,7 +41,7 @@
     height: 250px;
 }
 
-button {
+#favorite {
     position: absolute;
     left: -240px;
     top: 10px;

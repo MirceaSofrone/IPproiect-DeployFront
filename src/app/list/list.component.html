@@ -1,8 +1,8 @@
 <form id="search-form" class="form-search">
     <div class="search-input-wrapper">
         <input type="text" name="string" placeholder="Search for a location" ngModel>
-        <mat-icon>search</mat-icon>
-        <button type="submit">Submit</button>
+
+        <button id="submit" type="submit"><mat-icon>search</mat-icon></button>
     </div>
 
 </form>
@@ -11,7 +11,7 @@
 <div class="list" *ngFor="let item of data |  paginate: { id: 'listing_pagination', itemsPerPage: 5, currentPage: page,totalItems:totalRecords}">
     <img class="images" src="{{item.download_url}}" alt="image">
     <div class="house-description">
-        <button mat-icon-button (click)="toggleSelected()">
+        <button id="favorite" mat-icon-button (click)="toggleSelected()">
 
             <mat-icon
               *ngIf="selected"
