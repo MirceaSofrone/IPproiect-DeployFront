@@ -27,10 +27,10 @@ public class HousesController {
     private UsersService usersService;
 
     @GetMapping("/allhouses")
-    public ResponseEntity<List<House>> getHouses(@RequestParam int page){
+    public ResponseEntity<?> getHouses(@RequestParam int page){
         List<House> houses = service.getAllHousesPage(page);
         if(houses.equals(new ArrayList<>())){
-            return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No houses!",new HttpHeaders(),HttpStatus.NOT_FOUND);
         }else {
             return new ResponseEntity<>(houses, new HttpHeaders(), HttpStatus.OK);
         }
