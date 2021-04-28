@@ -1,7 +1,6 @@
 package com.fii.houses.fii.houses.demo.models;
 
 import javax.persistence.*;
-import javax.xml.crypto.Data;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -11,15 +10,18 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
     private Date creationDate;
-    private String firstName, lastName;
+    private String firstName, lastName, email,phoneNumber;
     @OneToMany
     private List<House> favorite = new ArrayList<>(); //for buyer
     @OneToMany
     private List<House> forSell = new ArrayList<>(); //seller
+    public final static Integer viewsHistoryCapacity = 10;
+    public final static Integer favoriteListCapacity = 20;
     @Transient
-    private Queue<House> istoricVizionare = new ArrayBlockingQueue<House>(10){
+    private Queue<House> viewsHistory = new ArrayBlockingQueue<>(viewsHistoryCapacity){
         @Override
         public boolean add(House house){
             if(remainingCapacity() == 0)
@@ -30,6 +32,7 @@ public class User {
             return true;
         }
     }; //for buyer
+
 
     public UUID getUserID() {
         return userID;
@@ -57,12 +60,12 @@ public class User {
     }
 
 
-    public Queue<House> getIstoricVizionare() {
-        return istoricVizionare;
+    public Queue<House> getViewsHistory() {
+        return viewsHistory;
     }
 
-    public void setIstoricVizionare(Queue<House> istoricVizionare) {
-        this.istoricVizionare = istoricVizionare;
+    public void setViewsHistory(Queue<House> viewsHistory) {
+        this.viewsHistory = viewsHistory;
     }
 
     public List<House> getForSell() {
@@ -87,5 +90,21 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
