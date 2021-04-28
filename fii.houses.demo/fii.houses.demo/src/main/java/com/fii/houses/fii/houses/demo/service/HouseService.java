@@ -82,6 +82,14 @@ public class HouseService {
         return null;
     }
 
+    public House housedetails(UUID houseId){
+        if(repository.existsById(houseId)){
+            House house = repository.getOne(houseId);
+            return house;
+        }
+        return null;
+    }
+
     public boolean updateViews(UUID houseId){
         if(repository.existsById(houseId)){
             House house = repository.getOne(houseId);

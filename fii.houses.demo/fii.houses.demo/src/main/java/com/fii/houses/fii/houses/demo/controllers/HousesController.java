@@ -12,7 +12,7 @@ import java.util.*;
 
 
 @RestController
-@RequestMapping("api/v1/houses")
+@RequestMapping("api/v1")
 public class HousesController {
     @Autowired
     private HouseService service;
@@ -29,7 +29,18 @@ public class HousesController {
         }
     }
 
-    @GetMapping("/housebyuserid")
+    @PostMapping("/housedetails/{houseid}")
+    public ResponseEntity<House> houseDetails(@PathVariable UUID houseid)
+    {
+        House newHouse = service.housedetails(houseid);
+        if(newHouse!=null){
+            return new ResponseEntity<House>(newHouse,new HttpHeaders(),HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(new HttpHeaders(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/sellerhouses")
     public ResponseEntity<List<House>> getHouseByUserID(@RequestBody House house){
         List<House> existingHouses = service.getHouseByUserID(house);
         if(existingHouses.equals(new ArrayList<>())){
