@@ -180,7 +180,7 @@ public class HousesController {
         /*String result = restTemplate.getForObject("https://finalprice.herokuapp.com/price?tip_proprietate=APT&nr_camere=4&suprafata=50&suprafata_teren=50&an_constructie=2016&zona=copou", String.class);
         System.out.println(result);*/
 
-        return new ResponseEntity<>(houseProperty,new HttpHeaders(),HttpStatus.CREATED);
+        return new ResponseEntity<>(newHouse,new HttpHeaders(),HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
