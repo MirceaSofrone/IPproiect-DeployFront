@@ -84,8 +84,7 @@ public class HouseService {
 
     public House housedetails(UUID houseId){
         if(repository.existsById(houseId)){
-            House house = repository.getOne(houseId);
-            return house;
+            return repository.findById(houseId).get();
         }
         return null;
     }

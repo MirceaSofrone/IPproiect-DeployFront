@@ -29,14 +29,14 @@ public class HousesController {
         }
     }
 
-    @PostMapping("/housedetails/{houseid}")
+    @GetMapping("/housedetails/{houseid}")
     public ResponseEntity<House> houseDetails(@PathVariable UUID houseid)
     {
         House newHouse = service.housedetails(houseid);
         if(newHouse!=null){
-            return new ResponseEntity<House>(newHouse,new HttpHeaders(),HttpStatus.OK);
+            return new ResponseEntity<>(newHouse,new HttpHeaders(),HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(new HttpHeaders(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
         }
     }
 
