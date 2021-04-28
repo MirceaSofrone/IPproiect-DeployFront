@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="fii.houses.demo" target="11" />
+      <module name="fii.houses.demo" target="13" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

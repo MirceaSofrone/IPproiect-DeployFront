@@ -14,9 +14,9 @@ public class House {
     private UUID userID;
     @Column(columnDefinition = "VARCHAR(1024)")
     private String description;
-    private String city, country, address;
+    private String city, country, address, area;
     private Integer noOfRooms, floor, surface, noOfBathrooms;
-    //0-house, 1-apartment 2-studio 3-commercial space
+    //0-house, 1-apartment
     private Integer houseType;
     //0-selling, 1-renting
     private Integer sellType;
@@ -25,6 +25,7 @@ public class House {
     @ElementCollection
     private Map<Date,Integer> favoriteHistory = new TreeMap<>();
     private Integer noOfFave = 0;
+    private Float recommendedPrice;
     private Float currentPrice;
     private Date creationDate;
     @ElementCollection
@@ -199,5 +200,21 @@ public class House {
 
     public void setViewsHistory(Map<Date, Integer> viewsHistory) {
         this.viewsHistory = viewsHistory;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public Float getRecommendedPrice() {
+        return recommendedPrice;
+    }
+
+    public void setRecommendedPrice(Float recommendedPrice) {
+        this.recommendedPrice = recommendedPrice;
     }
 }
