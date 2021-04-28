@@ -15,11 +15,32 @@ export class ListComponent implements OnInit {
   constructor(private postData:PostsService) { }
 
   ngOnInit(): void {
+    let myStorage=localStorage.getItem("search");
+    console.warn(myStorage);
+    let searchKey;
+    let type;
+    let string;
+    let housing;
+     
+
+    if(myStorage!=null){
+    searchKey= JSON.parse(myStorage);
+    console.warn(searchKey);
+    type=searchKey['type'];
+    console.warn(type);
+    string=searchKey['string'];
+    console.warn(string);
+    housing=searchKey['housing'];
+    console.warn(housing);
+    }
+    
     this.postData.getPosts().subscribe((result)=>{console.warn("result",result)
     this.data=result
     this.totalRecords=this.data.result.length;})
+
   
   }
+
   public toggleSelected() {
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected)}

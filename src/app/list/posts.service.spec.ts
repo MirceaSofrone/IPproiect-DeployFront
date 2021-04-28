@@ -1,9 +1,10 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture,TestBed } from '@angular/core/testing';
 
 import { PostsService } from './posts.service';
 
 describe('PostsService', () => {
   let service: PostsService;
+  
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
