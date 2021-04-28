@@ -110,7 +110,9 @@ ngOnInit() {
     }
   }
   breakpoints = {
-    640: { slidesPerView: 2, spaceBetween: 20 },
+    150:{slidesPerView:2, spaceBetween:10},
+    400:{ slidesPerView:2,spaceBetween:10},
+    640: { slidesPerView: 2, spaceBetween: 10 },
     780: { slidesPerView: 3, spaceBetween: 40 },
     1024: { slidesPerView: 3, spaceBetween: 50 }
   };
@@ -128,7 +130,9 @@ ngOnInit() {
   breakpointChange() {
     this.breakPointsToggle = !this.breakPointsToggle;
     this.breakpoints = {
-      640: { slidesPerView: 2, spaceBetween: 20 },
+      150:{slidesPerView:2, spaceBetween:10},
+      400:{ slidesPerView:2,spaceBetween:20},
+      640: { slidesPerView: 2, spaceBetween: 10 },
       780: { slidesPerView: 3, spaceBetween: 40 },
       1024: { slidesPerView: this.breakPointsToggle ? 7 : 5, spaceBetween: 50 }
     };

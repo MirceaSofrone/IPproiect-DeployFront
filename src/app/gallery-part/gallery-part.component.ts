@@ -3,6 +3,8 @@ import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
 
+import { GalleryService } from '../galleryService/gallery.service';
+
 @Component({
   selector: 'app-gallery-part',
   templateUrl: './gallery-part.component.html',
@@ -14,9 +16,25 @@ export class GalleryPartComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
-  constructor() { }
+  data:any;
+  constructor(private postData:GalleryService) { }
+
 
   ngOnInit(): void {
+
+
+    this.galleryImages = [];
+
+    this.postData.getPosts().subscribe((result)=>{
+      //console.warn("result", result);
+      this.data=result;
+      for(let i=0; i<5; i++){
+        console.warn("result", result[i]);
+        this.galleryImages.push({ "small" : result[i]["download_url"], "medium" : result[i]["download_url"], "big" : result[i]["download_url"]})
+      }
+  })
+
+
     this.galleryOptions = [
     {
       width: '45vw',
@@ -50,38 +68,5 @@ export class GalleryPartComponent implements OnInit {
     }
   ];
   
-
-    this.galleryImages = [
-    {
-<<<<<<< HEAD:gallery/src/app/gallery-part/gallery-part.component.ts
-      small: "https://picsum.photos/id/0/5616/3744",
-      medium: "https://picsum.photos/id/0/5616/3744",
-      big: "https://picsum.photos/id/0/5616/3744"
-=======
-      small: '../../assets/1.jpg',
-      medium: '../../assets/1.jpg',
-      big: '../../assets/1.jpg'
->>>>>>> 6171a5cb394f450b1f6108e6f03325372461a919:src/app/gallery-part/gallery-part.component.ts
-    },
-    {
-      small: '../../assets/2.jpg',
-      medium: '../../assets/2.jpg',
-      big: '../../assets/2.jpg'
-    },
-    {
-      small: '../../assets/3.jpg',
-      medium: '../../assets/3.jpg',
-      big: '../../assets/3.jpg'
-    }, {
-      small: '../../assets/4.jpg',
-      medium: '../../assets/4.jpg',
-      big: '../../assets/4.jpg'
-    },
-    {
-      small: '../../assets/5.jpg',
-      medium: '../../assets/5.jpg',
-      big: '../../assets/5.jpg'
-    }
-  ];
   }
 }
