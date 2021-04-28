@@ -30,6 +30,24 @@ public class HouseService {
     private HouseRepository repository;
     private final static Integer carouselSize = 9;
 
+    public List<House> getAllHousesPage(int page) {
+        List<House> allHouses = repository.findAll();
+        allHouses.sort(new SortByDate());
+        List<House> goodHouses = new ArrayList<>();
+        if (allHouses.size() > 0) {
+            for (int index = 5*page; index < 5*page+5 ; index++) {
+                if(index<allHouses.size()){
+                    goodHouses.add(allHouses.get(allHouses.size()-index-1));
+                }else {
+                    return goodHouses;
+                }
+            }
+            return goodHouses;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
     public List<House> getAllHouses() {
         List<House> allHouses = repository.findAll();
         if (allHouses.size() > 0) {
@@ -91,6 +109,13 @@ public class HouseService {
         return null;
     }
 
+    public House housedetails(UUID houseId){
+        if(repository.findById(houseId).isPresent()){
+            return repository.findById(houseId).get();
+        }
+        return null;
+    }
+
     public boolean updateViews(UUID houseId){
         if(repository.existsById(houseId)){
             House house = repository.getOne(houseId);
@@ -108,7 +133,7 @@ public class HouseService {
         List<House> lastAddedHouses = new ArrayList<>();
         int noOfHouses = Math.min(allHouses.size(), carouselSize);
         for (int index = 0; index < noOfHouses; index++) {
-            lastAddedHouses.add(allHouses.get(index));
+            lastAddedHouses.add(allHouses.get(allHouses.size()-index-1));
         }
         if (lastAddedHouses.size() > 0) {
             return lastAddedHouses;

@@ -13,7 +13,7 @@ public class House {
     @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
     @Column(columnDefinition = "VARCHAR(1024)")
-    private String description;
+    private String description, title;
     private String city, country, address, area;
     private Integer noOfRooms, floor, surface, noOfBathrooms;
     //0-house, 1-apartment
@@ -120,6 +120,13 @@ public class House {
         this.creationDate = creationDate;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public Map<Date, ArrayList<Float>> getPriceHistory() {
         return priceHistory;
