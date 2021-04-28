@@ -97,7 +97,7 @@ public class HousesController {
     }*/
 
     @PostMapping("/create")
-    public ResponseEntity<?> createHouse(@RequestBody House house) throws UnirestException {
+    public ResponseEntity<?> createHouse(@RequestBody House house){
         House newHouse=service.createHouse(house);
         //pret
 
