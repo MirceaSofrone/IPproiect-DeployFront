@@ -1,5 +1,6 @@
 import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 import { PostsService } from './posts.service'
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -23,4 +24,8 @@ export class ListComponent implements OnInit {
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected)}
   }
+ 
+
+ 
+
 
