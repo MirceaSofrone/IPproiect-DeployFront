@@ -87,8 +87,8 @@ public class HousesController {
         }
     }
 
-    @Autowired
-    private RestTemplate restTemplate;
+//    @Autowired
+//    private RestTemplate restTemplate;
 
     /*@GetMapping
     private House getHousePrice(){
