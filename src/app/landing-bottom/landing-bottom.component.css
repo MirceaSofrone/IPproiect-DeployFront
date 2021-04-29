@@ -3,7 +3,7 @@ a{
 }
 .card-section{
   width:80vw;
-  margin: 0 auto;
+  margin: 5vw auto;
   text-align:center;
   display:flex;
   flex-direction:column;

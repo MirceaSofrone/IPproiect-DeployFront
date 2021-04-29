@@ -22,7 +22,7 @@ import SwiperCore, {
     Thumbs,
     Controller
   } from "swiper/core";
-  
+
   // install Swiper components
   SwiperCore.use([
     Navigation,
@@ -52,7 +52,7 @@ constructor(private postData:PhotoCarouselService, private cd: ChangeDetectorRef
   onSlideChange() {
     console.log('slide change');
   }
- 
+
 
 
 ngOnInit() {
@@ -61,11 +61,11 @@ ngOnInit() {
     this.data=result;
 })
     // this.data.forEach(m => console.log(m.id))
- 
+
 }
 
 onSelect(item){
-  this.router.navigate(['/home', item.id])
+  this.router.navigate(['/house-details', item.id])
 }
 
 @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;
@@ -73,7 +73,7 @@ onSelect(item){
   show: boolean;
   thumbs: any;
   //constructor(private cd: ChangeDetectorRef) {}
-  
+
 
   thumbsSwiper: any;
   setThumbsSwiper(swiper) {
@@ -171,7 +171,7 @@ onSelect(item){
       image: './assets/house3.png',
       thumbImage: './assets/house3.png',
       title: '70.000$ 5 camere Valea Lupului, Iasi'
-  },      
+  },
   {image: './assets/house.png',
   thumbImage: './assets/house.png',
   alt: 'alt of image',
