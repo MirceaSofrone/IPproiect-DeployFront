@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import {PostsService } from './posts.service';
+
+
 // import { PostsService} from './posts.service'
 //
 // // import{TestService} from './test.service';
@@ -13,7 +16,21 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
+
+ 
+//   constructor(private postData: PostsService){}
+//   ngOnInit()
+//   {
+//     this.postData.getPosts().subscribe((result)=>{
+//      console.warn("result",result) 
+//      this.data=result
+//     })
+//   }
+  
+
+  
   data: any;
   title = 'IPproiect';
 
