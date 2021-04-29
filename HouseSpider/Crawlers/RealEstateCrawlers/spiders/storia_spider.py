@@ -67,15 +67,5 @@ class StoriaSpider(scrapy.Spider):
 
             _, no_of_rooms, surface, terrain_surface, year = parse_pairs(pairs)
 
-            if terrain_surface == '':
-                terrain_surface = surface
-
-            if year == '' or no_of_rooms == '' or surface == '' or 'multe' in no_of_rooms:
-                return
-
-            # writing data in CSV
-            with open(self.csv_file, "a") as data:
-                writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-                writer.writerow(
-                    [property_type, transaction_type, no_of_rooms, surface, terrain_surface, year, zone, price,
-                     response.url])
+            write_to_csv(self.csv_file, property_type, transaction_type, no_of_rooms, surface, terrain_surface, year,
+                         zone, price, response.url)
