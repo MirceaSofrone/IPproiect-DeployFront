@@ -27,6 +27,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HouseDetailsComponent } from './house-details/house-details.component';
 
+import{RouterModule, Routes} from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'home', component: HouseDetailsComponent},
+  { path: 'details', component: GalleryPartComponent},
+  
+  { path: 'home/details', component: GalleryPartComponent},
+  { path: 'about', component: GalleryPartComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'}
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +56,7 @@ import { HouseDetailsComponent } from './house-details/house-details.component';
     HttpClientModule, 
     NgxGalleryModule , 
     HammerModule,
+    RouterModule.forRoot(appRoutes),
     IvyCarouselModule,
     SwiperModule,
     MatIconModule,

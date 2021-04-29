@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 // import { HouseService } from '../house.service';
 
 @Component({
-  selector: 'app-house-details',
+  // selector: 'app-house-details',
   templateUrl: './house-details.component.html',
   styleUrls: ['./house-details.component.css']
 })
