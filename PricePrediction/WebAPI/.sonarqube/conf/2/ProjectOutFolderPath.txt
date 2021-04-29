@@ -1,0 +1,1 @@
+C:\Users\dciopei\Desktop\PricePrediction\WebAPI\.sonarqube\out\2

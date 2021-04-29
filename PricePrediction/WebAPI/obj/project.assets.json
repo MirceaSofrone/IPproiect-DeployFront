@@ -29,6 +29,17 @@
           "lib/netstandard1.3/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Extensions.ApiDescription.Server.props": {},
+          "build/Microsoft.Extensions.ApiDescription.Server.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.props": {},
+          "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
+        }
+      },
       "Microsoft.ML/1.5.0-preview2": {
         "type": "package",
         "dependencies": {
@@ -170,6 +181,15 @@
         },
         "runtime": {
           "lib/netstandard1.0/_._": {}
+        }
+      },
+      "Microsoft.OpenApi/1.2.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         }
       },
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.10.13": {
@@ -426,6 +446,57 @@
             "rid": "ubuntu.16.10-x64"
           }
         }
+      },
+      "Swashbuckle.AspNetCore/6.1.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.ApiDescription.Server": "3.0.0",
+          "Swashbuckle.AspNetCore.Swagger": "6.1.3",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.1.3",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.1.3"
+        },
+        "build": {
+          "build/Swashbuckle.AspNetCore.props": {}
+        }
+      },
+      "Swashbuckle.AspNetCore.Swagger/6.1.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.2.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Swashbuckle.AspNetCore.SwaggerGen/6.1.3": {
+        "type": "package",
+        "dependencies": {
+          "Swashbuckle.AspNetCore.Swagger": "6.1.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerUI/6.1.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "System.AppContext/4.3.0": {
         "type": "package",
@@ -1564,22 +1635,22 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
-      "HousingPricePredML.ConsoleApp/1.0.0": {
+      "HousesFinalScoreML.ConsoleApp/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "HousingPricePredML.Model": "1.0.0",
+          "HousesFinalScoreML.Model": "1.0.0",
           "Microsoft.ML": "1.5.0-preview2",
           "Microsoft.ML.FastTree": "1.5.0-preview2"
         },
         "compile": {
-          "bin/placeholder/HousingPricePredML.ConsoleApp.dll": {}
+          "bin/placeholder/HousesFinalScoreML.ConsoleApp.dll": {}
         },
         "runtime": {
-          "bin/placeholder/HousingPricePredML.ConsoleApp.dll": {}
+          "bin/placeholder/HousesFinalScoreML.ConsoleApp.dll": {}
         }
       },
-      "HousingPricePredML.Model/1.0.0": {
+      "HousesFinalScoreML.Model/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -1587,10 +1658,10 @@
           "Microsoft.ML.FastTree": "1.5.0-preview2"
         },
         "compile": {
-          "bin/placeholder/HousingPricePredML.Model.dll": {}
+          "bin/placeholder/HousesFinalScoreML.Model.dll": {}
         },
         "runtime": {
-          "bin/placeholder/HousingPricePredML.Model.dll": {}
+          "bin/placeholder/HousesFinalScoreML.Model.dll": {}
         }
       }
     }
@@ -1653,6 +1724,33 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
+      ]
+    },
+    "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
+      "sha512": "LH4OE/76F6sOCslif7+Xh3fS/wUUrE5ryeXAMcoCnuwOQGT5Smw0p57IgDh/pHgHaGz/e+AmEQb7pRgb++wt0w==",
+      "type": "package",
+      "path": "microsoft.extensions.apidescription.server/3.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Microsoft.Extensions.ApiDescription.Server.props",
+        "build/Microsoft.Extensions.ApiDescription.Server.targets",
+        "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.props",
+        "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets",
+        "microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+        "microsoft.extensions.apidescription.server.nuspec",
+        "tools/Newtonsoft.Json.dll",
+        "tools/dotnet-getdocument.deps.json",
+        "tools/dotnet-getdocument.dll",
+        "tools/dotnet-getdocument.runtimeconfig.json",
+        "tools/net461-x86/GetDocument.Insider.exe",
+        "tools/net461-x86/GetDocument.Insider.exe.config",
+        "tools/net461/GetDocument.Insider.exe",
+        "tools/net461/GetDocument.Insider.exe.config",
+        "tools/netcoreapp2.1/GetDocument.Insider.deps.json",
+        "tools/netcoreapp2.1/GetDocument.Insider.dll",
+        "tools/netcoreapp2.1/GetDocument.Insider.runtimeconfig.json"
       ]
     },
     "Microsoft.ML/1.5.0-preview2": {
@@ -1779,6 +1877,23 @@
         "microsoft.netcore.targets.1.1.0.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
         "runtime.json"
+      ]
+    },
+    "Microsoft.OpenApi/1.2.3": {
+      "sha512": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
+      "type": "package",
+      "path": "microsoft.openapi/1.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net46/Microsoft.OpenApi.dll",
+        "lib/net46/Microsoft.OpenApi.pdb",
+        "lib/net46/Microsoft.OpenApi.xml",
+        "lib/netstandard2.0/Microsoft.OpenApi.dll",
+        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
+        "lib/netstandard2.0/Microsoft.OpenApi.xml",
+        "microsoft.openapi.1.2.3.nupkg.sha512",
+        "microsoft.openapi.nuspec"
       ]
     },
     "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.10.13": {
@@ -2163,6 +2278,78 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "Swashbuckle.AspNetCore/6.1.3": {
+      "sha512": "NjPt/1hmsb0DT+YkTBsU+zHzsRObJUoAgNk78GLlCQzfHrXXUXX3eWm/WDPl31CyD3f55gzbGWotrYRQ+CyXfQ==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore/6.1.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Swashbuckle.AspNetCore.props",
+        "swashbuckle.aspnetcore.6.1.3.nupkg.sha512",
+        "swashbuckle.aspnetcore.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.Swagger/6.1.3": {
+      "sha512": "gHXukdWLzGgXHP0xhvqhwqb4hes82jIndGTA2kTKXqLsh7+O2mvOAhRapYC5Z32Ok4k87C2UjtXUV+Tfxiw2vQ==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swagger/6.1.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "swashbuckle.aspnetcore.swagger.6.1.3.nupkg.sha512",
+        "swashbuckle.aspnetcore.swagger.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.SwaggerGen/6.1.3": {
+      "sha512": "RhR606gEIni8vV8319b5tr0S3hA0M2rfy8qG91k8Vh06cHXVElvU/DmSDgNkujatffWqfxzgdW0gahp0rm5n1w==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swaggergen/6.1.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "swashbuckle.aspnetcore.swaggergen.6.1.3.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggergen.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.SwaggerUI/6.1.3": {
+      "sha512": "IivAWH0mPBPCBv+qaI3YBtz+zamBffiLQE+OTNpIhDHvvqCj//9gb4VgZWrWVnmoc1WqCf61dGreu24hKiEFDQ==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swaggerui/6.1.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "swashbuckle.aspnetcore.swaggerui.6.1.3.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -5664,22 +5851,24 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
-    "HousingPricePredML.ConsoleApp/1.0.0": {
+    "HousesFinalScoreML.ConsoleApp/1.0.0": {
       "type": "project",
-      "path": "../HousingPrice/HousingPricePredML.ConsoleApp/HousingPricePredML.ConsoleApp.csproj",
-      "msbuildProject": "../HousingPrice/HousingPricePredML.ConsoleApp/HousingPricePredML.ConsoleApp.csproj"
+      "path": "../HousingPrice/HousesFinalScoreML.ConsoleApp/HousesFinalScoreML.ConsoleApp.csproj",
+      "msbuildProject": "../HousingPrice/HousesFinalScoreML.ConsoleApp/HousesFinalScoreML.ConsoleApp.csproj"
     },
-    "HousingPricePredML.Model/1.0.0": {
+    "HousesFinalScoreML.Model/1.0.0": {
       "type": "project",
-      "path": "../HousingPrice/HousingPricePredML.Model/HousingPricePredML.Model.csproj",
-      "msbuildProject": "../HousingPrice/HousingPricePredML.Model/HousingPricePredML.Model.csproj"
+      "path": "../HousingPrice/HousesFinalScoreML.Model/HousesFinalScoreML.Model.csproj",
+      "msbuildProject": "../HousingPrice/HousesFinalScoreML.Model/HousesFinalScoreML.Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "HousingPricePredML.ConsoleApp >= 1.0.0",
-      "HousingPricePredML.Model >= 1.0.0",
-      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.10.13"
+      "HousesFinalScoreML.ConsoleApp >= 1.0.0",
+      "HousesFinalScoreML.Model >= 1.0.0",
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.10.13",
+      "Swashbuckle.AspNetCore >= 6.1.3",
+      "Swashbuckle.AspNetCore.Swagger >= 6.1.3"
     ]
   },
   "packageFolders": {
@@ -5689,11 +5878,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\WebAPI\\WebAPI.csproj",
+      "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\WebAPI\\WebAPI.csproj",
       "packagesPath": "C:\\Users\\dciopei\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\WebAPI\\obj\\",
+      "outputPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5714,11 +5903,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.ConsoleApp\\HousingPricePredML.ConsoleApp.csproj": {
-              "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.ConsoleApp\\HousingPricePredML.ConsoleApp.csproj"
+            "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.ConsoleApp\\HousesFinalScoreML.ConsoleApp.csproj": {
+              "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.ConsoleApp\\HousesFinalScoreML.ConsoleApp.csproj"
             },
-            "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj": {
-              "projectPath": "C:\\Users\\dciopei\\Desktop\\PricePrediction\\HousingPrice\\HousingPricePredML.Model\\HousingPricePredML.Model.csproj"
+            "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj": {
+              "projectPath": "C:\\Users\\dciopei\\Desktop\\FinalPricePrediction\\HousingPrice\\HousesFinalScoreML.Model\\HousesFinalScoreML.Model.csproj"
             }
           }
         }
@@ -5736,6 +5925,14 @@
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
             "version": "[1.10.13, )"
+          },
+          "Swashbuckle.AspNetCore": {
+            "target": "Package",
+            "version": "[6.1.3, )"
+          },
+          "Swashbuckle.AspNetCore.Swagger": {
+            "target": "Package",
+            "version": "[6.1.3, )"
           }
         },
         "imports": [
