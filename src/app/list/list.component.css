@@ -87,7 +87,8 @@ a {
 #listing_pagination {
     left: 35%;
     position: absolute;
-    top: 210%;
+    top: 170%;
+    font-size: 20px;
 }
 
 .details.surface {
@@ -155,10 +156,27 @@ a {
     top: 10%;
 }
 
-.heart-icon {
-    position: absolute;
-    top: 10%;
-    left: 2%;
+@media only screen and (max-width:500px) {
+    .list {
+        width: 30em;
+    }
+    .details.detail {
+        font-size: 0.6em;
+        top: 10px;
+        left: 140px;
+        padding: 5px;
+    }
+    .details.seller {
+        font-size: 0.6em;
+        top: 42px;
+        padding: 5px;
+        left: 25px;
+    }
+    #listing_pagination {
+        font-size: 1em;
+        left: 5%;
+        top: 20em;
+    }
 }
 
 @media (max-width:800px) {
@@ -167,5 +185,57 @@ a {
         left: 28%;
         top: -100px;
         font-size: 15px;
+    }
+    .images {
+        width: 150px;
+        height: 150px
+    }
+    .details.price {
+        font-size: 1em;
+        left: 175%;
+    }
+    .details.title {
+        font-size: 1em;
+        width: 200px;
+    }
+    .details.location {
+        font-size: 1em;
+        top: 50px;
+    }
+    .details.room {
+        font-size: 0.7em;
+        top: 70px;
+        text-align: center;
+    }
+    #listing_pagination {
+        font-size: 1em;
+        left: 15%;
+        top: 970px;
+    }
+    .details.surface {
+        font-size: 0.7em;
+        top: 48px;
+    }
+    .details.type {
+        font-size: 0.7em;
+        top: 26px;
+    }
+    .details.seller {
+        font-size: 0.8em;
+        top: 42px;
+        padding: 5px;
+    }
+    .details.detail {
+        font-size: 0.8em;
+        top: 10px;
+        left: 180px;
+        padding: 5px;
+    }
+    #favorite {
+        position: absolute;
+        left: -150px;
+        top: 10px;
+        background: none;
+        border: none;
     }
 }
