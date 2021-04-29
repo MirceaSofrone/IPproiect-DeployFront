@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PostsService } from './posts.service';
-import {NgxPaginationModule} from "ngx-pagination";
+import {NgxPaginationModule} from 'ngx-pagination';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -12,7 +13,7 @@ export class ListComponent implements OnInit {
   data: any;
   totalRecords: number | undefined;
   page = 1;
-  constructor(private postData: PostsService) { }
+  constructor(private postData: PostsService, private router: Router) { }
 
   ngOnInit(): void {
     const myStorage = localStorage.getItem('search');
@@ -44,8 +45,9 @@ export class ListComponent implements OnInit {
   public toggleSelected() {
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected); }
-}
 
+
+}
 
 
 
