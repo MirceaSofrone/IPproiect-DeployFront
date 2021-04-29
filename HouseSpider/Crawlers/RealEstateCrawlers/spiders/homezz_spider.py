@@ -1,132 +1,88 @@
 import scrapy
 import csv
+from RealEstateCrawlers.spiders.common import *
 
 
 class HomezzSpider(scrapy.Spider):
     name = 'homezz'
     start_urls = [
-        # 'https://homezz.ro/anunturi_apartamente_de-vanzare_in-iasi-is.html',
-        'https://homezz.ro/anunturi_case-vile_de-vanzare_in-iasi-is.html'
+        'https://homezz.ro/anunturi_apartamente_de-vanzare_in-iasi-is.html',
+        'https://homezz.ro/anunturi_case-vile_de-vanzare_in-iasi-is.html',
+        'https://homezz.ro/anunturi_apartamente_de-inchiriat_in-iasi-is.html',
+        'https://homezz.ro/anunturi_case-vile_de-inchiriat_in-iasi-is.html'
     ]
-    page_no = 0  # current page
-    MAX_NO_OF_PAGES = 28
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.page_no = 0
+        self.MAX_NO_OF_PAGES = 2
+        self.debug_file = '../../logs/{}_out.txt'.format(self.name)
+        self.csv_file = '../../logs/{}_data.csv'.format(self.name)
+        init_csv(self.name)
 
-        # initializing CSV file
-        with open('homezz_data.csv', "w+") as data:
-            writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            writer.writerow(
-                ['tip_proprietate', 'tip_tranzactie', 'nr_camere', 'suprafata', 'suprafata_teren', 'an_constructie',
-                 'zona', 'pret', 'link'])
-
-    def parse(self, response):
-        HomezzSpider.page_no += 1
+    def parse(self, response, **kwargs):
+        self.page_no += 1
 
         # debug file
-        with open('homezz_out.txt', 'wb') as debug:
-
+        with open(self.debug_file, 'wb') as debug:
             posts = response.css('#list_cart_holder a')
-           # debug.write(posts.get().encode('utf-8'))
 
             for post in posts:
                 post_url = post.css('::attr(href)').get()  # getting link to post
                 yield scrapy.Request(post_url, callback=self.parse_listing)
 
             next_page_url = response.css('.next_page a::attr(href)').get()  # works!
-
-            debug.write(next_page_url.encode('utf-8'))
-
-            if HomezzSpider.page_no < HomezzSpider.MAX_NO_OF_PAGES:
+            if self.page_no < self.MAX_NO_OF_PAGES and next_page_url is not None:
                 yield scrapy.Request(next_page_url.encode('utf-8').decode(), callback=self.parse)
 
-    @staticmethod
-    def parse_listing(response):
-        with open('homezz_out.txt', 'ab') as debug:
+    def parse_listing(self, response):
+        with open(self.debug_file, 'ab') as debug:
 
             # div with all the details of the listing
-            detalii_div = response.css('#extra-fields')
+            details_div = response.css('#extra-fields')
 
-            # salvam:
-            tip_proprietate = 'CAS'
-            tip_tranzactie = 'CMP'
-            nr_camere = ''
-            suprafata = ''
-            suprafata_teren = ''
-            an = ''
-            zona = ''
-
-            pret = response.css('#price::text').get().replace(' ', '').replace('.', '')
-            if response.css("#price b::text").get() == 'eur':
-                pass
-            elif response.css("#price b::text").get() == 'ron':
-                pret = '%s' % (int(pret) // 5)
+            # saving:
+            if 'apartament' in response.css('#categSelect').get().lower():
+                property_type = 'APT'  # apartment
             else:
-                return
+                property_type = 'CAS'  # house
 
-            # debug.write((response.url + '\n').encode('utf-8'))
-            # debug.write(pret.encode('utf-8'))
-            for div in detalii_div.css('div'):
-                titlu = div.css('span::text').get()
-                val = div.css('h1,h2,h3,h4,h5,h6').css('a::text').get()
-                if val is None:
-                    val = div.css('h1,h2,h3,h4,h5,h6').css('::text').get()
-                # debug.write((titlu + '\n').encode('utf-8'))
-                #
-                # debug.write(((val if val is not None else 'none') + '\n').encode('utf-8'))
+            if 'chiriere' in response.css('.rounded.transaction_type').get():
+                transaction_type = 'INC'  # renting
+            else:
+                transaction_type = 'CMP'  # buying
 
-                if val is None:
+            price = response.css('#price::text').get().replace(' ', '').replace('.', '')
+            if response.css("#price b::text").get() == 'eur':
+                pass  # already in euro
+            elif response.css("#price b::text").get() == 'ron':
+                price = '%s' % (int(price) // 5)  # RON
+            else:
+                return  # ???
+
+            pairs = {}
+            for div in details_div.css('div'):
+                title = div.css('span::text').get()
+                value = div.css('h1,h2,h3,h4,h5,h6').css('a::text').get()
+                if value is None:
+                    value = div.css('h1,h2,h3,h4,h5,h6').css('::text').get()
+
+                if value is None:
                     continue
 
-                if 'zon' in titlu.lower():
-                    zona = val.lower().replace(' ', '-')
+                pairs[title] = value
 
-                if 'camere' in titlu:
-                    nr_camere = val
+            zone, no_of_rooms, surface, terrain_surface, year = parse_pairs(pairs)
 
-                if 'util' in titlu:  # suprafata utila
-                    suprafata = val[:-3].replace(',', '.')
-                elif suprafata == '' and 'suprafa' in titlu:
-                    suprafata = val[:-3].replace(',', '.')
+            if terrain_surface == '':
+                terrain_surface = surface
 
-                if 'teren' in titlu:
-                    suprafata_teren = val[:-3].replace(',', '.')
-
-                if 'construc' in titlu:
-                    if 'ntre' in val:
-                        # Intre xxxx si yyyy
-                        x = int(val[6:10])
-                        y = int(val[14:18])
-                        an = str((x + y) // 2)
-                    else:
-                        an = val[:4]
-
-            if suprafata_teren == '':
-                suprafata_teren = suprafata
-
-            if an == '':
+            if year == '' or no_of_rooms == '' or surface == '' or '+' in no_of_rooms:
                 return
 
-            if nr_camere == '':
-                nr_camere = '1'
-                debug.write(("can't find nr camere for APT,{},{},{},{},{},{}: "
-                             .format(nr_camere, suprafata, suprafata_teren, an, zona, pret) +
-                             response.url + "\n").encode('utf-8'))
-
-            if suprafata == '':
-                suprafata = '40'
-                debug.write(("can't find suprafata for APT,{},{},{},{},{},{}: "
-                             .format(nr_camere, suprafata, suprafata_teren, an, zona, pret) +
-                             response.url + "\n").encode('utf-8'))
-
             # writing data in CSV
-            with open('homezz_data.csv', "a") as data:
+            with open(self.csv_file, "a") as data:
                 writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
                 writer.writerow(
-                    [tip_proprietate, tip_tranzactie, nr_camere, suprafata, suprafata_teren, an, zona, pret,
+                    [property_type, transaction_type, no_of_rooms, surface, terrain_surface, year, zone, price,
                      response.url])
-
-            # debug.write(
-            #     (nr_camere + ' ' + an + ' ' + suprafata + ' ' + suprafata_teren + ' ' + pret + ' ' + zona + '\n')
-            #     .encode('utf-8'))

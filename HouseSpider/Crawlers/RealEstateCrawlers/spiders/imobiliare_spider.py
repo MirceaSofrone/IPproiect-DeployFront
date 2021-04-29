@@ -1,30 +1,30 @@
 import csv
-
 import scrapy
+from RealEstateCrawlers.spiders.common import *
 
 
 class ImobiliareSpider(scrapy.Spider):
     name = 'imobiliare'
     start_urls = [
-        # 'https://www.imobiliare.ro/vanzare-apartamente/iasi'
-        'https://www.imobiliare.ro/vanzare-case-vile/iasi?id=172571550'
+        'https://www.imobiliare.ro/vanzare-apartamente/iasi',
+        'https://www.imobiliare.ro/vanzare-case-vile/iasi?id=172571550',
+        'https://www.imobiliare.ro/inchirieri-apartamente/iasi?id=82493434',
+        'https://www.imobiliare.ro/inchirieri-case-vile/iasi?id=82493818'
     ]
-    page_no = 0  # current page
-    MAX_NO_OF_PAGES = 33
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-        # initializing CSV file
-        with open('imobiliare_data.csv', "w+") as data:
-            writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            writer.writerow(
-                ['tip_proprietate', 'nr_camere', 'suprafata', 'suprafata_teren', 'an_constructie', 'zona', 'pret'])
+        super().__init__(**kwargs)
+        self.page_no = 0
+        self.MAX_NO_OF_PAGES = 2
+        self.debug_file = '../../logs/{}_out.txt'.format(self.name)
+        self.csv_file = '../../logs/{}_data.csv'.format(self.name)
+        init_csv(self.name)
 
     def parse(self, response, **kwargs):
-        ImobiliareSpider.page_no += 1
+        self.page_no += 1
 
-        with open('imobiliare_out.txt', 'wb') as debug:
+        with open(self.debug_file, 'wb') as debug:
             divs = response.xpath('//div[@itemtype]')
 
             for post in divs:
@@ -32,67 +32,45 @@ class ImobiliareSpider(scrapy.Spider):
                 yield scrapy.Request(url, callback=self.parse_listing)
 
         next_page_url = response.css('a.inainte.butonpaginare::attr(href)').get()
-        if ImobiliareSpider.page_no < ImobiliareSpider.MAX_NO_OF_PAGES:
+        if self.page_no < self.MAX_NO_OF_PAGES and next_page_url is not None:
             yield scrapy.Request(next_page_url.encode('utf-8').decode(), callback=self.parse)
 
-    @staticmethod
-    def parse_listing(response):
-        with open('imobiliare_out.txt', 'ab') as f:
+    def parse_listing(self, response):
+        with open(self.debug_file, 'ab') as debug:
             div = response.css('#b_detalii_caracteristici')
             all_lis = div.css('li')  # each li has details about the listing
 
-            # salvam
-            tip_proprietate = 'CAS'
-            nr_camere = ''
-            suprafata = ''
-            suprafata_teren = ''
-            an = ''
-            zona = response.url.split('/')[5].strip('\n')
-            pret = response.css('div.pret.first.blue::text').get().replace('.', '').replace(',', '.')
+            # saving:
+            if 'apartament' in response.css('.container-breadcrumbs li')[2].css('span').get().lower():
+                property_type = 'APT'  # apartment
+            else:
+                property_type = 'CAS'  # house
 
+            if 'chiriat' in response.css('.container-breadcrumbs li')[2].css('span').get().lower():
+                transaction_type = 'INC'  # renting
+            else:
+                transaction_type = 'CMP'  # buying
+
+            zone = response.url.split('/')[5].strip('\n')
+            price = response.css('div.pret.first.blue::text').get().replace('.', '').replace(' ', '').replace('\n', '')
+
+            pairs = {}
             for li in all_lis:
-                titlu = li.css('::text').get()
-                val = li.css('span::text').get()
+                title = li.css('::text').get()
+                value = li.css('span::text').get()
+                pairs[title] = value
 
-                if 'camere' in titlu:
-                    nr_camere = val
+            _, no_of_rooms, surface, terrain_surface, year = parse_pairs(pairs)
 
-                if 'util' in titlu:  # suprafata utila
-                    suprafata = val[:-3].replace(',', '.')
-                elif suprafata == '' and 'suprafa' in titlu:
-                    suprafata = val[:-3].replace(',', '.')
+            if terrain_surface == '':
+                terrain_surface = surface
 
-                if 'teren' in titlu:
-                    suprafata_teren = val[:-3].replace(',', '.')
-
-                if 'An construc' in titlu or 'an construc' in titlu:
-                    if 'ntre' in val:
-                        # Intre xxxx si yyyy
-                        x = int(val[6:10])
-                        y = int(val[14:18])
-                        an = str((x + y) // 2)
-                    else:
-                        an = val[:4]
-
-            if suprafata_teren == '':
-                suprafata_teren = suprafata
-
-            if an == '':
+            if year == '' or no_of_rooms == '' or surface == '' or 'multe' in no_of_rooms:
                 return
 
-            if nr_camere == '':
-                nr_camere = '1'
-                f.write(("can't find nr camere for APT,{},{},{},{},{},{}: "
-                         .format(nr_camere, suprafata, suprafata_teren, an, zona, pret) +
-                         response.url + "\n").encode('utf-8'))
-
-            if suprafata == '':
-                suprafata = '40'
-                f.write(("can't find suprafata for APT,{},{},{},{},{},{}: "
-                         .format(nr_camere, suprafata, suprafata_teren, an, zona, pret) +
-                         response.url + "\n").encode('utf-8'))
-
             # writing data in CSV
-            with open('imobiliare_data.csv', "a") as data:
+            with open(self.csv_file, "a") as data:
                 writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-                writer.writerow([tip_proprietate, nr_camere, suprafata, suprafata_teren, an, zona, pret])
+                writer.writerow(
+                    [property_type, transaction_type, no_of_rooms, surface, terrain_surface, year, zone, price,
+                     response.url])
