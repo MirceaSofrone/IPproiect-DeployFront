@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { FormsModule }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
+import SearchIcon from '@material-ui/icons/Search';
+
 import { AppComponent } from './app.component';
 import { GalleryPartComponent } from './gallery-part/gallery-part.component';
 import {UserContactComponent} from './user-contact/user-contact.component';
@@ -20,6 +24,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import {SwiperModule} from 'swiper/angular';
 import {MatMenuModule} from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -29,18 +34,19 @@ import { HouseDetailsComponent } from './house-details/house-details.component';
 
 import{RouterModule, Routes} from '@angular/router';
 
-const appRoutes: Routes = [
-  { path: 'home', component: HouseDetailsComponent},
-  { path: 'details', component: GalleryPartComponent},
-  { path: 'favorites', component: HouseDetailsComponent},
-  { path: 'about', component: HouseDetailsComponent},
-  { path: 'account', component: HouseDetailsComponent},
-  { path: 'home/:id', component: HouseDetailsComponent},
-  // { path: 'home/favorites', component: HouseDetailsComponent},
-  // { path: 'home/about', component: HouseDetailsComponent},
 
-  { path: '', redirectTo: '/home', pathMatch: 'full'}
-];
+import { LandingSearchComponent } from './landing-search/landing-search.component';
+import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatIcon, MatIconModule} from '@angular/material/icon';
+
+import { HttpClientModule } from '@angular/common/http';
+import { LandingBottomComponent } from './landing-bottom/landing-bottom.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AppRoutingModule } from './app-routing.module';
+
+
 
 @NgModule({
   declarations: [
@@ -52,7 +58,12 @@ const appRoutes: Routes = [
     PhotoCarouselComponent,
     NavbarComponent,
     NavbarLoggedInComponent,
-    HouseDetailsComponent
+    HouseDetailsComponent,
+        LandingSearchComponent,
+
+    LandingBottomComponent,
+
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
@@ -75,8 +86,20 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyBBhqL0VAJqQpXMATFPcLdsq9RYV0kBjTQ',
      
     })
+
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatInputModule,
+    MatIconModule,
+    AppRoutingModule
+
   ],
+
+
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+
 })
 export class AppModule { }

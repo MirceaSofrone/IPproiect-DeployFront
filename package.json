@@ -7,10 +7,12 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
+
     "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "~11.2.7",
     "@angular/cdk": "^11.2.10",
@@ -31,6 +33,7 @@
     "font-awesome": "^4.7.0",
     "material-icons": "^0.6.1",
     "mdbootstrap": "^4.19.2",
+
     "rxjs": "~6.6.0",
     "swiper": "^6.5.7",
     "tslib": "^2.0.0",
