@@ -1,7 +1,7 @@
 <swiper [slidesPerView]="2.6" [spaceBetween]="50" [pagination]="{ type: 'fraction' }" [navigation]="true" [breakpoints]="breakpoints">
 
     <ng-template class="carousel-container" swiperSlide *ngFor="let item of data">
-        <div class="image-container" routerLink='details'>
+        <div class="image-container" (click)="onSelect(item)">
             <img class="images" src="{{item.download_url}}" alt="image" />
             <div class="image-description">
 

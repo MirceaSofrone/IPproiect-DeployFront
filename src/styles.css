@@ -1,10 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import url(../node_modules/font-awesome/css/font-awesome.css);
 @import '~swiper/swiper-bundle';
 html,
 body {
     height: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 12vh;
+}
+
+.swiper-pagination {
+    display: none;
+}

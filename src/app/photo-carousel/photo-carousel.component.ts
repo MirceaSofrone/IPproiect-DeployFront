@@ -9,6 +9,7 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 // import Swiper, {SwiperOptions} from "swiper";
 import {Swiper, SwiperOptions} from "swiper";
 import { SwiperComponent } from "swiper/angular";
+import {Router} from '@angular/router';
 
 import SwiperCore, {
     Navigation,
@@ -44,7 +45,7 @@ export class PhotoCarouselComponent implements OnInit {
 
 //   constructor(private photoCarousel:PhotoCarouselService) { }
 data:any;
-constructor(private postData:PhotoCarouselService, private cd: ChangeDetectorRef) {}
+constructor(private postData:PhotoCarouselService, private cd: ChangeDetectorRef, private router: Router) {}
   onSwiper(swiper) {
     console.log(swiper);
   }
@@ -62,6 +63,11 @@ ngOnInit() {
     // this.data.forEach(m => console.log(m.id))
  
 }
+
+onSelect(item){
+  this.router.navigate(['/home', item.id])
+}
+
 @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;
 
   show: boolean;

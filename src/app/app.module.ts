@@ -32,9 +32,13 @@ import{RouterModule, Routes} from '@angular/router';
 const appRoutes: Routes = [
   { path: 'home', component: HouseDetailsComponent},
   { path: 'details', component: GalleryPartComponent},
-  
-  { path: 'home/details', component: GalleryPartComponent},
-  { path: 'about', component: GalleryPartComponent},
+  { path: 'favorites', component: HouseDetailsComponent},
+  { path: 'about', component: HouseDetailsComponent},
+  { path: 'account', component: HouseDetailsComponent},
+  { path: 'home/:id', component: HouseDetailsComponent},
+  // { path: 'home/favorites', component: HouseDetailsComponent},
+  // { path: 'home/about', component: HouseDetailsComponent},
+
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
