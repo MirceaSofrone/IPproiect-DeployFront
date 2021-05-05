@@ -13,21 +13,24 @@ public class User {
     @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
     private Date creationDate;
-    private String firstName, lastName, email,phoneNumber;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phoneNumber;
     @OneToMany
     private List<House> favorite = new ArrayList<>(); //for buyer
     @OneToMany
     private List<House> forSell = new ArrayList<>(); //seller
-    public final static Integer viewsHistoryCapacity = 10;
-    public final static Integer favoriteListCapacity = 20;
+    public static final  Integer VIEWSHISTORYCAPACITY = 10;
+    public static final Integer FAVOURITELISTCAPACITY = 20;
     @Transient
-    private Queue<House> viewsHistory = new ArrayBlockingQueue<>(viewsHistoryCapacity){
+    private Queue<House> viewsHistory = new ArrayBlockingQueue<>(VIEWSHISTORYCAPACITY){
         @Override
         public boolean add(House house){
             if(remainingCapacity() == 0)
                 poll();
             else{
-                offer(house);
+                return offer(house);
             }
             return true;
         }

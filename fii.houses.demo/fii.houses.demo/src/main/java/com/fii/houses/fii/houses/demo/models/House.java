@@ -185,7 +185,6 @@ public class House {
         if (newList == null) {
             Map<Date, ArrayList<Float>> map = new TreeMap<>();
             newList = new ArrayList<>();
-            //map.put(new Date(), newList);
             setPriceHistory(map);
         }
         newList.add(currentPrice);

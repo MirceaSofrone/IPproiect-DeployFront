@@ -88,7 +88,7 @@ public class UsersController {
         User newUser = service.getUserByUserID(house.getUserID());
         House newHouse = houseService.getHouseByHouseID(house);
         if(newUser!=null && newHouse!=null){
-            if(newUser.getFavorite().size()==User.favoriteListCapacity)
+            if(newUser.getFavorite().size()==User.FAVOURITELISTCAPACITY)
                 return new ResponseEntity<>("Oops...you have reached the maximum numbers of favorite houses. Please remove one before you can add another.",HttpStatus.BAD_REQUEST);
             else{
                 service.addToFavorites(newUser, newHouse);
@@ -104,7 +104,7 @@ public class UsersController {
         User newUser = service.getUserByUserID(userid);
         House newHouse = houseService.getHouseByHouseID2(houseid);
         if(newUser!=null && newHouse!=null){
-            if(newUser.getFavorite().size()==User.favoriteListCapacity)
+            if(newUser.getFavorite().size()==User.FAVOURITELISTCAPACITY)
                 return new ResponseEntity<>("Oops...you have reached the maximum numbers of favorite houses. Please remove one before you can add another.",HttpStatus.BAD_REQUEST);
             else{
                 service.addToFavorites(newUser, newHouse);
@@ -127,7 +127,7 @@ public class UsersController {
     }
     @DeleteMapping("/removefromfavorite/{userid}/{houseid}")
     public ResponseEntity<?> removeFromFavorite2(@PathVariable UUID userid, @PathVariable UUID houseid){
-        User newUser = service.getUserByUserID(houseid);
+        User newUser = service.getUserByUserID(userid);
         House newHouse = houseService.getHouseByHouseID2(houseid);
         if(newUser==null || newHouse==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
