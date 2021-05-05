@@ -7,10 +7,10 @@ agm-map{
     width:80%;
     display: flex;
     justify-content: center;
-    margin-left: 30px;
-    
+    margin-left: 10vw;
+
 }
-p{  
+p{
     position: relative;
     margin-left:10%;
     margin-top:5vw;

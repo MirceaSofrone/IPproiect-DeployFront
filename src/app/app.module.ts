@@ -45,6 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LandingBottomComponent } from './landing-bottom/landing-bottom.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ListComponent } from './list/list.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 const appRoutes: Routes = [
   { path: 'home', component: HouseDetailsComponent},
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
   { path: 'about', component: HouseDetailsComponent},
   { path: 'account', component: HouseDetailsComponent},
   { path: 'home/:id', component: HouseDetailsComponent},
+  { path: 'listing', component: ListComponent},
   // { path: 'home/favorites', component: HouseDetailsComponent},
   // { path: 'home/about', component: HouseDetailsComponent},
 
@@ -72,10 +75,12 @@ const appRoutes: Routes = [
     HouseDetailsComponent,
     LandingSearchComponent,
     LandingBottomComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ListComponent
 
   ],
   imports: [
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
