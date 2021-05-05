@@ -47,39 +47,19 @@ public class HousesController {
         }
     }
 
-    @GetMapping("/sellerhouses")
-    public ResponseEntity<List<House>> getHouseByUserID(@RequestBody House house){
-        List<House> existingHouses = service.getHouseByUserID(house);
+    @GetMapping("/sellerhouses/{userid}")
+    public ResponseEntity<List<House>> getHouseByUserID(@PathVariable UUID userid){
+        List<House> existingHouses = service.getHouseByUserID(userid);
         if(existingHouses.equals(new ArrayList<>())){
             return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
         }else {
             return new ResponseEntity<>(existingHouses, new HttpHeaders(),HttpStatus.OK);
         }
     }
-    @GetMapping("/housebyhouseid")
-    public ResponseEntity<House> getHouseByHouseID(@RequestBody House house){
-        House existingHouse = service.getHouseByHouseID(house);
-        if(existingHouse==null){
-            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
-        }else{
-            usersService.addToViewsHistory(existingHouse,existingHouse.getUserID());
-            return new ResponseEntity<>(existingHouse, new HttpHeaders(),HttpStatus.OK);
-        }
-    }
 
-    @GetMapping("/housebyaddress")
-    public ResponseEntity<List<House>> getHouseByAddress(@RequestBody House house){
-        List<House> existingHouses = service.getHouseByAddress(house);
-        if(existingHouses.equals(new ArrayList<>())){
-            return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
-        }else
-        {
-            return new ResponseEntity<>(existingHouses, new HttpHeaders(), HttpStatus.OK);
-        }
-    }
-    @GetMapping("/houseviews")
-    public ResponseEntity<String> getHouseViews(@RequestBody House house){
-        String views = service.getHouseViews(house);
+    @GetMapping("/houseviews/{houseId}")
+    public ResponseEntity<String> getHouseViews(@PathVariable UUID houseId){
+        String views = service.getHouseViews(houseId);
         if(views==null) {
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
         } else {
@@ -97,18 +77,18 @@ public class HousesController {
     }*/
 
     @PostMapping("/create2")
-    public ResponseEntity<House> createHouse2(@RequestBody House house) throws UnirestException {
+    public ResponseEntity<House> createHouse2(@RequestBody House house) {
         House newHouse = service.createHouse(house);
         if(newHouse == null){
-            return new ResponseEntity<House>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }else{
-            return new ResponseEntity<House>(newHouse, new HttpHeaders(), HttpStatus.OK);
+            return new ResponseEntity<>(newHouse, new HttpHeaders(), HttpStatus.OK);
         }
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createHouse(@RequestBody House house) throws UnirestException {
-        House newHouse=service.createHouse(house);
+    public ResponseEntity<HouseProperty> createHouse(@RequestBody House house) throws UnirestException {
+//        House newHouse=service.createHouse(house);
         //pret
 
         /*HttpResponse<String> httpResponse = Unirest.get("https://finalprice.herokuapp.com/price?tip_proprietate=APT&nr_camere=4&suprafata=50&suprafata_teren=50&an_constructie=2016&zona=copou")
@@ -154,10 +134,10 @@ public class HousesController {
         houseJsonObject.put("zona","copou");
 
         HttpEntity<String> request =
-                new HttpEntity<String>(houseJsonObject.toString(),requestHeaders);
+                new HttpEntity<>(houseJsonObject.toString(),requestHeaders);
 
         //request entity is created with request body and headers
-        HttpEntity<HouseProperty> requestEntity = new HttpEntity<>(houseProperty1, requestHeaders);
+//        HttpEntity<HouseProperty> requestEntity = new HttpEntity<>(houseProperty1, requestHeaders);
 
         ResponseEntity<HouseProperty> responseEntity = restTemplate.exchange(
                 "https://finalprice.herokuapp.com/price",
@@ -204,10 +184,10 @@ public class HousesController {
         }
     }
 
-    @PostMapping("/delete")
-    public ResponseEntity<String> deleteHouse(@RequestBody House house)
+    @PostMapping("/delete/{houseid}")
+    public ResponseEntity<String> deleteHouse(@PathVariable UUID houseid)
     {
-        if(service.deleteHouse(house)){
+        if(service.deleteHouse(houseid)){
             return new ResponseEntity<>(new HttpHeaders(),HttpStatus.OK);
         }else {
             return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);

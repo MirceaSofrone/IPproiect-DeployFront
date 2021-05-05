@@ -36,11 +36,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.fii.houses</groupId>
-			<artifactId>fii.houses.demo</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>com.byteowls</groupId>
 			<artifactId>jopencage</artifactId>
 			<version>1.4.0</version>

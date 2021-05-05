@@ -68,6 +68,17 @@ public class HouseService {
         return null;
     }
 
+
+    public House getHouseByHouseID2(UUID houseid){
+        List<House> allHouses = repository.findAll();
+        for (House existingHouse : allHouses) {
+            if (existingHouse.getHouseID().equals(houseid)) {
+                return existingHouse;
+            }
+        }
+        return null;
+    }
+
     public List<House> getHouseByAddress(House house){
         List<House> housesByAddress = new ArrayList<>();
         List<House> allHouses = repository.findAll();
@@ -84,12 +95,11 @@ public class HouseService {
         }
     }
 
-    public List<House> getHouseByUserID(House house){
-        UUID id = house.getUserID();
+    public List<House> getHouseByUserID(UUID userId){
         List<House> allHouses = repository.findAll();
         List<House> housesByUserId = new ArrayList<>();
         for (House existingHouse : allHouses) {
-            if (existingHouse.getUserID().equals(id)) {
+            if (existingHouse.getUserID().equals(userId)) {
                 housesByUserId.add(existingHouse);
             }
         }
@@ -100,10 +110,9 @@ public class HouseService {
         }
     }
 
-    public String getHouseViews(House house){
-        UUID id = house.getHouseID();
-        if(repository.existsById(id)){
-            House houseViews = repository.getOne(id);
+    public String getHouseViews(UUID houseId){
+        if(repository.existsById(houseId)){
+            House houseViews = repository.getOne(houseId);
             return houseViews.getViews().toString();
         }
         return null;
@@ -356,10 +365,9 @@ public class HouseService {
             return null;
     }
 
-    public boolean deleteHouse(House house) {
-        UUID id = house.getHouseID();
-        if(repository.existsById(id)){
-            repository.deleteById(id);
+    public boolean deleteHouse(UUID houseId) {
+        if(repository.existsById(houseId)){
+            repository.deleteById(houseId);
             return true;
         }else {
             return false;

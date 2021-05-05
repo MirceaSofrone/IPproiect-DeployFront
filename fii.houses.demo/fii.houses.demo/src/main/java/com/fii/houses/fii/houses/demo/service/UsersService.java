@@ -59,10 +59,9 @@ public class UsersService {
         }
     }
 
-    public boolean deleteUser(User user){
-        UUID id = user.getUserID();
-        if(repository.existsById(id)){
-            repository.deleteById(id);
+    public boolean deleteUser(UUID userid){
+        if(repository.existsById(userid)){
+            repository.deleteById(userid);
             return true;
         }else {
             return false;
@@ -91,10 +90,9 @@ public class UsersService {
         houseRepository.save(house);
     }
 
-    public User getUserFavorite(User user){
-        UUID id = user.getUserID();
-        if(repository.existsById(id)){
-            return repository.getOne(id);
+    public User getUserFavorite(UUID userid){
+        if(repository.existsById(userid)){
+            return repository.getOne(userid);
         }else {
             return null;
         }
