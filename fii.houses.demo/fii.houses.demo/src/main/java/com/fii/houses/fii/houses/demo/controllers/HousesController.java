@@ -4,8 +4,12 @@ import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.models.HouseProperty;
 import com.fii.houses.fii.houses.demo.service.HouseService;
 import com.fii.houses.fii.houses.demo.service.UsersService;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -86,33 +90,106 @@ public class HousesController {
     @Autowired
     private RestTemplate restTemplate;
 
+    /*@GetMapping
+    private House getHousePrice(){
+        House house = restTemplate.getForObject("https://finalprice.herokuapp.com/price",House.class,);
+        return house;
+    }*/
+
+    @PostMapping("/create2")
+    public ResponseEntity<House> createHouse2(@RequestBody House house) throws UnirestException {
+        House newHouse = service.createHouse(house);
+        if(newHouse == null){
+            return new ResponseEntity<House>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }else{
+            return new ResponseEntity<House>(newHouse, new HttpHeaders(), HttpStatus.OK);
+        }
+    }
+
     @PostMapping("/create")
-    public ResponseEntity<?> createHouse(@RequestBody House house) {
+    public ResponseEntity<?> createHouse(@RequestBody House house) throws UnirestException {
         House newHouse=service.createHouse(house);
+        //pret
+
+        /*HttpResponse<String> httpResponse = Unirest.get("https://finalprice.herokuapp.com/price?tip_proprietate=APT&nr_camere=4&suprafata=50&suprafata_teren=50&an_constructie=2016&zona=copou")
+        .asString();
+        System.out.println(httpResponse);*/
+
+        /*ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity(urlGETList, Object[].class);
+        Object[] objects = responseEntity.getBody();
+        MediaType contentType = responseEntity.getHeaders().getContentType();
+        HttpStatus statusCode = responseEntity.getStatusCode();*/
+
+       /* HouseProperty houseProperty1 = new HouseProperty();
+        houseProperty1.setNr_camere(4);
+        houseProperty1.setAn_constructie(2016);
+        houseProperty1.setSuprafata(50F);
+        houseProperty1.setTip_proprietate("APT");
+        houseProperty1.setSuprafata_teren(50F);
+        houseProperty1.setZona("copou");
+        ResponseEntity<HouseProperty> houseResponse =
+                restTemplate.exchange("https://finalprice.herokuapp.com/price?tip_proprietate=APT&nr_camere=4&suprafata=50&suprafata_teren=50&an_constructie=2016&zona=copou",
+                        HttpMethod.GET, houseProperty1, new ParameterizedTypeReference<>() {
+                        });
+        HouseProperty houseProperty = houseResponse.getBody();*/
+
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        HouseProperty houseProperty1 = new HouseProperty();
+        houseProperty1.setNr_camere(4);
+        houseProperty1.setAn_constructie(2016);
+        houseProperty1.setSuprafata(50F);
+        houseProperty1.setTip_proprietate("APT");
+        houseProperty1.setSuprafata_teren(50F);
+        houseProperty1.setZona("copou");
+
         JSONObject houseJsonObject = new JSONObject();
-        houseJsonObject.put("nr_camere", 4F);
-        houseJsonObject.put("an_constructie", 2016F);
+        houseJsonObject.put("nr_camere", 4);
+        houseJsonObject.put("an_constructie", 2016);
+        houseJsonObject.put("suprafata",50F);
+        houseJsonObject.put("tip_proprietate", "APT");
+        houseJsonObject.put("suprafata_teren", 50F);
+        houseJsonObject.put("zona","copou");
+
+        HttpEntity<String> request =
+                new HttpEntity<String>(houseJsonObject.toString(),requestHeaders);
+
+        //request entity is created with request body and headers
+        HttpEntity<HouseProperty> requestEntity = new HttpEntity<>(houseProperty1, requestHeaders);
+
+        ResponseEntity<HouseProperty> responseEntity = restTemplate.exchange(
+                "https://finalprice.herokuapp.com/price",
+                HttpMethod.GET,
+                request,
+                HouseProperty.class
+        );
+
+        HouseProperty houseProperty = new HouseProperty();
+        if(responseEntity.getStatusCode() == HttpStatus.OK){
+            houseProperty = responseEntity.getBody();
+            System.out.println("user response retrieved ");
+        }
+
+        /*restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        JSONObject houseJsonObject = new JSONObject();
+        houseJsonObject.put("nr_camere", 4);
+        houseJsonObject.put("an_constructie", 2016);
         houseJsonObject.put("suprafata",50F);
         houseJsonObject.put("tip_proprietate", "APT");
         houseJsonObject.put("suprafata_teren", 50F);
         houseJsonObject.put("zona","copou");
         HttpEntity<String> request =
-                new HttpEntity<>(houseJsonObject.toString(),requestHeaders);
+                new HttpEntity<String>(houseJsonObject.toString(),headers);
+        String houseResultAsJsonStr =
+                restTemplate.getForObject("https://finalprice.herokuapp.com/price", String.class, houseJsonObject);*/
 
-        ResponseEntity<HouseProperty> responseEntity = restTemplate.exchange(
-                "https://prices-ias.herokuapp.com/price",
-                HttpMethod.POST,
-                request,
-                HouseProperty.class
-        );
-        HouseProperty houseProperty = new HouseProperty();
-        if(responseEntity.getStatusCode() == HttpStatus.OK){
-            houseProperty = responseEntity.getBody();
-            System.out.println("user response retrieved ");
-            System.out.println(houseProperty);
-        }
+        /*String result = restTemplate.getForObject("https://finalprice.herokuapp.com/price?tip_proprietate=APT&nr_camere=4&suprafata=50&suprafata_teren=50&an_constructie=2016&zona=copou", String.class);
+        System.out.println(result);*/
+
         return new ResponseEntity<>(houseProperty,new HttpHeaders(),HttpStatus.CREATED);
     }
 

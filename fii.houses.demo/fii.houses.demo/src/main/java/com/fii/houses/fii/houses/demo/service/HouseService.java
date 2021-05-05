@@ -319,8 +319,8 @@ public class HouseService {
 
     public House updateHouse(House house) {
         UUID id = house.getHouseID();
-        if(repository.existsById(id)){
-            House updateHouse = repository.getOne(id);
+        if(repository.findById(id).isPresent()){
+            House updateHouse = repository.findById(id).get();
             house.setCreationDate(new Date());
             if(house.getAddress()!=null){
                 updateHouse.setAddress(house.getAddress());
