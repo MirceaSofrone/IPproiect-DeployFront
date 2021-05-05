@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HouseDetailsComponent } from './house-details/house-details.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
-
+import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   {  path: 'house-details/:id', component: HouseDetailsComponent },
-  { path: 'home' , component: LandingPageComponent}
+  { path: 'home' , component: LandingPageComponent},
+  {path: 'listing', component : ListComponent}
 ];
 
 
