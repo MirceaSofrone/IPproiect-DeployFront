@@ -9,7 +9,7 @@
       <h2 mat-dialog-title class="txt">Log In</h2>
       <p class="txt">
         Don't have an account?
-        <a style="color: #4d648d; font-weight: 500; margin-left: 10px" href="#">
+        <a style="color: #4d648d; font-weight: 500; margin-left: 10px; cursor: pointer;" (click)="goToRegister()">
           Sign Up
         </a>
       </p>
@@ -54,7 +54,7 @@
             Remember me
           </label>
 
-          <a id="forgot" href="#"> Forgot password? </a>
+          <a id="forgot" style="cursor: pointer;" (click)="goToForgotPass()"> Forgot password? </a>
         </div>
 
         <div class="log">

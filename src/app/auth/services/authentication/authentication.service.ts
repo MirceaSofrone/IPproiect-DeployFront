@@ -7,7 +7,7 @@ import { LoginPayload, RegisterPayload } from '../../models/auth.model'
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private api: string = 'https://363cfaaa-24de-42af-a619-b09b59604ba9.mock.pstmn.io';
+  private api: string = 'https://hpp-auth.herokuapp.com/api/auth';
   constructor(private http: HttpClient) { }
 
   public isAuthenticated(): boolean {

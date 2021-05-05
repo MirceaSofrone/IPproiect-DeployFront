@@ -1,13 +1,13 @@
 export interface LoginPayload{
-  email: String;
+  username: String;
   password: String;
 }
 
 export interface RegisterPayload {
-  firstName: String;
-  lastName: String;
-  password: String;
+  username: String;
+  name: String;
   email: String;
   phone: String;
-  userType: String;
+  password: String;
+  role: String[];
 }

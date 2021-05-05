@@ -23,6 +23,9 @@ body {
 .pclass .mat-dialog-container {
     background-color: transparent;
     padding: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ::-webkit-scrollbar {

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LoginPayload } from 'src/app/auth/models/auth.model';
-import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthenticationService } from 'src/app/auth/services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +17,15 @@ export class LoginComponent implements OnInit {
   email: String;
   password: String;
   payload: LoginPayload={
-    email:'',
+    username:'',
     password:''
   };
 
   constructor(private form: FormBuilder,
+    private router: Router,
     private auth: AuthenticationService,
-    public loginDialogRef: MatDialogRef<LoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public loginData: any
+    // public loginDialogRef: MatDialogRef<LoginComponent>,
+    // @Inject(MAT_DIALOG_DATA) public loginData: any
     ) { }
 
   ngOnInit(): void {
@@ -36,24 +37,28 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  onNoClick(): void{
-    this.loginDialogRef.close();
+  goToRegister(): void {
+    this.router.navigate(['dialog/register'], {
+      skipLocationChange: true
+    })
+  }
+
+  goToForgotPass(): void {
+    this.router.navigate(['dialog/forgot'], {
+      skipLocationChange: true
+    })
   }
 
   onSubmit() {
-    this.payload.email = this.login.get('email').value;
+    this.payload.username = this.login.get('email').value;
     this.payload.password = this.login.get('password').value;
-    // console.log(this.payload);
+    console.log(this.payload);
     this.auth.login(this.payload).subscribe(
       res => {
-        if(res.success === true) {
-          localStorage.setItem('token', res.token)
-          console.log(this.auth.isAuthenticated())
-          console.log(res.success)
-
-        }
+        localStorage.setItem('token', res.accessToken)
+        alert('You successfully logged in!')
       },
-      err => console.log(err)
+      err => alert('Email or password are incorrect!')
     )
   }
 }

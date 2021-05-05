@@ -2,6 +2,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { LoginComponent } from 'src/app/auth/components/login/login.component';
 import { RegisterComponent } from 'src/app/auth/components/register/register.component';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog',
@@ -10,15 +11,10 @@ import { Component } from '@angular/core';
 })
 
 export class DialogComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(public router: Router) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(LoginComponent,
-      {
-        width:'75%',
-        height:'80%',
-        panelClass:'pclass'
-      });
+    this.router.navigate(['/dialog']);
 
   }
 }
