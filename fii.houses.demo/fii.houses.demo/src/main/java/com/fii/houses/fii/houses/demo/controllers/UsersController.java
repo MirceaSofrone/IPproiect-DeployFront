@@ -98,7 +98,6 @@ public class UsersController {
         }
     }
 
-
     @PutMapping("/addtofavorite/{userid}/{houseid}")
     public ResponseEntity<String> addToFavorite2 (@PathVariable UUID userid, @PathVariable UUID houseid){
         User newUser = service.getUserByUserID(userid);
@@ -125,6 +124,7 @@ public class UsersController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+
     @DeleteMapping("/removefromfavorite/{userid}/{houseid}")
     public ResponseEntity<?> removeFromFavorite2(@PathVariable UUID userid, @PathVariable UUID houseid){
         User newUser = service.getUserByUserID(userid);

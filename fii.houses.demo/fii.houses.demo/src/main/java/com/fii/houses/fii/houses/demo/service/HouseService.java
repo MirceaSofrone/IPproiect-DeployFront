@@ -4,12 +4,9 @@ import com.byteowls.jopencage.JOpenCageGeocoder;
 import com.byteowls.jopencage.model.JOpenCageForwardRequest;
 import com.byteowls.jopencage.model.JOpenCageLatLng;
 import com.byteowls.jopencage.model.JOpenCageResponse;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.repository.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -77,22 +74,6 @@ public class HouseService {
             }
         }
         return null;
-    }
-
-    public List<House> getHouseByAddress(House house){
-        List<House> housesByAddress = new ArrayList<>();
-        List<House> allHouses = repository.findAll();
-        String address = house.getAddress();
-        for (House existingHouse : allHouses) {
-            if (existingHouse.getAddress().equals(address)) {
-                housesByAddress.add(existingHouse);
-            }
-        }
-        if(housesByAddress.size()>0){
-            return housesByAddress;
-        }else {
-            return new ArrayList<>();
-        }
     }
 
     public List<House> getHouseByUserID(UUID userId){
@@ -418,31 +399,29 @@ public class HouseService {
         return houses;
     }
 
-    public List<House> searchByFields(Integer houseType,Integer sellType, String city,String country,
-                                      Integer noOfRooms,Integer floor, Integer surface, Integer noOfBathrooms){
-
+    public List<House> searchByFields(House houseFilter){
         List<House> allHouses = this.getAllHouses();
         List<House> filteredHouses = new ArrayList<>();
 
         for(House house : allHouses){
-            if((houseType == null || house.getHouseType().equals(houseType)) &&
-                    (sellType == null || house.getSellType().equals(sellType)) &&
-                    (city == null || house.getCity().equals(city)) &&
-                    (country == null || house.getCountry().equals(country)) &&
-                    (noOfRooms == null || house.getNoOfRooms().equals(noOfRooms)) &&
-                    (floor == null || house.getFloor().equals(floor)) &&
-                    (surface == null || house.getSurface().equals(surface)) &&
-                    (noOfBathrooms == null || house.getNoOfBathrooms().equals(noOfBathrooms))) {
+            if((houseFilter.getHouseType() == null || house.getHouseType().equals(houseFilter.getHouseType())) &&
+                    (houseFilter.getSellType() == null || house.getSellType().equals(houseFilter.getSellType())) &&
+                    (houseFilter.getCity() == null || house.getCity().equals(houseFilter.getCity())) &&
+                    (houseFilter.getCountry() == null || house.getCountry().equals(houseFilter.getCountry())) &&
+                    (houseFilter.getNoOfRooms() == null || house.getNoOfRooms().equals(houseFilter.getNoOfRooms())) &&
+                    (houseFilter.getFloor() == null || house.getFloor().equals(houseFilter.getFloor())) &&
+                    (houseFilter.getSurface() == null || house.getSurface().equals(houseFilter.getSurface())) &&
+                    (houseFilter.getNoOfBathrooms() == null || house.getNoOfBathrooms().equals(houseFilter.getNoOfBathrooms()))) {
                 filteredHouses.add(house);
             }
         }
         return filteredHouses;
     }
 
-    @Bean
+    /*@Bean
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
-    }
+    }*/
 
 
 }

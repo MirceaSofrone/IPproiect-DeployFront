@@ -77,5 +77,17 @@ public class HouseProperty {
         this.pret_chirie = pret_chirie;
     }
 
-
+    @Override
+    public String toString() {
+        return "{" +
+                "\"tip_proprietate\": \"" + tip_proprietate + "\"," +
+                "\"nr_camere\": " + nr_camere + "," +
+                "\"suprafata\": " + suprafata + "," +
+                "\"suprafata_teren\": " + suprafata_teren + "," +
+                "\"an_constructie\": " + an_constructie + "," +
+                "\"zona\": \"" + zona + "\"," +
+                "\"pret_vanzare\": " + pret_vanzare + "," +
+                "\"pret_chirie\": " + pret_chirie +
+                '}';
+    }
 }
