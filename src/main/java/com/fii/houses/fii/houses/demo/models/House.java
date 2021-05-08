@@ -13,9 +13,18 @@ public class House {
     @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
     @Column(columnDefinition = "VARCHAR(1024)")
-    private String description, title;
-    private String city, country, address, area;
-    private Integer noOfRooms, floor, surface, noOfBathrooms;
+    private String description;
+    private String title;
+    private String city;
+    private String country;
+    private String address;
+    private String area;
+    private Integer constructionYear;
+    private Integer noOfRooms;
+    private Integer floor;
+    private Integer surface;
+    private Integer landSurface;
+    private Integer noOfBathrooms;
     //0-house, 1-apartment
     private Integer houseType;
     //0-selling, 1-renting
@@ -23,13 +32,13 @@ public class House {
     @ElementCollection
     private Map<Date, ArrayList<Float>> priceHistory = new TreeMap<>();
     @ElementCollection
-    private Map<Date,Integer> favoriteHistory = new TreeMap<>();
+    private Map<Date, Integer> favoriteHistory = new TreeMap<>();
     private Integer noOfFave = 0;
     private Float recommendedPrice;
     private Float currentPrice;
     private Date creationDate;
     @ElementCollection
-    private Map<Date,Integer> viewsHistory = new TreeMap<>();
+    private Map<Date, Integer> viewsHistory = new TreeMap<>();
     private Integer views;
 
     public UUID getHouseID() {
@@ -175,10 +184,9 @@ public class House {
     public void setCurrentPrice(Float currentPrice) {
         this.currentPrice = currentPrice;
         ArrayList<Float> newList = priceHistory.get(new Date());
-        if(newList == null ){
+        if (newList == null) {
             Map<Date, ArrayList<Float>> map = new TreeMap<>();
             newList = new ArrayList<>();
-            //map.put(new Date(), newList);
             setPriceHistory(map);
         }
         newList.add(currentPrice);
@@ -223,5 +231,21 @@ public class House {
 
     public void setRecommendedPrice(Float recommendedPrice) {
         this.recommendedPrice = recommendedPrice;
+    }
+
+    public Integer getLandSurface() {
+        return landSurface;
+    }
+
+    public void setLandSurface(Integer landSurface) {
+        this.landSurface = landSurface;
+    }
+
+    public Integer getConstructionYear() {
+        return constructionYear;
+    }
+
+    public void setConstructionYear(Integer constructionYear) {
+        this.constructionYear = constructionYear;
     }
 }

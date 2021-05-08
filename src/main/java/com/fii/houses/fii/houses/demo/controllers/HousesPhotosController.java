@@ -26,7 +26,7 @@ public class HousesPhotosController {
             HousePhotos housePhoto = housePhotosService.store(file,houseID);
             return new ResponseEntity<>(housePhoto,new HttpHeaders(), HttpStatus.CREATED);
         }else{
-            return new ResponseEntity<String>("Ati atins limita de 5 poze",new HttpHeaders(), HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>("Ati atins limita de 5 poze",new HttpHeaders(), HttpStatus.NOT_MODIFIED);
         }
 
     }

@@ -4,16 +4,22 @@ import com.byteowls.jopencage.JOpenCageGeocoder;
 import com.byteowls.jopencage.model.JOpenCageForwardRequest;
 import com.byteowls.jopencage.model.JOpenCageLatLng;
 import com.byteowls.jopencage.model.JOpenCageResponse;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fii.houses.fii.houses.demo.models.Area;
 import com.fii.houses.fii.houses.demo.models.House;
+import com.fii.houses.fii.houses.demo.repository.AreaRepository;
 import com.fii.houses.fii.houses.demo.repository.HouseRepository;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 
 class SortByDate implements Comparator<House> {
@@ -28,14 +34,16 @@ class SortByDate implements Comparator<House> {
 public class HouseService {
     @Autowired
     private HouseRepository repository;
+    @Autowired
+    private AreaRepository areaRepository;
     private final static Integer carouselSize = 9;
 
-    public List<House> getAllHousesPage(int page) {
+    public List<House> getAllHousesPage(int page, int number) {
         List<House> allHouses = repository.findAll();
         allHouses.sort(new SortByDate());
         List<House> goodHouses = new ArrayList<>();
         if (allHouses.size() > 0) {
-            for (int index = 5*page; index < 5*page+5 ; index++) {
+            for (int index = number*page; index < number*page+number ; index++) {
                 if(index<allHouses.size()){
                     goodHouses.add(allHouses.get(allHouses.size()-index-1));
                 }else {
@@ -46,6 +54,60 @@ public class HouseService {
         } else {
             return new ArrayList<>();
         }
+    }
+
+    public Float getPriceFromAPI(House house) throws IOException {
+
+        String houseType = "";
+        if(house.getHouseType()==0){
+            houseType = "CAS";
+        }
+        if(house.getHouseType()==1)
+        {
+            houseType = "APT";
+        }
+
+        HttpGet httpGet = new HttpGet("https://pret-is.herokuapp.com/price");
+        URI uri = null;
+        try {
+            uri = new URIBuilder(httpGet.getURI())
+                    .addParameter("tip_proprietate", houseType)
+                    .addParameter("nr_camere", house.getNoOfRooms().toString())
+                    .addParameter("suprafata", house.getSurface().toString())
+                    .addParameter("suprafata_teren", house.getLandSurface().toString())
+                    .addParameter("an_constructie", house.getConstructionYear().toString())
+                    .addParameter("zona", house.getArea())
+                    .build();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        httpGet.setURI(uri);
+        HttpClient client = HttpClients.custom().build();
+
+        HttpResponse response = client.execute(httpGet);
+
+        org.apache.http.HttpEntity entity = response.getEntity();
+        String responseString = EntityUtils.toString(entity, "UTF-8");
+
+        String[] elements = responseString.split(",");
+
+
+        Float recommendedPrice = null;
+        String price;
+        //selling
+        if(house.getSellType()==0){
+            price = elements[elements.length-2].split(":")[1];
+            //price = price.substring(1, price.length()-1);
+            recommendedPrice = Float.valueOf(price);
+        }
+        //renting
+        if(house.getSellType()==1){
+            price = elements[elements.length-1].split(":")[1];
+            price = price.substring(0, price.length()-1);
+            recommendedPrice = Float.valueOf(price);
+        }
+
+        return recommendedPrice;
     }
 
     public List<House> getAllHouses() {
@@ -68,28 +130,22 @@ public class HouseService {
         return null;
     }
 
-    public List<House> getHouseByAddress(House house){
-        List<House> housesByAddress = new ArrayList<>();
+
+    public House getHouseByHouseID2(UUID houseid){
         List<House> allHouses = repository.findAll();
-        String address = house.getAddress();
         for (House existingHouse : allHouses) {
-            if (existingHouse.getAddress().equals(address)) {
-                housesByAddress.add(existingHouse);
+            if (existingHouse.getHouseID().equals(houseid)) {
+                return existingHouse;
             }
         }
-        if(housesByAddress.size()>0){
-            return housesByAddress;
-        }else {
-            return new ArrayList<>();
-        }
+        return null;
     }
 
-    public List<House> getHouseByUserID(House house){
-        UUID id = house.getUserID();
+    public List<House> getHouseByUserID(UUID userId){
         List<House> allHouses = repository.findAll();
         List<House> housesByUserId = new ArrayList<>();
         for (House existingHouse : allHouses) {
-            if (existingHouse.getUserID().equals(id)) {
+            if (existingHouse.getUserID().equals(userId)) {
                 housesByUserId.add(existingHouse);
             }
         }
@@ -100,10 +156,9 @@ public class HouseService {
         }
     }
 
-    public String getHouseViews(House house){
-        UUID id = house.getHouseID();
-        if(repository.existsById(id)){
-            House houseViews = repository.getOne(id);
+    public String getHouseViews(UUID houseId){
+        if(repository.existsById(houseId)){
+            House houseViews = repository.getOne(houseId);
             return houseViews.getViews().toString();
         }
         return null;
@@ -116,15 +171,13 @@ public class HouseService {
         return null;
     }
 
-    public boolean updateViews(UUID houseId){
+    public void updateViews(UUID houseId){
         if(repository.existsById(houseId)){
             House house = repository.getOne(houseId);
             int views = house.getViews();
             house.setViews(views+1);
             repository.save(house);
-            return true;
         }
-        return false;
     }
 
     public List<House> lastAddedHouses(){
@@ -141,13 +194,11 @@ public class HouseService {
             return new ArrayList<>();
         }
     }
-
     public String getArea(String address){
         JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("e02d3849718d47ac86668c2149a7b8f9");
         JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);
         request.setRestrictToCountryCode("ro"); // restrict results to a specific country
-        // request.setBounds(18.367, -34.109, 18.770, -33.704); // restrict results to a geographic bounding box (southWestLng, southWestLat, northEastLng, northEastLat)
-
+        request.setBounds(25.0, 45.00, 29.0, 49.0);
         JOpenCageResponse response = jOpenCageGeocoder.forward(request);
         JOpenCageLatLng firstResultLatLng = response.getFirstPosition(); // get the coordinate pair of the first result
         System.out.println(firstResultLatLng.getLat());
@@ -317,31 +368,47 @@ public class HouseService {
         return house;
     }
 
-    public House updateHouse(House house) {
+    public House updateHouse(House house){
         UUID id = house.getHouseID();
-        if(repository.existsById(id)){
-            House updateHouse = repository.getOne(id);
+        boolean mustUpdateRecommendedPrice = false;
+        if(repository.findById(id).isPresent()){
+            House updateHouse = repository.findById(id).get();
             house.setCreationDate(new Date());
             if(house.getAddress()!=null){
                 updateHouse.setAddress(house.getAddress());
                 updateHouse.setArea(getArea(updateHouse.getAddress()));
+                mustUpdateRecommendedPrice = true;
             }
             if(house.getCity()!=null)
                 updateHouse.setCity(house.getCity());
             if(house.getCountry()!=null)
                 updateHouse.setCountry(house.getCountry());
+            if(house.getConstructionYear()!=null) {
+                updateHouse.setConstructionYear(house.getConstructionYear());
+                mustUpdateRecommendedPrice = true;
+            }
             if(house.getFloor()!=null)
                 updateHouse.setFloor(house.getFloor());
             if(house.getNoOfBathrooms()!=null)
                 updateHouse.setNoOfBathrooms(house.getNoOfBathrooms());
-            if(house.getNoOfRooms()!=null)
+            if(house.getNoOfRooms()!=null){
+                mustUpdateRecommendedPrice = true;
                 updateHouse.setNoOfRooms(house.getNoOfRooms());
-            if(house.getSurface()!=null)
+            }
+            if(house.getSurface()!=null){
+                mustUpdateRecommendedPrice = true;
                 updateHouse.setSurface(house.getSurface());
+            }
+            if(house.getLandSurface()!=null){
+                mustUpdateRecommendedPrice = true;
+                updateHouse.setLandSurface(house.getLandSurface());
+            }
             if(house.getHouseType()!=null){
+                mustUpdateRecommendedPrice = true;
                 updateHouse.setHouseType(house.getHouseType());
             }
             if(house.getSellType()!=null){
+                mustUpdateRecommendedPrice = true;
                 updateHouse.setSellType(house.getSellType());
             }
             if(house.getDescription()!=null) {
@@ -350,16 +417,22 @@ public class HouseService {
             if(house.getCurrentPrice()!=null) {
                 updateHouse.setCurrentPrice(house.getCurrentPrice());
             }
+            if(mustUpdateRecommendedPrice){
+                try {
+                    updateHouse.setRecommendedPrice(getPriceFromAPI(updateHouse));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             house=repository.save(updateHouse);
             return house;
         }else
             return null;
     }
 
-    public boolean deleteHouse(House house) {
-        UUID id = house.getHouseID();
-        if(repository.existsById(id)){
-            repository.deleteById(id);
+    public boolean deleteHouse(UUID houseId) {
+        if(repository.existsById(houseId)){
+            repository.deleteById(houseId);
             return true;
         }else {
             return false;
@@ -410,31 +483,48 @@ public class HouseService {
         return houses;
     }
 
-    public List<House> searchByFields(Integer houseType,Integer sellType, String city,String country,
-                                      Integer noOfRooms,Integer floor, Integer surface, Integer noOfBathrooms){
-
+    public List<House> searchByFields(House houseFilter){
         List<House> allHouses = this.getAllHouses();
         List<House> filteredHouses = new ArrayList<>();
 
         for(House house : allHouses){
-            if((houseType == null || house.getHouseType().equals(houseType)) &&
-                    (sellType == null || house.getSellType().equals(sellType)) &&
-                    (city == null || house.getCity().equals(city)) &&
-                    (country == null || house.getCountry().equals(country)) &&
-                    (noOfRooms == null || house.getNoOfRooms().equals(noOfRooms)) &&
-                    (floor == null || house.getFloor().equals(floor)) &&
-                    (surface == null || house.getSurface().equals(surface)) &&
-                    (noOfBathrooms == null || house.getNoOfBathrooms().equals(noOfBathrooms))) {
+            if((houseFilter.getHouseType() == null || house.getHouseType().equals(houseFilter.getHouseType())) &&
+                    (houseFilter.getSellType() == null || house.getSellType().equals(houseFilter.getSellType())) &&
+                    (houseFilter.getCity() == null || house.getCity().equals(houseFilter.getCity())) &&
+                    (houseFilter.getCountry() == null || house.getCountry().equals(houseFilter.getCountry())) &&
+                    (houseFilter.getNoOfRooms() == null || house.getNoOfRooms().equals(houseFilter.getNoOfRooms())) &&
+                    (houseFilter.getFloor() == null || house.getFloor().equals(houseFilter.getFloor())) &&
+                    (houseFilter.getSurface() == null || house.getSurface().equals(houseFilter.getSurface())) &&
+                    (houseFilter.getNoOfBathrooms() == null || house.getNoOfBathrooms().equals(houseFilter.getNoOfBathrooms()))) {
                 filteredHouses.add(house);
             }
         }
         return filteredHouses;
     }
-
-    @Bean
-    public RestTemplate getRestTemplate(){
-        return new RestTemplate();
+    public String getArea(double lat, double lon){
+        String location=null;
+        List<Area> allArea=areaRepository.findAll();
+        for(Area getArea:allArea){
+            if(lat>=getArea.getLatitudeMin() && lat<=getArea.getLatitudeMax()&& lon>=getArea.getLongitudeMin() && lon<=getArea.getLongitudeMax()){
+                location=getArea.getArea();
+            }
+        }
+        return location;
     }
+
+//    public String getArea(String address) {
+//        JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("e02d3849718d47ac86668c2149a7b8f9");
+//        JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);
+//        request.setRestrictToCountryCode("ro");
+//        request.setBounds(25.0, 45.00, 29.0, 49.0);
+//        JOpenCageResponse response = jOpenCageGeocoder.forward(request);
+//        JOpenCageLatLng firstResultLatLng = response.getFirstPosition();
+//        Double lat = firstResultLatLng.getLat();
+//        Double lon = firstResultLatLng.getLng();
+//
+//        String loc=getArea(lat, lon);
+//        return loc;
+//    }
 
 
 }
