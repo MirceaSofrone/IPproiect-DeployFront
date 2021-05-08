@@ -194,13 +194,11 @@ public class HouseService {
             return new ArrayList<>();
         }
     }
-/**
     public String getArea(String address){
         JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("e02d3849718d47ac86668c2149a7b8f9");
         JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);
         request.setRestrictToCountryCode("ro"); // restrict results to a specific country
-        // request.setBounds(18.367, -34.109, 18.770, -33.704); // restrict results to a geographic bounding box (southWestLng, southWestLat, northEastLng, northEastLat)
-
+        request.setBounds(25.0, 45.00, 29.0, 49.0);
         JOpenCageResponse response = jOpenCageGeocoder.forward(request);
         JOpenCageLatLng firstResultLatLng = response.getFirstPosition(); // get the coordinate pair of the first result
         System.out.println(firstResultLatLng.getLat());
@@ -358,7 +356,7 @@ public class HouseService {
         }
         return location;
     }
-*/
+
     public House createHouse(House house) {
         house.setHouseID(UUID.randomUUID());
         house.setCreationDate(new Date());
@@ -514,19 +512,19 @@ public class HouseService {
         return location;
     }
 
-    public String getArea(String address) {
-        JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("e02d3849718d47ac86668c2149a7b8f9");
-        JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);
-        request.setRestrictToCountryCode("ro");
-        request.setBounds(25.0, 45.00, 29.0, 49.0);
-        JOpenCageResponse response = jOpenCageGeocoder.forward(request);
-        JOpenCageLatLng firstResultLatLng = response.getFirstPosition();
-        Double lat = firstResultLatLng.getLat();
-        Double lon = firstResultLatLng.getLng();
-
-        String loc=getArea(lat, lon);
-        return loc;
-    }
+//    public String getArea(String address) {
+//        JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("e02d3849718d47ac86668c2149a7b8f9");
+//        JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);
+//        request.setRestrictToCountryCode("ro");
+//        request.setBounds(25.0, 45.00, 29.0, 49.0);
+//        JOpenCageResponse response = jOpenCageGeocoder.forward(request);
+//        JOpenCageLatLng firstResultLatLng = response.getFirstPosition();
+//        Double lat = firstResultLatLng.getLat();
+//        Double lon = firstResultLatLng.getLng();
+//
+//        String loc=getArea(lat, lon);
+//        return loc;
+//    }
 
 
 }
