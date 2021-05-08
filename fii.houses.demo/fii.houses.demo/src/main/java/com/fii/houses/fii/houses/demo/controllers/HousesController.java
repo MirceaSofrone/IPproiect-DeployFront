@@ -1,23 +1,14 @@
 package com.fii.houses.fii.houses.demo.controllers;
 
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fii.houses.fii.houses.demo.models.House;
-import com.fii.houses.fii.houses.demo.models.HouseProperty;
 import com.fii.houses.fii.houses.demo.service.HouseService;
 import com.fii.houses.fii.houses.demo.service.UsersService;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.Response;
 
 
+import java.io.IOException;
 import java.util.*;
 
 
@@ -72,87 +63,16 @@ public class HousesController {
         }
     }
 
-   /* @Autowired
-    private RestTemplate restTemplate;*/
+    @PostMapping("/create")
+    public ResponseEntity<?> createHouse(@RequestBody House house) throws IOException {
 
-    @PostMapping("/create2")
-    public ResponseEntity<House> createHouse2(@RequestBody House house) {
-        House newHouse = service.createHouse(house);
+        house.setRecommendedPrice(service.getPriceFromAPI(house));
+        House newHouse=service.createHouse(house);
         if(newHouse == null){
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }else{
             return new ResponseEntity<>(newHouse, new HttpHeaders(), HttpStatus.OK);
         }
-    }
-
-    @PostMapping("/create")
-    public ResponseEntity<?> createHouse(@RequestBody House house) {
-        //House newHouse=service.createHouse(house);
-
-        JSONObject houseJsonObject = new JSONObject();
-        houseJsonObject.put("nr_camere", 4);
-        houseJsonObject.put("an_constructie", 2016);
-        houseJsonObject.put("suprafata",50F);
-        houseJsonObject.put("tip_proprietate", "APT");
-        houseJsonObject.put("suprafata_teren", 50F);
-        houseJsonObject.put("zona","copou");
-
-        HouseProperty houseProperty1 = new HouseProperty();
-        houseProperty1.setNr_camere(4);
-        houseProperty1.setAn_constructie(2016);
-        houseProperty1.setSuprafata(50F);
-        houseProperty1.setTip_proprietate("APT");
-        houseProperty1.setSuprafata_teren(50F);
-        houseProperty1.setZona("copou");
-
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
-        //requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-
-
-        /*HttpEntity<String> entityCredentials = new HttpEntity<String>(houseJsonObject.toString(), requestHeaders);
-
-        restTemplate = new RestTemplate();
-        MappingJackson2HttpMessageConverter jsonHttpMessageConverter = new MappingJackson2HttpMessageConverter();
-        jsonHttpMessageConverter.getObjectMapper().configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        restTemplate.getMessageConverters().add(jsonHttpMessageConverter);
-
-        HttpEntity<JSONObject> request = new HttpEntity<>(houseJsonObject,requestHeaders);*/
-
-       /* ResponseEntity<JSONObject> responseEntity = restTemplate.exchange(
-                "https://price-is.herokuapp.com/price",
-                HttpMethod.GET,
-                request,
-                JSONObject.class
-        );*/
-
-        /*ResponseEntity<JSONObject> responseEntity =
-                restTemplate.exchange(
-                        "https://price-is.herokuapp.com/price" + 1L,
-                        HttpMethod.GET,
-                        new HttpEntity<>(requestHeaders),
-                        JSONObject.class);
-*/
-
-        RestTemplate restTemplate = new RestTemplate();
-        MappingJackson2HttpMessageConverter jsonHttpMessageConverter = new MappingJackson2HttpMessageConverter();
-        jsonHttpMessageConverter.getObjectMapper().configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        restTemplate.getMessageConverters().add(jsonHttpMessageConverter);
-
-        HttpEntity<JSONObject> request = new HttpEntity<>(houseJsonObject, requestHeaders);
-        ResponseEntity<JSONObject> responseEntity = restTemplate.exchange("https://price-is.herokuapp.com/price",
-                HttpMethod.GET, request, JSONObject.class);
-
-        System.out.println("DAAA AM TRECUT");
-        JSONObject houseProperty = new JSONObject();
-        if(responseEntity.getStatusCode() == HttpStatus.OK){
-            houseProperty = responseEntity.getBody();
-            System.out.println("user response retrieved ");
-        }else {
-            System.out.println("NOT NOT NOT user response retrieved ");
-        }
-
-        return new ResponseEntity<>(houseProperty,new HttpHeaders(),HttpStatus.CREATED);
     }
 
     @PostMapping("/update")

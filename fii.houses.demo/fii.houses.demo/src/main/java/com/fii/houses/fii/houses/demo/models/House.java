@@ -19,9 +19,11 @@ public class House {
     private String country;
     private String address;
     private String area;
+    private Integer constructionYear;
     private Integer noOfRooms;
-    private Integer  floor;
+    private Integer floor;
     private Integer surface;
+    private Integer landSurface;
     private Integer noOfBathrooms;
     //0-house, 1-apartment
     private Integer houseType;
@@ -229,5 +231,21 @@ public class House {
 
     public void setRecommendedPrice(Float recommendedPrice) {
         this.recommendedPrice = recommendedPrice;
+    }
+
+    public Integer getLandSurface() {
+        return landSurface;
+    }
+
+    public void setLandSurface(Integer landSurface) {
+        this.landSurface = landSurface;
+    }
+
+    public Integer getConstructionYear() {
+        return constructionYear;
+    }
+
+    public void setConstructionYear(Integer constructionYear) {
+        this.constructionYear = constructionYear;
     }
 }

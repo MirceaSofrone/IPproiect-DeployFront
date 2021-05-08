@@ -6,11 +6,18 @@ import com.byteowls.jopencage.model.JOpenCageLatLng;
 import com.byteowls.jopencage.model.JOpenCageResponse;
 import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.repository.HouseRepository;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 
 class SortByDate implements Comparator<House> {
@@ -43,6 +50,60 @@ public class HouseService {
         } else {
             return new ArrayList<>();
         }
+    }
+
+    public Float getPriceFromAPI(House house) throws IOException {
+
+        String houseType = "";
+        if(house.getHouseType()==0){
+            houseType = "CAS";
+        }
+        if(house.getHouseType()==1)
+        {
+            houseType = "APT";
+        }
+
+        HttpGet httpGet = new HttpGet("https://pret-is.herokuapp.com/price");
+        URI uri = null;
+        try {
+            uri = new URIBuilder(httpGet.getURI())
+                    .addParameter("tip_proprietate", houseType)
+                    .addParameter("nr_camere", house.getNoOfRooms().toString())
+                    .addParameter("suprafata", house.getSurface().toString())
+                    .addParameter("suprafata_teren", house.getLandSurface().toString())
+                    .addParameter("an_constructie", house.getConstructionYear().toString())
+                    .addParameter("zona", house.getArea())
+                    .build();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        httpGet.setURI(uri);
+        HttpClient client = HttpClients.custom().build();
+
+        HttpResponse response = client.execute(httpGet);
+
+        org.apache.http.HttpEntity entity = response.getEntity();
+        String responseString = EntityUtils.toString(entity, "UTF-8");
+
+        String[] elements = responseString.split(",");
+
+
+        Float recommendedPrice = null;
+        String price;
+        //selling
+        if(house.getSellType()==0){
+            price = elements[elements.length-2].split(":")[1];
+            //price = price.substring(1, price.length()-1);
+            recommendedPrice = Float.valueOf(price);
+        }
+        //renting
+        if(house.getSellType()==1){
+            price = elements[elements.length-1].split(":")[1];
+            price = price.substring(0, price.length()-1);
+            recommendedPrice = Float.valueOf(price);
+        }
+
+        return recommendedPrice;
     }
 
     public List<House> getAllHouses() {
@@ -106,15 +167,13 @@ public class HouseService {
         return null;
     }
 
-    public boolean updateViews(UUID houseId){
+    public void updateViews(UUID houseId){
         if(repository.existsById(houseId)){
             House house = repository.getOne(houseId);
             int views = house.getViews();
             house.setViews(views+1);
             repository.save(house);
-            return true;
         }
-        return false;
     }
 
     public List<House> lastAddedHouses(){
@@ -307,31 +366,47 @@ public class HouseService {
         return house;
     }
 
-    public House updateHouse(House house) {
+    public House updateHouse(House house){
         UUID id = house.getHouseID();
+        boolean mustUpdateRecommendedPrice = false;
         if(repository.findById(id).isPresent()){
             House updateHouse = repository.findById(id).get();
             house.setCreationDate(new Date());
             if(house.getAddress()!=null){
                 updateHouse.setAddress(house.getAddress());
                 updateHouse.setArea(getArea(updateHouse.getAddress()));
+                mustUpdateRecommendedPrice = true;
             }
             if(house.getCity()!=null)
                 updateHouse.setCity(house.getCity());
             if(house.getCountry()!=null)
                 updateHouse.setCountry(house.getCountry());
+            if(house.getConstructionYear()!=null) {
+                updateHouse.setConstructionYear(house.getConstructionYear());
+                mustUpdateRecommendedPrice = true;
+            }
             if(house.getFloor()!=null)
                 updateHouse.setFloor(house.getFloor());
             if(house.getNoOfBathrooms()!=null)
                 updateHouse.setNoOfBathrooms(house.getNoOfBathrooms());
-            if(house.getNoOfRooms()!=null)
+            if(house.getNoOfRooms()!=null){
+                mustUpdateRecommendedPrice = true;
                 updateHouse.setNoOfRooms(house.getNoOfRooms());
-            if(house.getSurface()!=null)
+            }
+            if(house.getSurface()!=null){
+                mustUpdateRecommendedPrice = true;
                 updateHouse.setSurface(house.getSurface());
+            }
+            if(house.getLandSurface()!=null){
+                mustUpdateRecommendedPrice = true;
+                updateHouse.setLandSurface(house.getLandSurface());
+            }
             if(house.getHouseType()!=null){
+                mustUpdateRecommendedPrice = true;
                 updateHouse.setHouseType(house.getHouseType());
             }
             if(house.getSellType()!=null){
+                mustUpdateRecommendedPrice = true;
                 updateHouse.setSellType(house.getSellType());
             }
             if(house.getDescription()!=null) {
@@ -339,6 +414,13 @@ public class HouseService {
             }
             if(house.getCurrentPrice()!=null) {
                 updateHouse.setCurrentPrice(house.getCurrentPrice());
+            }
+            if(mustUpdateRecommendedPrice){
+                try {
+                    updateHouse.setRecommendedPrice(getPriceFromAPI(updateHouse));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             house=repository.save(updateHouse);
             return house;
@@ -417,12 +499,6 @@ public class HouseService {
         }
         return filteredHouses;
     }
-
-    /*@Bean
-    public RestTemplate getRestTemplate(){
-        return new RestTemplate();
-    }*/
-
 
 }
 
