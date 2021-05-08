@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="c3c25584-d9a9-49ad-a2ef-41f67da6429b">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="d7sr5ev0j95tvk@ec2-54-220-35-19.eu-west-1.compute.amazonaws.com" uuid="d110e0ae-b2f2-4ffd-b3b5-d15e8a6a19c1">
+    <data-source source="LOCAL" name="dfal52dsq1t7u@ec2-54-229-68-88.eu-west-1.compute.amazonaws.com" uuid="035a095f-c809-4f00-aba6-5d0886b06c3c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-54-220-35-19.eu-west-1.compute.amazonaws.com:5432/d7sr5ev0j95tvk?user=yknjdajsoaljbu&amp;password=2395ecc1cb0ae353a2f5c773f8c342a9638269ece62a030145838f49995de7b3&amp;sslmode=require</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-54-229-68-88.eu-west-1.compute.amazonaws.com:5432/dfal52dsq1t7u?user=jaqeculwiyvicf&amp;password=a0bc41dcc8a9a23ab2c35fbb4a6bfcd929576bf88832fecb149e557e221eceb8&amp;sslmode=require</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
