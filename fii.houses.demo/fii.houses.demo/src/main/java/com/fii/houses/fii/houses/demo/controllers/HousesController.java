@@ -6,9 +6,9 @@ import com.fii.houses.fii.houses.demo.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 
+import java.io.IOException;
 import java.util.*;
 
 
@@ -30,24 +30,16 @@ public class HousesController {
         }
     }
 
-    @GetMapping("/housedetails/{houseid}")
-    public ResponseEntity<House> houseDetails(@PathVariable UUID houseid)
-    {
-        House newHouse = service.housedetails(houseid);
+    //When accessing a house you'll need the house id and the user who wants to see the house
+    @GetMapping("/housedetails")
+    public ResponseEntity<House> houseDetails(@RequestBody House house) {
+        House newHouse = service.housedetails(house.getHouseID());
         if(newHouse!=null){
+            service.updateViews(newHouse.getHouseID());
+            usersService.addToViewsHistory(newHouse, house.getUserID());
             return new ResponseEntity<>(newHouse,new HttpHeaders(),HttpStatus.OK);
         }else{
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @GetMapping("/sellerhouses/{userid}")
-    public ResponseEntity<List<House>> getHouseByUserID(@PathVariable UUID userid){
-        List<House> existingHouses = service.getHouseByUserID(userid);
-        if(existingHouses.equals(new ArrayList<>())){
-            return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
-        }else {
-            return new ResponseEntity<>(existingHouses, new HttpHeaders(),HttpStatus.OK);
         }
     }
 
@@ -61,23 +53,26 @@ public class HousesController {
         }
     }
 
-    @Autowired
-    private RestTemplate restTemplate;
+    @GetMapping("/sellerhouses/{userid}")
+    public ResponseEntity<List<House>> getHouseByUserID(@PathVariable UUID userid){
+        List<House> existingHouses = service.getHouseByUserID(userid);
+        if(existingHouses.equals(new ArrayList<>())){
+            return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(existingHouses, new HttpHeaders(),HttpStatus.OK);
+        }
+    }
 
-    @PostMapping("/create2")
-    public ResponseEntity<House> createHouse2(@RequestBody House house) {
-        House newHouse = service.createHouse(house);
+    @PostMapping("/create")
+    public ResponseEntity<?> createHouse(@RequestBody House house) throws IOException {
+
+        house.setRecommendedPrice(service.getPriceFromAPI(house));
+        House newHouse=service.createHouse(house);
         if(newHouse == null){
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }else{
             return new ResponseEntity<>(newHouse, new HttpHeaders(), HttpStatus.OK);
         }
-    }
-
-    @PostMapping("/create")
-    public ResponseEntity<House> createHouse(@RequestBody House house) {
-        House newHouse=service.createHouse(house);
-        return new ResponseEntity<House>(newHouse,new HttpHeaders(),HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
@@ -98,16 +93,6 @@ public class HousesController {
             return new ResponseEntity<>(new HttpHeaders(),HttpStatus.OK);
         }else {
             return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PostMapping("/{houseid}")
-    public ResponseEntity<String> views(@PathVariable UUID houseid)
-    {
-        if(service.updateViews(houseid)){
-            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(new HttpHeaders(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -133,16 +118,8 @@ public class HousesController {
     }
 
     @GetMapping("/filter/byfields")
-    public ResponseEntity <List<House>> searchInFields(@RequestParam(required=false) Integer houseType,
-                                                       @RequestParam(required=false) Integer sellType,
-                                                       @RequestParam(required=false) String city,
-                                                       @RequestParam(required=false) String country,
-                                                       @RequestParam(required=false) Integer noOfRooms,
-                                                       @RequestParam(required=false) Integer floor,
-                                                       @RequestParam(required=false) Integer surface,
-                                                       @RequestParam(required=false) Integer noOfBathrooms){
-
-        List<House> houses = service.searchByFields(houseType, sellType, city, country, noOfRooms, floor, surface, noOfBathrooms);
+    public ResponseEntity <List<House>> searchInFields(House house){
+        List<House> houses = service.searchByFields(house);
 
         if(houses.isEmpty()){
             return new ResponseEntity<>( new HttpHeaders(), HttpStatus.NOT_FOUND);
