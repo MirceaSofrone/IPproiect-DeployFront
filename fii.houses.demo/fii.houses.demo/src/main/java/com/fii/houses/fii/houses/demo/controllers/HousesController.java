@@ -6,8 +6,6 @@ import com.fii.houses.fii.houses.demo.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
-
 import java.io.IOException;
 import java.util.*;
 
@@ -22,7 +20,7 @@ public class HousesController {
 
     @GetMapping("/allhouses")
     public ResponseEntity<List<House>> getHouses(@RequestParam int page, @RequestParam int number){
-        List<House> houses = service.getAllHousesPage(page, number);
+        List<House> houses = service.getAllHousesPage(page,number);
         if(houses.equals(new ArrayList<>())){
             return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
         }else {
