@@ -20,6 +20,8 @@ example for request body:
         "sellType": 1,
         "currentPrice": 400
 }
+   , where houseType = 0-house, 1-apartment
+   , where sellType = 0-selling, 1-renting.
 
 2. POST https://house-prediction-fii.herokuapp.com/api/v1/housesPhotos/create(@RequestParam("file") MultipartFile file, @RequestParam("houseID") - add a photo for an existing house
 
