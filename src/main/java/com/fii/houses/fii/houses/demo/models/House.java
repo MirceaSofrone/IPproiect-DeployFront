@@ -29,9 +29,9 @@ public class House {
     private Integer houseType;
     //0-selling, 1-renting
     private Integer sellType;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     private Map<Date, Double> priceHistory = new TreeMap<>();
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     private Map<Date, Integer> favoriteHistory = new TreeMap<>();
     private Integer noOfFave = 0;
     private Double recommendedPrice;
