@@ -7,7 +7,7 @@ import java.util.UUID;
 public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "BINARY(16)")
+//    @Column(columnDefinition = "BINARY(16)")
     private UUID areaID;
     private String area;
     private double latitudeMax;

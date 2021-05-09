@@ -8,9 +8,9 @@ public class House {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "BINARY(16)")
+//    @Column(columnDefinition = "BINARY(16)")
     private UUID houseID;
-    @Column(columnDefinition = "BINARY(16)")
+//    @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
     @Column(columnDefinition = "VARCHAR(1024)")
     private String description;
