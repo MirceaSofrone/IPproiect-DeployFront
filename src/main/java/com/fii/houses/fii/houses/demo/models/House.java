@@ -30,12 +30,12 @@ public class House {
     //0-selling, 1-renting
     private Integer sellType;
     @ElementCollection
-    private Map<Date, ArrayList<Float>> priceHistory = new TreeMap<>();
+    private Map<Date, Double> priceHistory = new TreeMap<>();
     @ElementCollection
     private Map<Date, Integer> favoriteHistory = new TreeMap<>();
     private Integer noOfFave = 0;
-    private Float recommendedPrice;
-    private Float currentPrice;
+    private Double recommendedPrice;
+    private Double currentPrice;
     private Date creationDate;
     @ElementCollection
     private Map<Date, Integer> viewsHistory = new TreeMap<>();
@@ -137,11 +137,11 @@ public class House {
         this.title = title;
     }
 
-    public Map<Date, ArrayList<Float>> getPriceHistory() {
+    public Map<Date, Double> getPriceHistory() {
         return priceHistory;
     }
 
-    public void setPriceHistory(Map<Date, ArrayList<Float>> priceHistory) {
+    public void setPriceHistory(Map<Date, Double> priceHistory) {
         this.priceHistory = priceHistory;
     }
 
@@ -177,20 +177,13 @@ public class House {
         this.description = description;
     }
 
-    public Float getCurrentPrice() {
+    public Double getCurrentPrice() {
         return currentPrice;
     }
 
-    public void setCurrentPrice(Float currentPrice) {
+    public void setCurrentPrice(Double currentPrice) {
         this.currentPrice = currentPrice;
-        ArrayList<Float> newList = priceHistory.get(new Date());
-        if (newList == null) {
-            Map<Date, ArrayList<Float>> map = new TreeMap<>();
-            newList = new ArrayList<>();
-            setPriceHistory(map);
-        }
-        newList.add(currentPrice);
-        priceHistory.put(new Date(), newList);
+        priceHistory.put(new Date(), currentPrice);
     }
 
     public UUID getUserID() {
@@ -225,11 +218,11 @@ public class House {
         this.area = area;
     }
 
-    public Float getRecommendedPrice() {
+    public Double getRecommendedPrice() {
         return recommendedPrice;
     }
 
-    public void setRecommendedPrice(Float recommendedPrice) {
+    public void setRecommendedPrice(Double recommendedPrice) {
         this.recommendedPrice = recommendedPrice;
     }
 

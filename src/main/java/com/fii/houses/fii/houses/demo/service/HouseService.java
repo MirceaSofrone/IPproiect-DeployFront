@@ -56,7 +56,7 @@ public class HouseService {
         }
     }
 
-    public Float getPriceFromAPI(House house) throws IOException {
+    public Double getPriceFromAPI(House house) throws IOException {
 
         String houseType = "";
         if(house.getHouseType()==0){
@@ -92,19 +92,19 @@ public class HouseService {
         String[] elements = responseString.split(",");
 
 
-        Float recommendedPrice = null;
+        Double recommendedPrice = null;
         String price;
         //selling
         if(house.getSellType()==0){
             price = elements[elements.length-2].split(":")[1];
             //price = price.substring(1, price.length()-1);
-            recommendedPrice = Float.valueOf(price);
+            recommendedPrice = Double.valueOf(price);
         }
         //renting
         if(house.getSellType()==1){
             price = elements[elements.length-1].split(":")[1];
             price = price.substring(0, price.length()-1);
-            recommendedPrice = Float.valueOf(price);
+            recommendedPrice = Double.valueOf(price);
         }
 
         return recommendedPrice;
