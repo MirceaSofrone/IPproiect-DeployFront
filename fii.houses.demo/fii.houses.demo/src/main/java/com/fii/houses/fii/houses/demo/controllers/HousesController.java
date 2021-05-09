@@ -4,6 +4,7 @@ import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.service.HouseService;
 import com.fii.houses.fii.houses.demo.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
@@ -27,6 +28,16 @@ public class HousesController {
             return new ResponseEntity<>(houses, new HttpHeaders(), HttpStatus.OK);
         }
     }
+
+    @GetMapping("/geoLocation")
+    public ResponseEntity<Pair<Double, Double>> getLocations(@RequestParam String address){
+        Pair<Double, Double> location=service.geoLocation(address);
+        if(location.equals(null)){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        else{
+        return new ResponseEntity<>(location, HttpStatus.OK);
+    }}
 
     //When accessing a house you'll need the house id and the user who wants to see the house
     @GetMapping("/housedetails")

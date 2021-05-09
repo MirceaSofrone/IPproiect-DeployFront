@@ -15,6 +15,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -194,17 +195,22 @@ public class HouseService {
             return new ArrayList<>();
         }
     }
-    public String getArea(String address){
+
+    public Pair<Double, Double> geoLocation(String address){
         JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("e02d3849718d47ac86668c2149a7b8f9");
         JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);
         request.setRestrictToCountryCode("ro"); // restrict results to a specific country
         request.setBounds(25.0, 45.00, 29.0, 49.0);
         JOpenCageResponse response = jOpenCageGeocoder.forward(request);
-        JOpenCageLatLng firstResultLatLng = response.getFirstPosition(); // get the coordinate pair of the first result
-        System.out.println(firstResultLatLng.getLat());
-        System.out.println(firstResultLatLng.getLng());
+        JOpenCageLatLng firstResultLatLng = response.getFirstPosition();
         Double lat=firstResultLatLng.getLat();
         Double lon=firstResultLatLng.getLng();
+        return Pair.of(lat, lon);
+    }
+
+    public String getArea(Pair<Double, Double> latLon){
+        Double lat=latLon.getFirst();
+        Double lon=latLon.getSecond();
         String location = null;
         if(lat >47.154394 && lat<47.160288 && lon >=27.590935 && lon<=27.612028){
             location="tudor-vladimirescu";
@@ -362,7 +368,7 @@ public class HouseService {
         house.setCreationDate(new Date());
         house.setViews(0);
         if(house.getAddress() != null){
-            house.setArea(getArea(house.getAddress()));
+            house.setArea(getArea(geoLocation(house.getAddress())));
         }
         house=repository.save(house);
         return house;
@@ -376,7 +382,7 @@ public class HouseService {
             house.setCreationDate(new Date());
             if(house.getAddress()!=null){
                 updateHouse.setAddress(house.getAddress());
-                updateHouse.setArea(getArea(updateHouse.getAddress()));
+                updateHouse.setArea(getArea(geoLocation(updateHouse.getAddress())));
                 mustUpdateRecommendedPrice = true;
             }
             if(house.getCity()!=null)
