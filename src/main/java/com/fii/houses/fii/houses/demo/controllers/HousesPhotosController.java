@@ -22,11 +22,11 @@ public class HousesPhotosController {
     @PostMapping("/create")
     public ResponseEntity<?> storePhoto(@RequestParam("file") MultipartFile file, @RequestParam("houseID") UUID houseID) throws IOException{
 
-        if(housePhotosService.getPhotosFromHouseID(houseID).size() <5){
+        if(housePhotosService.getPhotosFromHouseID(houseID).size() < HousePhotos.LIMIT){
             HousePhotos housePhoto = housePhotosService.store(file,houseID);
             return new ResponseEntity<>(housePhoto,new HttpHeaders(), HttpStatus.CREATED);
         }else{
-            return new ResponseEntity<>("Ati atins limita de 5 poze",new HttpHeaders(), HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>("Ati atins limita de " + HousePhotos.LIMIT + " poze",new HttpHeaders(), HttpStatus.NOT_MODIFIED);
         }
 
     }

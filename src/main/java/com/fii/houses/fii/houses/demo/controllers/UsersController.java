@@ -136,5 +136,15 @@ public class UsersController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+
+    @GetMapping("/history")
+    public ResponseEntity<?> getViewsHistory(@RequestParam UUID userID){
+        User user = service.getUserByUserID(userID);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }else{
+            return new ResponseEntity<>(user.getViewsHistory(),new HttpHeaders(),HttpStatus.OK);
+        }
+    }
 }
 

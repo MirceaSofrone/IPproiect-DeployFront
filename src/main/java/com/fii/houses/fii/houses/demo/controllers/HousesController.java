@@ -34,7 +34,8 @@ public class HousesController {
         House newHouse = service.housedetails(house.getHouseID());
         if(newHouse!=null){
             service.updateViews(newHouse.getHouseID());
-            usersService.addToViewsHistory(newHouse, house.getUserID());
+            if(house.getUserID()!=null)
+                usersService.addToViewsHistory(newHouse, house.getUserID());
             return new ResponseEntity<>(newHouse,new HttpHeaders(),HttpStatus.OK);
         }else{
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);

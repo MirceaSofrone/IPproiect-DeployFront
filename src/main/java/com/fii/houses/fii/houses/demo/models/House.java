@@ -37,7 +37,7 @@ public class House {
     private Double recommendedPrice;
     private Double currentPrice;
     private Date creationDate;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     private Map<Date, Integer> viewsHistory = new TreeMap<>();
     private Integer views;
 
