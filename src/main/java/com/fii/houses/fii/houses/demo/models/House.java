@@ -12,7 +12,7 @@ public class House {
     private UUID houseID;
 //    @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
-    @Column(columnDefinition = "VARCHAR(1024)")
+    @Column(columnDefinition = "text")
     private String description;
     private String title;
     private String city;
