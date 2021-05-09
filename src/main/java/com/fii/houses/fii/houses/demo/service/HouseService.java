@@ -488,14 +488,14 @@ public class HouseService {
         List<House> filteredHouses = new ArrayList<>();
 
         for(House house : allHouses){
-            if((houseFilter.getHouseType() == null || house.getHouseType().equals(houseFilter.getHouseType())) &&
-                    (houseFilter.getSellType() == null || house.getSellType().equals(houseFilter.getSellType())) &&
-                    (houseFilter.getCity() == null || house.getCity().equals(houseFilter.getCity())) &&
-                    (houseFilter.getCountry() == null || house.getCountry().equals(houseFilter.getCountry())) &&
-                    (houseFilter.getNoOfRooms() == null || house.getNoOfRooms().equals(houseFilter.getNoOfRooms())) &&
-                    (houseFilter.getFloor() == null || house.getFloor().equals(houseFilter.getFloor())) &&
-                    (houseFilter.getSurface() == null || house.getSurface().equals(houseFilter.getSurface())) &&
-                    (houseFilter.getNoOfBathrooms() == null || house.getNoOfBathrooms().equals(houseFilter.getNoOfBathrooms()))) {
+            if((houseFilter.getHouseType() == null || house.getHouseType()==(houseFilter.getHouseType())) &&
+                    (houseFilter.getSellType() == null || house.getSellType()==(houseFilter.getSellType())) &&
+                    (houseFilter.getCity() == null || house.getCity()==(houseFilter.getCity())) &&
+                    (houseFilter.getCountry() == null || house.getCountry()==(houseFilter.getCountry())) &&
+                    (houseFilter.getNoOfRooms() == null || house.getNoOfRooms()==(houseFilter.getNoOfRooms())) &&
+                    (houseFilter.getFloor() == null || house.getFloor()==(houseFilter.getFloor())) &&
+                    (houseFilter.getSurface() == null || house.getSurface()==(houseFilter.getSurface())) &&
+                    (houseFilter.getNoOfBathrooms() == null || house.getNoOfBathrooms()==(houseFilter.getNoOfBathrooms()))) {
                 filteredHouses.add(house);
             }
         }
