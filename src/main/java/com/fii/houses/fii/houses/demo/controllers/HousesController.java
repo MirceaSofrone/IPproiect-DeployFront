@@ -85,11 +85,11 @@ public class HousesController {
         }
     }
 
-    @PostMapping("/delete/{houseid}")
+    @DeleteMapping("/delete/{houseid}")
     public ResponseEntity<String> deleteHouse(@PathVariable UUID houseid)
     {
         if(service.deleteHouse(houseid)){
-            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.OK);
+            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NO_CONTENT);
         }else {
             return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
         }

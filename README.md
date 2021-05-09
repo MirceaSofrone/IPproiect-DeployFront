@@ -72,7 +72,7 @@ example for request body:
 
 8. GET https://house-prediction-fii.herokuapp.com/api/v1/sellerhouses/{userid} - get all the houses a seller has
 
-9. POST https://house-prediction-fii.herokuapp.com/api/v1/delete/{houseid} - delete a house
+9. DELETE https://house-prediction-fii.herokuapp.com/api/v1/delete/{houseid} - delete a house
 
 10. GET https://house-prediction-fii.herokuapp.com/api/v1/lastadded - get the last 9 added houses(for the carousel)
 
