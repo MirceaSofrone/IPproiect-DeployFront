@@ -1,13 +1,14 @@
 package com.fii.houses.fii.houses.demo.models;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 public class Area {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 //    @Column(columnDefinition = "BINARY(16)")
-    private int areaID;
+    private UUID areaID;
     private String area;
     private double latitudeMax;
     private double latitudeMin;
