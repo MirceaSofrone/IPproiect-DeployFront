@@ -8,7 +8,7 @@ public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 //    @Column(columnDefinition = "BINARY(16)")
-    private UUID areaID;
+    private Integer areaID;
     private String area;
     private double latitudeMax;
     private double latitudeMin;
