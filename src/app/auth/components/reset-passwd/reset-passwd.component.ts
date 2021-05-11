@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'dialog-reset-passwd',
   templateUrl: 'dialog-reset-passwd.html',
 })
 export class DialogResetPasswd {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   openDialog() {
     const dialogRef = this.dialog.open(ResetPasswdComponent);
@@ -24,6 +24,7 @@ export class DialogResetPasswd {
 })
 export class ResetPasswdComponent implements OnInit {
 
+  submitted = false;
   public hide = true;
   public hideConfirm = true;
   resetForm: FormGroup;
@@ -40,7 +41,8 @@ export class ResetPasswdComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.resetForm.get('newPasswd').value !== this.resetForm.get('confirmPasswd').value) {
+    this.submitted=true;
+    if (this.resetForm.get('newPasswd').value !== this.resetForm.get('confirmPasswd').value) {
       alert('Passwords must match!')
     } else {
       this.newPasswd = this.resetForm.get('newPasswd').value

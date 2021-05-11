@@ -15,7 +15,7 @@
                 <div mat-dialog-content>
                     <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
 
-                        <mat-form-field id="psswd" appearance="outline">
+                        <mat-form-field id="new-psswd" appearance="outline">
                             <mat-label>New Password</mat-label>
                             <input matInput formControlName="newPasswd" [type]="hide ? 'password' : 'text'" required />
                             <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
@@ -23,7 +23,7 @@
                             </button>
                         </mat-form-field>
                         <br>
-                        <mat-form-field id="psswd" appearance="outline">
+                        <mat-form-field id="confirm-psswd" appearance="outline">
                             <mat-label>Confirm New Password</mat-label>
                             <input matInput formControlName="confirmPasswd" [type]="hideConfirm ? 'password' : 'text'"
                                 required />
@@ -32,7 +32,6 @@
                             </button>
                         </mat-form-field>
                         <br>
-
                         <button id="button-2" mat-raised-button type="submit" [disabled]="!resetForm.valid"
                             (click)="onSubmit()">Submit
                         </button>

@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DialogWrapperComponent } from './auth/components/dialog-wrapper/dialog-wrapper.component';
 import { AppRoutingModule } from './app.routing.module';
 import { ForgotPasswdComponent } from './auth/components/forgot-passwd/forgot-passwd.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ForgotPasswdComponent } from './auth/components/forgot-passwd/forgot-pa
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
