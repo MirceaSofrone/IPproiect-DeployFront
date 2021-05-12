@@ -1,0 +1,59 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+  port: 8081
+spring:
+  datasource:
+    driverClassName: 'org.postgresql.Driver'
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: docker
+    initialization-mode: always
+  jpa:
+    hibernate.ddl-auto: create-drop
+    generate-ddl: true
+    show-sql: true
+  mail:
+    protocol: smtp
+    host: smtp.gmail.com
+    port: 587
+    username: housepredictionlogin@gmail.com
+    password: lzhqlvmaczivrngo
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 795520080977-l7jjr1e8ddfps8i6h5csnc7f2c0qg644.apps.googleusercontent.com
+            clientSecret: BWrfWyLrK2YtjdZK9MIDfAL_
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+
+appconf:
+  Jwt:
+    jwtExpirationMs: 86400000
+    jwtSecret: 9CR3ATIE9D33MAR38ANGAJ4M3NT1BDBBC
+  Oauth2:
+    authorizedRedirectUris:
+      - http://localhost:8081/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect
+      - http://localhost:8081/api/test/all
+      - http://localhost:8081/api/test/user
+
+#      app:
+#        auth:
+#          tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+#          tokenExpirationMsec: 864000000
+#        oauth2:
+#          authorizedRedirectUris:
+#            - http://localhost:3000/oauth2/redirect
+#            - myandroidapp://oauth2/redirect
+#            - myiosapp://oauth2/redirect

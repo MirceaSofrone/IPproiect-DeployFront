@@ -1,0 +1,39 @@
+{
+  "groups": [
+    {
+      "name": "appconf",
+      "type": "com.hpprediction.demo.security.config.AppPropertiesBound",
+      "sourceType": "com.hpprediction.demo.security.config.AppPropertiesBound"
+    },
+    {
+      "name": "appconf.jwt",
+      "type": "com.hpprediction.demo.security.config.AppPropertiesBound$Jwt",
+      "sourceType": "com.hpprediction.demo.security.config.AppPropertiesBound",
+      "sourceMethod": "getJwt()"
+    },
+    {
+      "name": "appconf.oauth2",
+      "type": "com.hpprediction.demo.security.config.AppPropertiesBound$OAuth2",
+      "sourceType": "com.hpprediction.demo.security.config.AppPropertiesBound",
+      "sourceMethod": "getOauth2()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "appconf.jwt.jwt-expiration-ms",
+      "type": "java.lang.Long",
+      "sourceType": "com.hpprediction.demo.security.config.AppPropertiesBound$Jwt"
+    },
+    {
+      "name": "appconf.jwt.jwt-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.hpprediction.demo.security.config.AppPropertiesBound$Jwt"
+    },
+    {
+      "name": "appconf.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.hpprediction.demo.security.config.AppPropertiesBound$OAuth2"
+    }
+  ],
+  "hints": []
+}
