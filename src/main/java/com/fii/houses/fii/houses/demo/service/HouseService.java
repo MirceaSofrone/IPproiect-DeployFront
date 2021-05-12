@@ -374,7 +374,7 @@ public class HouseService {
         }
         house=repository.save(house);
         UUID userID = house.getUserID();
-        if(repository.findById(userID).isPresent()){
+        if(userRepository.findById(userID).isPresent()){
             User user = userRepository.findById(userID).get();
             List<House> forSell = user.getForSell();
             forSell.add(house);
