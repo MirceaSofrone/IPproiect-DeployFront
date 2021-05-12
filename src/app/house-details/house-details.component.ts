@@ -12,15 +12,17 @@ import { Location } from '@angular/common';
 export class HouseDetailsComponent implements OnInit {
 
   constructor(
+    id
     // private route: ActivatedRoute,
     // private heroService: HouseService,
     // private location: Location
   ) {}
 
   ngOnInit(): void {
+    console.log(id);
     // this.getHouse();
   }
-  
+
   // getHouse(): void {
   //   const id = Number(this.route.snapshot.paramMap.get('id'));
   //   this.HouseService.getHouse(id)
