@@ -65,14 +65,17 @@ public class HousesController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createHouse(@RequestBody House house) throws IOException {
+        System.out.println(service.geoLocation(house.getAddress()));
         if(service.geoLocation(house.getAddress())==null)
             return new ResponseEntity<>("Wrong address!", new HttpHeaders(), HttpStatus.NOT_FOUND);
-        house.setRecommendedPrice(service.getPriceFromAPI(house));
-        House newHouse=service.createHouse(house);
-        if(newHouse == null){
-            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }else{
-            return new ResponseEntity<>(newHouse, new HttpHeaders(), HttpStatus.OK);
+        else{
+            house.setRecommendedPrice(service.getPriceFromAPI(house));
+            House newHouse=service.createHouse(house);
+            if(newHouse == null){
+                return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+            }   else{
+                return new ResponseEntity<>(newHouse, new HttpHeaders(), HttpStatus.OK);
+            }
         }
     }
 
