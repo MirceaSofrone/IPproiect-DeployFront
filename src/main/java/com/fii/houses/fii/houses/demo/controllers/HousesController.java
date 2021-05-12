@@ -65,7 +65,6 @@ public class HousesController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createHouse(@RequestBody House house) throws IOException {
-        System.out.println(service.geoLocation(house.getAddress()));
         if(service.geoLocation(house.getAddress())==null)
             return new ResponseEntity<>("Wrong address!", new HttpHeaders(), HttpStatus.NOT_FOUND);
         else{
@@ -135,7 +134,7 @@ public class HousesController {
     @GetMapping("/geoLocation")
     public ResponseEntity<Pair<Double, Double>> getLocations(@RequestParam String address){
         Pair<Double, Double> location=service.geoLocation(address);
-        if(location.equals(null)){
+        if(location == null){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         else{
