@@ -45,7 +45,7 @@ public class House {
     private Map<Date, Integer> viewsHistory = new TreeMap<>();
     private Integer views;
     @ElementCollection
-    private List<byte[]> photos = new ArrayList<>();
+    private List<byte[]> pictures = new ArrayList<>();
 
     public UUID getHouseID() {
         return houseID;
@@ -249,11 +249,11 @@ public class House {
     }
 
     public List<byte[]> getPhotos() {
-        return photos;
+        return pictures;
     }
 
     public void setPhotos(List<byte[]> photos) {
-        this.photos = photos;
+        this.pictures = photos;
     }
 
     public Double getLatitude() {
