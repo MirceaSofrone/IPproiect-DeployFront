@@ -1,5 +1,7 @@
 package com.fii.houses.fii.houses.demo.models;
 
+import org.springframework.data.util.Pair;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -19,6 +21,8 @@ public class House {
     private String country;
     private String address;
     private String area;
+    @Transient
+    private Pair<Double,Double> geolocation;
     private Integer constructionYear;
     private Integer noOfRooms;
     private Integer floor;
@@ -40,6 +44,8 @@ public class House {
     @ElementCollection(fetch = FetchType.LAZY)
     private Map<Date, Integer> viewsHistory = new TreeMap<>();
     private Integer views;
+    @Transient
+    private List<byte[]> photos = new ArrayList<>();
 
     public UUID getHouseID() {
         return houseID;
@@ -240,5 +246,21 @@ public class House {
 
     public void setConstructionYear(Integer constructionYear) {
         this.constructionYear = constructionYear;
+    }
+
+    public Pair<Double, Double> getGeolocation() {
+        return geolocation;
+    }
+
+    public void setGeolocation(Pair<Double, Double> geolocation) {
+        this.geolocation = geolocation;
+    }
+
+    public List<byte[]> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<byte[]> photos) {
+        this.photos = photos;
     }
 }

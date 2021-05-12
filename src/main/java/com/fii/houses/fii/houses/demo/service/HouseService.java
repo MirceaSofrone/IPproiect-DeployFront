@@ -363,7 +363,8 @@ public class HouseService {
         house.setCreationDate(new Date());
         house.setViews(0);
         if(house.getAddress() != null){
-            house.setArea(getArea(geoLocation(house.getAddress())));
+            house.setGeolocation(geoLocation(house.getAddress()));
+            house.setArea(getArea(house.getGeolocation()));
         }
         house=repository.save(house);
         return house;
@@ -377,7 +378,8 @@ public class HouseService {
             house.setCreationDate(new Date());
             if(house.getAddress()!=null){
                 updateHouse.setAddress(house.getAddress());
-                updateHouse.setArea(getArea(geoLocation(updateHouse.getAddress())));
+                updateHouse.setGeolocation(geoLocation(updateHouse.getAddress()));
+                updateHouse.setArea(getArea(updateHouse.getGeolocation()));
                 mustUpdateRecommendedPrice = true;
             }
             if(house.getCity()!=null)
