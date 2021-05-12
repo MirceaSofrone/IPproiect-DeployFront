@@ -21,8 +21,8 @@ public class House {
     private String country;
     private String address;
     private String area;
-    @Transient
-    private Pair<Double,Double> geolocation;
+    private Double latitude;
+    private Double longitude;
     private Integer constructionYear;
     private Integer noOfRooms;
     private Integer floor;
@@ -44,7 +44,7 @@ public class House {
     @ElementCollection(fetch = FetchType.LAZY)
     private Map<Date, Integer> viewsHistory = new TreeMap<>();
     private Integer views;
-    @Transient
+    @ElementCollection
     private List<byte[]> photos = new ArrayList<>();
 
     public UUID getHouseID() {
@@ -248,19 +248,27 @@ public class House {
         this.constructionYear = constructionYear;
     }
 
-    public Pair<Double, Double> getGeolocation() {
-        return geolocation;
-    }
-
-    public void setGeolocation(Pair<Double, Double> geolocation) {
-        this.geolocation = geolocation;
-    }
-
     public List<byte[]> getPhotos() {
         return photos;
     }
 
     public void setPhotos(List<byte[]> photos) {
         this.photos = photos;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }
