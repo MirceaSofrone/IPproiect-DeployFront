@@ -511,6 +511,8 @@ public class HouseService {
         JOpenCageLatLng firstResultLatLng = response.getFirstPosition();
         Double lat=firstResultLatLng.getLat();
         Double lon=firstResultLatLng.getLng();
+        if(lat == null || lon ==null)
+            return null;
         return Pair.of(lat, lon);
     }
     public String getArea(Pair<Double,Double>geolocation){
