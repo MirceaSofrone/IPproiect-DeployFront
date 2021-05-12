@@ -6,8 +6,10 @@ import com.byteowls.jopencage.model.JOpenCageLatLng;
 import com.byteowls.jopencage.model.JOpenCageResponse;
 import com.fii.houses.fii.houses.demo.models.Area;
 import com.fii.houses.fii.houses.demo.models.House;
+import com.fii.houses.fii.houses.demo.models.User;
 import com.fii.houses.fii.houses.demo.repository.AreaRepository;
 import com.fii.houses.fii.houses.demo.repository.HouseRepository;
+import com.fii.houses.fii.houses.demo.repository.UserRepository;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -35,6 +37,8 @@ class SortByDate implements Comparator<House> {
 public class HouseService {
     @Autowired
     private HouseRepository repository;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private AreaRepository areaRepository;
     private final static Integer carouselSize = 9;
@@ -369,6 +373,14 @@ public class HouseService {
             house.setArea(getArea(geolocation));
         }
         house=repository.save(house);
+        UUID userID = house.getUserID();
+        if(repository.findById(userID).isPresent()){
+            User user = userRepository.findById(userID).get();
+            List<House> forSell = user.getForSell();
+            forSell.add(house);
+            user.setForSell(forSell);
+            userRepository.save(user);
+        }
         return house;
     }
 
