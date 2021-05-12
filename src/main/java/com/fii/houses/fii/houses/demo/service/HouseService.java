@@ -176,12 +176,16 @@ public class HouseService {
         return null;
     }
 
-    public void updateViews(UUID houseId){
+    public void updateViews(UUID houseId, UUID userID){
         if(repository.existsById(houseId)){
             House house = repository.getOne(houseId);
-            int views = house.getViews();
-            house.setViews(views+1);
-            repository.save(house);
+            User user = userRepository.getOne(userID);
+            List<House> usersViewsHistory = user.getViewsHistory();
+            if (!usersViewsHistory.contains(house)){
+                int views = house.getViews();
+                house.setViews(views+1);
+                repository.save(house);
+            }
         }
     }
 
