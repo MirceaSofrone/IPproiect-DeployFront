@@ -31,12 +31,12 @@ public class HousesController {
 
     //When accessing a house you'll need the house id and the user who wants to see the house
     @GetMapping("/housedetails")
-    public ResponseEntity<House> houseDetails(@RequestBody House house) {
-        House newHouse = service.housedetails(house.getHouseID());
+    public ResponseEntity<House> houseDetails(@RequestParam UUID houseID, @RequestParam(required = false) UUID userID) {
+        House newHouse = service.housedetails(houseID);
         if(newHouse!=null){
             service.updateViews(newHouse.getHouseID());
-            if(house.getUserID()!=null)
-                usersService.addToViewsHistory(newHouse, house.getUserID());
+            if(userID!=null)
+                usersService.addToViewsHistory(newHouse, userID);
             return new ResponseEntity<>(newHouse,new HttpHeaders(),HttpStatus.OK);
         }else{
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);

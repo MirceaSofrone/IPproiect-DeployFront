@@ -517,8 +517,8 @@ public class HouseService {
     }
     public String getArea(Pair<Double,Double>geolocation){
         String location=null;
-        Double lat = geolocation.getFirst();
-        Double lon = geolocation.getSecond();
+        double lat = geolocation.getFirst();
+        double lon = geolocation.getSecond();
         List<Area> allArea=areaRepository.findAll();
         for(Area getArea:allArea){
             if(lat>=getArea.getLatitudeMin() && lat<=getArea.getLatitudeMax()&& lon>=getArea.getLongitudeMin() && lon<=getArea.getLongitudeMax()){

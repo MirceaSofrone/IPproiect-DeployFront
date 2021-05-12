@@ -33,12 +33,10 @@ example for request body:
 5. GET https://house-prediction-fii.herokuapp.com/api/v1/allhouses(@RequestParam int page, @RequestParam int number) - returns the specified number of houses from the page you want
 
 6. GET https://house-prediction-fii.herokuapp.com/api/v1/housedetails - returns the details of a house //geolocation(lat and long will be returned soon in the house details)
-- request body:
-{ 
-"houseID": - the id of the house 
-"userID": - the id of the user clicking on the user(not the owner!!) so that the views history can be updated
-}
-!! Use only the houseID in body if the use is not clicking in specifically on the house to view the details but rather you need any details. Example of response:
+   @RequestParam UUID houseID - "houseID": - the id of the house
+   @RequestParam(required = false) UUID userID - "userID": - the id of the user clicking on the user(not the owner!!) so that the views history can be updated
+
+!! Use only the houseID if the user is not clicking in specifically on the house to view the details but rather you need any details. Example of response:
 {
 "houseID": "7509bdbf-249f-463c-95f7-f55a314cf500",
     "userID": "a17dc1b8-a1be-435e-b645-ae1c42d45277",
