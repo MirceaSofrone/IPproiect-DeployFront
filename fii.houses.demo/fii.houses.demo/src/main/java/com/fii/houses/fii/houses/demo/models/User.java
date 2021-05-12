@@ -1,5 +1,8 @@
 package com.fii.houses.fii.houses.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -21,21 +24,27 @@ public class User {
     private List<House> favorite = new ArrayList<>(); //for buyer
     @OneToMany
     private List<House> forSell = new ArrayList<>(); //seller
-    public static final  Integer VIEWSHISTORYCAPACITY = 10;
+    public static final Integer VIEWSHISTORYCAPACITY = 10;
     public static final Integer FAVOURITELISTCAPACITY = 20;
     @Transient
-    private Queue<House> viewsHistory = new ArrayBlockingQueue<>(VIEWSHISTORYCAPACITY){
+    private Queue<House> viewsHistory = new ArrayBlockingQueue<>(VIEWSHISTORYCAPACITY) {
         @Override
-        public boolean add(House house){
-            if(remainingCapacity() == 0)
+        public boolean add(House house) {
+            if (remainingCapacity() == 0)
                 poll();
-            else{
+            else {
                 return offer(house);
             }
             return true;
         }
     }; //for buyer
+    @OneToMany(mappedBy = "author")
+    @JsonIgnoreProperties("author")
+    List<ForumPost> forumPosts;
 
+    @OneToMany(mappedBy = "author")
+    @JsonIgnoreProperties("author")
+    List<ForumComment> forumComments;
 
     public UUID getUserID() {
         return userID;
