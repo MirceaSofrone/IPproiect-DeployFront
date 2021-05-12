@@ -33,18 +33,6 @@ public class User {
             return super.add(house);
         }
     };
-    /*@Transient
-    private Queue<House> viewsHistory = new ArrayBlockingQueue<>(VIEWSHISTORYCAPACITY){
-        @Override
-        public boolean add(House house){
-            if(remainingCapacity() == 0)
-                poll();
-            else{
-                return offer(house);
-            }
-            return true;
-        }
-    }; //for buyer*/
 
 
 

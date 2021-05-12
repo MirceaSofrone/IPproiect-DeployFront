@@ -451,6 +451,20 @@ public class HouseService {
 
     public boolean deleteHouse(UUID houseId) {
         if(repository.existsById(houseId)){
+            //if it exist on users at forSell, favorite or viewsHistory, must delete from there before deleting the house
+            List<User> allUsers = userRepository.findAll();
+            for(User user : allUsers){
+                List<House> forSell = user.getForSell();
+                forSell.removeIf(house -> house.getHouseID() == houseId);
+                user.setForSell(forSell);
+                List<House> favorite = user.getFavorite();
+                favorite.removeIf(house -> house.getHouseID() == houseId);
+                user.setFavorite(favorite);
+                List<House> viewsHistory = user.getViewsHistory();
+                viewsHistory.removeIf(house -> house.getHouseID() == houseId);
+                user.setViewsHistory(viewsHistory);
+                userRepository.save(user);
+            }
             repository.deleteById(houseId);
             return true;
         }else {
