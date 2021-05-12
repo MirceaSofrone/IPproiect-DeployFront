@@ -121,8 +121,11 @@ public class HousesController {
     }
 
     @GetMapping("/filter/byfields")
-    public ResponseEntity <List<House>> searchInFields(@RequestBody House house){
-        List<House> houses = service.searchByFields(house);
+    public ResponseEntity <List<House>> searchInFields( @RequestParam Integer houseType, @RequestParam Integer sellType,
+                                                        @RequestParam String city, @RequestParam String country,
+                                                        @RequestParam Integer noOfRooms,@RequestParam Integer floor,
+                                                        @RequestParam Integer surface,@RequestParam Integer noOfBathrooms){
+        List<House> houses = service.searchByFields(houseType, sellType, city, country, noOfRooms,floor, surface, noOfBathrooms);
 
         if(houses.isEmpty()){
             return new ResponseEntity<>( new HttpHeaders(), HttpStatus.NOT_FOUND);

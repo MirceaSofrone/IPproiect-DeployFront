@@ -23,7 +23,17 @@ public class User {
     private List<House> forSell = new ArrayList<>(); //seller
     public static final  Integer VIEWSHISTORYCAPACITY = 10;
     public static final Integer FAVOURITELISTCAPACITY = 20;
-    @Transient
+    @OneToMany
+    private List<House> viewsHistory = new ArrayList<>(){
+        @Override
+        public boolean add(House house) {
+            if(size()==VIEWSHISTORYCAPACITY){
+                remove(0);
+            }
+            return super.add(house);
+        }
+    };
+    /*@Transient
     private Queue<House> viewsHistory = new ArrayBlockingQueue<>(VIEWSHISTORYCAPACITY){
         @Override
         public boolean add(House house){
@@ -34,7 +44,8 @@ public class User {
             }
             return true;
         }
-    }; //for buyer
+    }; //for buyer*/
+
 
 
     public UUID getUserID() {
@@ -62,13 +73,16 @@ public class User {
         this.favorite = favorite;
     }
 
-
-    public Queue<House> getViewsHistory() {
+    public List<House> getViewsHistory() {
         return viewsHistory;
     }
 
-    public void setViewsHistory(Queue<House> viewsHistory) {
+    public void setViewsHistory(List<House> viewsHistory) {
         this.viewsHistory = viewsHistory;
+    }
+
+    public void addToViewsHistory(House house){
+        viewsHistory.add(house);
     }
 
     public List<House> getForSell() {

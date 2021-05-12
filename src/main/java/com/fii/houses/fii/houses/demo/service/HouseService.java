@@ -490,24 +490,26 @@ public class HouseService {
         return houses;
     }
 
-    public List<House> searchByFields(House houseFilter){
+    public List<House> searchByFields(Integer houseType, Integer sellType, String city, String country, Integer noOfRooms,
+                                      Integer floor, Integer surface, Integer noOfBathrooms){
         List<House> allHouses = this.getAllHouses();
         List<House> filteredHouses = new ArrayList<>();
 
         for(House house : allHouses){
-            if((houseFilter.getHouseType() == null || house.getHouseType()==(houseFilter.getHouseType())) &&
-                    (houseFilter.getSellType() == null || house.getSellType()==(houseFilter.getSellType())) &&
-                    (houseFilter.getCity() == null || house.getCity()==(houseFilter.getCity())) &&
-                    (houseFilter.getCountry() == null || house.getCountry()==(houseFilter.getCountry())) &&
-                    (houseFilter.getNoOfRooms() == null || house.getNoOfRooms()==(houseFilter.getNoOfRooms())) &&
-                    (houseFilter.getFloor() == null || house.getFloor()==(houseFilter.getFloor())) &&
-                    (houseFilter.getSurface() == null || house.getSurface()==(houseFilter.getSurface())) &&
-                    (houseFilter.getNoOfBathrooms() == null || house.getNoOfBathrooms()==(houseFilter.getNoOfBathrooms()))) {
+            if((houseType == null || house.getHouseType()==(houseType)) &&
+                    (sellType == null || house.getSellType()==(sellType)) &&
+                    (city == null || house.getCity()==(city)) &&
+                    (country == null || house.getCountry()==(country)) &&
+                    (noOfRooms == null || house.getNoOfRooms()==(noOfRooms)) &&
+                    (floor == null || house.getFloor()==(floor)) &&
+                    (surface == null || house.getSurface()==(surface)) &&
+                    (noOfBathrooms == null || house.getNoOfBathrooms()==(noOfBathrooms))) {
                 filteredHouses.add(house);
             }
         }
         return filteredHouses;
     }
+
     public Pair<Double, Double> geoLocation(String address){
         JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("e02d3849718d47ac86668c2149a7b8f9");
         JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);

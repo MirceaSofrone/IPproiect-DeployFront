@@ -110,9 +110,7 @@ public class UsersService {
 
     public void addToViewsHistory(House house, UUID userID) {
         User user = getUserByUserID(userID);
-        Queue<House> viewsHistory = user.getViewsHistory();
-        viewsHistory.add(house);
-        user.setViewsHistory(viewsHistory);
+        user.addToViewsHistory(house);
         house.setViews(house.getViews() + 1);
         Date today = new Date();
         Map<Date, Integer> viewsStatistics = house.getViewsHistory();
