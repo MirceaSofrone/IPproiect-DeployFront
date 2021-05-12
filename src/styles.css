@@ -11,7 +11,6 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 
@@ -24,3 +23,21 @@ body {
 .swiper-pagination {
     display: none;
 }
+.mat-drawer-container {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    overflow: hidden;
+}
+.cdk-overlay-pane{
+
+position: relative;
+top: -2105px !important;
+width: 220px;
+padding-right: 20px !important; 
+z-index: 10 !important;
+margin-top: 15px !important;
+}
+
