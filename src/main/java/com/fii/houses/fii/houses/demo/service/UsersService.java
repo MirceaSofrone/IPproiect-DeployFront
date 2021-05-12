@@ -27,13 +27,10 @@ public class UsersService {
     }
 
     public User getUserByUserID(UUID id) {
-        List<User> allUsers = repository.findAll();
-        for (User existingUser : allUsers) {
-            if (existingUser.getUserID().equals(id)) {
-                return existingUser;
-            }
+        if(repository.findById(id).isPresent()){
+            return repository.findById(id).get();
         }
-        return new User();
+        return null;
     }
 
     public User create(User user) {
@@ -111,17 +108,14 @@ public class UsersService {
     public void addToViewsHistory(House house, UUID userID) {
         User user = getUserByUserID(userID);
         user.addToViewsHistory(house);
-        house.setViews(house.getViews() + 1);
         Date today = new Date();
         Map<Date, Integer> viewsStatistics = house.getViewsHistory();
-
         if (viewsStatistics.get(today) == null) {
             viewsStatistics.put(today, house.getViews() + 1);
         } else {
             viewsStatistics.replace(today, house.getViews() + 1);
         }
         house.setViewsHistory(viewsStatistics);
-        house.setViews(house.getViews() + 1);
         repository.save(user);
         houseRepository.save(house);
     }
