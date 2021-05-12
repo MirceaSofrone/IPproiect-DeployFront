@@ -508,11 +508,11 @@ public class HouseService {
         request.setRestrictToCountryCode("ro"); // restrict results to a specific country
         request.setBounds(25.0, 45.00, 29.0, 49.0);
         JOpenCageResponse response = jOpenCageGeocoder.forward(request);
+        if(response == null || response.getResults() ==null || response.getResults().isEmpty())
+            return null;
         JOpenCageLatLng firstResultLatLng = response.getFirstPosition();
         Double lat=firstResultLatLng.getLat();
         Double lon=firstResultLatLng.getLng();
-        if(lat == null || lon ==null)
-            return null;
         return Pair.of(lat, lon);
     }
     public String getArea(Pair<Double,Double>geolocation){
