@@ -30,12 +30,12 @@ export class HouseInfoComponent implements OnInit {
     this.postData.getPosts().subscribe((test) => {
       console.warn('test', test);
       this.data = test;
-      for(let i=0; i < this.data.length; i++)
-      {
-        if(this.data[i].id == this.paramQuery)
-          this.dataToDisplay=this.data[i];
-      }
-      console.warn('the data with specified id', this.dataToDisplay);
+      // for(let i=0; i < this.data.length; i++)
+      // {
+      //   if(this.data[i].id == this.paramQuery)
+      //     this.dataToDisplay=this.data[i];
+      // }
+      console.warn('the data with specified id', this.data);
   });
       
   }

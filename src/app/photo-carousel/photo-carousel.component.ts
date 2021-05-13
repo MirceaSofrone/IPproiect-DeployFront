@@ -136,12 +136,9 @@ ngOnInit() {
   this.postData.getPosts().subscribe((result) => {
     console.warn('result', result);
     this.data = result;
-});
-   // this.data.forEach(m => console.log(m.id))
 
-    // this.postData.getPosts().toPromise().then(data=> {
-    //   console.log(data);
-    // });
+});
+
 }
 
 onSelect(item){
