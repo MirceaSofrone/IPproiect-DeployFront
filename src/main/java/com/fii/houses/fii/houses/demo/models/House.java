@@ -9,7 +9,7 @@ import java.util.*;
 public class House {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
 //    @Column(columnDefinition = "BINARY(16)")
     private UUID houseID;
 //    @Column(columnDefinition = "BINARY(16)")

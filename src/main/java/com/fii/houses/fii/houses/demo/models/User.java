@@ -9,7 +9,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
 //    @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
     private Date creationDate;
