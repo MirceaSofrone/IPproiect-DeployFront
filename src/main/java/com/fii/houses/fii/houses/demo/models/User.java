@@ -24,7 +24,6 @@ public class User {
     public static final  Integer VIEWSHISTORYCAPACITY = 10;
     public static final Integer FAVOURITELISTCAPACITY = 20;
     @OneToMany(fetch = FetchType.LAZY,
-            mappedBy = "users",
             targetEntity = House.class,
             cascade = CascadeType.ALL)
     private List<House> viewsHistory = new ArrayList<>(){
