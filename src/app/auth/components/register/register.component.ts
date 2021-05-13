@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   public hide = true;
   public hideConfirm = true;
+  submitted = false;
   userType: string;
   payload: RegisterPayload = {
     username: '',
@@ -37,6 +38,7 @@ export class RegisterComponent implements OnInit {
     // }
   
   ngOnInit(): void {
+  
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       userType: ['',[]],
@@ -52,6 +54,7 @@ export class RegisterComponent implements OnInit {
 
  
   onSubmit() {
+    this.submitted=true;
     if (this.registerForm.get('passwd').value !== this.registerForm.get("confirmPasswd").value) {
         alert("Passwords must match!")
     } else if(this.registerForm.get('userType').value === '') {
