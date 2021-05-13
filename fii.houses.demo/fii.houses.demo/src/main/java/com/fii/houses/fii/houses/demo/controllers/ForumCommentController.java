@@ -10,6 +10,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -18,10 +19,9 @@ public class ForumCommentController {
     @Autowired
     private ForumCommentService forumCommentService;
 
-
-    @GetMapping("all-comments")
-    public ResponseEntity<List<ForumComment>> getPostComments(@PathVariable UUID idPost) {
-        List<ForumComment> comments = forumCommentService.getAllCommentsOfPostById(idPost);
+    @GetMapping("")
+    public ResponseEntity<Set<ForumComment>> getPostComments(@PathVariable UUID idPost) {
+        Set<ForumComment> comments = forumCommentService.getAllCommentsOfPostById(idPost);
 
         if (comments.isEmpty())
             return new ResponseEntity<>(comments, new HttpHeaders(), HttpStatus.NO_CONTENT);

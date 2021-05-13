@@ -22,7 +22,7 @@ public class ForumPostController {
     @Autowired
     private ForumPostService forumPostService;
 
-    @GetMapping("/all-posts")
+    @GetMapping()
     public ResponseEntity<List<ForumPost>> getForumPosts() {
         List<ForumPost> forumPosts = forumPostService.getAllForumPosts();
         if (forumPosts.isEmpty())

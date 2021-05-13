@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-public class ForumComment {
+public class ForumComment implements Comparable<ForumComment> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "BINARY(16)")
@@ -23,6 +23,7 @@ public class ForumComment {
 
     private String content;
     private Integer upVotes;
+    private Integer reports;
     private Date creationDate;
 
     public UUID getCommentID() {
@@ -71,5 +72,10 @@ public class ForumComment {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    @Override
+    public int compareTo(ForumComment o) {
+        return creationDate.compareTo(o.creationDate);
     }
 }

@@ -5,10 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class ForumPost {
@@ -25,7 +22,7 @@ public class ForumPost {
     @OneToMany(mappedBy = "forumPost")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties("forumPost")
-    private List<ForumComment> comments = new ArrayList<>();
+    private Set<ForumComment> comments = new TreeSet<>();
 
     private Date creationDate;
     private String content;
@@ -46,11 +43,11 @@ public class ForumPost {
         this.author = author;
     }
 
-    public List<ForumComment> getComments() {
+    public Set<ForumComment> getComments() {
         return comments;
     }
 
-    public void setComments(List<ForumComment> comments) {
+    public void setComments(Set<ForumComment> comments) {
         this.comments = comments;
     }
 

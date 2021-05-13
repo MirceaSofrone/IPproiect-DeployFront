@@ -6,10 +6,7 @@ import com.fii.houses.fii.houses.demo.repository.ForumCommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class ForumCommentService {
@@ -27,7 +24,7 @@ public class ForumCommentService {
         return forumCommentRepository.findById(id);
     }
 
-    public List<ForumComment> getAllCommentsOfPostById(UUID postId) throws IllegalArgumentException {
+    public Set<ForumComment> getAllCommentsOfPostById(UUID postId) throws IllegalArgumentException {
         Optional<ForumPost> postOptional = forumPostService.getForumPostById(postId);
 
         if (postOptional.isEmpty())
