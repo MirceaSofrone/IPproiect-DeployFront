@@ -23,7 +23,7 @@ public class User {
     private List<House> forSell = new ArrayList<>(); //seller
     public static final  Integer VIEWSHISTORYCAPACITY = 10;
     public static final Integer FAVOURITELISTCAPACITY = 20;
-    @ManyToMany
+    @OneToMany
     private List<House> viewsHistory = new ArrayList<>(){
         @Override
         public boolean add(House house) {
