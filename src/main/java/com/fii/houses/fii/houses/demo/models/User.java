@@ -23,7 +23,10 @@ public class User {
     private List<House> forSell = new ArrayList<>(); //seller
     public static final  Integer VIEWSHISTORYCAPACITY = 10;
     public static final Integer FAVOURITELISTCAPACITY = 20;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY,
+            mappedBy = "users",
+            targetEntity = House.class,
+            cascade = CascadeType.ALL)
     private List<House> viewsHistory = new ArrayList<>(){
         @Override
         public boolean add(House house) {
