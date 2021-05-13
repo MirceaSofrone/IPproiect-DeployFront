@@ -17,7 +17,7 @@ export class HouseInfoComponent implements OnInit {
 
   constructor(private postData: PhotoCarouselService, private activatedRoute: ActivatedRoute) {
     this. activatedRoute.params.subscribe(data =>{
-      this.paramQuery = data.id;
+      this.paramQuery = data.houseID;
       
     }
       )

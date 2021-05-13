@@ -139,10 +139,10 @@ ngOnInit() {
 
 });
 
-}
+} 
 
 onSelect(item){
-  this.router.navigate(['/house-details', item.id]);
+  this.router.navigate(['/house-details', item.houseID]);
 }
 
 

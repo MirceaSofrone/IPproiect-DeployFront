@@ -16,7 +16,7 @@ export class HouseDetailsComponent implements OnInit {
      private activatedRoute: ActivatedRoute
   
   ) { this. activatedRoute.params.subscribe(data =>{
-    this.paramQuery = data.id;
+    this.paramQuery = data.houseID;
   }
     ) }
 

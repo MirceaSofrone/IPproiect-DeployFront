@@ -22,7 +22,7 @@ export class GalleryPartComponent implements OnInit {
   dataToDisplay: any;
   constructor(private postData:GalleryService, private activatedRoute: ActivatedRoute) {
     this. activatedRoute.params.subscribe(data =>{
-      this.paramQuery = data.id;
+      this.paramQuery = data.houseID;
     }
       )
    }
@@ -38,17 +38,17 @@ export class GalleryPartComponent implements OnInit {
     this.postData.getPosts().subscribe((result)=>{
       //console.warn("result", result);
       this.data=result;
-      for(let i=0; i < this.data.length; i++)
-      {
-        if(this.data[i].id == this.paramQuery)
-          {this.dataToDisplay=this.data[i];
-            break;
-          }
-      }
+      // for(let i=0; i < this.data.length; i++)
+      // {
+      //   if(this.data[i].houseID == this.paramQuery)
+      //     {this.dataToDisplay=this.data[i];
+      //       break;
+      //     }
+      // }
       for(let i=0; i<5; i++){
         console.warn("result", result[i]);
-        // this.galleryImages.push({ "small" : result[i]["data:image/png;base64, data"], "medium" : result[i]["data:image/png;base64, data"], "big" : result[i]["data:image/png;base64, data"]})
-        this.galleryImages.push({ "small" : this.dataToDisplay["download_url"], "medium" : this.dataToDisplay["download_url"], "big" : this.dataToDisplay["download_url"]})
+         //this.galleryImages.push({ "small" : result["data:image/png;base64, photos[i]"], "medium" : this.data.photos[i]["data:image/png;base64, data"], "big" : this.data.photos[i]["data:image/png;base64, data"]})
+       // this.galleryImages.push({ "small" : this.dataToDisplay["download_url"], "medium" : this.dataToDisplay["download_url"], "big" : this.dataToDisplay["download_url"]})
 
       }
   })
