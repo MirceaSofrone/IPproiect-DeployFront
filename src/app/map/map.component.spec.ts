@@ -22,4 +22,12 @@ describe('MapComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  //   it('should be invalid',()=>
+//     {  component.lng=null;
+//        component.lat=null;
+//        expect(component.lat).toBeNull;
+//        expect(component.lng).toBeNull;
+
+
+// });
 });

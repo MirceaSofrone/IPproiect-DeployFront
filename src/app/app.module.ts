@@ -47,6 +47,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './list/list.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HouseDetailsComponent},
@@ -76,7 +77,8 @@ const appRoutes: Routes = [
     LandingSearchComponent,
     LandingBottomComponent,
     LandingPageComponent,
-    ListComponent
+    ListComponent,
+    FooterComponent
 
   ],
   imports: [
