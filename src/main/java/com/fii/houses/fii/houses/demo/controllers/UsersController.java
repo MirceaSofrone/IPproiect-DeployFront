@@ -88,7 +88,7 @@ public class UsersController {
         User newUser = service.getUserByUserID(house.getUserID());
         House newHouse = houseService.getHouseByHouseID(house);
         if(newUser!=null && newHouse!=null){
-            if(newUser.getFavorite().size()==User.FAVOURITELISTCAPACITY)
+            if(newUser.getFavorite().size()==User.FAVOURITE_LIST_CAPACITY)
                 return new ResponseEntity<>("Oops...you have reached the maximum numbers of favorite houses. Please remove one before you can add another.",HttpStatus.BAD_REQUEST);
             else{
                 service.addToFavorites(newUser, newHouse);
@@ -103,7 +103,7 @@ public class UsersController {
         User newUser = service.getUserByUserID(userid);
         House newHouse = houseService.getHouseByHouseID2(houseid);
         if(newUser!=null && newHouse!=null){
-            if(newUser.getFavorite().size()==User.FAVOURITELISTCAPACITY)
+            if(newUser.getFavorite().size()==User.FAVOURITE_LIST_CAPACITY)
                 return new ResponseEntity<>("Oops...you have reached the maximum numbers of favorite houses. Please remove one before you can add another.",HttpStatus.BAD_REQUEST);
             else{
                 service.addToFavorites(newUser, newHouse);

@@ -2,7 +2,6 @@ package com.fii.houses.fii.houses.demo.models;
 
 import javax.persistence.*;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
 
 @Entity
 @Table(name = "users")
@@ -21,15 +20,15 @@ public class User {
     private List<House> favorite = new ArrayList<>(); //for buyer
     @OneToMany
     private List<House> forSell = new ArrayList<>(); //seller
-    public static final  Integer VIEWSHISTORYCAPACITY = 10;
-    public static final Integer FAVOURITELISTCAPACITY = 20;
+    public static final  Integer VIEWS_HISTORY_CAPACITY = 10;
+    public static final Integer FAVOURITE_LIST_CAPACITY = 20;
     @OneToMany(fetch = FetchType.LAZY,
             targetEntity = House.class,
             cascade = CascadeType.ALL)
     private List<House> viewsHistory = new ArrayList<>(){
         @Override
         public boolean add(House house) {
-            if(size()==VIEWSHISTORYCAPACITY){
+            if(size()== VIEWS_HISTORY_CAPACITY){
                 remove(0);
             }
             return super.add(house);
