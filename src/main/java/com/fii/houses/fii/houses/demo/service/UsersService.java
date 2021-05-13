@@ -108,15 +108,9 @@ public class UsersService {
     public void addToViewsHistory(House house, UUID userID) {
         User user = getUserByUserID(userID);
         List<House> usersViewsHistory = user.getViewsHistory();
-        /*if (usersViewsHistory.contains(house)) {
-            usersViewsHistory.remove(house);
-            user.setViewsHistory(usersViewsHistory);
-        }*/
-        if (!usersViewsHistory.contains(house)){
-            user.addToViewsHistory(house);
-        }
-
-
+        usersViewsHistory.remove(house);
+        usersViewsHistory.add(house);
+        user.setViewsHistory(usersViewsHistory);
         Date today = new Date();
         Map<Date, Integer> viewsStatistics = house.getViewsHistory();
         if (viewsStatistics.get(today) == null) {
