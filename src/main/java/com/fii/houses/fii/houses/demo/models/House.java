@@ -1,6 +1,5 @@
 package com.fii.houses.fii.houses.demo.models;
 
-import org.springframework.data.util.Pair;
 
 import javax.persistence.*;
 import java.util.*;

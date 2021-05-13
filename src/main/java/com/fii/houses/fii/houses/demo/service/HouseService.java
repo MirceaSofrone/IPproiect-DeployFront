@@ -41,13 +41,13 @@ public class HouseService {
     private UserRepository userRepository;
     @Autowired
     private AreaRepository areaRepository;
-    private final static Integer carouselSize = 9;
+    private static final Integer CAROUSELSIZE = 9;
 
     public List<House> getAllHousesPage(int page, int number) {
         List<House> allHouses = repository.findAll();
         allHouses.sort(new SortByDate());
         List<House> goodHouses = new ArrayList<>();
-        if (allHouses.size() > 0) {
+        if (!allHouses.isEmpty()) {
             for (int index = number*page; index < number*page+number ; index++) {
                 if(index<allHouses.size()){
                     goodHouses.add(allHouses.get(allHouses.size()-index-1));
@@ -102,7 +102,6 @@ public class HouseService {
         //selling
         if(house.getSellType()==0){
             price = elements[elements.length-2].split(":")[1];
-            //price = price.substring(1, price.length()-1);
             recommendedPrice = Double.valueOf(price);
         }
         //renting
@@ -117,7 +116,7 @@ public class HouseService {
 
     public List<House> getAllHouses() {
         List<House> allHouses = repository.findAll();
-        if (allHouses.size() > 0) {
+        if (!allHouses.isEmpty()) {
             return allHouses;
         } else {
             return new ArrayList<>();
@@ -154,7 +153,7 @@ public class HouseService {
                 housesByUserId.add(existingHouse);
             }
         }
-        if(housesByUserId.size()>0){
+        if(!housesByUserId.isEmpty()){
             return housesByUserId;
         }else {
             return new ArrayList<>();
@@ -170,10 +169,8 @@ public class HouseService {
     }
 
     public House housedetails(UUID houseId){
-        if(repository.findById(houseId).isPresent()){
-            return repository.findById(houseId).get();
-        }
-        return null;
+        Optional<House> house=repository.findById(houseId);
+        return house.orElse(null);
     }
 
     public void updateViews(UUID houseId, UUID userID){
@@ -193,11 +190,11 @@ public class HouseService {
         List<House> allHouses = repository.findAll();
         allHouses.sort(new SortByDate());
         List<House> lastAddedHouses = new ArrayList<>();
-        int noOfHouses = Math.min(allHouses.size(), carouselSize);
+        int noOfHouses = Math.min(allHouses.size(), CAROUSELSIZE);
         for (int index = 0; index < noOfHouses; index++) {
             lastAddedHouses.add(allHouses.get(allHouses.size()-index-1));
         }
-        if (lastAddedHouses.size() > 0) {
+        if (!lastAddedHouses.isEmpty()) {
             return lastAddedHouses;
         } else {
             return new ArrayList<>();
@@ -378,8 +375,9 @@ public class HouseService {
         }
         house=repository.save(house);
         UUID userID = house.getUserID();
-        if(userRepository.findById(userID).isPresent()){
-            User user = userRepository.findById(userID).get();
+        Optional<User> newUser = userRepository.findById(userID);
+        if(newUser.isPresent()){
+            User user = newUser.get();
             List<House> forSell = user.getForSell();
             forSell.add(house);
             user.setForSell(forSell);
@@ -391,8 +389,9 @@ public class HouseService {
     public House updateHouse(House house){
         UUID id = house.getHouseID();
         boolean mustUpdateRecommendedPrice = false;
-        if(repository.findById(id).isPresent()){
-            House updateHouse = repository.findById(id).get();
+        Optional<House> newHouse=repository.findById(id);
+        if(newHouse.isPresent()){
+            House updateHouse = newHouse.get();
             house.setCreationDate(new Date());
             if(house.getAddress()!=null){
                 updateHouse.setAddress(house.getAddress());
@@ -457,21 +456,27 @@ public class HouseService {
         if(repository.existsById(houseId)){
             //if it exists on users at forSell, favorite or viewsHistory, must delete from there before deleting the house
             List<User> allUsers = userRepository.findAll();
-            House deletedHouse = repository.findById(houseId).get();
-            for(User user : allUsers){
-                List<House> forSell = user.getForSell();
-                forSell.removeIf(house -> house.getHouseID() == deletedHouse.getHouseID());
-                user.setForSell(forSell);
-                List<House> favorite = user.getFavorite();
-                favorite.removeIf(house -> house.getHouseID() == deletedHouse.getHouseID());
-                user.setFavorite(favorite);
-                List<House> viewsHistory = user.getViewsHistory();
-                viewsHistory.removeIf(house -> house.getHouseID() == deletedHouse.getHouseID());
-                user.setViewsHistory(viewsHistory);
-                userRepository.save(user);
+            Optional<House> availableHouse=repository.findById(houseId);
+            if(availableHouse.isPresent())
+            {
+                House deletedHouse = availableHouse.get();
+                for(User user : allUsers){
+                    List<House> forSell = user.getForSell();
+                    forSell.removeIf(house -> house.getHouseID() == deletedHouse.getHouseID());
+                    user.setForSell(forSell);
+                    List<House> favorite = user.getFavorite();
+                    favorite.removeIf(house -> house.getHouseID() == deletedHouse.getHouseID());
+                    user.setFavorite(favorite);
+                    List<House> viewsHistory = user.getViewsHistory();
+                    viewsHistory.removeIf(house -> house.getHouseID() == deletedHouse.getHouseID());
+                    user.setViewsHistory(viewsHistory);
+                    userRepository.save(user);
+                }
+                repository.delete(deletedHouse);
+                return true;
             }
-            repository.delete(deletedHouse);
-            return true;
+            else return false;
+
         }else {
             return false;
         }
@@ -487,15 +492,11 @@ public class HouseService {
         for(House house : allHouses){
             counterMatches = 0;
             for(String word : arrOfWords){
-                if(house.getDescription() != null){
-                    if(house.getDescription().contains(word)){
+                if(house.getDescription() != null && house.getDescription().contains(word)){
                         counterMatches++;
-                    }
                 }
-                if(house.getAddress() != null){
-                    if(house.getAddress().contains(word)){
+                if(house.getAddress() != null && house.getAddress().contains(word)){
                         counterMatches++;
-                    }
                 }
             }
             if(counterMatches != 0){
@@ -527,14 +528,14 @@ public class HouseService {
         List<House> filteredHouses = new ArrayList<>();
 
         for(House house : allHouses){
-            if((houseType == null || house.getHouseType()==(houseType)) &&
-                    (sellType == null || house.getSellType()==(sellType)) &&
-                    (city == null || house.getCity()==(city)) &&
-                    (country == null || house.getCountry()==(country)) &&
-                    (noOfRooms == null || house.getNoOfRooms()==(noOfRooms)) &&
-                    (floor == null || house.getFloor()==(floor)) &&
-                    (surface == null || house.getSurface()==(surface)) &&
-                    (noOfBathrooms == null || house.getNoOfBathrooms()==(noOfBathrooms))) {
+            if((houseType == null || house.getHouseType().equals(houseType)) &&
+                    (sellType == null || house.getSellType().equals(sellType)) &&
+                    (city == null || house.getCity().equals(city)) &&
+                    (country == null || house.getCountry().equals(country)) &&
+                    (noOfRooms == null || house.getNoOfRooms().equals(noOfRooms)) &&
+                    (floor == null || house.getFloor().equals(floor)) &&
+                    (surface == null || house.getSurface().equals(surface)) &&
+                    (noOfBathrooms == null || house.getNoOfBathrooms().equals(noOfBathrooms))) {
                 filteredHouses.add(house);
             }
         }
@@ -561,7 +562,7 @@ public class HouseService {
         List<Area> allArea=areaRepository.findAll();
         for(Area getArea:allArea){
             if(lat>=getArea.getLatitudeMin() && lat<=getArea.getLatitudeMax()&& lon>=getArea.getLongitudeMin() && lon<=getArea.getLongitudeMax()){
-                location=getArea.getArea();
+                location=getArea.getAreaName();
             }
         }
         return location;

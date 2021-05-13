@@ -15,7 +15,7 @@ public class HousePhotos {
 
     @Lob
     private byte[] data;
-    public final static Integer LIMIT = 5;
+    public static final Integer LIMIT = 5;
 
     public HousePhotos() {
     }

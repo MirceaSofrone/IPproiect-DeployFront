@@ -6,6 +6,7 @@ import com.fii.houses.fii.houses.demo.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.*;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.*;
@@ -136,6 +137,7 @@ public class HousesController {
     }
 
     @GetMapping("/geoLocation")
+    @Nullable
     public ResponseEntity<Pair<Double, Double>> getLocations(@RequestParam String address){
         Pair<Double, Double> location=service.geoLocation(address);
         if(location == null){

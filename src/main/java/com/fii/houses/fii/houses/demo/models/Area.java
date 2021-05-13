@@ -9,14 +9,14 @@ public class Area {
     @GeneratedValue(strategy = GenerationType.AUTO)
 //    @Column(columnDefinition = "BINARY(16)")
     private UUID areaID;
-    private String area;
+    private String areaName;
     private double latitudeMax;
     private double latitudeMin;
     private double longitudeMax;
     private double longitudeMin;
 
-    public String getArea() {
-        return area;
+    public String getAreaName() {
+        return areaName;
     }
 
     public double getLatitudeMax() {

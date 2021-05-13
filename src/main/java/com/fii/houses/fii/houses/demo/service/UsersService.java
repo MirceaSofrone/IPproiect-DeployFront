@@ -27,10 +27,8 @@ public class UsersService {
     }
 
     public User getUserByUserID(UUID id) {
-        if(repository.findById(id).isPresent()){
-            return repository.findById(id).get();
-        }
-        return null;
+        Optional<User>user=repository.findById(id);
+        return user.orElse(null);
     }
 
     public User create(User user) {
@@ -42,9 +40,10 @@ public class UsersService {
 
     public User update(User user) {
         UUID id = user.getUserID();
-        User newUser = new User();
-        if (repository.existsById(id)) {
-            newUser = repository.findById(id).get();
+        Optional<User>availableUser=repository.findById(id);
+        User newUser;
+        if (availableUser.isPresent()) {
+            newUser = availableUser.get();
             if (user.getFirstName() != null) {
                 newUser.setFirstName(user.getFirstName());
             }

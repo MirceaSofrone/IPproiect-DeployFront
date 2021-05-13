@@ -8,6 +8,8 @@ class ApplicationTests {
 
 	@Test
 	void contextLoads() {
+	    int a=1;
+	    System.out.println(a + "Acesta este un test scris in Aplication Tests");
 	}
 
 }
