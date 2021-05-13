@@ -1,0 +1,6 @@
+projectKey=ip
+serverUrl=http://localhost:9000
+serverVersion=8.8.0.42792
+dashboardUrl=http://localhost:9000/dashboard?id=ip
+ceTaskId=AXk9gBAYXUTmaYlJA76C
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXk9gBAYXUTmaYlJA76C
