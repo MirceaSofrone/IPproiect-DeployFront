@@ -1,0 +1,52 @@
+
+
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  </head>
+
+  <div class="card" *ngFor="let item of infoList | slice:0:10; let i=index">
+    <section class="card-info" >
+        <div class = first-line>
+          <a id="user-icon" class="icon-display" >
+            <mat-icon>account_circle</mat-icon>
+          </a>
+         
+            
+           <div class="text" >
+             <a [routerLink]="['/forum-topic', item.id]">
+                <a class="author">
+                  {{item.username}} asked: 
+                </a>
+
+                <a class="question">
+                  {{item.question}} 
+                </a>
+              </a>
+            </div>
+        </div>
+              <div class="info">
+
+              <span class="details">
+                <mat-icon>chat</mat-icon>
+                <a>
+                {{item.answers}} answers</a> 
+              </span>
+
+              <span class="details">
+                <mat-icon>favorite_border</mat-icon>
+                bookmark question
+             </span>
+
+             <span class="details">
+               <mat-icon>outlined_flag</mat-icon>
+              report question
+              </span>
+            </div>
+        
+          
+            <ng-content></ng-content>
+          </section>
+
+    </div>
+
+   

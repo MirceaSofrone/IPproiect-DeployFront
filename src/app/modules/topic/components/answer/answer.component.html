@@ -1,0 +1,29 @@
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    </head>
+  
+    <div class="card"  *ngFor="let item of infoList | slice:0:10; let i=index">
+      <section class="card-info" >
+          <div class = first-line>
+            <a class="icon-display" >
+              <mat-icon id="user-icon">account_circle</mat-icon>
+            </a>
+              
+             <div class="text" >
+                <a class="author">
+                   {{item.username}} answered: 
+                </a>
+            </div>
+          </div>
+
+            <div class = "textarea">
+                <mat-card>
+                <mat-card-content>{{item.text}}</mat-card-content></mat-card>
+            </div>
+              
+              <ng-content></ng-content>
+            </section>
+  
+      </div>
+  

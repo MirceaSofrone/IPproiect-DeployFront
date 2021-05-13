@@ -1,0 +1,14 @@
+.glass {
+    /* background: linear-gradient(to right bottom, #F2C4CE, #F58F7C ); */
+    width: 93%;
+    background-color: white;
+    border-radius: 2rem;
+    margin: 50px;
+    position: relative; 
+    margin-top: 6rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 50px;
+
+}

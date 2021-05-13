@@ -1,0 +1,48 @@
+.glass {
+    min-height: 100vh;
+    width: 93%;
+    background-color: white;
+    border-radius: 2rem;
+    margin: 50px;
+    position: relative; 
+    margin-top: 6rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 50px;
+}
+.mat-button{
+    position: relative;
+    margin-left: 60vw;
+    margin-top: 10vw;
+    color: #707070;
+    font-size: 20px;
+}
+
+
+@media screen and (max-width:1000px) {
+
+    .glass{
+        min-height: 100vh;
+        background-color: white;
+        border-radius: 2rem;
+        margin: 50px;
+        position: relative;
+        margin-top: 4rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: 50px;
+        padding-left: 10px;
+       }
+   
+    
+    #add_btn{
+        margin-bottom: 10vw;
+        position: relative;
+        margin-left: 43vw;
+        margin-top: 6vw;
+        color: #707070;
+        margin-right: 70vw;
+    }
+}
