@@ -1,11 +1,11 @@
-// import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class HouseService {
+@Injectable({
+  providedIn: 'root'
+})
+export class HouseService {
 
-//   constructor() { }
+  constructor() { }
 //   getHouse(id: number): Observable<House> {
 //     // For now, assume that a hero with the specified `id` always exists.
 //     // Error handling will be added in the next step of the tutorial.
@@ -13,4 +13,4 @@
 //     this.messageService.add(`HeroService: fetched hero id=${id}`);
 //     return of(house);
 //   }
-// }
+ }

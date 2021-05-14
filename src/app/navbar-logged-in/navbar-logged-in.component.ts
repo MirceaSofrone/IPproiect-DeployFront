@@ -1,4 +1,6 @@
 import { Component, OnInit} from '@angular/core';
+import {FlexLayoutModule}from '@angular/flex-layout'
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -12,7 +14,7 @@ import { Component, OnInit} from '@angular/core';
 
 
 export class NavbarLoggedInComponent implements OnInit {
-
+ 
  
   constructor() { }
 
