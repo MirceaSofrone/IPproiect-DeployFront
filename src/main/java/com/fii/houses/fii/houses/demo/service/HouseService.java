@@ -491,6 +491,9 @@ public class HouseService {
         for(House house : allHouses){
             counterMatches = 0;
             for(String word : arrOfWords){
+                if(house.getTitle() != null && house.getTitle().contains(word)){
+                    counterMatches++;
+                }
                 if(house.getDescription() != null && house.getDescription().contains(word)){
                         counterMatches++;
                 }

@@ -84,13 +84,28 @@ Example of response:
 
 10. GET https://house-prediction-fii.herokuapp.com/api/v1/lastadded - get the last 9 added houses(for the carousel)
 
-11. GET https://house-prediction-fii.herokuapp.com/api/v1/filter/bysearch/{words} - search(through address and description) filter; the words must be separated through "-"
+11. GET https://house-prediction-fii.herokuapp.com/api/v1
+    (@RequestParam String search,
+    @RequestParam Integer houseType,
+    @RequestParam Integer sellType,
+    @RequestParam String city,
+    @RequestParam String country,
+    @RequestParam Integer noOfRooms,
+    @RequestParam Integer floor,
+    @RequestParam Integer surface,
+    @RequestParam Integer noOfBathrooms)
 
-12. GET https://house-prediction-fii.herokuapp.com/api/v1/filter/byfields - returns a list of houses filtered by fields
+Search houses with some filters, including words in address, title and description(words must be separated through "-" in search)
+All parameters can be omitted
+Examples:
+https://house-prediction-fii.herokuapp.com/api/v1  -returns all houses (not recommended)
+https://house-prediction-fii.herokuapp.com/api/v1?floor=1&surface=60  -returns all houses that are on the 1st floor and have the surface=60
+https://house-prediction-fii.herokuapp.com/api/v1?search=casa-test  -returns all houses that have in address, title or description, at least one of these words, in desc order, according to the number of occurrences
+https://house-prediction-fii.herokuapp.com/api/v1?search=casa-test&floor=1&surface=60   -returns a combination of the above results
 
-13. GET https://house-prediction-fii.herokuapp.com/api/v1/users/history(@RequestParam UUID userID) - returns this user's viewing history
+12. GET https://house-prediction-fii.herokuapp.com/api/v1/users/history(@RequestParam UUID userID) - returns this user's viewing history
 
-14. PUT
+13. PUT
 
  1) https://house-prediction-fii.herokuapp.com/api/v1/users/addtofavorite
  - request body:
@@ -101,7 +116,7 @@ Example of response:
 
 2)https://house-prediction-fii.herokuapp.com/api/v1/users/addtofavorite/{userid}/{houseid}
 
-15. PUT
+14. PUT
  1) https://house-prediction-fii.herokuapp.com/api/v1/users/removefromfavorite
  - request body:
 { 
@@ -111,6 +126,6 @@ Example of response:
 
 2)https://house-prediction-fii.herokuapp.com/api/v1/users/removefromfavorite/{userid}/{houseid}
 
-16. GET https://house-prediction-fii.herokuapp.com/api/v1/users/getfavorite/{userid} - get the favorites list for the user
+15. GET https://house-prediction-fii.herokuapp.com/api/v1/users/getfavorite/{userid} - get the favorites list for the user
 
 //User related functions to be updates after back-end integration
