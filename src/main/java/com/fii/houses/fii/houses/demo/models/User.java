@@ -8,7 +8,7 @@ import java.util.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 //    @Column(columnDefinition = "BINARY(16)")
     private UUID userID;
     private Date creationDate;
