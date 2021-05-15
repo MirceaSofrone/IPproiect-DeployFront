@@ -109,19 +109,21 @@ public class UsersService {
 
     public void addToViewsHistory(House house, UUID userID) {
         User user = getUserByUserID(userID);
-        List<House> usersViewsHistory = user.getViewsHistory();
-        usersViewsHistory.remove(house);
-        usersViewsHistory.add(house);
-        user.setViewsHistory(usersViewsHistory);
-        Date today = new Date();
-        Map<Date, Integer> viewsStatistics = house.getViewsHistory();
-        if (viewsStatistics.get(today) == null) {
-            viewsStatistics.put(today, house.getViews() + 1);
-        } else {
-            viewsStatistics.replace(today, house.getViews() + 1);
+        if(user != null){
+            List<House> usersViewsHistory = user.getViewsHistory();
+            usersViewsHistory.remove(house);
+            usersViewsHistory.add(house);
+            user.setViewsHistory(usersViewsHistory);
+            Date today = new Date();
+            Map<Date, Integer> viewsStatistics = house.getViewsHistory();
+            if (viewsStatistics.get(today) == null) {
+                viewsStatistics.put(today, house.getViews() + 1);
+            } else {
+                viewsStatistics.replace(today, house.getViews() + 1);
+            }
+            house.setViewsHistory(viewsStatistics);
+            repository.save(user);
+            houseRepository.save(house);
         }
-        house.setViewsHistory(viewsStatistics);
-        repository.save(user);
-        houseRepository.save(house);
     }
 }

@@ -167,20 +167,22 @@ public class HouseService {
         return null;
     }
 
-    public House housedetails(UUID houseId){
+    public House houseDetails(UUID houseId){
         Optional<House> house=repository.findById(houseId);
         return house.orElse(null);
     }
 
     public void updateViews(UUID houseId, UUID userID){
         if(repository.existsById(houseId)){
-            House house = repository.getOne(houseId);
-            User user = userRepository.getOne(userID);
-            List<House> usersViewsHistory = user.getViewsHistory();
-            if (!usersViewsHistory.contains(house)){
-                int views = house.getViews();
-                house.setViews(views+1);
-                repository.save(house);
+            Optional<House> house = repository.findById(houseId);
+            Optional<User> user = userRepository.findById(userID);
+            if(house.isPresent() && user.isPresent()){
+                List<House> usersViewsHistory = user.get().getViewsHistory();
+                if (!usersViewsHistory.contains(house)){
+                    int views = house.get().getViews();
+                    house.get().setViews(views+1);
+                    repository.save(house.get());
+                }
             }
         }
     }
