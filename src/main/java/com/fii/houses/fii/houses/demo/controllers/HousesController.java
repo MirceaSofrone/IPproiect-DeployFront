@@ -111,23 +111,12 @@ public class HousesController {
         }
     }
 
-    //the words will be separated through "-"
-    @GetMapping("/filter/bysearch/{words}")
-    public ResponseEntity<List<House>> searchInAddressAndDescription(@PathVariable String words){
-        List<House> houses = service.searchByWords(words);
-        if(houses.isEmpty()){
-            return new ResponseEntity<>(new HttpHeaders(), HttpStatus.NOT_FOUND);
-        }else{
-            return new ResponseEntity<>(houses, new HttpHeaders(), HttpStatus.OK);
-        }
-    }
-
-    @GetMapping("/filter/byfields")
-    public ResponseEntity <List<House>> searchInFields( @RequestParam Integer houseType, @RequestParam Integer sellType,
-                                                        @RequestParam String city, @RequestParam String country,
-                                                        @RequestParam Integer noOfRooms,@RequestParam Integer floor,
-                                                        @RequestParam Integer surface,@RequestParam Integer noOfBathrooms){
-        List<House> houses = service.searchByFields(houseType, sellType, city, country, noOfRooms,floor, surface, noOfBathrooms);
+    @GetMapping("")
+    public ResponseEntity <List<House>> search( @RequestParam(required = false) String search, @RequestParam(required = false) Integer houseType, @RequestParam(required = false) Integer sellType,
+                                                        @RequestParam(required = false) String city, @RequestParam(required = false) String country,
+                                                        @RequestParam(required = false) Integer noOfRooms,@RequestParam(required = false) Integer floor,
+                                                        @RequestParam(required = false) Integer surface,@RequestParam(required = false) Integer noOfBathrooms){
+        List<House> houses = service.search(search, houseType, sellType, city, country, noOfRooms,floor, surface, noOfBathrooms);
 
         if(houses.isEmpty()){
             return new ResponseEntity<>( new HttpHeaders(), HttpStatus.NOT_FOUND);

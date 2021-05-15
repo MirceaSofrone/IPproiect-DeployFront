@@ -134,7 +134,6 @@ public class HouseService {
         return null;
     }
 
-
     public House getHouseByHouseID2(UUID houseid){
         List<House> allHouses = repository.findAll();
         for (House existingHouse : allHouses) {
@@ -522,12 +521,11 @@ public class HouseService {
         return houses;
     }
 
-    public List<House> searchByFields(Integer houseType, Integer sellType, String city, String country, Integer noOfRooms,
+    public List<House> searchByFields(List<House> houses, Integer houseType, Integer sellType, String city, String country, Integer noOfRooms,
                                       Integer floor, Integer surface, Integer noOfBathrooms){
-        List<House> allHouses = this.getAllHouses();
         List<House> filteredHouses = new ArrayList<>();
 
-        for(House house : allHouses){
+        for(House house : houses){
             if((houseType == null || house.getHouseType().equals(houseType)) &&
                     (sellType == null || house.getSellType().equals(sellType)) &&
                     (city == null || house.getCity().equals(city)) &&
@@ -540,6 +538,17 @@ public class HouseService {
             }
         }
         return filteredHouses;
+    }
+
+    public List<House> search(String words, Integer houseType, Integer sellType, String city, String country, Integer noOfRooms,
+                              Integer floor, Integer surface, Integer noOfBathrooms){
+        List<House> houses;
+        if(words!=null){
+            houses = searchByWords(words);
+        }else{
+            houses = this.getAllHouses();
+        }
+        return searchByFields(houses, houseType, sellType, city, country, noOfRooms,floor, surface, noOfBathrooms);
     }
 
     public Pair<Double, Double> geoLocation(String address){
