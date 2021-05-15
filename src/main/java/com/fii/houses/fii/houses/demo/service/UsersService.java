@@ -117,9 +117,9 @@ public class UsersService {
             Date today = new Date();
             Map<Date, Integer> viewsStatistics = house.getViewsHistory();
             if (viewsStatistics.get(today) == null) {
-                viewsStatistics.put(today, house.getViews() + 1);
+                viewsStatistics.put(today, house.getViews());
             } else {
-                viewsStatistics.replace(today, house.getViews() + 1);
+                viewsStatistics.replace(today, house.getViews());
             }
             house.setViewsHistory(viewsStatistics);
             repository.save(user);
