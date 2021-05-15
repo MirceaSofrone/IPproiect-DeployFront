@@ -567,6 +567,7 @@ public class HouseService {
         Double lon=firstResultLatLng.getLng();
         return Pair.of(lat, lon);
     }
+
     public String getArea(Pair<Double,Double>geolocation){
         String location=null;
         double lat = geolocation.getFirst();

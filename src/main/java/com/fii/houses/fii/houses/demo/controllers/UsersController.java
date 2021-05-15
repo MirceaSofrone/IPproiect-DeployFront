@@ -33,6 +33,7 @@ public class UsersController {
         List<User> users = service.getAllUsers();
         return new ResponseEntity<>(users, new HttpHeaders(), HttpStatus.OK);
     }
+
     @GetMapping("/{userid}")
     public ResponseEntity<User> getUserByUserID(@PathVariable UUID userid){
         User existingUser = service.getUserByUserID(userid);
@@ -61,8 +62,7 @@ public class UsersController {
     }
 
     @DeleteMapping ("/delete/{userid}")
-    public ResponseEntity<String> delete(@PathVariable UUID userid)
-    {
+    public ResponseEntity<String> delete(@PathVariable UUID userid) {
        if(service.deleteUser(userid)){
            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.OK);
        }

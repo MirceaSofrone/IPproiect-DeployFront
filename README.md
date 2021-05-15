@@ -128,4 +128,14 @@ https://house-prediction-fii.herokuapp.com/api/v1?search=casa-test&floor=1&surfa
 
 15. GET https://house-prediction-fii.herokuapp.com/api/v1/users/getfavorite/{userid} - get the favorites list for the user
 
+16. GET https://house-prediction-fii.herokuapp.com/api/v1/users/{userid} -get the user's details
+
+17. POST https://house-prediction-fii.herokuapp.com/api/v1/users/update 
+-requestBody
+    {
+        "firstName":
+        "lastName":
+        "phoneNumber"
+    }
+
 //User related functions to be updates after back-end integration

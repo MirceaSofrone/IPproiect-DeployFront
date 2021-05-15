@@ -50,6 +50,9 @@ public class UsersService {
             if (user.getLastName() != null) {
                 newUser.setLastName(user.getLastName());
             }
+            if(user.getPhoneNumber() != null){
+                newUser.setPhoneNumber(user.getPhoneNumber());
+            }
             repository.save(newUser);
             return newUser;
         } else {
