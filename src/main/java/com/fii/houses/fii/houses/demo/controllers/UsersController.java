@@ -37,11 +37,11 @@ public class UsersController {
 
     @GetMapping("/{userid}")
     public ResponseEntity<User> getUserByUserID(@PathVariable UUID userid){
-        User existingUser = service.getUserByUserID(userid);
-        if(existingUser==null){
+        Optional<User> existingUser = service.getUserByUserID(userid);
+        if(!existingUser.isPresent()){
             return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
         }else {
-            return new ResponseEntity<>(existingUser, new HttpHeaders(),HttpStatus.OK);
+            return new ResponseEntity<>(existingUser.get(), new HttpHeaders(),HttpStatus.OK);
         }
     }
 
@@ -86,13 +86,13 @@ public class UsersController {
 
     @PutMapping("/addtofavorite")
     public ResponseEntity<String> addToFavorite (@RequestBody House house){
-        User newUser = service.getUserByUserID(house.getUserID());
+      Optional<User> newUser = service.getUserByUserID(house.getUserID());
         House newHouse = houseService.getHouseByHouseID(house);
-        if(newUser!=null && newHouse!=null){
-            if(newUser.getFavorite().size()==User.FAVOURITE_LIST_CAPACITY)
+        if(newUser.isPresent() && newHouse!=null){
+            if(newUser.get().getFavorite().size()==User.FAVOURITE_LIST_CAPACITY)
                 return new ResponseEntity<>("Oops...you have reached the maximum numbers of favorite houses. Please remove one before you can add another.",HttpStatus.BAD_REQUEST);
             else{
-                service.addToFavorites(newUser, newHouse);
+                service.addToFavorites(newUser.get(), newHouse);
                 return new ResponseEntity<>(HttpStatus.OK);}
         }else{
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -101,13 +101,13 @@ public class UsersController {
 
     @PutMapping("/addtofavorite/{userid}/{houseid}")
     public ResponseEntity<String> addToFavorite2 (@PathVariable UUID userid, @PathVariable UUID houseid){
-        User newUser = service.getUserByUserID(userid);
+       Optional<User> newUser = service.getUserByUserID(userid);
         House newHouse = houseService.getHouseByHouseID2(houseid);
-        if(newUser!=null && newHouse!=null){
-            if(newUser.getFavorite().size()==User.FAVOURITE_LIST_CAPACITY)
+        if(newUser.isPresent() && newHouse!=null){
+            if(newUser.get().getFavorite().size()==User.FAVOURITE_LIST_CAPACITY)
                 return new ResponseEntity<>("Oops...you have reached the maximum numbers of favorite houses. Please remove one before you can add another.",HttpStatus.BAD_REQUEST);
             else{
-                service.addToFavorites(newUser, newHouse);
+                service.addToFavorites(newUser.get(), newHouse);
                 return new ResponseEntity<>(HttpStatus.OK);}
         }else{
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -116,35 +116,35 @@ public class UsersController {
 
     @DeleteMapping("/removefromfavorite")
     public ResponseEntity<?> removeFromFavorite(@RequestBody House house){
-        User newUser = service.getUserByUserID(house.getUserID());
+        Optional<User> newUser = service.getUserByUserID(house.getUserID());
         House newHouse = houseService.getHouseByHouseID(house);
-        if(newUser==null || newHouse==null){
+        if(newUser.isEmpty() || newHouse==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }else{
-            service.removeFromFavorites(newUser, newHouse);
+            service.removeFromFavorites(newUser.get(), newHouse);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
 
     @DeleteMapping("/removefromfavorite/{userid}/{houseid}")
     public ResponseEntity<?> removeFromFavorite2(@PathVariable UUID userid, @PathVariable UUID houseid){
-        User newUser = service.getUserByUserID(userid);
+        Optional<User> newUser = service.getUserByUserID(userid);
         House newHouse = houseService.getHouseByHouseID2(houseid);
-        if(newUser==null || newHouse==null){
+        if(newUser.isEmpty() || newHouse==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }else{
-            service.removeFromFavorites(newUser, newHouse);
+            service.removeFromFavorites(newUser.get(), newHouse);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
 
     @GetMapping("/history")
     public ResponseEntity<?> getViewsHistory(@RequestParam UUID userID){
-        User user = service.getUserByUserID(userID);
-        if(user == null){
+        Optional<User> user = service.getUserByUserID(userID);
+        if(user.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }else{
-            return new ResponseEntity<>(user.getViewsHistory(),new HttpHeaders(),HttpStatus.OK);
+            return new ResponseEntity<>(user.get().getViewsHistory(),new HttpHeaders(),HttpStatus.OK);
         }
     }
 }

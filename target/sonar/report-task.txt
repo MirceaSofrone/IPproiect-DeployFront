@@ -1,0 +1,6 @@
+projectKey=com.fii.houses:fii.houses.demo
+serverUrl=http://localhost:9000
+serverVersion=8.8.0.42792
+dashboardUrl=http://localhost:9000/dashboard?id=com.fii.houses%3Afii.houses.demo
+ceTaskId=AXl07fg6Cf-DtxfaCkaD
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXl07fg6Cf-DtxfaCkaD

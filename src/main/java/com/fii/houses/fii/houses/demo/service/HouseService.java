@@ -16,6 +16,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -56,6 +58,9 @@ public class HouseService {
     private AreaRepository areaRepository;
     private static final Integer CAROUSELSIZE = 9;
     private static final Integer SIMILARPRECISION = 2;
+
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(HouseService.class);
 
     public List<House> getAllHousesPage(int page, int number) {
         List<House> allHouses = repository.findAll();
@@ -98,7 +103,7 @@ public class HouseService {
                     .addParameter("zona", house.getArea())
                     .build();
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+           LOGGER.error(String.valueOf(e));
         }
         httpGet.setURI(uri);
         HttpClient client = HttpClients.custom().build();
@@ -192,7 +197,7 @@ public class HouseService {
             Optional<User> user = userRepository.findById(userID);
             if(house.isPresent() && user.isPresent()){
                 List<House> usersViewsHistory = user.get().getViewsHistory();
-                if (!usersViewsHistory.contains(house)){
+                if (!usersViewsHistory.contains(house.get())){
                     int views = house.get().getViews();
                     house.get().setViews(views+1);
                     repository.save(house.get());
@@ -509,7 +514,7 @@ public class HouseService {
                 try {
                     updateHouse.setRecommendedPrice(getPriceFromAPI(updateHouse));
                 } catch (IOException e) {
-                    e.printStackTrace();
+                   LOGGER.error(String.valueOf(e));
                 }
             }
             house=repository.save(updateHouse);
@@ -540,10 +545,10 @@ public class HouseService {
                 }
                 repository.delete(deletedHouse);
             }
-            return availableHouse.isPresent() ? true: false;
+            return availableHouse.isPresent();
 
         }else {
-            return repository.existsById(houseId)? true:false;
+            return repository.existsById(houseId);
         }
     }
 

@@ -26,9 +26,8 @@ public class UsersService {
         }
     }
 
-    public User getUserByUserID(UUID id) {
-        Optional<User>user=repository.findById(id);
-        return user.orElse(null);
+    public Optional<User> getUserByUserID(UUID id) {
+        return  repository.findById(id);
     }
 
     public User create(User user) {
@@ -64,7 +63,7 @@ public class UsersService {
         if (repository.existsById(userid)) {
             repository.deleteById(userid);
         }
-        return repository.existsById(userid) ? true:false;
+        return repository.existsById(userid);
     }
 
     public void addToFavorites(User user, House house) {
@@ -106,12 +105,12 @@ public class UsersService {
     }
 
     public void addToViewsHistory(House house, UUID userID) {
-        User user = getUserByUserID(userID);
-        if(user != null){
-            List<House> usersViewsHistory = user.getViewsHistory();
+        Optional<User> user = getUserByUserID(userID);
+        if(user.isPresent()){
+            List<House> usersViewsHistory = user.get().getViewsHistory();
             usersViewsHistory.remove(house);
             usersViewsHistory.add(house);
-            user.setViewsHistory(usersViewsHistory);
+            user.get().setViewsHistory(usersViewsHistory);
             Date today = new Date();
             Map<Date, Integer> viewsStatistics = house.getViewsHistory();
             if (viewsStatistics.get(today) == null) {
@@ -120,7 +119,7 @@ public class UsersService {
                 viewsStatistics.replace(today, house.getViews());
             }
             house.setViewsHistory(viewsStatistics);
-            repository.save(user);
+            repository.save(user.get());
             houseRepository.save(house);
         }
     }
