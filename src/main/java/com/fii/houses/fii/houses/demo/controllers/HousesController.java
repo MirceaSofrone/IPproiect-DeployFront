@@ -111,6 +111,16 @@ public class HousesController {
         }
     }
 
+    @GetMapping("/similar/{houseId}")
+    public ResponseEntity<List<House>> simialHouses(@PathVariable UUID houseId){
+        List<House> houses = service.similarHouses(houseId);
+        if(houses.equals(new ArrayList<>())){
+            return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(houses, new HttpHeaders(), HttpStatus.OK);
+        }
+    }
+
     @GetMapping("/search")
     public ResponseEntity <List<House>> search( @RequestParam(required = false) String search, @RequestParam(required = false) Integer houseType, @RequestParam(required = false) Integer sellType,
                                                         @RequestParam(required = false) String city, @RequestParam(required = false) String country,

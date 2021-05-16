@@ -42,6 +42,7 @@ public class HouseService {
     @Autowired
     private AreaRepository areaRepository;
     private static final Integer CAROUSELSIZE = 9;
+    private static final Integer SIMILARPRECISION = 2;
 
     public List<House> getAllHousesPage(int page, int number) {
         List<House> allHouses = repository.findAll();
@@ -201,6 +202,41 @@ public class HouseService {
             return new ArrayList<>();
         }
     }
+
+    public List<House> similarHouses(UUID houseId){
+        List<House> allHouses = repository.findAll();
+        allHouses.sort(new SortByDate());
+        House house = repository.getOne(houseId);
+        List<House> similarHouse = new ArrayList<>();
+        int noOfHouses = Math.min(allHouses.size(), CAROUSELSIZE);
+        for (int index = 0; index < noOfHouses; index++) {
+            int similarValues = 0;
+            if(house.getHouseID().equals(allHouses.get(index).getHouseID())){
+                continue;
+            }
+            if(house.getHouseType().equals(allHouses.get(index).getHouseType())){
+                similarValues++;
+            }
+            if(house.getSellType().equals(allHouses.get(index).getSellType())){
+                similarValues++;
+            }
+            if(house.getNoOfRooms().equals(allHouses.get(index).getNoOfRooms())){
+                similarValues++;
+            }
+            if(house.getFloor().equals(allHouses.get(index).getFloor())){
+                similarValues++;
+            }
+            if(similarValues>=SIMILARPRECISION){
+                similarHouse.add(allHouses.get(index));
+            }
+        }
+        if (!similarHouse.isEmpty()) {
+            return similarHouse;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
 //    public String getArea(String address){
 //        JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("e02d3849718d47ac86668c2149a7b8f9");
 //        JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);
