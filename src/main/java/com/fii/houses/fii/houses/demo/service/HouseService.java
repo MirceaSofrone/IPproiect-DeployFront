@@ -33,6 +33,19 @@ class SortByDate implements Comparator<House> {
     }
 }
 
+class SortByPriceCoefficient implements Comparator<House>{
+    @Override
+    public int compare(House house1, House house2) {
+        if((house1.getCurrentPrice() - house1.getRecommendedPrice()) == (house2.getCurrentPrice() - house2.getRecommendedPrice())){
+            return 0;
+        }else if ((house1.getCurrentPrice() - house1.getRecommendedPrice()) < (house2.getCurrentPrice() - house2.getRecommendedPrice())){
+            return 1;
+        }else{
+            return -1;
+        }
+    }
+}
+
 @Service
 public class HouseService {
     @Autowired
@@ -232,6 +245,22 @@ public class HouseService {
         }
         if (!similarHouse.isEmpty()) {
             return similarHouse;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<House> bestDeals(){
+        List<House> allHouses = repository.findAll();
+        allHouses.sort(new SortByDate());
+        allHouses.sort(new SortByPriceCoefficient());
+        List<House> bestHouses= new ArrayList<>();
+        int noOfHouses = Math.min(allHouses.size(), CAROUSELSIZE);
+        for (int index = 0; index < noOfHouses; index++) {
+            bestHouses.add(allHouses.get(allHouses.size()-index-1));
+        }
+        if (!bestHouses.isEmpty()) {
+            return bestHouses;
         } else {
             return new ArrayList<>();
         }
