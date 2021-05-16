@@ -76,15 +76,15 @@ Example of response:
 ]
 }
 
-7. GET https://house-prediction-fii.herokuapp.com/api/v1/houseviews/{houseId} - get the number of views a house has
+7. GET https://house-prediction-fii.herokuapp.com/api/v1/{houseId} - get the number of views a house has
 
-8. GET https://house-prediction-fii.herokuapp.com/api/v1/sellerhouses/{userid} - get all the houses a seller has
+8. GET https://house-prediction-fii.herokuapp.com/api/v1/{userid} - get all the houses a seller has
 
 9. DELETE https://house-prediction-fii.herokuapp.com/api/v1/delete/{houseid} - delete a house
 
 10. GET https://house-prediction-fii.herokuapp.com/api/v1/lastadded - get the last 9 added houses(for the carousel)
 
-11. GET https://house-prediction-fii.herokuapp.com/api/v1
+11. GET https://house-prediction-fii.herokuapp.com/api/v1/search
     (@RequestParam String search,
     @RequestParam Integer houseType,
     @RequestParam Integer sellType,

@@ -33,7 +33,7 @@ public class HousesController {
     //When accessing a house you'll need the house id and the user who wants to see the house
     @GetMapping("/housedetails")
     public ResponseEntity<House> houseDetails(@RequestParam UUID houseID, @RequestParam(required = false) UUID userID) {
-        House newHouse = service.houseDetails(houseID);
+       House newHouse = service.houseDetails(houseID);
         if(newHouse!=null){
             if(userID!=null){
                 service.updateViews(newHouse.getHouseID(), userID);
@@ -45,7 +45,7 @@ public class HousesController {
         }
     }
 
-    @GetMapping("/houseviews/{houseId}")
+    @GetMapping("/{houseId}")
     public ResponseEntity<String> getHouseViews(@PathVariable UUID houseId){
         String views = service.getHouseViews(houseId);
         if(views==null) {
@@ -55,7 +55,7 @@ public class HousesController {
         }
     }
 
-    @GetMapping("/sellerhouses/{userid}")
+    @GetMapping("/{userid}")
     public ResponseEntity<List<House>> getHouseByUserID(@PathVariable UUID userid){
         List<House> existingHouses = service.getHouseByUserID(userid);
         if(existingHouses.equals(new ArrayList<>())){
@@ -111,7 +111,7 @@ public class HousesController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("/search")
     public ResponseEntity <List<House>> search( @RequestParam(required = false) String search, @RequestParam(required = false) Integer houseType, @RequestParam(required = false) Integer sellType,
                                                         @RequestParam(required = false) String city, @RequestParam(required = false) String country,
                                                         @RequestParam(required = false) Integer noOfRooms,@RequestParam(required = false) Integer floor,
@@ -125,7 +125,7 @@ public class HousesController {
         }
     }
 
-    @GetMapping("/geoLocation")
+    @GetMapping()
     @Nullable
     public ResponseEntity<Pair<Double, Double>> getLocations(@RequestParam String address){
         Pair<Double, Double> location=service.geoLocation(address);

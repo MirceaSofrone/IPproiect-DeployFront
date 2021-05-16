@@ -474,12 +474,11 @@ public class HouseService {
                     userRepository.save(user);
                 }
                 repository.delete(deletedHouse);
-                return true;
             }
-            else return false;
+            return availableHouse.isPresent() ? true: false;
 
         }else {
-            return false;
+            return repository.existsById(houseId)? true:false;
         }
     }
 

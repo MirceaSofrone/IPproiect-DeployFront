@@ -34,7 +34,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -59,6 +59,7 @@
       <workItem from="1620483895251" duration="4404000" />
       <workItem from="1620489082357" duration="11000" />
       <workItem from="1620907928601" duration="77000" />
+      <workItem from="1621004080800" duration="34000" />
     </task>
     <servers />
   </component>

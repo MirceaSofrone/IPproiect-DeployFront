@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -28,7 +29,7 @@ public class UsersController {
         DELETE - DELETE
     */
 
-    @GetMapping ("/getusers")
+    @GetMapping ()
     public ResponseEntity<List<User>> getUsers(){
         List<User> users = service.getAllUsers();
         return new ResponseEntity<>(users, new HttpHeaders(), HttpStatus.OK);

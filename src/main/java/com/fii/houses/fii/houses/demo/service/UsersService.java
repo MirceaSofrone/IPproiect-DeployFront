@@ -63,10 +63,8 @@ public class UsersService {
     public boolean deleteUser(UUID userid) {
         if (repository.existsById(userid)) {
             repository.deleteById(userid);
-            return true;
-        } else {
-            return false;
         }
+        return repository.existsById(userid) ? true:false;
     }
 
     public void addToFavorites(User user, House house) {
