@@ -33,11 +33,12 @@
     "angular-responsive-carousel": "^2.0.2",
     "cuppa-ng2-slidemenu": "^2.0.0",
     "font-awesome": "^4.7.0",
+    "ng-multiselect-dropdown": "^0.3.4",
     "ngx-pagination": "^5.0.0",
     "rxjs": "~6.6.0",
     "simple-sidenav": "^1.1.5",
     "swiper": "^6.5.8",
-    "tslib": "^2.0.0",
+    "tslib": "^2.2.0",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {

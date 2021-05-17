@@ -1,12 +1,118 @@
 <form id="search-form" class="form-search">
     <div class="search-input-wrapper">
-        <input type="text" name="string" placeholder="Search for a location" ngModel>
+        <input type="text" name="string" ngModel>
 
         <button id="submit" type="submit"><mat-icon>search</mat-icon></button>
     </div>
-
+    <div class="browsing">
+        Browsing listings
+    </div>
 </form>
+<div class="form">
+    <div class="form1">
+        <form>
+            <select id="select">
+      <option value="rooms">  Rooms Number  </option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="5">6</option>
+      <option value="5">7</option>
+      <option value="5">8</option>
+      <option value="5">9</option>
+      <option value="5">10+</option>
 
+    </select>
+        </form>
+
+    </div>
+    <div class="form2">
+        <form>
+            <select id="select">
+    <option value="price">  Price  </option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+
+  </select>
+        </form>
+
+    </div>
+    <div class="form3">
+        <form>
+            <select id="select">
+  <option value="floor">  Floor  </option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+
+</select>
+        </form>
+
+    </div>
+    <div class="form4">
+        <form>
+            <select id="select">
+<option value="rooms">  Usable area  </option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+
+</select>
+        </form>
+
+    </div>
+    <div class="form5">
+        <form>
+            <select id="select">
+<option value="rooms">  Bathrooms Number  </option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+
+</select>
+        </form>
+
+    </div>
+    <div class="form6">
+        <form>
+            <select id="select">
+<option value="rooms">  Country  </option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+
+</select>
+        </form>
+
+    </div>
+    <div class="form7">
+        <form>
+            <select id="select">
+<option value="rooms">  Town  </option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+
+</select>
+        </form>
+
+    </div>
+</div>
 
 <div class="list" *ngFor="let item of data |  paginate: { id: 'listing_pagination', itemsPerPage: 5, currentPage: page,totalItems:totalRecords}">
     <img class="images" src="{{item.download_url}}" alt="image">

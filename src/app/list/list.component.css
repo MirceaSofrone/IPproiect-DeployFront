@@ -3,41 +3,105 @@
     margin: 2vw 0
 }
 
-#search-form {
+#search-input-wrapper {
     display: flex;
     flex-direction: column;
-    width: fit-content;
-    margin: 3% auto 0;
+    background: #DFDFDF 0% 0% no-repeat padding-box;
+    width: 30%;
 }
 
-.search-input-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: min-content;
+#search-form input[type="text"] {
+    padding: 1.05vw;
+    width: 55vw;
+    border: 0;
+    border-radius: 300px 300px 300px 300px;
+    background: #DFDFDF 0% 0% no-repeat padding-box;
+    margin-left: 13%;
+    margin-top: 1%;
+    margin-bottom: 5%;
 }
 
 #submit {
     background: none;
     border: none;
-    left: 72%;
+    left: 68%;
+    top: 11%;
     position: absolute;
 }
 
-#search-form input[type="text"] {
-    padding: 1.08em;
-    width: 45vw;
-    border: 0;
-    border-radius: 300px 300px 300px 300px;
-    padding-left: 2vw;
-    background: #DFDFDF 0% 0% no-repeat padding-box;
+.browsing {
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(97, 97, 97);
+    margin-left: 14%;
 }
 
-.search-input-wrapper {
-    margin-top: 1%;
-    background: #DFDFDF 0% 0% no-repeat padding-box;
-    border-radius: 300px;
-    margin-left: 2%;
+.form {
+    display: flex;
+    flex-direction: row;
+}
+
+.form1,
+select {
+    margin-left: 14%;
+    margin-top: 3%;
+    border-radius: 180px 180px 180px 180px;
+    color: grey;
+    font-size: 1.25em;
+}
+
+.form2,
+select {
+    margin-left: 1.5%;
+    margin-top: 3%;
+    border-radius: 180px 180px 180px 180px;
+    color: grey;
+    font-size: 1.25em;
+}
+
+.form3,
+select {
+    margin-left: 1.5%;
+    margin-top: 3%;
+    border-radius: 180px 180px 180px 180px;
+    color: grey;
+    font-size: 1.25em;
+}
+
+.form4,
+select {
+    margin-left: 1.5%;
+    margin-top: 3%;
+    border-radius: 180px 180px 180px 180px;
+    color: grey;
+    font-size: 1.25em;
+}
+
+.form5,
+select {
+    margin-left: 1.5%;
+    margin-top: 3%;
+    border-radius: 180px 180px 180px 180px;
+    color: grey;
+    font-size: 1.25em;
+}
+
+.form6,
+select {
+    margin-left: 1.5%;
+    margin-top: 3%;
+    border-radius: 180px 180px 180px 180px;
+    color: grey;
+    font-size: 1.25em;
+}
+
+.form7,
+select {
+    margin-left: 1.5%;
+    margin-top: 3%;
+    border-radius: 180px 180px 180px 180px;
+    color: grey;
+    font-size: 1.25em;
 }
 
 .images {
