@@ -31,26 +31,38 @@
     <div class="form2">
         <form>
             <select id="select">
-    <option value="price">  Price  </option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
+    <option value="price">  Minimum Price  </option>
+    <option value="1">10.000</option>
+    <option value="2">15.000</option>
+    <option value="3">30.000</option>
+    <option value="4">40.000</option>
+    <option value="5">50.000</option>
+    <option value="5">60.000</option>
+    <option value="5">70.000</option>
+    <option value="5">80.000</option>
+    <option value="5">90.000</option>
+    <option value="5">100.000+</option>
 
   </select>
         </form>
 
     </div>
+
+
     <div class="form3">
         <form>
             <select id="select">
-  <option value="floor">  Floor  </option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
+<option value="price">  Maximum Price  </option>
+<option value="1">10.000</option>
+<option value="2">15.000</option>
+<option value="3">30.000</option>
+<option value="4">40.000</option>
+<option value="5">50.000</option>
+<option value="5">60.000</option>
+<option value="5">70.000</option>
+<option value="5">80.000</option>
+<option value="5">90.000</option>
+<option value="5">100.000</option>
 
 </select>
         </form>
@@ -59,18 +71,46 @@
     <div class="form4">
         <form>
             <select id="select">
-<option value="rooms">  Usable area  </option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
+  <option value="floor">  Surface  </option>
+  <option value="1">30mp</option>
+  <option value="2">40mp</option>
+  <option value="3">50mp</option>
+  <option value="4">60mp</option>
+  <option value="5">70mp</option>
+  <option value="5">80mp</option>
+  <option value="5">90mp</option>
+  <option value="5">100mp</option>
+  <option value="5">125mp</option>
+  <option value="5">150mp</option>
+  <option value="5">175mp</option>
+  <option value="5">200mp</option>
 
 </select>
         </form>
 
     </div>
     <div class="form5">
+        <form>
+            <select id="select">
+<option value="rooms">  Usable area  </option>
+<option value="1">30mp</option>
+<option value="2">40mp</option>
+<option value="3">50mp</option>
+<option value="4">60mp</option>
+<option value="5">70mp</option>
+<option value="5">80mp</option>
+<option value="5">90mp</option>
+<option value="5">100mp</option>
+<option value="5">125mp</option>
+<option value="5">150mp</option>
+<option value="5">175mp</option>
+<option value="5">200mp</option>
+
+</select>
+        </form>
+
+    </div>
+    <div class="form6">
         <form>
             <select id="select">
 <option value="rooms">  Bathrooms Number  </option>
@@ -84,35 +124,9 @@
         </form>
 
     </div>
-    <div class="form6">
-        <form>
-            <select id="select">
-<option value="rooms">  Country  </option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-
-</select>
-        </form>
-
-    </div>
-    <div class="form7">
-        <form>
-            <select id="select">
-<option value="rooms">  Town  </option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-
-</select>
-        </form>
-
-    </div>
 </div>
+
+
 
 <div class="list" *ngFor="let item of data |  paginate: { id: 'listing_pagination', itemsPerPage: 5, currentPage: page,totalItems:totalRecords}">
     <img class="images" src="{{item.download_url}}" alt="image">

@@ -95,15 +95,6 @@ select {
     font-size: 1.25em;
 }
 
-.form7,
-select {
-    margin-left: 1.5%;
-    margin-top: 3%;
-    border-radius: 180px 180px 180px 180px;
-    color: grey;
-    font-size: 1.25em;
-}
-
 .images {
     position: relative;
     width: 20em;
