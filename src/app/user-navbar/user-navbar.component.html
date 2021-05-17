@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="mat-elevation-z8 ">
+    
+    <button mat-button routerLink='home' ><mat-icon>home</mat-icon>Home</button>
+    <div class="spacer"></div>
+    <a mat-button routerLink='account'><mat-icon>account_circle</mat-icon></a> 
+    <a mat-button routerLink='whishlist'><mat-icon>favorite</mat-icon></a>  
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>arrow_drop_down_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink='settings'>
+          <span>Account settings</span>
+        </button>
+        <button mat-menu-item routerLink='profile'>
+          <span>Your profile</span>
+        </button>
+        <button mat-menu-item routerLink='home'>
+          <span>Log out</span>
+        </button>
+      </mat-menu>
+  </mat-toolbar>
+  
