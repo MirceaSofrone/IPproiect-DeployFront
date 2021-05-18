@@ -3,34 +3,39 @@ import { PostsService } from './posts.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
+import {House} from './house';
+import {WishlistService} from './wishlist.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  @Input() selected: boolean | undefined;
-  @Output() selectedChange = new EventEmitter<boolean>();
+  productList: House[] = [];
+  wishlist: number[] = [];
+
   data: any;
-  totalRecords: number | undefined;
+  totalRecords: 5;
   page = 1;
   typeAll = 0;
 
    type = undefined;
    string = undefined;
    housing = undefined;
-  noOfRooms=undefined;
-  floor=undefined;
-  surface=undefined;
-  noOfBathrooms=undefined;
-  minPrice=undefined;
-  maxPrice=undefined;
+  noOfRooms = undefined;
+  floor = undefined;
+  surface = undefined;
+  noOfBathrooms = undefined;
+  minPrice = undefined;
+  maxPrice = undefined;
 
 
 
-  constructor(private postData: PostsService, private router: Router, private _sanitizer: DomSanitizer) { }
+  constructor(private wishlistService: WishlistService, private productService: PostsService, private router: Router, private _sanitizer: DomSanitizer) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+
     const myStorage = localStorage.getItem('search');
     console.warn(myStorage);
     let searchKey;
@@ -49,21 +54,29 @@ export class ListComponent implements OnInit {
       console.warn(this.housing);
       this.typeAll = 1;
     }
-
-    this.postData.getPosts(this.typeAll, this.page, 8,this.type,this.string,this.housing,this.noOfRooms,this.floor,this.surface,this.noOfBathrooms,this.minPrice,this.maxPrice).subscribe((result) => {console.warn('AICI CALL', result);
-                                                                             this.data = result;
-                                                                             console.log(result);
-                                                                             this.totalRecords = this.data.length;
-                                                                             console.log(this.totalRecords); });
+    delay(3000);
+    await this.productService.getPosts(this.typeAll, this.page, 8, this.type, this.string, this.housing, this.noOfRooms, this.floor, this.surface, this.noOfBathrooms, this.minPrice, this.maxPrice).subscribe((result) => {
 
 
-  }
+                                                                                                                                                                                                                      this.productList = result;
+                                                                                                                                                                                                                      console.log(this.productList, 'this productlist');
 
-  public toggleSelected() {
-    this.selected = !this.selected;
-    this.selectedChange.emit(this.selected); }
+
+    });
+    delay(3000);
+    await   this.wishlistService.getWishlist().subscribe(productIds => {
+      this.wishlist = productIds;
+      console.log(this.wishlist);
+    });
+
+    console.log(this.productList, 'prod');
+    console.log(this.wishlist, 'wish');
 }
 
+}
 
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
 
 

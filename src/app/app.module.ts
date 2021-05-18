@@ -50,6 +50,7 @@ import { ListComponent } from './list/list.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { FooterComponent } from './footer/footer.component';
 import { Base64galleryComponent } from './base64gallery/base64gallery.component';
+import { HouseItemComponent } from './list/house-item/house-item.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HouseDetailsComponent},
@@ -81,7 +82,8 @@ const appRoutes: Routes = [
     LandingPageComponent,
     ListComponent,
     FooterComponent,
-    Base64galleryComponent
+    Base64galleryComponent,
+    HouseItemComponent
 
   ],
   imports: [

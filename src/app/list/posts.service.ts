@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {House} from './house';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,36 +12,45 @@ export class PostsService {
   constructor(private http: HttpClient) {
   }
 
-  getPosts(typeAll,page, number,type,string,housing,noOfRooms,floor,surface,noOfBathrooms,minPrice,maxPrice) {
+  getPosts(typeAll, page, number, type, string, housing, noOfRooms, floor, surface, noOfBathrooms, minPrice, maxPrice): Observable<House[]> {
     const params = new HttpParams()
       .set('page', page)
       .set('number', number);
-    if(typeAll===1)
+    if (typeAll === 1)
     {
-      this.url="https://house-prediction-fii.herokuapp.com/api/v1/search";
-      if(type!=undefined)
+      this.url = 'https://house-prediction-fii.herokuapp.com/api/v1/search';
+      if (type !== undefined) {
         params.set('houseType', type);
-      if(string!=undefined)
+      }
+      if (string !== undefined) {
         params.set('search', string);
-      if(housing!=undefined)
+      }
+      if (housing !== undefined) {
         params.set('sellType', housing);
-      if(noOfRooms!=undefined)
+      }
+      if (noOfRooms !== undefined) {
         params.set('noOfRooms', noOfRooms);
-      if(floor!=undefined)
+      }
+      if (floor !== undefined) {
         params.set('floor', floor);
-      if(surface!=undefined)
-        params.set('surface',surface);
-      if(noOfBathrooms!=undefined)
+      }
+      if (surface !== undefined) {
+        params.set('surface', surface);
+      }
+      if (noOfBathrooms !== undefined) {
         params.set('noOfBathrooms', noOfBathrooms);
-      if(minPrice!=undefined)
+      }
+      if (minPrice !== undefined) {
         params.set('minPrice', minPrice);
-      if(maxPrice!=undefined)
+      }
+      if (maxPrice !== undefined) {
         params.set('maxPrice', maxPrice);
+      }
 
     }
 
 
     console.log(this.url);
-    return this.http.get(this.url, {params});
+    return this.http.get<House[]>(this.url, {params});
   }
 }

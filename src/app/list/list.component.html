@@ -28,7 +28,6 @@
 
       </select>
 
-
     </div>
     <div class="form2">
 
@@ -128,48 +127,8 @@
 
 </form>
 
-<div class="list"
-     *ngFor="let item of data |  paginate: { id: 'listing_pagination', itemsPerPage: 8, currentPage: page,totalItems:totalRecords}">
-  <div class="image-wrapper-list">
-    <img class="images" [src]="item.photos[0]!=undefined ? item.photos[0] : '/assets/house.png'" alt="image">
-
-  </div>
-  <button id="favorite" mat-icon-button (click)="toggleSelected()">
-
-    <mat-icon
-      *ngIf="selected"
-      aria-label="Example icon-button with a heart icon">
-      favorite
-    </mat-icon>
-
-    <mat-icon
-      *ngIf="!selected"
-      aria-label="Example icon-button with a heart icon">
-      favorite_border
-    </mat-icon>
-
-  </button>
-  <div class="house-description">
-    <div class="house-details-wrapper">
-      <div class="details title">{{item.title}} </div>
-
-      <div class="details location">{{item.city}}</div>
-      <div class="details room">Rooms : {{item.noOfRooms}}</div>
-      <div class="details surface">Surface: {{item.surface}}</div>
-      <div class="details type">Type:
-        <div *ngIf="item.sellType==1; else elseBlock">Rent</div>
-        <ng-template #elseBlock>Buy</ng-template>
-      </div>
-    </div>
-    <div class="price-wrapper">
-      <div class="details price">Price : {{item.currentPrice}}</div>
-      <div class="details detail"><a routerLink="/house-details/{{item.houseID}}">View details</a></div>
-    </div>
-
-
-  </div>
-
-
+<div class="col-md-4" *ngFor="let product of productList  | paginate: { id: 'listing_pagination', itemsPerPage: 8, currentPage: page,totalItems:totalRecords}">
+  <app-product-item [productItem]="product" [addedToWishlist]="wishlist.indexOf(product.houseID) >= 0"></app-product-item>
 </div>
 
 <div class="pagination-listing">
