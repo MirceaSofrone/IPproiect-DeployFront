@@ -24,7 +24,7 @@ body {
     display: none;
 }
 .mat-drawer-container {
-    position: relative;
+    position: relative !important;
     z-index: 1;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
@@ -33,11 +33,12 @@ body {
 }
 .cdk-overlay-pane{
 
-position: relative;
-top: -2105px !important;
+position: relative !important;
+/* top: -2370px !important; */
 width: 220px;
 padding-right: 20px !important; 
 z-index: 10 !important;
 margin-top: 15px !important;
+margin-left: 80vw;
 }
 

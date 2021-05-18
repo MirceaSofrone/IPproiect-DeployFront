@@ -48,7 +48,7 @@ mat-toolbar {
 
 mat-sidenav-container {
     min-height: 93vh !important;
-    display: none;
+    /* display: none !important; */
 }
 
 a {
@@ -80,18 +80,26 @@ mat-sidenav {
     height: 100%;
     background-color: rgb(56, 56, 73);
     position: absolute;
-   
+   display: none !important;
     
 }
+
+/* .cdk-overlay-connected-position-bounding-box{
+    position:ab; 
+} */
+
+
+
 mat-sidenav a {
     color: #FFFF ;
 }
 .example-container {
-    position: absolute;  
+    position: absolute !important;  
     display: block;
     z-index: 10;
   }
   
+
 .menu-items {
     display: flex;
     align-items: center;
@@ -115,7 +123,9 @@ mat-sidenav a {
 mat-button mat-button-base {
     padding-bottom: 20px;
 }
-
+.mat-drawer-inner-container{
+    display:none;
+}
 @media (max-width:955px) {
     .showing {
         display: block;
@@ -123,13 +133,11 @@ mat-button mat-button-base {
     .showingBar {
         display: none;
     }
-    /* .btn:visited {
-        .menu-items{
-            display: block;
-    } */
-    /* mat-sidenav-container {
-        display: block;
-    } */
-    
-   
+
+   mat-sidenav{
+    display: block !important;
+   }
+
 }
+
+

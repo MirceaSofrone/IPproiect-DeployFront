@@ -20,11 +20,11 @@
             <a mat-button routerLink='/favorites'>
                 <mat-icon>favorite</mat-icon>
             </a>
-           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+           <button mat-icon-button [matMenuTriggerFor]="menu"  yPosition="above" aria-label="Example icon-button with a menu">
         <mat-icon>arrow_drop_down_circle</mat-icon>
       </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink='/settings'>
+                <button mat-menu-item [routerLink] ="['/Settings']">
           <span>Account settings</span>
         </button>
                 <button mat-menu-item routerLink='/profile'>
@@ -41,7 +41,7 @@
 
     <mat-sidenav-container #myContainer fxFlexFill class="example-container" autosize>
 
-        <mat-sidenav color="primary" #sidenav fxLayout="column"  mode="over" >
+        <mat-sidenav color="primary" #sidenav fxLayout="column"  mode="over" (click)="sidenav.close()" autosize>
 
             <div class=" menu-items" fxLayout="column">
                 <div>
@@ -63,18 +63,9 @@
             </div>
         </mat-sidenav>
         <mat-sidenav-content>
-            <!-- <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, eum aperiam hic fugit, quod veritatis ratione voluptatem magni corporis, nemo odio odit architecto repudiandae? Tempore eligendi mollitia laboriosam vero eveniet?</h1>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, eum aperiam hic fugit, quod veritatis ratione voluptatem magni corporis, nemo odio odit architecto repudiandae? Tempore eligendi mollitia laboriosam vero eveniet?</h1>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, eum aperiam hic fugit, quod veritatis ratione voluptatem magni corporis, nemo odio odit architecto repudiandae? Tempore eligendi mollitia laboriosam vero eveniet?</h1>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, eum aperiam hic fugit, quod veritatis ratione voluptatem magni corporis, nemo odio odit architecto repudiandae? Tempore eligendi mollitia laboriosam vero eveniet?</h1>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, eum aperiam hic fugit, quod veritatis ratione voluptatem magni corporis, nemo odio odit architecto repudiandae? Tempore eligendi mollitia laboriosam vero eveniet?</h1>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, eum aperiam hic fugit, quod veritatis ratione voluptatem magni corporis, nemo odio odit architecto repudiandae? Tempore eligendi mollitia laboriosam vero eveniet?</h1>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, eum aperiam hic fugit, quod veritatis ratione voluptatem magni corporis, nemo odio odit architecto repudiandae? Tempore eligendi mollitia laboriosam vero eveniet?</h1> -->
-
+            <router-outlet></router-outlet>
         </mat-sidenav-content>
 
     </mat-sidenav-container>
 
 </div>
-
-<router-outlet></router-outlet>
