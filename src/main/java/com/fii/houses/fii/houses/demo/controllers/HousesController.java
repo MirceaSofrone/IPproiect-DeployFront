@@ -3,6 +3,10 @@ package com.fii.houses.fii.houses.demo.controllers;
 import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.service.HouseService;
 import com.fii.houses.fii.houses.demo.service.UsersService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.*;
@@ -14,12 +18,20 @@ import java.util.*;
 
 @RestController
 @RequestMapping("api/v1")
+@Api(value = "Houses Controller", description = "Shows houses")
 public class HousesController {
     @Autowired
     private HouseService service;
     @Autowired
     private UsersService usersService;
 
+    @ApiOperation(value = "Returns all houses")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping("/allhouses")
     public ResponseEntity<List<House>> getHouses(@RequestParam int page, @RequestParam int number){
         List<House> houses = service.getAllHousesPage(page,number);
@@ -29,6 +41,14 @@ public class HousesController {
             return new ResponseEntity<>(houses, new HttpHeaders(), HttpStatus.OK);
         }
     }
+
+    @ApiOperation(value = "Returns houses details")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
 
     //When accessing a house you'll need the house id and the user who wants to see the house
     @GetMapping("/housedetails")
@@ -45,6 +65,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Returns a house")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping("/{houseId}")
     public ResponseEntity<String> getHouseViews(@PathVariable UUID houseId){
         String views = service.getHouseViews(houseId);
@@ -55,6 +82,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Returns all houses of a given user")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping("/all/{userid}")
     public ResponseEntity<List<House>> getHouseByUserID(@PathVariable UUID userid){
         List<House> existingHouses = service.getHouseByUserID(userid);
@@ -65,6 +99,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Create house")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 400, message = "Bad request"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @PostMapping("/create")
     public ResponseEntity<?> createHouse(@RequestBody House house) throws IOException {
         if(service.geoLocation(house.getAddress())==null)
@@ -80,6 +121,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Update a house")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @PostMapping("/update")
     public ResponseEntity<House> updateHouse(@RequestBody House house)
     {
@@ -91,6 +139,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Delete house")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 204, message = "No content")
+            }
+    )
     @DeleteMapping("/delete/{houseid}")
     public ResponseEntity<String> deleteHouse(@PathVariable UUID houseid)
     {
@@ -101,6 +156,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Returns last added houses")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping("/lastadded")
     public ResponseEntity<List<House>> lastAddedHouses(){
         List<House> houses = service.lastAddedHouses();
@@ -111,6 +173,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Returns all similar houses of a given id")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping("/similar/{houseId}")
     public ResponseEntity<List<House>> simialHouses(@PathVariable UUID houseId){
         List<House> houses = service.similarHouses(houseId);
@@ -121,6 +190,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Returns best deals houses")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping("/bestdeals")
     public ResponseEntity<List<House>> bestDeals(){
         List<House> houses = service.bestDeals();
@@ -131,6 +207,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Search houses")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping("/search")
     public ResponseEntity <List<House>> search(@RequestParam int page, @RequestParam int number, @RequestParam(required = false) String search, @RequestParam(required = false) Integer houseType, @RequestParam(required = false) Integer sellType,
                                                         @RequestParam(required = false) String city, @RequestParam(required = false) String country,
@@ -145,6 +228,13 @@ public class HousesController {
         }
     }
 
+    @ApiOperation(value = "Returns location of an address")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 404, message = "House not found"),
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping()
     @Nullable
     public ResponseEntity<Pair<Double, Double>> getLocations(@RequestParam String address){

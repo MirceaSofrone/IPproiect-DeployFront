@@ -4,6 +4,10 @@ import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.models.User;
 import com.fii.houses.fii.houses.demo.service.HouseService;
 import com.fii.houses.fii.houses.demo.service.UsersService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,6 +20,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/users")
+@Api(value = "Users Controller", description = "")
 public class UsersController {
     @Autowired
     private UsersService service;
@@ -29,12 +34,25 @@ public class UsersController {
         DELETE - DELETE
     */
 
+    @ApiOperation(value = "All users ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful")
+            }
+    )
     @GetMapping ()
     public ResponseEntity<List<User>> getUsers(){
         List<User> users = service.getAllUsers();
         return new ResponseEntity<>(users, new HttpHeaders(), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Return a given user ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 404, message = "Not Found")
+            }
+    )
     @GetMapping("/{userid}")
     public ResponseEntity<User> getUserByUserID(@PathVariable UUID userid){
         Optional<User> existingUser = service.getUserByUserID(userid);
@@ -45,6 +63,12 @@ public class UsersController {
         }
     }
 
+    @ApiOperation(value = "Create a user ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 201, message = "Created")
+            }
+    )
     @PostMapping("/create")
     public ResponseEntity<User> create(@RequestBody User user)
     {
@@ -52,6 +76,13 @@ public class UsersController {
         return new ResponseEntity<>(newUser, new HttpHeaders(),HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Update a user")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 404, message = "Not Found")
+            }
+    )
     @PostMapping("/update")
     public ResponseEntity<User> update(@RequestBody User user){
         User newUser=service.update(user);
@@ -62,6 +93,13 @@ public class UsersController {
         }
     }
 
+    @ApiOperation(value = "Delete a given user ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 404, message = "Not Found")
+            }
+    )
     @DeleteMapping ("/delete/{userid}")
     public ResponseEntity<String> delete(@PathVariable UUID userid) {
        if(service.deleteUser(userid)){
@@ -72,6 +110,13 @@ public class UsersController {
        }
     }
 
+    @ApiOperation(value = "Return user favourite houses")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 404, message = "Not Found")
+            }
+    )
     @GetMapping("/getfavorite/{userid}")
     public ResponseEntity<List<House>> getFavorite(@PathVariable UUID userid){
         User newUser = service.getUserFavorite(userid);
@@ -84,6 +129,13 @@ public class UsersController {
         }
     }
 
+    @ApiOperation(value = "Add a house to favourite ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 400, message = "Bad Request")
+            }
+    )
     @PutMapping("/addtofavorite")
     public ResponseEntity<String> addToFavorite (@RequestBody House house){
       Optional<User> newUser = service.getUserByUserID(house.getUserID());
@@ -99,6 +151,13 @@ public class UsersController {
         }
     }
 
+    @ApiOperation(value = "Add a house to favourite for a user ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 400, message = "Bad request")
+            }
+    )
     @PutMapping("/addtofavorite/{userid}/{houseid}")
     public ResponseEntity<String> addToFavorite2 (@PathVariable UUID userid, @PathVariable UUID houseid){
        Optional<User> newUser = service.getUserByUserID(userid);
@@ -114,6 +173,13 @@ public class UsersController {
         }
     }
 
+    @ApiOperation(value = "Remove a house from favorite ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 400, message = "Bad request")
+            }
+    )
     @DeleteMapping("/removefromfavorite")
     public ResponseEntity<?> removeFromFavorite(@RequestBody House house){
         Optional<User> newUser = service.getUserByUserID(house.getUserID());
@@ -126,6 +192,13 @@ public class UsersController {
         }
     }
 
+    @ApiOperation(value = "Remove a house from favorite for a given user ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 400, message = "Bad request")
+            }
+    )
     @DeleteMapping("/removefromfavorite/{userid}/{houseid}")
     public ResponseEntity<?> removeFromFavorite2(@PathVariable UUID userid, @PathVariable UUID houseid){
         Optional<User> newUser = service.getUserByUserID(userid);
@@ -138,6 +211,13 @@ public class UsersController {
         }
     }
 
+    @ApiOperation(value = "History ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Successful"),
+                    @ApiResponse(code = 400, message = "Bad request")
+            }
+    )
     @GetMapping("/history")
     public ResponseEntity<?> getViewsHistory(@RequestParam UUID userID){
         Optional<User> user = service.getUserByUserID(userID);

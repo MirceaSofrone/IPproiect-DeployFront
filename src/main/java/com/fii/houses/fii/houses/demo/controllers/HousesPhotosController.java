@@ -2,6 +2,10 @@ package com.fii.houses.fii.houses.demo.controllers;
 
 import com.fii.houses.fii.houses.demo.models.HousePhotos;
 import com.fii.houses.fii.houses.demo.service.HousePhotosService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,10 +19,18 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/housesPhotos")
+@Api(value = "Houses Photos Controller", description = "Shows photos houses")
 public class HousesPhotosController {
     @Autowired
     private HousePhotosService housePhotosService;
 
+    @ApiOperation(value = "Add a given photo for a given house ")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 304, message = "House not modified"),
+                    @ApiResponse(code = 201, message = "Created")
+            }
+    )
     @PostMapping("/create")
     public ResponseEntity<?> storePhoto(@RequestParam("file") MultipartFile file, @RequestParam("houseID") UUID houseID) throws IOException{
 
@@ -31,6 +43,7 @@ public class HousesPhotosController {
 
     }
 
+    @ApiOperation(value = "Get photo from a given house")
     @GetMapping("/{houseID}")
     public List<HousePhotos> getPhotosFromHouseID(@PathVariable UUID houseID){
         return housePhotosService.getPhotosFromHouseID(houseID);
