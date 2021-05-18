@@ -11,35 +11,42 @@ export class PostsService {
   }
 
   getPosts(typeAll,page, number,type,string,housing,noOfRooms,floor,surface,noOfBathrooms,minPrice,maxPrice) {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('page', page)
       .set('number', number);
+
+
     if(typeAll===1)
     {
       this.url="https://house-prediction-fii.herokuapp.com/api/v1/search";
-      if(type!=undefined)
-        params.set('houseType', type);
+      console.log(noOfRooms,"typee");
+      if(type!=undefined) {
+        console.warn("doferot de type")
+        // params=params.set('houseType', type);
+      }
+
       if(string!=undefined)
-        params.set('search', string);
+        params=  params.set('text', string);
       if(housing!=undefined)
         params.set('sellType', housing);
       if(noOfRooms!=undefined)
-        params.set('noOfRooms', noOfRooms);
+        params=  params.set('noOfRooms', noOfRooms);
       if(floor!=undefined)
-        params.set('floor', floor);
+        params=  params.set('floor', floor);
       if(surface!=undefined)
-        params.set('surface',surface);
+        params=  params.set('surface',surface);
       if(noOfBathrooms!=undefined)
-        params.set('noOfBathrooms', noOfBathrooms);
+        params=  params.set('noOfBathrooms', noOfBathrooms);
       if(minPrice!=undefined)
-        params.set('minPrice', minPrice);
+        params=   params.set('minPrice', minPrice);
       if(maxPrice!=undefined)
-        params.set('maxPrice', maxPrice);
+        params=  params.set('maxPrice', maxPrice);
 
     }
 
 
     console.log(this.url);
+    console.log(params.toString(),"PARAMAS");
     return this.http.get(this.url, {params});
   }
 }
