@@ -55,7 +55,7 @@ public class HousesController {
         }
     }
 
-    @GetMapping("/{userid}")
+    @GetMapping("/all/{userid}")
     public ResponseEntity<List<House>> getHouseByUserID(@PathVariable UUID userid){
         List<House> existingHouses = service.getHouseByUserID(userid);
         if(existingHouses.equals(new ArrayList<>())){

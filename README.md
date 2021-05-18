@@ -78,7 +78,7 @@ Example of response:
 
 7. GET https://house-prediction-fii.herokuapp.com/api/v1/{houseId} - get the number of views a house has
 
-8. GET https://house-prediction-fii.herokuapp.com/api/v1/{userid} - get all the houses a seller has
+8. GET https://house-prediction-fii.herokuapp.com/api/v1/all/{userid} - get all the houses a seller has
 
 9. DELETE https://house-prediction-fii.herokuapp.com/api/v1/delete/{houseid} - delete a house
 

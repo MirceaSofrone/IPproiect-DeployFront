@@ -5335,7 +5335,7 @@ true posixrules
     <database id="983" parent="1" name="df2b97lngl5jhu">
       <ObjectId>3455830</ObjectId>
       <Owner>eezgfocjbiogfj</Owner>
-      <IntrospectionStateNumber>20910846</IntrospectionStateNumber>
+      <IntrospectionStateNumber>20955359</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="984" parent="1" name="df2fi37ev3avfs">
@@ -5947,7 +5947,6 @@ true posixrules
     <role id="1128" parent="1" name="awtolookdwnqah">
       <ObjectId>2357302</ObjectId>
       <ConnectionLimit>20</ConnectionLimit>
-      <CanLogin>1</CanLogin>
     </role>
     <role id="1129" parent="1" name="axznepnnjbfjce">
       <ObjectId>3008919</ObjectId>
@@ -8816,7 +8815,6 @@ true posixrules
     <role id="1735" parent="1" name="oxaqvvezopflfz">
       <ObjectId>3478521</ObjectId>
       <ConnectionLimit>20</ConnectionLimit>
-      <CanLogin>1</CanLogin>
     </role>
     <role id="1736" parent="1" name="oxffxwvigygupi">
       <ObjectId>826952</ObjectId>
@@ -11090,7 +11088,7 @@ UC/3455829
 </Acl>
       <StateNumber>18755699</StateNumber>
       <Owner>eezgfocjbiogfj</Owner>
-      <IntrospectionStateNumber>20910864</IntrospectionStateNumber>
+      <IntrospectionStateNumber>20955368</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="2214" parent="983" name="plpgsql">
@@ -11785,20 +11783,24 @@ views_history_key</ColNames>
       <StateNumber>18962496</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <index id="2313" parent="2236" name="uk_p1ggj9i5wa4ox6dcmy67a3h8e">
-      <ObjectId>3475186</ObjectId>
-      <StateNumber>18962499</StateNumber>
-      <ColNames>favorite_houseid</ColNames>
+    <index id="2313" parent="2236" name="users_favorite_pkey">
+      <ObjectId>3710902</ObjectId>
+      <StateNumber>20955112</StateNumber>
+      <ColNames>favorite_houseid
+user_userid</ColNames>
       <Unique>1</Unique>
+      <Primary>1</Primary>
       <AccessMethodId>403</AccessMethodId>
-      <CollationIds>0</CollationIds>
-      <ClassIds>10064</ClassIds>
+      <CollationIds>0,0</CollationIds>
+      <ClassIds>10064,10064</ClassIds>
     </index>
-    <key id="2314" parent="2236" name="uk_p1ggj9i5wa4ox6dcmy67a3h8e">
-      <ObjectId>3475187</ObjectId>
-      <StateNumber>18962499</StateNumber>
-      <ColNames>favorite_houseid</ColNames>
-      <UnderlyingIndexName>uk_p1ggj9i5wa4ox6dcmy67a3h8e</UnderlyingIndexName>
+    <key id="2314" parent="2236" name="users_favorite_pkey">
+      <ObjectId>3710903</ObjectId>
+      <StateNumber>20955112</StateNumber>
+      <ColNames>favorite_houseid
+user_userid</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>users_favorite_pkey</UnderlyingIndexName>
     </key>
     <foreign-key id="2315" parent="2236" name="fkerxpqfbggaaa8busawuwcksjn">
       <ObjectId>3475210</ObjectId>
