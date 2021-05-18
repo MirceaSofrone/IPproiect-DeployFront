@@ -9,6 +9,7 @@ p {
 }
 
 .image-container {
+  cursor: pointer !important;
     border: 0px;
     height: 165px;
     width: 242px;
@@ -40,6 +41,7 @@ p {
 }
 
 .images {
+
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -61,6 +63,7 @@ p {
 }
 
 .swiper-slide {
+  cursor: pointer;
     text-align: center;
     font-size: 18px;
     background: #fff;

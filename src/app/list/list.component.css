@@ -1,6 +1,6 @@
 .pagination-listing {
     position: relative;
-    margin: 2vw 0
+    /*margin: 2vw 0*/
 }
 
 #search-input-wrapper {
@@ -157,10 +157,10 @@ a {
 }
 
 #listing_pagination {
-    left: 33%;
+    /*left: 33%;*/
     position: relative;
     display: flex;
-    top: 10%;
+    /*top: 10%;*/
     font-size: 20px;
 }
 
@@ -222,14 +222,18 @@ a {
     top: 5%;
     border: 3px solid #ccc;
     width: 75%;
+    max-width:1650px;
     padding: 10px;
     display: flex;
     margin: 15px;
     box-shadow: -0.3em 0 .4em #ccc, -0.3em 0 .4em #ccc;
-    margin-left: 12.5%;
+    margin-left:auto;
+     margin-right:auto;
 }
 
 .house-description {
+  display: flex;
+  flex-direction: row;
     position: relative;
     top: 10%;
 }
@@ -257,8 +261,8 @@ a {
     }
     #listing_pagination {
         font-size: 1em;
-        left: 15%;
-        top: 20em;
+        /*left: ;*/
+        /*top: 20em;*/
     }
 }
 
@@ -292,8 +296,9 @@ a {
     }
     #listing_pagination {
         font-size: 1em;
-        left: 15%;
-        top: 970px;
+        margin-left: auto;
+      margin-right: auto;
+        /*top: 970px;*/
     }
     .details.surface {
         font-size: 0.7em;
@@ -326,7 +331,7 @@ a {
     }
     #listing_pagination {
         font-size: 0.8em;
-        top: 1.5em;
-        left: 30%;
+        /*top: 1.5em;*/
+        /*left: 30%;*/
     }
 }

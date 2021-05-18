@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import info from './_files/info.json';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-house-info',
@@ -8,10 +11,28 @@ import info from './_files/info.json';
   styleUrls: ['./house-info.component.css']
 })
 export class HouseInfoComponent implements OnInit {
-
-  constructor() { }
+  private routeSub: Subscription;
+  houseID: any;
+  result:any;
+  constructor( private route: ActivatedRoute,private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe(params => {
+      this.houseID = params.id;
+      console.log(this.houseID, 'house id');
+    });
+    const url = 'https://house-prediction-fii.herokuapp.com/api/v1/housedetails';
+    const params = new HttpParams()
+      .set('houseID', this.houseID);
+    this.http.get(url, {params})
+      .subscribe((result:any) => {
+        this.result= result;
+        console.warn('result', this.result);
+        localStorage.setItem('userID',result.userID);
+        localStorage.setItem('houseID',result.houseID);
+      });
+    console.log(this.result);
   }
-  infoList:{price:string,mediumPrice:string,location:string,rooms:string,floor:string,surface:string,bathrooms:string,type:string,description:string}[]=info;
+
+  // infoList:{price:string,mediumPrice:string,location:string,rooms:string,floor:string,surface:string,bathrooms:string,type:string,description:string}[]=info;
 }

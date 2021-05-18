@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class PostsService {
-url = 'https://picsum.photos/v2/list'
+url = 'https://picsum.photos/v2/list';
   constructor(private http: HttpClient) { }
   getPosts()
   {

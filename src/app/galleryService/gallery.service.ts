@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import{HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class GalleryService {
-  constructor(private http:HttpClient) { }
-  getPosts()
+  constructor(private http: HttpClient) { }
+  getPosts(houseID)
   {
-    let url="https://picsum.photos/v2/list";
-    return this.http.get(url);
+    const url = 'https://house-prediction-fii.herokuapp.com/api/v1/housedetails';
+    const params = new HttpParams()
+      .set('houseID', houseID);
+      // .set('number', number);
+    return this.http.get(url, {params});
   }
 }

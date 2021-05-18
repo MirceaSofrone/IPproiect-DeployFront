@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ChangeDetectorRef, Input} from '@angular/core';
 import { PhotoCarouselService } from '../service/photo-carousel.service';
 import {HttpClient} from '@angular/common/http';
 
@@ -12,29 +12,30 @@ import { SwiperComponent } from 'swiper/angular';
 import {Router} from '@angular/router';
 
 import SwiperCore, {
-    Navigation,
-    Pagination,
-    Scrollbar,
-    A11y,
-    Virtual,
-    Zoom,
-    Autoplay,
-    Thumbs,
-    Controller
-  } from 'swiper/core';
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller
+} from 'swiper/core';
+import {DomSanitizer} from '@angular/platform-browser';
 
-  // install Swiper components
+// install Swiper components
 SwiperCore.use([
-    Navigation,
-    Pagination,
-    Scrollbar,
-    A11y,
-    Virtual,
-    Zoom,
-    Autoplay,
-    Thumbs,
-    Controller
-  ]);
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller
+]);
 
 @Component({
   selector: 'app-photo-carousel',
@@ -42,12 +43,13 @@ SwiperCore.use([
   styleUrls: ['./photo-carousel.component.css']
 })
 export class PhotoCarouselComponent implements OnInit {
-constructor(private postData: PhotoCarouselService, private cd: ChangeDetectorRef, private router: Router) {}
+  @Input() carouselType;
+  constructor(private postData: PhotoCarouselService, private cd: ChangeDetectorRef, private router: Router,private _sanitizer: DomSanitizer) {}
 
 //   constructor(private photoCarousel:PhotoCarouselService) { }
-data: any;
+  data: any;
 
-@ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
+  @ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
 
   show: boolean;
   thumbs: any;
@@ -83,46 +85,46 @@ data: any;
   breakPointsToggle: boolean;
 
 
-  name = 'Angular';
-  imageObject = [{
-      image: 'this.data.url',
-      thumbImage: './assets/house.png',
-      alt: 'alt of image',
-      title: '70.000$ 5 camere Valea Lupului, Iasi'
-  }, {
-      image: './assets/house3.png',
-      thumbImage: './assets/house3.png',
-      title: '70.000$ 5 camere Valea Lupului, Iasi'
-  }, {
-      image: './assets/house2.png',
-      thumbImage: './assets/house2.png',
-      title: '70.000$ 5 camere Valea Lupului, Iasi'
-  }, {
-      image: './assets/house.png',
-      thumbImage: './assets/house.png',
-      title: '70.000$ 5 camere Valea Lupului, Iasi'
-  }, {
-      image: './assets/house2.png',
-      thumbImage: './assets/house2.png',
-      title: '70.000$ 5 camere Valea Lupului, Iasi'
-  }, {
-      image: './assets/house3.png',
-      thumbImage: './assets/house3.png',
-      title: '70.000$ 5 camere Valea Lupului, Iasi'
-  },
-  {image: './assets/house.png',
-  thumbImage: './assets/house.png',
-  alt: 'alt of image',
-  title: '70.000$ 5 camere Valea Lupului, Iasi'
-}, {
-  image: 'this.data.url',
-  thumbImage: './assets/house3.png',
-  title: '70.000$ 5 camere Valea Lupului, Iasi'
-}, {
-  image: './assets/house2.png',
-  thumbImage: './assets/house2.png',
-  title: '70.000$ 5 camere Valea Lupului, Iasi'
-}];
+//   name = 'Angular';
+//   imageObject = [{
+//       image: 'this.data.url',
+//       thumbImage: './assets/house.png',
+//       alt: 'alt of image',
+//       title: '70.000$ 5 camere Valea Lupului, Iasi'
+//   }, {
+//       image: './assets/house3.png',
+//       thumbImage: './assets/house3.png',
+//       title: '70.000$ 5 camere Valea Lupului, Iasi'
+//   }, {
+//       image: './assets/house2.png',
+//       thumbImage: './assets/house2.png',
+//       title: '70.000$ 5 camere Valea Lupului, Iasi'
+//   }, {
+//       image: './assets/house.png',
+//       thumbImage: './assets/house.png',
+//       title: '70.000$ 5 camere Valea Lupului, Iasi'
+//   }, {
+//       image: './assets/house2.png',
+//       thumbImage: './assets/house2.png',
+//       title: '70.000$ 5 camere Valea Lupului, Iasi'
+//   }, {
+//       image: './assets/house3.png',
+//       thumbImage: './assets/house3.png',
+//       title: '70.000$ 5 camere Valea Lupului, Iasi'
+//   },
+//   {image: './assets/house.png',
+//   thumbImage: './assets/house.png',
+//   alt: 'alt of image',
+//   title: '70.000$ 5 camere Valea Lupului, Iasi'
+// }, {
+//   image: 'this.data.url',
+//   thumbImage: './assets/house3.png',
+//   title: '70.000$ 5 camere Valea Lupului, Iasi'
+// }, {
+//   image: './assets/house2.png',
+//   thumbImage: './assets/house2.png',
+//   title: '70.000$ 5 camere Valea Lupului, Iasi'
+// }];
   onSwiper(swiper) {
     console.log(swiper);
   }
@@ -132,18 +134,20 @@ data: any;
 
 
 
-ngOnInit() {
-  this.postData.getPosts().subscribe((result) => {
-    console.warn('result', result);
-    this.data = result;
-});
-    // this.data.forEach(m => console.log(m.id))
+  ngOnInit() {
+    this.postData.getPosts(this.carouselType).subscribe((result) => {
+      console.warn('result', result);
+      this.data = result;
 
-}
+    });
 
-onSelect(item){
-  this.router.navigate(['/house-details', item.id]);
-}
+  }
+
+  onSelect(item){
+    this.router.navigate(['/house-details', item.houseID]);
+  }
+
+
   setThumbsSwiper(swiper) {
     this.thumbsSwiper = swiper;
   }

@@ -17,7 +17,7 @@ import {NavbarLoggedInComponent} from './navbar-logged-in/navbar-logged-in.compo
 
 import { AgmCoreModule } from '@agm/core';
 
-import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+// import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { HammerModule } from '@angular/platform-browser';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import {SwiperModule} from 'swiper/angular';
@@ -40,7 +40,8 @@ import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
-
+import 'hammerjs';
+import { NgxGalleryModule } from 'ngx-gallery-9';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingBottomComponent } from './landing-bottom/landing-bottom.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -48,6 +49,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './list/list.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { FooterComponent } from './footer/footer.component';
+import { Base64galleryComponent } from './base64gallery/base64gallery.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HouseDetailsComponent},
@@ -78,7 +80,8 @@ const appRoutes: Routes = [
     LandingBottomComponent,
     LandingPageComponent,
     ListComponent,
-    FooterComponent
+    FooterComponent,
+    Base64galleryComponent
 
   ],
   imports: [
@@ -109,15 +112,16 @@ const appRoutes: Routes = [
     FormsModule,
     MatInputModule,
     MatIconModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxGalleryModule
 
   ],
 
 
   providers: [],
   bootstrap: [AppComponent],
- 
+
 
 })
-export class AppModule { 
+export class AppModule {
    }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PostsService } from './posts.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Router} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -13,31 +14,47 @@ export class ListComponent implements OnInit {
   data: any;
   totalRecords: number | undefined;
   page = 1;
-  constructor(private postData: PostsService, private router: Router) { }
+  typeAll = 0;
+
+   type = undefined;
+   string = undefined;
+   housing = undefined;
+  noOfRooms=undefined;
+  floor=undefined;
+  surface=undefined;
+  noOfBathrooms=undefined;
+  minPrice=undefined;
+  maxPrice=undefined;
+
+
+
+  constructor(private postData: PostsService, private router: Router, private _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     const myStorage = localStorage.getItem('search');
     console.warn(myStorage);
     let searchKey;
-    let type;
-    let string;
-    let housing;
+
+
 
 
     if (myStorage != null){
       searchKey = JSON.parse(myStorage);
       console.warn(searchKey);
-      type = searchKey.type;
-      console.warn(type);
-      string = searchKey.string;
-      console.warn(string);
-      housing = searchKey.housing;
-      console.warn(housing);
+      this.type = searchKey.type;
+      console.warn(this.type);
+      this.string = searchKey.string;
+      console.warn(this.string);
+      this.housing = searchKey.housing;
+      console.warn(this.housing);
+      this.typeAll = 1;
     }
 
-    this.postData.getPosts().subscribe((result) => {console.warn('result', result);
-                                                    this.data = result;
-                                                    this.totalRecords = this.data.length; });
+    this.postData.getPosts(this.typeAll, this.page, 8,this.type,this.string,this.housing,this.noOfRooms,this.floor,this.surface,this.noOfBathrooms,this.minPrice,this.maxPrice).subscribe((result) => {console.warn('AICI CALL', result);
+                                                                             this.data = result;
+                                                                             console.log(result);
+                                                                             this.totalRecords = this.data.length;
+                                                                             console.log(this.totalRecords); });
 
 
   }
@@ -45,8 +62,6 @@ export class ListComponent implements OnInit {
   public toggleSelected() {
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected); }
-
-
 }
 
 
