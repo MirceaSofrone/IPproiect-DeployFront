@@ -31,6 +31,14 @@ a{
   height:5vw;
 }
 
+.icon-text{
+  font-size: 1vw;
+}
+
+.instructions{
+  font-size:1.5vw;
+}
+
 #howWorks{
   margin:5% auto;
   font-size:3vw;
@@ -67,3 +75,4 @@ a{
   background: #283655 0% 0% no-repeat padding-box;
   border-radius: 30px;
 }
+
