@@ -132,11 +132,11 @@ public class HousesController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity <List<House>> search( @RequestParam(required = false) String search, @RequestParam(required = false) Integer houseType, @RequestParam(required = false) Integer sellType,
+    public ResponseEntity <List<House>> search(@RequestParam int page, @RequestParam int number, @RequestParam(required = false) String search, @RequestParam(required = false) Integer houseType, @RequestParam(required = false) Integer sellType,
                                                         @RequestParam(required = false) String city, @RequestParam(required = false) String country,
                                                         @RequestParam(required = false) Integer noOfRooms,@RequestParam(required = false) Integer floor,
                                                         @RequestParam(required = false) Integer surface,@RequestParam(required = false) Integer noOfBathrooms){
-        List<House> houses = service.search(search, houseType, sellType, city, country, noOfRooms,floor, surface, noOfBathrooms);
+        List<House> houses = service.search(page, number,search, houseType, sellType, city, country, noOfRooms,floor, surface, noOfBathrooms);
 
         if(houses.isEmpty()){
             return new ResponseEntity<>( new HttpHeaders(), HttpStatus.NOT_FOUND);

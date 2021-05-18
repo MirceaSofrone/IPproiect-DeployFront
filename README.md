@@ -89,7 +89,9 @@ Example of response:
 12. GET https://house-prediction-fii.herokuapp.com/api/v1/bestdeals - get 9 houses with the best price
 
 13. GET https://house-prediction-fii.herokuapp.com/api/v1/search
-    (@RequestParam String search,
+    (@RequestParam int page,
+    @RequestParam int number,
+    @RequestParam String search,
     @RequestParam Integer houseType,
     @RequestParam Integer sellType,
     @RequestParam String city,
