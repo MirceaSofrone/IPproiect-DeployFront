@@ -1,5 +1,6 @@
 package com.fii.houses.fii.houses.demo.models;
 
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -11,7 +12,7 @@ public class House {
 //    @Column(columnDefinition = "BINARY(16)")
     private UUID houseID;
 //    @Column(columnDefinition = "BINARY(16)")
-    private UUID userID;
+    private long userID;
     @Column(columnDefinition = "text")
     private String description;
     private String title;
@@ -19,6 +20,8 @@ public class House {
     private String country;
     private String address;
     private String area;
+    private Double latitude;
+    private Double longitude;
     private Integer constructionYear;
     private Integer noOfRooms;
     private Integer floor;
@@ -40,6 +43,8 @@ public class House {
     @ElementCollection(fetch = FetchType.LAZY)
     private Map<Date, Integer> viewsHistory = new TreeMap<>();
     private Integer views;
+    @ElementCollection
+    private List<byte[]> pictures = new ArrayList<>();
 
     public UUID getHouseID() {
         return houseID;
@@ -186,11 +191,11 @@ public class House {
         priceHistory.put(new Date(), currentPrice);
     }
 
-    public UUID getUserID() {
+    public long getUserID() {
         return userID;
     }
 
-    public void setUserID(UUID userID) {
+    public void setUserID(long userID) {
         this.userID = userID;
     }
 
@@ -240,5 +245,29 @@ public class House {
 
     public void setConstructionYear(Integer constructionYear) {
         this.constructionYear = constructionYear;
+    }
+
+    public List<byte[]> getPhotos() {
+        return pictures;
+    }
+
+    public void setPhotos(List<byte[]> photos) {
+        this.pictures = photos;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

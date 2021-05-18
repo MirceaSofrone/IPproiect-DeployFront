@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "b59703a2-a4e2-4ba8-86b3-5bb55b9fd2ef",
+		"name": "New Collection Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "housedetails",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzWk9zTGk5TkdIeG0ra3NiUnpkUzVtTTlQRnhoYWVZTG9WSWE3YURZTHZnPSIsImlhdCI6MTYyMTM2MTI2OSwiZXhwIjoxNjIxNDQ3NjY5fQ.eUpqu1AUoa4hj9yEDb9dNCGk5iPq05gPePe0OqnBDKMH6jMZbceGXGpJ8U7FBfi3hFqn8aY_mi6nmSK7Ze-gjw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/housedetails?houseID=007711ba-ac3f-4c5e-8c4c-9454def44914",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"housedetails"
+					],
+					"query": [
+						{
+							"key": "houseID",
+							"value": "007711ba-ac3f-4c5e-8c4c-9454def44914"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLRU9kN1A0UmNLMkVPN2h4S2ZDQTV5RVdia24yRmNIcUcyMWZhdGdPeDBrPSIsImlhdCI6MTYyMTM2MDQyNSwiZXhwIjoxNjIxNDQ2ODI1fQ.WTQE8flRE992LgQFsyR-GS_bMAsT-tJ2kgKhSYEhRV-ZM8SFIsB-7PlVwzobzO6pmEdzOKMDw1ejl9YnbFt2xw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"userID\": \"2\",\r\n        \"description\": \"casa de test 4\",\r\n        \"title\": \"casa de inchiriat n\",\r\n        \"city\": \"Iasi\",\r\n        \"country\": \"Romania\",\r\n        \"address\": \"Calea Chisinaului, nr 2\",\r\n        \"constructionYear\": 1977,\r\n        \"noOfRooms\": 3,\r\n        \"floor\": 1,\r\n        \"surface\": 60,\r\n        \"landSurface\": 60,\r\n        \"noOfBathrooms\": 2,\r\n        \"houseType\": 1,\r\n        \"sellType\": 1,\r\n        \"currentPrice\": 200\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/v1/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"cosmin123425\",\r\n    \"name\" : \"Nicu\",\r\n    \"email\" : \"cosmin.darabaneanu@yahoo.com\",\r\n    \"phoneNumber\" : \"0744444444\",\r\n    \"password\" : \"hallo\",\r\n    \"role\" : [\"user\", \"admin\"]\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8081/api/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZXJvNjMwNUBnbWFpbC5jb20iLCJpYXQiOjE2MTkwNDE2NzIsImV4cCI6MTYxOTEyODA3Mn0.RUkkl7WKoh2zZI-as_EswCdCdObCqD6_tfecbl7F5HjEidtSSYhrfUn6XG1YWJ-GadMrudHduZmkvheXvlAA3w",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"cosmin.darabaneanu@yahoo.com\",\r\n    \"password\" : \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Do reset password functionality",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/auth/resetPassword?email=cosmin.darabaneanu@yahoo.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"resetPassword"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "cosmin.darabaneanu@yahoo.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/auth/confirm?token=e63942c7-d43f-4050-a334-81b8fea35e94",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"confirm"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "token",
+							"value": "e63942c7-d43f-4050-a334-81b8fea35e94"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "See secured page",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLRU9kN1A0UmNLMkVPN2h4S2ZDQTV5RVdia24yRmNIcUcyMWZhdGdPeDBrPSIsImlhdCI6MTYyMTM2MDQyNSwiZXhwIjoxNjIxNDQ2ODI1fQ.WTQE8flRE992LgQFsyR-GS_bMAsT-tJ2kgKhSYEhRV-ZM8SFIsB-7PlVwzobzO6pmEdzOKMDw1ejl9YnbFt2xw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/api/test/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"test",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send a message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzWk9zTGk5TkdIeG0ra3NiUnpkUzVtTTlQRnhoYWVZTG9WSWE3YURZTHZnPSIsImlhdCI6MTYyMTM2MTI2OSwiZXhwIjoxNjIxNDQ3NjY5fQ.eUpqu1AUoa4hj9yEDb9dNCGk5iPq05gPePe0OqnBDKMH6jMZbceGXGpJ8U7FBfi3hFqn8aY_mi6nmSK7Ze-gjw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emailFrom\" : \"cosmin.darabaneanu@yahoo.com\",\r\n    \"emailTo\" : \"cosmin.darabaneanu@yahoo.com\",\r\n    \"message\" : \"hello!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/v1/feedback",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChangePassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\" : \"198da8f4-adc8-4be9-8734-8f22868c9c50\",\r\n    \"password\" : \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/auth/changePassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"changePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"value\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc3MjA5MTA0Y2NkODkwYTVhZWRkNjczM2UwMjUyZjU0ZTg4MmYxM2MiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTIzMTQyMjQ4NjM3LXFicGR2a21kb3JocWlwZ3BvMHFocjM0NW41MnN0aHJmLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTIzMTQyMjQ4NjM3LXFicGR2a21kb3JocWlwZ3BvMHFocjM0NW41MnN0aHJmLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTExMzM5ODMyMzY4NzQwNzkwMDE1IiwiZW1haWwiOiJkYXJhYmFuZWFudWNvc21pbjgxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoicG5NMHl5MEdULTlSRmJZS0pCMXZfQSIsIm5hbWUiOiJDb3NtaW4gRMOjcsOjYsOjbmVhbnUiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1EUWF4a2g5VGxRNC9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BTVp1dWNtdVJwNXFLWTNfeEtfXzJHOTllOEVFZEZjaE93L3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJDb3NtaW4iLCJmYW1pbHlfbmFtZSI6IkTDo3LDo2LDo25lYW51IiwibG9jYWxlIjoicm8iLCJpYXQiOjE2MTk2OTA1NDQsImV4cCI6MTYxOTY5NDE0NCwianRpIjoiOWM3YmQwMmQzMmVlZDZiMzIyNDdmYzljYzhjMTMzMDJhZmRlMDMwMSJ9.Jd89GxXnllRPN1cNIc9ZDUfgrcYFjyeAMwUSn0ngkeyHUtWrTdRNqEKYN283pOuVyKuf3Lf3wRcslkPLSVDXB3zR3lIJupI4jJHD7ugGf0c19J1pOeqDS6xTra-p8iSeC4YTBfwktLDdBxnL3cmJ_uuu5W_Kd0fENqTRJF4VR5dVC15G94aklUYQD4GnWhEPkuHq7gPkIvXxOvRIs5lXSRz4LeoRoqC-rICPCU3x6VCg1pAMDxD4psy7-s5KRU4gZ63q3jjhjUj7tv9CSz1tDDczx8GJQjIPIX_r37sG4YHqgsp51njfpKYmKvMvAe0K3LBvFzQOy8icCTBj0HttlQ\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/auth/google",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"google"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CONTENT",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLRU9kN1A0UmNLMkVPN2h4S2ZDQTV5RVdia24yRmNIcUcyMWZhdGdPeDBrPSIsImlhdCI6MTYyMTM2MDQyNSwiZXhwIjoxNjIxNDQ2ODI1fQ.WTQE8flRE992LgQFsyR-GS_bMAsT-tJ2kgKhSYEhRV-ZM8SFIsB-7PlVwzobzO6pmEdzOKMDw1ejl9YnbFt2xw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/api/v1/users/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

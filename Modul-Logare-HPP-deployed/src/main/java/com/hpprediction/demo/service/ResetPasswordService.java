@@ -23,7 +23,9 @@ public class ResetPasswordService {
 
     private static final int MINUTES_TILL_EXPIRATION = 180;
     private final UserService userService;
-    private static final String resetHost = "hpp-auth.herokuapp.com";
+    // private static final String resetHost = "hpp-auth.herokuapp.com";
+    private static final String resetHost = "localhost:8081";
+
     private final SecurityService securityService;
     private final PasswordResetTokenService passwordResetTokenService;
     private final EmailService emailService;
@@ -35,8 +37,8 @@ public class ResetPasswordService {
 
         userRequestingReset = userService.loadAllUserData(Encoder.encrypt(email));
 
-        if(!userRequestingReset.isPresent()){
-            return new MessageResponse("You can't request a password reset (ERROR : ERR78)! Bad email!") ;
+        if (!userRequestingReset.isPresent()) {
+            return new MessageResponse("You can't request a password reset (ERROR : ERR78)! Bad email!");
         }
 
         User requestingUser = userRequestingReset.get();
@@ -45,9 +47,9 @@ public class ResetPasswordService {
 
         tokenResetPresent = passwordResetTokenService.getTokenByUser(requestingUser);
 
-        if(tokenResetPresent.isPresent()
-                && securityService.isPasswordTokenValid(tokenResetPresent.get())){
-                return new MessageResponse("You can't request a password reset. Please wait.");
+        if (tokenResetPresent.isPresent()
+                && securityService.isPasswordTokenValid(tokenResetPresent.get())) {
+            return new MessageResponse("You can't request a password reset. Please wait.");
         }
 
 
@@ -58,13 +60,13 @@ public class ResetPasswordService {
                 LocalDateTime.now().plusMinutes(MINUTES_TILL_EXPIRATION)
         );
 
-        String link = "http://"+ resetHost +"/api/auth/changePassword?token=" + token;
+        String link = "http://" + resetHost + "/api/auth/changePassword?token=" + token;
 
         passwordResetTokenService.saveConfirmationToken(passwordResetToken);
 
         Map<String, Object> model = new HashMap<>();
 
-        if(requestingUser.getName() == null){
+        if (requestingUser.getName() == null) {
             model.put("name", "");
         } else {
             model.put("name", Encoder.decrypt(requestingUser.getName()));
@@ -77,7 +79,7 @@ public class ResetPasswordService {
                 EmailTemplate.TEMPLATERESETPWR,
                 model);
 
-        return new MessageResponse("Password reset token email sent |"   + token);
+        return new MessageResponse("Password reset token email sent |" + token);
     }
 
     public MessageResponse changePassword(ResetRequest request) {
@@ -86,15 +88,15 @@ public class ResetPasswordService {
 
         Optional<PasswordResetToken> tokenReset = passwordResetTokenService.getToken(token);
 
-        if(tokenReset.isPresent()
-                && securityService.isPasswordTokenValid(token)){
+        if (tokenReset.isPresent()
+                && securityService.isPasswordTokenValid(token)) {
 
-                User user = tokenReset.get().getUser();
-                userService.changeUserPassword(user, newPassword);
+            User user = tokenReset.get().getUser();
+            userService.changeUserPassword(user, newPassword);
 
-                passwordResetTokenService.destroyToken(token);
+            passwordResetTokenService.destroyToken(token);
 
-                return new MessageResponse("Password changed successfully");
+            return new MessageResponse("Password changed successfully");
 
         }
         throw new IllegalStateException("Token doesn't exist or is expired!");
