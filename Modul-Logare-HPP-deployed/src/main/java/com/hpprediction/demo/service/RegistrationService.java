@@ -26,8 +26,8 @@ import java.util.*;
 public class RegistrationService {
 
     public static final int MINUTES_TILL_EXPIRATION = 180;
-    //private static final String confirmHost = "hpp-auth.herokuapp.com";
-    private static final String confirmHost = "localhost:8081";
+    private static final String confirmHost = "hpp-auth.herokuapp.com";
+    //private static final String confirmHost = "localhost:8081";
     private static final String ERROR_ROLES="Error: Role is not found.";
     private final UserService userService;
     private final EmailValidator emailValidator;

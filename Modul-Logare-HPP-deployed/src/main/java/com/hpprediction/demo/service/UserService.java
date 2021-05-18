@@ -3,6 +3,8 @@ package com.hpprediction.demo.service;
 import com.fii.houses.fii.houses.demo.models.House;
 import com.fii.houses.fii.houses.demo.repository.HouseRepository;
 import com.hpprediction.demo.entity.User;
+import com.hpprediction.demo.repository.ConfirmationTokenRepository;
+import com.hpprediction.demo.security.encoder.Encoder;
 import com.hpprediction.demo.userapp.UserDetailsImplem;
 import com.hpprediction.demo.repository.UserRepository;
 import com.hpprediction.demo.entity.ConfirmationToken;
@@ -26,7 +28,7 @@ public class UserService implements UserDetailsService {
             "Couldn't FIND an user with this email (%s)!";
 
     private final UserRepository userRepository;
-
+    private final ConfirmationTokenRepository confirmationTokenRepository;
     @Autowired
     private HouseRepository houseRepository;
 
@@ -73,9 +75,20 @@ public class UserService implements UserDetailsService {
     public void enableAppUser(String email) {
         userRepository.enableAppUser(email);
     }
+
     public List<User> getAllUsers() {
-        List<User> allUsers = userRepository.findAll();
-        if (!allUsers.isEmpty()) {
+        List<User> repositoryAll = userRepository.findAll();
+        List<User> allUsers = new ArrayList<>();
+        if (!repositoryAll.isEmpty()) {
+            for (User user : repositoryAll) {
+                User user1 = user;
+                user1.setEmail(Encoder.decrypt(user1.getEmail()));
+                user1.setName(Encoder.decrypt(user1.getName()));
+                user1.setUsername(Encoder.decrypt(user1.getUsername()));
+                user1.setPhoneNumber(Encoder.decrypt(user1.getPhoneNumber()));
+                user1.setPassword("********");
+                allUsers.add(user1);
+            }
             return allUsers;
         } else {
             return new ArrayList<>();
@@ -83,21 +96,28 @@ public class UserService implements UserDetailsService {
     }
 
     public Optional<User> getUserByUserID(long id) {
-        return userRepository.findById(id);
+        Optional<User> user = userRepository.findById(id);
+        User user1 = user.get();
+        user1.setEmail(Encoder.decrypt(user1.getEmail()));
+        user1.setName(Encoder.decrypt(user1.getName()));
+        user1.setUsername(Encoder.decrypt(user1.getUsername()));
+        user1.setPhoneNumber(Encoder.decrypt(user1.getPhoneNumber()));
+        user1.setPassword("********");
+        return Optional.of(user1);
     }
 
 
     public User update(User user) {
         long id = user.getUserID();
-        Optional<User>availableUser=userRepository.findById(id);
+        Optional<User> availableUser = userRepository.findById(id);
         User newUser;
         if (availableUser.isPresent()) {
             newUser = availableUser.get();
             if (user.getName() != null) {
-                newUser.setName(user.getName());
+                newUser.setName(Encoder.encrypt(user.getName()));
             }
-            if(user.getPhoneNumber() != null){
-                newUser.setPhoneNumber(user.getPhoneNumber());
+            if (user.getPhoneNumber() != null) {
+                newUser.setPhoneNumber(Encoder.encrypt(user.getPhoneNumber()));
             }
             userRepository.save(newUser);
             return newUser;
@@ -107,7 +127,8 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean deleteUser(long id) {
-        if (userRepository.existsById(id)) {
+        if (userRepository.existsById(id) && confirmationTokenRepository.existsById(id)) {
+            confirmationTokenRepository.deleteById(id);
             userRepository.deleteById(id);
             return true;
         }
@@ -154,7 +175,7 @@ public class UserService implements UserDetailsService {
 
     public void addToViewsHistory(House house, long userID) {
         Optional<User> user = getUserByUserID(userID);
-        if(user.isPresent()){
+        if (user.isPresent()) {
             List<House> usersViewsHistory = user.get().getViewsHistory();
             usersViewsHistory.remove(house);
             usersViewsHistory.add(house);

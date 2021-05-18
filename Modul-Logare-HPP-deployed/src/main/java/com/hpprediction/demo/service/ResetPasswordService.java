@@ -23,8 +23,8 @@ public class ResetPasswordService {
 
     private static final int MINUTES_TILL_EXPIRATION = 180;
     private final UserService userService;
-    // private static final String resetHost = "hpp-auth.herokuapp.com";
-    private static final String resetHost = "localhost:8081";
+    private static final String resetHost = "hpp-auth.herokuapp.com";
+    //private static final String resetHost = "localhost:8081";
 
     private final SecurityService securityService;
     private final PasswordResetTokenService passwordResetTokenService;

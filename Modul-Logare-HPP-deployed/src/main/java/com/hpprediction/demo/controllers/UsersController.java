@@ -80,12 +80,12 @@ public class UsersController {
             }
     )
     @PostMapping("/update")
-    public ResponseEntity<User> update(@RequestBody User user){
+    public ResponseEntity<String> update(@RequestBody User user){
         User newUser=service.update(user);
         if(newUser != null){
-            return new ResponseEntity<>(newUser, new HttpHeaders(), HttpStatus.OK);
+            return new ResponseEntity<>( "Successful", HttpStatus.OK);
         }else {
-            return new ResponseEntity<>( new HttpHeaders(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( "Retry", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -99,10 +99,10 @@ public class UsersController {
     @DeleteMapping ("/delete/{userid}")
     public ResponseEntity<String> delete(@PathVariable long userid) {
        if(service.deleteUser(userid)){
-           return new ResponseEntity<>(new HttpHeaders(),HttpStatus.OK);
+           return new ResponseEntity<>("Succesful",HttpStatus.OK);
        }
        else {
-           return new ResponseEntity<>(new HttpHeaders(),HttpStatus.NOT_FOUND);
+           return new ResponseEntity<>("Retry",HttpStatus.NOT_FOUND);
        }
     }
 
