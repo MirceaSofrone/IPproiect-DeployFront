@@ -56,8 +56,8 @@ public class HouseService {
     private UserRepository userRepository;
     @Autowired
     private AreaRepository areaRepository;
-    private static final Integer CAROUSELSIZE = 9;
-    private static final Integer SIMILARPRECISION = 2;
+    private static final Integer CAROUSEL_SIZE = 9;
+    private static final Integer SIMILAR_PRECISION = 2;
 
     private static final Logger LOGGER = LoggerFactory
             .getLogger(HouseService.class);
@@ -167,6 +167,7 @@ public class HouseService {
         List<House> allHouses = repository.findAll();
         List<House> housesByUserId = new ArrayList<>();
         for (House existingHouse : allHouses) {
+            if(existingHouse.getUserID()!=null)
             if (existingHouse.getUserID().equals(userId)) {
                 housesByUserId.add(existingHouse);
             }
@@ -210,7 +211,7 @@ public class HouseService {
         List<House> allHouses = repository.findAll();
         allHouses.sort(new SortByDate());
         List<House> lastAddedHouses = new ArrayList<>();
-        int noOfHouses = Math.min(allHouses.size(), CAROUSELSIZE);
+        int noOfHouses = Math.min(allHouses.size(), CAROUSEL_SIZE);
         for (int index = 0; index < noOfHouses; index++) {
             lastAddedHouses.add(allHouses.get(allHouses.size()-index-1));
         }
@@ -226,7 +227,7 @@ public class HouseService {
         allHouses.sort(new SortByDate());
         House house = repository.getOne(houseId);
         List<House> similarHouse = new ArrayList<>();
-        int noOfHouses = Math.min(allHouses.size(), CAROUSELSIZE);
+        int noOfHouses = Math.min(allHouses.size(), CAROUSEL_SIZE);
         for (int index = 0; index < noOfHouses; index++) {
             int similarValues = 0;
             if(house.getHouseID().equals(allHouses.get(index).getHouseID())){
@@ -244,7 +245,7 @@ public class HouseService {
             if(house.getFloor().equals(allHouses.get(index).getFloor())){
                 similarValues++;
             }
-            if(similarValues>=SIMILARPRECISION){
+            if(similarValues>= SIMILAR_PRECISION){
                 similarHouse.add(allHouses.get(index));
             }
         }
@@ -260,7 +261,7 @@ public class HouseService {
         allHouses.sort(new SortByDate());
         allHouses.sort(new SortByPriceCoefficient());
         List<House> bestHouses= new ArrayList<>();
-        int noOfHouses = Math.min(allHouses.size(), CAROUSELSIZE);
+        int noOfHouses = Math.min(allHouses.size(), CAROUSEL_SIZE);
         for (int index = 0; index < noOfHouses; index++) {
             bestHouses.add(allHouses.get(allHouses.size()-index-1));
         }
