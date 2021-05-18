@@ -99,7 +99,9 @@ Example of response:
     @RequestParam Integer noOfRooms,
     @RequestParam Integer floor,
     @RequestParam Integer surface,
-    @RequestParam Integer noOfBathrooms)
+    @RequestParam Integer noOfBathrooms,
+    @RequestParam Integer minPrice,
+    @RequestParam Integer maxPrice)
 
 Search houses with some filters, including words in address, title and description(words must be separated through "-" in search)
 All parameters can be omitted

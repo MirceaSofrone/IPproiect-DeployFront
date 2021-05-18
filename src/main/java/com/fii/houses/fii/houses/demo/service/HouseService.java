@@ -596,8 +596,9 @@ public class HouseService {
         return houses;
     }
 
-    public List<House> searchByFields(int page, int number,List<House> houses, Integer houseType, Integer sellType, String city, String country, Integer noOfRooms,
-                                      Integer floor, Integer surface, Integer noOfBathrooms){
+    public List<House> searchByFields(int page, int number, List<House> houses, Integer houseType, Integer sellType,
+                                      String city, String country, Integer noOfRooms, Integer floor, Integer surface,
+                                      Integer noOfBathrooms, Integer minPrice, Integer maxPrice){
         List<House> filteredHouses = new ArrayList<>();
         List<House> goodHouses = new ArrayList<>();
         for(House house : houses){
@@ -608,6 +609,8 @@ public class HouseService {
                     (noOfRooms == null || house.getNoOfRooms().equals(noOfRooms)) &&
                     (floor == null || house.getFloor().equals(floor)) &&
                     (surface == null || house.getSurface().equals(surface)) &&
+                    (minPrice == null || house.getCurrentPrice() >= minPrice.doubleValue()) &&
+                    (maxPrice == null || house.getCurrentPrice() <= maxPrice.doubleValue()) &&
                     (noOfBathrooms == null || house.getNoOfBathrooms().equals(noOfBathrooms))) {
                 filteredHouses.add(house);
             }
@@ -628,14 +631,14 @@ public class HouseService {
     }
 
     public List<House> search(int page, int  number,String words, Integer houseType, Integer sellType, String city, String country, Integer noOfRooms,
-                              Integer floor, Integer surface, Integer noOfBathrooms){
+                              Integer floor, Integer surface, Integer noOfBathrooms, Integer minPrice, Integer maxPrice){
         List<House> houses;
         if(words!=null){
             houses = searchByWords(words);
         }else{
             houses = this.getAllHouses();
         }
-        return searchByFields(page, number,houses, houseType, sellType, city, country, noOfRooms,floor, surface, noOfBathrooms);
+        return searchByFields(page, number,houses, houseType, sellType, city, country, noOfRooms,floor, surface, noOfBathrooms, minPrice, maxPrice);
     }
 
     public Pair<Double, Double> geoLocation(String address){
