@@ -62,7 +62,7 @@ public class HouseService {
     private static final Logger LOGGER = LoggerFactory
             .getLogger(HouseService.class);
 
-    public List<House> getAllHousesPage(int page, int number) {
+    public Pair<Integer, List<House>> getAllHousesPage(int page, int number) {
         List<House> allHouses = repository.findAll();
         allHouses.sort(new SortByDate());
         List<House> goodHouses = new ArrayList<>();
@@ -71,12 +71,12 @@ public class HouseService {
                 if(index<allHouses.size()){
                     goodHouses.add(allHouses.get(allHouses.size()-index-1));
                 }else {
-                    return goodHouses;
+
                 }
             }
-            return goodHouses;
+            return Pair.of(allHouses.size(), goodHouses);
         } else {
-            return new ArrayList<>();
+            return Pair.of(0, goodHouses);
         }
     }
 

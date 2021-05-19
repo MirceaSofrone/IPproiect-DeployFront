@@ -33,9 +33,9 @@ public class HousesController {
             }
     )
     @GetMapping("/allhouses")
-    public ResponseEntity<List<House>> getHouses(@RequestParam int page, @RequestParam int number){
-        List<House> houses = service.getAllHousesPage(page,number);
-        if(houses.equals(new ArrayList<>())){
+    public ResponseEntity<Pair<Integer, List<House>>> getHouses(@RequestParam int page, @RequestParam int number){
+        Pair<Integer, List<House>> houses = service.getAllHousesPage(page,number);
+        if(houses.getFirst().equals(0)){
             return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
         }else {
             return new ResponseEntity<>(houses, new HttpHeaders(), HttpStatus.OK);
