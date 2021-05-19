@@ -1,0 +1,20 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<div class="seller-house-panel--container">
+  <img [src]="house.image" alt="House">
+  <div class="seller-house-panel-content--container">
+    <div class="panel-title--container">
+      <h2 class="panel-title">{{house.title}}</h2>
+      <p class="panel-content panel-content-likes">{{house.likes}}♡</p>
+    </div>
+    <p class="panel-content panel-content-price">{{getPrice(house.price)}}</p>
+    <p class="panel-content panel-content-text">{{house.content}}</p>
+    <div class="dropdown-menu--container">
+      <button id="settings-btn">...</button>
+      <div class="dropdown-menu-content">
+        <a routerLink='/edit-house'>Edit</a>
+        <button id="delete-btn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="dashboard-panel--container">
+  <h2 class="dashboard-title">Your properties</h2>
+  <ul class="dashboard-house-list">
+    <li *ngFor="let house of getHousesList()">
+      <app-seller-house-panel [house]="house"></app-seller-house-panel>
+    </li>
+  </ul>
+</div>

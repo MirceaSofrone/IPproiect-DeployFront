@@ -1,0 +1,117 @@
+
+.acc__info {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    margin-left: 5%;
+    background-color: blue;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .profile__pic {
+    margin-left: 10%;
+    display: block;
+    position: absolute;
+    top: 12em;
+    left: -8em;
+  }
+  
+  .text {
+    white-space: nowrap;
+    text-align: left;
+    font-family: "Manrope", sans-serif;
+    font-weight: bold;
+    font-size: medium;
+    color: rgba(112, 112, 112, 1);
+    margin: 16px 0;
+  }
+  
+  .btns {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 65%;
+    left: 3.5%;
+    margin: 0;
+  }
+  .btnUser {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  
+  .info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    position: absolute;
+    top: -3em;
+    left: 5em;
+    height: 40%;
+    overflow: hidden;
+  }
+  
+  .btn.text {
+    white-space: nowrap;
+    text-align: left;
+    font-style: normal;
+    font-weight: 700;
+    color: rgba(40, 54, 85, 1);
+  }
+  
+  .btn:focus {
+    outline: none;
+  }
+  
+  .inactive__state {
+    display: none;
+  }
+  
+  
+  /*edit zone*/
+  .edit__info__form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    left: 3%;
+    position: absolute;
+    top: 20%;
+  }
+  .edit__field {
+    font-size: medium;
+    font-family: "Manrope", sans-serif;
+    margin-top: 10%;
+    color: rgba(112, 112, 112, 1);
+  }
+  .edit__input {
+    margin-left: 0%;
+    height: 1.5em;
+    width: 10em;
+    margin-left: 1em;
+  }
+  .btn {
+    background-color: #283655;
+    height: 3em;
+    width: 10em;
+    color: #fff;
+  }
+  .save--btn {
+    position: absolute;
+    top: 120%;
+    left: 15%;
+  }
+  .title {
+    font-size: 25px;
+    font-family: "Manrope", sans-serif;
+    position: absolute;
+    top: -3em;
+  }
+  
+  /*hide*/
+  .hide{
+    display: none;
+  }

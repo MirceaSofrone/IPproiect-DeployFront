@@ -16,7 +16,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {NavbarLoggedInComponent} from './navbar-logged-in/navbar-logged-in.component';
 
 import { AgmCoreModule } from '@agm/core';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { HammerModule } from '@angular/platform-browser';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
@@ -48,6 +48,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './list/list.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { FooterComponent } from './footer/footer.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SellerDashboardComponent } from './dashboard/seller-dashboard/seller-dashboard.component';
+import { SellerPanelComponent } from './dashboard/seller-dashboard/seller-panel/seller-panel.component';
+import { SellerStatisticsComponent } from './dashboard/seller-dashboard/seller-statistics/seller-statistics.component';
+import { EditHouseComponent } from './dashboard/seller-dashboard/edit-house/edit-house.component';
+import { EditFormComponent } from './dashboard/seller-dashboard/edit-house/edit-form/edit-form.component';
+import { DashboardButtonsComponent } from './dashboard/global-components/dashboard-buttons/dashboard-buttons.component';
+import { UserInfoComponent } from './dashboard/global-components/user-info/user-info.component';
+import { HeaderComponent } from './dashboard/global-components/header/header.component';
+import { UserStatisticsPanelComponent } from './dashboard/user-statistics-panel/user-statistics-panel.component';
+import { UserFavoriteHistoryComponent } from './dashboard/user-favorite-history/user-favorite-history.component';
+import { StatisticsPanelComponent } from './dashboard/user-statistics-panel/statistics-panel/statistics-panel.component';
+import { FavoritePanelComponent } from './dashboard/user-favorite-history/favorite-panel/favorite-panel.component';
+import { HistoryPanelComponent } from './dashboard/user-favorite-history/history-panel/history-panel.component';
+import { AddHouseComponent } from './dashboard/add-house/add-house.component';
+import { AddFormComponent } from './dashboard/add-house/add-form/add-form.component';
+import { SellerHousePanelComponent } from './dashboard/seller-dashboard/seller-panel/seller-house-panel/seller-house-panel.component';
+import { SellerStatisticsPanelComponent } from './dashboard/seller-dashboard/seller-statistics/seller-statistics-panel/seller-statistics-panel.component';
+import { DashFooterComponent } from './dashboard/global-components/dash-footer/dash-footer.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HouseDetailsComponent},
@@ -78,11 +97,31 @@ const appRoutes: Routes = [
     LandingBottomComponent,
     LandingPageComponent,
     ListComponent,
-    FooterComponent
+    FooterComponent,
+    DashboardComponent,
+    SellerDashboardComponent,
+    SellerPanelComponent,
+    SellerStatisticsComponent,
+    EditHouseComponent,
+    EditFormComponent,
+    DashboardButtonsComponent,
+    UserInfoComponent,
+    HeaderComponent,
+    UserStatisticsPanelComponent,
+    UserFavoriteHistoryComponent,
+    StatisticsPanelComponent,
+    FavoritePanelComponent,
+    HistoryPanelComponent,
+    AddHouseComponent,
+    AddFormComponent,
+    SellerHousePanelComponent,
+    SellerStatisticsPanelComponent,
+    DashFooterComponent
 
   ],
   imports: [
     NgxPaginationModule,
+    NgxChartsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
