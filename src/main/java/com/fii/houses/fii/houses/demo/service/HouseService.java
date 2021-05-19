@@ -67,7 +67,7 @@ public class HouseService {
         allHouses.sort(new SortByDate());
         List<House> goodHouses = new ArrayList<>();
         if (!allHouses.isEmpty()) {
-            for (int index = (number-1)*page; index < number*page ; index++) {
+            for (int index = number*(page-1); index < number*page ; index++) {
                 if(index<allHouses.size()){
                     goodHouses.add(allHouses.get(allHouses.size()-index-1));
                 }else {
@@ -617,7 +617,7 @@ public class HouseService {
         }
 
         if (!filteredHouses.isEmpty()) {
-            for (int index = (number-1)*page; index < number*page ; index++) {
+            for (int index = number*(page-1); index < number*page ; index++) {
                 if(index<filteredHouses.size()){
                     goodHouses.add(filteredHouses.get(filteredHouses.size()-index-1));
                 }else {
