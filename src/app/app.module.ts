@@ -51,6 +51,9 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { FooterComponent } from './footer/footer.component';
 import { Base64galleryComponent } from './base64gallery/base64gallery.component';
 import { HouseItemComponent } from './list/house-item/house-item.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
 
 const appRoutes: Routes = [
   { path: 'home', component: HouseDetailsComponent},
@@ -83,7 +86,8 @@ const appRoutes: Routes = [
     ListComponent,
     FooterComponent,
     Base64galleryComponent,
-    HouseItemComponent
+    HouseItemComponent,
+    MainNavComponent
 
   ],
   imports: [
@@ -115,7 +119,9 @@ const appRoutes: Routes = [
     MatInputModule,
     MatIconModule,
     AppRoutingModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    LayoutModule,
+    MatListModule
 
   ],
 
