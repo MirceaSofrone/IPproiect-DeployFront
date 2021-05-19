@@ -19,7 +19,7 @@ public class ForumCommentController {
     @Autowired
     private ForumCommentService forumCommentService;
 
-    @GetMapping("/comments")
+    @GetMapping("")
     public ResponseEntity<Set<ForumComment>> getPostComments(@PathVariable UUID idPost) {
         Set<ForumComment> comments = forumCommentService.getAllCommentsOfPostById(idPost);
 
@@ -29,14 +29,18 @@ public class ForumCommentController {
         return new ResponseEntity<>(comments, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create-comment", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ForumComment> createForumComment(@RequestBody ForumComment forumComment, @PathVariable UUID idPost) {
-        ForumComment createdComment = forumCommentService.create(forumComment, idPost);
+        try {
+            ForumComment createdComment = forumCommentService.create(forumComment, idPost);
 
-        if (createdComment == null)
-            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+            if (createdComment == null)
+                return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>(createdComment, new HttpHeaders(), HttpStatus.CREATED);
+            return new ResponseEntity<>(createdComment, new HttpHeaders(), HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
