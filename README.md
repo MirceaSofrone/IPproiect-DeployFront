@@ -106,11 +106,11 @@ Example of response:
 Search houses with some filters, including words in address, title and description(words must be separated through "-" in search)
 All parameters can be omitted
 Examples:
-https://house-prediction-fii.herokuapp.com/api/v1/search?page=0&number=5  -returns houses without filters (not recommended)
-https://house-prediction-fii.herokuapp.com/api/v1/search?page=0&number=5&floor=1&surface=60  -returns houses that are on the 1st floor and have the surface=60
-https://house-prediction-fii.herokuapp.com/api/v1/search?page=0&number=5&search=casa-test  -returns houses that have in address, title or description, at least one of these words, in desc order, according to the number of occurrences
-https://house-prediction-fii.herokuapp.com/api/v1?search?page=0&number=5&text=casa-test&floor=1&surface=60   -returns a combination of the above results
-https://house-prediction-fii.herokuapp.com/api/v1/search?page=0&number=5&minPrice=100&maxPrice=1000 - returns houses with currentPrice in the minPrice, maxPrice interval.
+https://house-prediction-fii.herokuapp.com/api/v1/search?page=1&number=5  -returns houses without filters (not recommended)
+https://house-prediction-fii.herokuapp.com/api/v1/search?page=1&number=5&floor=1&surface=60  -returns houses that are on the 1st floor and have the surface=60
+https://house-prediction-fii.herokuapp.com/api/v1/search?page=1&number=5&search=casa-test  -returns houses that have in address, title or description, at least one of these words, in desc order, according to the number of occurrences
+https://house-prediction-fii.herokuapp.com/api/v1?search?page=1&number=5&text=casa-test&floor=1&surface=60   -returns a combination of the above results
+https://house-prediction-fii.herokuapp.com/api/v1/search?page=1&number=5&minPrice=100&maxPrice=1000 - returns houses with currentPrice in the minPrice, maxPrice interval.
 
 14. GET https://house-prediction-fii.herokuapp.com/api/v1/users/history(@RequestParam UUID userID) - returns this user's viewing history
 
