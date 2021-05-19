@@ -30,20 +30,49 @@
 }
 
 .browsing {
-    font-size: 3em;
+    font-size: 4vw;
     font-weight: bold;
     color: rgb(97, 97, 97);
-    margin-left: 14%;
+    margin-left: 10.5vw;;
+}
+
+.first_part, .second_part{
+    display:flex;
+    flex-direction: row;
+}
+.first_part{
+    grid-row: 1;
+    margin-left: 10vw;;
+}
+
+.second_part{
+    grid-row:2;
+    margin-left: 10vw;
+}
+
+.first_part select{
+    border-radius: 8px;
+}
+
+.second_part select{
+    border-radius: 8px;
 }
 
 .form {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    width: 20vw;
+    font-size: 1.25vw;
+}
+
+.form select{
+    margin: 10px;
 }
 
 .form1,
 select {
-    margin-left: 14%;
+    /* margin-left: 14%; */
     margin-top: 3%;
     border-radius: 180px 180px 180px 180px;
     color: grey;
@@ -70,7 +99,7 @@ select {
 
 .form4,
 select {
-    margin-left: 1.5%;
+    /* margin-left: 1.5%; */
     margin-top: 3%;
     border-radius: 180px 180px 180px 180px;
     color: grey;
@@ -97,8 +126,8 @@ select {
 
 .images {
     position: relative;
-    width: 20em;
-    height: 20em;
+    width: 30vw;
+    height: auto;
     display: flex;
 }
 
@@ -261,9 +290,9 @@ a {
     }
     #listing_pagination {
         font-size: 1em;
-        /*left: ;*/
-        /*top: 20em;*/
     }
+
+
 }
 
 @media (max-width:1158px) {
@@ -298,7 +327,6 @@ a {
         font-size: 1em;
         margin-left: auto;
       margin-right: auto;
-        /*top: 970px;*/
     }
     .details.surface {
         font-size: 0.7em;
@@ -331,7 +359,13 @@ a {
     }
     #listing_pagination {
         font-size: 0.8em;
-        /*top: 1.5em;*/
-        /*left: 30%;*/
+        
     }
+}
+
+@media (max-width:900px) {
+
+.first_part, .second_part{
+    height: 6vw;
+ }
 }
