@@ -596,7 +596,7 @@ public class HouseService {
         return houses;
     }
 
-    public List<House> searchByFields(int page, int number, List<House> houses, Integer houseType, Integer sellType,
+    public Pair<Integer, List<House>> searchByFields(int page, int number, List<House> houses, Integer houseType, Integer sellType,
                                       String city, String country, Integer noOfRooms, Integer floor, Integer surface,
                                       Integer noOfBathrooms, Integer minPrice, Integer maxPrice){
         List<House> filteredHouses = new ArrayList<>();
@@ -621,16 +621,16 @@ public class HouseService {
                 if(index<filteredHouses.size()){
                     goodHouses.add(filteredHouses.get(filteredHouses.size()-index-1));
                 }else {
-                    return goodHouses;
+                    return Pair.of(filteredHouses.size(), goodHouses);
                 }
             }
-            return goodHouses;
+            return Pair.of(filteredHouses.size(), goodHouses);
         } else {
-            return new ArrayList<>();
+            return Pair.of(0, goodHouses);
         }
     }
 
-    public List<House> search(int page, int  number,String words, Integer houseType, Integer sellType, String city, String country, Integer noOfRooms,
+    public Pair<Integer, List<House>> search(int page, int  number,String words, Integer houseType, Integer sellType, String city, String country, Integer noOfRooms,
                               Integer floor, Integer surface, Integer noOfBathrooms, Integer minPrice, Integer maxPrice){
         List<House> houses;
         if(words!=null){
