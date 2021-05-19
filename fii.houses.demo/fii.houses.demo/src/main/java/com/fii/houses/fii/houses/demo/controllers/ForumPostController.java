@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -28,19 +29,20 @@ public class ForumPostController {
         if (forumPosts.isEmpty())
             return new ResponseEntity<>(forumPosts, new HttpHeaders(), HttpStatus.NO_CONTENT);
 
+        Collections.sort(forumPosts);
         return new ResponseEntity<>(forumPosts, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/create-post", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ForumPost> createForumPost(@RequestBody ForumPost forumPost) {
         ForumPost createdPost = forumPostService.create(forumPost);
         if (createdPost == null)
-            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 
         return new ResponseEntity<>(createdPost, new HttpHeaders(), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{postId}")
+    @DeleteMapping("/{postId}")
     public ResponseEntity<?> deleteById(@PathVariable UUID postId) {
         Optional<ForumPost> optionalPost = forumPostService.getForumPostById(postId);
 
@@ -51,5 +53,38 @@ public class ForumPostController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<ForumPost> getPost(@PathVariable UUID postId) {
+        Optional<ForumPost> optionalPost = forumPostService.getForumPostById(postId);
+
+        if (optionalPost.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return ResponseEntity.ok(optionalPost.get());
+    }
+
+    @PutMapping(value = "/{postId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ForumPost> updatePost(@PathVariable UUID postId, @RequestBody ForumPost newPost) {
+        Optional<ForumPost> optionalPost = forumPostService.getForumPostById(postId);
+
+        if (optionalPost.isEmpty())
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        ForumPost oldPost = optionalPost.get();
+
+        // making sure the client doesn't add more than one like (or report)
+        if (Math.abs(oldPost.getLikes().size() - newPost.getLikes().size()) > 1 ||
+                Math.abs(oldPost.getReports().size() - newPost.getReports().size()) > 1)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        oldPost = newPost;
+        newPost = forumPostService.update(oldPost);
+
+        if (newPost == null)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return new ResponseEntity<>(newPost, new HttpHeaders(), HttpStatus.OK);
     }
 }

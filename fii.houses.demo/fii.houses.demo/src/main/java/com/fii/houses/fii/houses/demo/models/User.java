@@ -46,6 +46,14 @@ public class User {
     @JsonIgnoreProperties("author")
     List<ForumComment> forumComments;
 
+    @ManyToMany(mappedBy = "likes")
+    @JsonIgnoreProperties("likes")
+    private Set<ForumPost> likedPosts;
+
+    @ManyToMany(mappedBy = "reports")
+    @JsonIgnoreProperties("reports")
+    private Set<ForumPost> reportedPosts;
+
     public UUID getUserID() {
         return userID;
     }
@@ -118,5 +126,37 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<ForumPost> getForumPosts() {
+        return forumPosts;
+    }
+
+    public void setForumPosts(List<ForumPost> forumPosts) {
+        this.forumPosts = forumPosts;
+    }
+
+    public List<ForumComment> getForumComments() {
+        return forumComments;
+    }
+
+    public void setForumComments(List<ForumComment> forumComments) {
+        this.forumComments = forumComments;
+    }
+
+    public Set<ForumPost> getLikedPosts() {
+        return likedPosts;
+    }
+
+    public void setLikedPosts(Set<ForumPost> likedPosts) {
+        this.likedPosts = likedPosts;
+    }
+
+    public Set<ForumPost> getReportedPosts() {
+        return reportedPosts;
+    }
+
+    public void setReportedPosts(Set<ForumPost> reportedPosts) {
+        this.reportedPosts = reportedPosts;
     }
 }
