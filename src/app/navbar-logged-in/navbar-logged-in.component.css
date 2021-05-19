@@ -3,6 +3,31 @@
     /* src: url(./assets/fonts/Manrope-Bold.ttf); */
     src: "./assets/fonts/Manrope-Bold.ttf";
 }
+::ng-deep.cdk-overlay-connected-position-bounding-box{
+  /* These numbers are my requirement, put something which suits yours */
+  /*transform: translate(0px, 25px);*/
+  width: 100vw !important;
+}
+::ng-deep.cdk-overlay-pane{
+  /*transform: translate(0px, 25px);*/
+  position: relative !important;
+  /* top: -2370px !important; */
+
+  /* padding-right: 20px !important; */
+  z-index: 10 !important;
+  margin-top: -0.75vw !important;
+  margin-left: auto !important;
+  padding-right:0 !important;
+}
+.cdk-overlay-pane {
+  position: relative !important;
+  /* top: -2370px !important; */
+
+  /* padding-right: 20px !important; */
+  z-index: 10 !important;
+  margin-top: -0.5vw !important;
+  margin-left: auto !important;
+}
 .small_menu{
     position: absolute;
     margin-left: 100px;
@@ -81,11 +106,11 @@ mat-sidenav {
     background-color: rgb(56, 56, 73);
     position: absolute;
    display: none !important;
-    
+
 }
 
 /* .cdk-overlay-connected-position-bounding-box{
-    position:ab; 
+    position:ab;
 } */
 
 
@@ -94,11 +119,11 @@ mat-sidenav a {
     color: #FFFF ;
 }
 .example-container {
-    position: absolute !important;  
+    position: absolute !important;
     display: block;
     z-index: 10;
   }
-  
+
 
 .menu-items {
     display: flex;
@@ -121,7 +146,7 @@ mat-sidenav a {
 
 .mat-focus-indicator,
 mat-button mat-button-base {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 .mat-drawer-inner-container{
     display:none;
