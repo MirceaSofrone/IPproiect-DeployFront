@@ -11,25 +11,27 @@ export class HouseItemComponent implements OnInit {
   @Input() item: House;
 
   @Input() addedToWishlist: boolean;
-  @Input() selected: boolean | undefined;
-  @Output() selectedChange = new EventEmitter<boolean>();
+  // @Input() selected: boolean | undefined;
+  // @Output() selectedChange = new EventEmitter<boolean>();
   constructor(private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
   }
-  public toggleSelected() {
-    this.selected = !this.selected;
-    this.selectedChange.emit(this.selected); }
+  // public toggleSelected() {
+  //   this.selected = !this.selected;
+  //   this.selectedChange.emit(this.selected); }
 
 
   handleAddToWishlist() {
-    this.wishlistService.addToWishlist(this.item.houseID).subscribe(() => {
+    this.wishlistService.addToWishlist(this.item.houseID).subscribe((result) => {
+      console.log(result)
       this.addedToWishlist = true;
     })
   }
 
   handleRemoveFromWishlist() {
-    this.wishlistService.removeFromWishlist(this.item.houseID).subscribe(() => {
+    this.wishlistService.removeFromWishlist(this.item.houseID).subscribe((result) => {
+      console.log(result)
       this.addedToWishlist = false;
     })
   }

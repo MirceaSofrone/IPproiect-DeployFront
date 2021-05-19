@@ -7,7 +7,7 @@
     <form id="search-form" class="form-search" #searchForm="ngForm" (ngSubmit)="getValues(searchForm.value)">
         <ul class="search-type-wrapper">
           <li>
-            <input type="radio" id="type1"  name="type" value="Buy" ngModel>
+            <input type="radio" id="type1"  name="type" value="0" ngModel>
             <label for="type1">  Buy </label>
 
           </li>
@@ -15,7 +15,7 @@
   <div>|</div>
 </li>
          <li>
-           <input type="radio" id="type2" name="type" value="Rent" ngModel>
+           <input type="radio" id="type2" name="type" value="1" ngModel>
            <label for="type2">Rent</label>
          </li>
 
@@ -27,8 +27,8 @@
             <select class="classic" name="housing" ngModel>
 
         <option value="" disabled selected hidden>Housing type</option>
-        <option >Apartament</option>
-        <option >Casa</option>
+        <option value="1">Apartament</option>
+        <option value="0">Casa</option>
       </select>
             <button type="submit"><mat-icon>search</mat-icon></button>
         </div>

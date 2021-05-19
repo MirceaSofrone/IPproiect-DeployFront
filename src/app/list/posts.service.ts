@@ -13,44 +13,51 @@ export class PostsService {
   }
 
   getPosts(typeAll, page, number, type, string, housing, noOfRooms, floor, surface, noOfBathrooms, minPrice, maxPrice): Observable<House[]> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('page', page)
       .set('number', number);
+
+
     if (typeAll === 1)
     {
       this.url = 'https://house-prediction-fii.herokuapp.com/api/v1/search';
-      if (type !== undefined) {
-        params.set('houseType', type);
+      console.log(noOfRooms, 'typee');
+      if (housing != undefined && housing!=="") {
+        console.warn('doferot de type');
+        params=params.set('houseType', housing);
       }
-      if (string !== undefined) {
-        params.set('search', string);
+
+      if (string != undefined &&  string!=="") {
+        params =  params.set('text', string);
       }
-      if (housing !== undefined) {
-        params.set('sellType', housing);
+
+      if (type != undefined &&  type!=="") {
+        params.set('sellType', type);
       }
-      if (noOfRooms !== undefined) {
-        params.set('noOfRooms', noOfRooms);
+      if (noOfRooms != undefined &&  noOfRooms!=="") {
+        params =  params.set('noOfRooms', noOfRooms);
       }
-      if (floor !== undefined) {
-        params.set('floor', floor);
+      if (floor != undefined &&  floor!=="") {
+        params =  params.set('floor', floor);
       }
-      if (surface !== undefined) {
-        params.set('surface', surface);
+      if (surface != undefined && surface!=="") {
+        params =  params.set('surface', surface);
       }
-      if (noOfBathrooms !== undefined) {
-        params.set('noOfBathrooms', noOfBathrooms);
+      if (noOfBathrooms != undefined &&  noOfBathrooms!=="") {
+        params =  params.set('noOfBathrooms', noOfBathrooms);
       }
-      if (minPrice !== undefined) {
-        params.set('minPrice', minPrice);
+      if (minPrice != undefined &&  minPrice!=="") {
+        params =   params.set('minPrice', minPrice);
       }
-      if (maxPrice !== undefined) {
-        params.set('maxPrice', maxPrice);
+      if (maxPrice != undefined &&  maxPrice!=="") {
+        params =  params.set('maxPrice', maxPrice);
       }
 
     }
 
 
     console.log(this.url);
+    console.log(params.toString(), 'PARAMAS');
     return this.http.get<House[]>(this.url, {params});
   }
 }

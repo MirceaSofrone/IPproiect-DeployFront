@@ -6,11 +6,12 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class WishlistService {
-wishlistUrl: 'https://house-prediction-fii.herokuapp.com/api/users/';
+url = 'https://house-prediction-fii.herokuapp.com/api/v1/users/';
   constructor(private http: HttpClient) { }
 
   getWishlist() {
-    return this.http.get(this.wishlistUrl + 'getfavorite/' + localStorage.getItem('userID')).pipe(
+
+    return this.http.get(this.url + 'getfavorite/' + localStorage.getItem('userID')).pipe(
       map((result: any[]) => {
         const productIds = [];
 
@@ -22,10 +23,12 @@ wishlistUrl: 'https://house-prediction-fii.herokuapp.com/api/users/';
   }
 
   addToWishlist(houseID) {
-    return this.http.post(this.wishlistUrl + 'addtofavorite/' + localStorage.getItem('userID') + '/' + houseID, null);
+    console.log(this.url,"add to wishlist");
+    return this.http.put(this.url + 'addtofavorite/' + localStorage.getItem('userID') + '/' + houseID, null);
   }
 
   removeFromWishlist(houseID) {
-    return this.http.delete(this.wishlistUrl + 'removefromfavorite' + localStorage.getItem('userID') + '/' + houseID);
+    console.log(this.url,"remove from wishlist");
+    return this.http.delete(this.url + 'removefromfavorite/' + localStorage.getItem('userID') + '/' + houseID);
   }
 }
