@@ -5,39 +5,39 @@
 @import '~swiper/swiper-bundle';
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 
 .swiper-button-prev,
 .swiper-button-next {
-    position: absolute;
-    top: 12vh;
+  position: absolute;
+  top: 12vh;
 }
 
 .swiper-pagination {
-    display: none;
+  display: none;
 }
 .mat-drawer-container {
-    position: relative;
-    z-index: 1;
-    box-sizing: border-box;
-    -webkit-overflow-scrolling: touch;
-    display: block;
-    overflow: hidden;
+  position: relative !important;
+  z-index: 1;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  overflow: hidden;
 }
 .cdk-overlay-pane{
 
-position: relative;
-top: -2105px !important;
-width: 220px;
-padding-right: 20px !important; 
-z-index: 10 !important;
-margin-top: 15px !important;
+  position: relative !important;
+  /* top: -2370px !important; */
+  width: 220px;
+  padding-right: 20px !important;
+  z-index: 10 !important;
+  margin-top: 15px !important;
+  margin-left: 80vw;
 }
-
