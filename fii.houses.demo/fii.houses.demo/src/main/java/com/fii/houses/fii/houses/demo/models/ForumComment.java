@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -18,12 +19,10 @@ public class ForumComment implements Comparable<ForumComment> {
     private ForumPost forumPost;
 
     @ManyToOne
-    @JsonIgnoreProperties("forumComments")
+    @JsonIgnoreProperties({"forumComments", "forumPosts"})
     private User author;
 
     private String content;
-    private Integer upVotes;
-    private Integer reports;
     private Date creationDate;
 
     public UUID getCommentID() {
@@ -56,14 +55,6 @@ public class ForumComment implements Comparable<ForumComment> {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Integer getUpVotes() {
-        return upVotes;
-    }
-
-    public void setUpVotes(Integer upVotes) {
-        this.upVotes = upVotes;
     }
 
     public Date getCreationDate() {

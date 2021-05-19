@@ -8,21 +8,28 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class ForumPost {
+public class ForumPost implements Comparable<ForumPost> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "BINARY(16)")
     private UUID postID;
 
     @ManyToOne
-    //@JsonBackReference(value = "post-author")
-    @JsonIgnoreProperties("forumPosts")
+    @JsonIgnoreProperties({"forumPosts", "forumComments"})
     private User author;
 
     @OneToMany(mappedBy = "forumPost")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties("forumPost")
     private Set<ForumComment> comments = new TreeSet<>();
+
+    @ManyToMany
+    @JsonIgnoreProperties("likedPosts")
+    private Set<User> likes;
+
+    @ManyToMany
+    @JsonIgnoreProperties("reportedPosts")
+    private Set<User> reports;
 
     private Date creationDate;
     private String content;
@@ -65,5 +72,26 @@ public class ForumPost {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Set<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<User> likes) {
+        this.likes = likes;
+    }
+
+    public Set<User> getReports() {
+        return reports;
+    }
+
+    public void setReports(Set<User> reports) {
+        this.reports = reports;
+    }
+
+    @Override
+    public int compareTo(ForumPost o) {
+        return creationDate.compareTo(o.creationDate);
     }
 }
