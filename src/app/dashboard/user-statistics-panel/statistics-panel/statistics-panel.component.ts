@@ -9,7 +9,7 @@ export class StatisticsPanelComponent {
   @Input() data: any[];
   @Input() xAxisLabel: string;
   @Input() yAxisLabel: string;
-  
+
   xAxis = true;
   yAxis = true;
   showYAxisLabel = true;
@@ -18,5 +18,4 @@ export class StatisticsPanelComponent {
   colorScheme = {
     domain: ['#3c5bff']
   };
-
 }

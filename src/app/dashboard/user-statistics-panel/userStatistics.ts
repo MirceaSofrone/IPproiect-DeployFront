@@ -1,4 +1,3 @@
 export interface IUserStatistics {
-    priceHistory: Date;
-  }
-  
+  priceHistory: Date;
+}

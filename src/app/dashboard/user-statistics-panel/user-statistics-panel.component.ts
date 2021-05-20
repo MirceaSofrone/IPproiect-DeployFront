@@ -42,6 +42,4 @@ export class UserStatisticsPanelComponent {
 
     return day + '.' + month + '.' + year;
   }
-
-
 }
