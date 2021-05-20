@@ -103,6 +103,6 @@ public class ForumPost implements Comparable<ForumPost> {
 
     @Override
     public int compareTo(ForumPost o) {
-        return creationDate.compareTo(o.creationDate);
+        return o.creationDate.compareTo(creationDate);
     }
 }
