@@ -21,7 +21,7 @@ export class PostsService {
     if (typeAll === 1)
     {
       this.url = 'https://back-end-hpp.herokuapp.com/api/v1/search';
-      console.log(noOfRooms, 'typee');
+      console.log(housing, 'housinggg');
       if (housing != undefined && housing !== '') {
         console.warn('doferot de type');
         params = params.set('houseType', housing);
