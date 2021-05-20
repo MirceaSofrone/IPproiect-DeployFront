@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {House} from '../../../models/house';
 import {WishlistService} from '../../../service/wishlist.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-house-item',
@@ -13,7 +14,7 @@ export class HouseItemComponent implements OnInit {
   @Input() addedToWishlist: boolean;
   // @Input() selected: boolean | undefined;
   // @Output() selectedChange = new EventEmitter<boolean>();
-  constructor(private wishlistService: WishlistService) { }
+  constructor(private wishlistService: WishlistService,public _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   }

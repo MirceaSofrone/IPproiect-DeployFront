@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WishlistService {
-url = 'https://house-prediction-fii.herokuapp.com/api/v1/users/';
+url = 'https://back-end-hpp.herokuapp.com/api/v1/users/';
   constructor(private http: HttpClient) { }
 
   getWishlist() {
@@ -24,11 +24,26 @@ url = 'https://house-prediction-fii.herokuapp.com/api/v1/users/';
 
   addToWishlist(houseID) {
     console.log(this.url, 'add to wishlist');
-    return this.http.put(this.url + 'addtofavorite/' + localStorage.getItem('userID') + '/' + houseID, null);
+    const bearer = localStorage.getItem('bearer');
+    const token = `Bearer ${bearer}`;
+    console.log(token);
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      Authorization: token });
+    return this.http.put(this.url + 'addtofavorite/' + localStorage.getItem('userID') + '/' + houseID, null,{headers:httpHeaders});
   }
 
   removeFromWishlist(houseID) {
+    console.log(this.url, 'add to wishlist');
+    const bearer = localStorage.getItem('bearer');
+    const token = `Bearer ${bearer}`;
+    console.log(token);
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      Authorization: token });
     console.log(this.url, 'remove from wishlist');
-    return this.http.delete(this.url + 'removefromfavorite/' + localStorage.getItem('userID') + '/' + houseID);
+    return this.http.delete(this.url + 'removefromfavorite/' + localStorage.getItem('userID') + '/' + houseID,{headers:httpHeaders});
   }
 }
