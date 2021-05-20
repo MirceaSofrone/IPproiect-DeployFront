@@ -1,6 +1,6 @@
 <div class="list">
   <div class="image-wrapper-list">
-    <img class="images" [src]="item.img!=undefined ? item.img : '/assets/house.png'" alt="image">
+    <img class="images" [src]="item.photos[0]=undefined ? item.photos[0] : defaultPhoto" alt="image">
   </div>
   <button id="favorite" mat-icon-button>
 

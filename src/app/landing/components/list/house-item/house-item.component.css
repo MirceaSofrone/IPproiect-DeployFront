@@ -124,8 +124,10 @@ select {
   position: absolute;
   display: flex;
   color: rgba(43, 57, 81, 255);
-  top: 15%;
-  width: 9em;
+  top: 17%;
+  margin-left: -6.5vw;
+  text-align:left;
+  /*width: em;*/
 }
 
 .details.location {
@@ -138,7 +140,7 @@ select {
   font-size: 1em;
   top: 5em;
   border: 1px solid #ccc;
-  width: 60px;
+  /*width: 60px;*/
   background-color: #ccc;
   border-radius: 25px;
 }
@@ -147,7 +149,7 @@ select {
   display: flex;
   color: rgba(43, 57, 81, 255);
   position: relative;
-  left: 15em;
+  left: 25vw;
   top: 0.2em;
 }
 
@@ -170,7 +172,7 @@ a {
   top: 3.7em;
   left: 7em;
   border: 1px solid #ccc;
-  width: 4em;
+  /*width: 4em;*/
   text-align: center;
   background-color: #ccc;
   border-radius: 25px;
@@ -182,7 +184,7 @@ a {
   top: 2.3em;
   left: 12em;
   border: 1px solid #ccc;
-  width: 40px;
+  /*width: 40px;*/
   text-align: center;
   background-color: #ccc;
   border-radius: 25px;
@@ -203,6 +205,7 @@ a {
 }
 
 .details.detail {
+
   font-size: 1em;
   display: flex;
   top: 2.5em;
@@ -215,6 +218,8 @@ a {
   border-radius: 25px;
   color: white;
   text-align: center;
+  margin-left: 19vw;
+  margin-top: 5.5vw;
 }
 
 .list {

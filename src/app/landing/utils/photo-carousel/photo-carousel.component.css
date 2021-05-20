@@ -4,6 +4,9 @@
 ::ng-deep.image-container{
   width: 100% !important;
 }
+swiper{
+  max-width:1650px;
+}
 p {
   margin: none;
   width: fit-content;
