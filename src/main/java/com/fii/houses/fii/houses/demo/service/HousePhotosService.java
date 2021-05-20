@@ -27,6 +27,16 @@ public class HousePhotosService {
             List<byte[]> photos = house.getPhotos();
             photos.add(file.getBytes());
             house.setPhotos(photos);
+            List<HousePhotos> allPhotos = housePhotosRepository.findAll();
+            int photosCounter = 0;
+            for(HousePhotos photo : allPhotos){
+                if(photo.getHouseID().equals(houseID)){
+                    photosCounter++;
+                }
+            }
+            if(photosCounter == 0){
+                house.setDisplayPhoto(housePhoto.getData());
+            }
             houseRepository.save(house);
         }
         housePhotosRepository.save(housePhoto);
@@ -44,13 +54,4 @@ public class HousePhotosService {
         return housePhotos;
     }
 
-    public HousePhotos displayPhoto(UUID houseID){
-        List<HousePhotos> allHousesPhotos = housePhotosRepository.findAll();
-        for(HousePhotos photo : allHousesPhotos){
-            if(photo.getHouseID().equals(houseID)){
-                return photo;
-            }
-        }
-        return new HousePhotos();
-    }
 }

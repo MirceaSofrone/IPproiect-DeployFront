@@ -45,6 +45,7 @@ public class House {
     private Integer views;
     @ElementCollection
     private List<byte[]> pictures = new ArrayList<>();
+    private byte[] displayPhoto;
 
     public UUID getHouseID() {
         return houseID;
@@ -253,6 +254,14 @@ public class House {
 
     public void setPhotos(List<byte[]> photos) {
         this.pictures = photos;
+    }
+
+    public byte[] getDisplayPhoto() {
+        return displayPhoto;
+    }
+
+    public void setDisplayPhoto(byte[] displayPhoto) {
+        this.displayPhoto = displayPhoto;
     }
 
     public Double getLatitude() {
