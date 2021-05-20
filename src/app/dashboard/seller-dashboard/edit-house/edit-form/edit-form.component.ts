@@ -9,14 +9,14 @@ import { HouseType } from 'src/app/dashboard/add-house/add-form/house_type'
 })
 export class EditFormComponent {
 
-  ServerGet = "https://house-prediction-fii.herokuapp.com/api/v1/housedetails?houseID="; 
-  ServerPost = "https://house-prediction-fii.herokuapp.com/api/v1/update ";
+  ServerGet = "https://back-end-hpp.herokuapp.com/api/v1/housedetails?houseID="; 
+  ServerPost = "https://back-end-hpp.herokuapp.com/api/v1/update ";
   submitted = false;
   houseID: string = "7509bdbf-249f-463c-95f7-f55a314cf500";
   recommendedPrice: number;
   propertyPics: File[] = [];
   numberOfPhotos = 0;
-  house: HouseType = { userID : "",
+  house: HouseType = { userID : "7",
     houseID: "",
     description: "",
     title:"",
@@ -37,7 +37,9 @@ export class EditFormComponent {
   
   
   constructor(private http: HttpClient,) {
-    this.http.get<HouseType>(this.ServerGet.concat(this.houseID)).subscribe({next: (data:HouseType) => {
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUxMTczNSwiZXhwIjoxNjIxNTk4MTM1fQ.LMXMHhBV9m-UtXjALX1ikjrOHYb9aEsmh-5SXyB6OAEEVe1Wl9wYfznzo5SSY-XkNeXu-4Z4yt5WsUs-vWac8A';
+    const headers = {'Authorization': token };
+    this.http.get<HouseType>(this.ServerGet.concat(this.houseID), { headers }).subscribe({next: (data:HouseType) => {
       this.house = {
         houseID: data.houseID,
         userID: data.userID,
@@ -71,7 +73,8 @@ export class EditFormComponent {
 
   onSubmit() {
     this.submitted = true;
-
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUxMTczNSwiZXhwIjoxNjIxNTk4MTM1fQ.LMXMHhBV9m-UtXjALX1ikjrOHYb9aEsmh-5SXyB6OAEEVe1Wl9wYfznzo5SSY-XkNeXu-4Z4yt5WsUs-vWac8A';
+    const headers = {'Authorization': token };
     this.http.post<HouseType>(this.ServerPost, {
       houseID:this.houseID,
       description: this.house.description,
@@ -88,7 +91,7 @@ export class EditFormComponent {
       houseType: this.house.houseType.toString(),
       sellType: this.house.sellType.toString(),
       currentPrice: this.house.currentPrice.toString()
-    }).subscribe({next:(result) =>{ console.log(result); this.recommendedPrice = result.recommendedPrice;},
+    }, { headers }).subscribe({next:(result) =>{ console.log(result); this.recommendedPrice = result.recommendedPrice;},
     error:(err:any) => {console.log(err);}, complete:()=> {console.log("complete");}});
   }
 

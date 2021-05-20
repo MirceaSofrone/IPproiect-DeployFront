@@ -55,7 +55,7 @@ import { AddFormComponent } from './dashboard/add-house/add-form/add-form.compon
 import { SellerHousePanelComponent } from './dashboard/seller-dashboard/seller-panel/seller-house-panel/seller-house-panel.component';
 import { SellerStatisticsPanelComponent } from './dashboard/seller-dashboard/seller-statistics/seller-statistics-panel/seller-statistics-panel.component';
 import { DashFooterComponent } from './dashboard/global-components/dash-footer/dash-footer.component';
-import {LandingModule} from './landing/landing.module';
+import { LandingModule } from './landing/landing.module';
 
 
 

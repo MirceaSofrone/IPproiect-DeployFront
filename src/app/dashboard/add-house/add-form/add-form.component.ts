@@ -17,8 +17,11 @@ export class AddFormComponent{
   recommendedPrice: number;
   wrongAddress: boolean;
 
-  ServerUrlAddHouse = 'https://house-prediction-fii.herokuapp.com/api/v1/create';
-  ServerUrlPhotos = 'https://house-prediction-fii.herokuapp.com/api/v1/housesPhotos/create';
+ 
+
+
+  ServerUrlAddHouse = 'https://back-end-hpp.herokuapp.com/api/v1/create';
+  ServerUrlPhotos = 'https://back-end-hpp.herokuapp.com/api/v1/housesPhotos/create';
   houseID: string;
   userID: string;
   address: string;
@@ -77,8 +80,10 @@ export class AddFormComponent{
 
   onSubmit() {
     this.submitted = true;
-     this.http.post<HouseType>(this.ServerUrlAddHouse, {
-      userID: "6757fff1-e437-4d23-bd45-646a4b419b16",
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUxMTczNSwiZXhwIjoxNjIxNTk4MTM1fQ.LMXMHhBV9m-UtXjALX1ikjrOHYb9aEsmh-5SXyB6OAEEVe1Wl9wYfznzo5SSY-XkNeXu-4Z4yt5WsUs-vWac8A';
+    const headers = {'Authorization': token };
+    this.http.post<HouseType>(this.ServerUrlAddHouse, {
+      userID: "7",
       description: this.description,
       title: this.title,
       city: this.city,
@@ -93,7 +98,7 @@ export class AddFormComponent{
       houseType: this.houseType,
       sellType: this.sellType,
       currentPrice: this.currentPrice
-      }).subscribe(
+      }, {headers}).subscribe(
          res=>{ this.recommendedPrice = res.recommendedPrice;
                      this.houseID = res.houseID
                      for(let i=0; i< this.numberOfPhotos; i++)
@@ -101,7 +106,7 @@ export class AddFormComponent{
                      let fd = new FormData();
                      fd.append('file', this.propertyPics[0]);
                      fd.append('houseID', this.houseID);
-                     this.http.post<any>(this.ServerUrlPhotos, fd).subscribe({
+                     this.http.post<any>(this.ServerUrlPhotos, fd, {headers}).subscribe({
                        next: (result:any) =>{ console.log(result);},
                        error:(err:any) => {console.log(err);}});
                     }
