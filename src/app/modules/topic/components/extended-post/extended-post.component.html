@@ -1,50 +1,50 @@
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    </head>
-  
-    <div class="card" *ngIf="finalPost !== undefined" >
-      <section class="card-info" >
-          <div class = first-line>
-            <a class="icon-display" >
-              <mat-icon id="user-icon">account_circle</mat-icon>
-            </a>
-             <div class="text" >
-               <a>
-                <a class="author">
-                   {{finalPost.username}} asked: 
-                </a>
-  
-                <a class="question">
-                    {{finalPost.question}}
-                </a>
-              </a>
-            </div>
-  
-            <div class = "textarea">
-                <mat-card>
-                <mat-card-content>{{finalPost.description}}</mat-card-content></mat-card>
-            </div>
-                <div class="info">
-  
-                <span class="details">
-                  <mat-icon>chat</mat-icon>
-                  <a>
-                  {{finalPost.answers}} answers</a> 
-                </span>
-  
-                <span class="details">
-                  <mat-icon>favorite_border</mat-icon>
-                  bookmark question
-               </span>
-  
-               <span class="details">
-                 <mat-icon>outlined_flag</mat-icon>
-                report question
-                </span>
-              </div>
-            </div>
-            
-              <ng-content></ng-content>
-            </section>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+
+<div class="card" *ngIf="forumPost !== undefined">
+  <section class="card-info">
+    <div class=first-line>
+      <a class="icon-display">
+        <mat-icon id="user-icon">account_circle</mat-icon>
+      </a>
+      <div class="text">
+        <a>
+          <a class="author">
+            {{forumPost.author.firstName}} asked:
+          </a>
+
+          <a class="question">
+            {{forumPost.content}}
+          </a>
+        </a>
       </div>
-  
+
+      <div class="textarea">
+        <mat-card>
+          <mat-card-content>{{forumPost.content}}</mat-card-content>
+        </mat-card>
+      </div>
+      <div class="info">
+
+        <span class="details">
+          <mat-icon>chat</mat-icon>
+          <a>
+            {{forumPost.comments.length}} answers</a>
+        </span>
+
+        <span class="details">
+          <mat-icon>favorite_border</mat-icon>
+          bookmark question
+        </span>
+
+        <span class="details">
+          <mat-icon>outlined_flag</mat-icon>
+          report question
+        </span>
+      </div>
+    </div>
+
+    <ng-content></ng-content>
+  </section>
+</div>

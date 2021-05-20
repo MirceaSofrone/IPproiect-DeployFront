@@ -4,39 +4,41 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import post from '../../../../_files/info.json';
 import { FinalPost } from '../../../../core/final-post.model';
+import { CommentResolverService } from './comment-resolver.service';
+import { ForumComment } from 'src/app/model/forum-comment';
+import { ForumPost } from 'src/app/model/forum-post';
+
 @Component({
   selector: 'app-extended-post',
   templateUrl: './extended-post.component.html',
   styleUrls: ['./extended-post.component.css']
 })
 export class ExtendedPostComponent implements OnInit {
- 
-  finalPost: FinalPost | undefined;
+
+  // finalPost: FinalPost | undefined;
 
   private routeSub: Subscription = new Subscription;
 
-    givenPost:{
-      id:string,
-      username:string,
-      question:string,
-      answers:string,
-      description:string,
-      text:string
-    }[]=post;
+  // givenPost:{
+  //   id:string,
+  //   username:string,
+  //   question:string,
+  //   answers:string,
+  //   description:string,
+  //   text:string
+  // }[]=post;
 
-  constructor(private route: ActivatedRoute) { 
+  forumPost: ForumPost | undefined;
+
+  constructor(private route: ActivatedRoute, private commentService: CommentResolverService) {
   }
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe(params => {
-      const givenId = params['id']; //the value of id
-      this.finalPost = this.givenPost.find(item => item.id === givenId)
+
+    this.commentService.findAll().subscribe((data: ForumPost) => {
+      this.forumPost = data;
     });
   }
 
-  ngOnDestroy() {
-    this.routeSub.unsubscribe();
-  }
- 
 
 }

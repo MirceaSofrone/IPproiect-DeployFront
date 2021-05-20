@@ -22,6 +22,8 @@ import {TextFieldModule} from '@angular/cdk/text-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AddQuestionModule } from './modules/add-question/add-question.module';
+import { PostResolverService } from './modules/home/components/post/post-resolver.service';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -52,9 +54,12 @@ import { AddQuestionModule } from './modules/add-question/add-question.module';
     TextFieldModule,
     MatFormFieldModule,
     MatInputModule,
-    AddQuestionModule
+    AddQuestionModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    PostResolverService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
