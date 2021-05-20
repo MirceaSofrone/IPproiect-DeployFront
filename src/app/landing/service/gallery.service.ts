@@ -9,7 +9,7 @@ export class GalleryService {
   constructor(private http: HttpClient) { }
   getPosts(houseID)
   {
-    const url = 'https://house-prediction-fii.herokuapp.com/api/v1/housedetails';
+    const url = 'https://back-end-hpp.herokuapp.com/api/v1/housedetails';
     const params = new HttpParams()
       .set('houseID', houseID);
       // .set('number', number);

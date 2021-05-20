@@ -19,14 +19,14 @@ export class HouseInfoComponent implements OnInit {
       this.houseID = params.id;
       console.log(this.houseID, 'house id');
     });
-    const url = 'https://house-prediction-fii.herokuapp.com/api/v1/housedetails';
+    const url = 'https://back-end-hpp.herokuapp.com/api/v1/housedetails';
     const params = new HttpParams()
       .set('houseID', this.houseID);
     this.http.get(url, {params})
       .subscribe((result: any) => {
         this.result = result;
         console.warn('result', this.result);
-        localStorage.setItem('userID', result.userID);
+        localStorage.setItem('sellerID', result.userID);
         localStorage.setItem('houseID', result.houseID);
       });
     console.log(this.result);
