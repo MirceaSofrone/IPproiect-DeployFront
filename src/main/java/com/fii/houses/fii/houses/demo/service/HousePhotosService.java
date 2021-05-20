@@ -27,14 +27,7 @@ public class HousePhotosService {
             List<byte[]> photos = house.getPhotos();
             photos.add(file.getBytes());
             house.setPhotos(photos);
-            List<HousePhotos> allPhotos = housePhotosRepository.findAll();
-            int photosCounter = 0;
-            for(HousePhotos photo : allPhotos){
-                if(photo.getHouseID().equals(houseID)){
-                    photosCounter++;
-                }
-            }
-            if(photosCounter == 0){
+            if(house.getDisplayPhoto() == null){
                 house.setDisplayPhoto(housePhoto.getData());
             }
             houseRepository.save(house);

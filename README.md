@@ -27,8 +27,6 @@ example for request body:
 
 3. GET https://house-prediction-fii.herokuapp.com/api/v1/housesPhotos/{houseID} - get a house's photos
 
-4. GET https://house-prediction-fii.herokuapp.com/api/v1/housesPhotos/display/{houseID} - get a single photo from house
-
 4. POST https://house-prediction-fii.herokuapp.com/api/v1/update - edit an existing house
 - in request body you can have any house proprities that have been modified( for the proprities, check ex. no.1)
 
