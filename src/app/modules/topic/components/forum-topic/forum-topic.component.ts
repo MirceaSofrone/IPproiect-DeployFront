@@ -3,6 +3,8 @@ import post from '../../../../_files/info.json';
 import { FinalPost } from '../../../../core/final-post.model';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { ForumPost } from 'src/app/model/forum-post';
+import { CommentResolverService } from '../extended-post/comment-resolver.service';
 @Component({
   selector: 'app-forum-topic',
   templateUrl: './forum-topic.component.html',
@@ -13,28 +15,30 @@ export class ForumTopicComponent implements OnInit {
   finalPost: FinalPost | undefined;
   private routeSub: Subscription = new Subscription;
 
-   givenPost:{
-    id:string,
-    username:string,
-    question:string,
-    answers:string,
-    description:string,
-    text:string
-     }[]=post;
+  //  givenPost:{
+  //   id:string,
+  //   username:string,
+  //   question:string,
+  //   answers:string,
+  //   description:string,
+  //   text:string
+  //    }[]=post;
 
- constructor(private route: ActivatedRoute) { 
- }
+  forumPost: ForumPost | undefined;
 
- ngOnInit(): void {
-   this.routeSub = this.route.params.subscribe(params => {
-     const givenId = params['id']; //the value of id
-     this.finalPost = this.givenPost.find(item => item.id === givenId)
-   });
- }
+  constructor(private route: ActivatedRoute, private commentService: CommentResolverService) {
+  }
 
- ngOnDestroy() {
-   this.routeSub.unsubscribe();
- }
+  ngOnInit(): void {
+
+    this.commentService.findAll().subscribe((data: ForumPost) => {
+      this.forumPost = data;
+    });
+  }
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
+  }
 
 
 }

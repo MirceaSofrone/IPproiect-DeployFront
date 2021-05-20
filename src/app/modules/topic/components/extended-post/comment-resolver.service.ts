@@ -18,4 +18,9 @@ export class CommentResolverService {
     let explodedURL = this.router.url.split('/');
     return this.http.get<ForumPost>(this.backendurl + '/' + explodedURL[explodedURL.length - 1]);
   }
+
+  public save(post: ForumComment) {
+    let explodedURL = this.router.url.split('/');
+    return this.http.post<ForumComment>(this.backendurl + '/' + explodedURL[explodedURL.length - 2], post);
+  }
 }

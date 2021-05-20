@@ -19,15 +19,6 @@ export class ExtendedPostComponent implements OnInit {
 
   private routeSub: Subscription = new Subscription;
 
-  // givenPost:{
-  //   id:string,
-  //   username:string,
-  //   question:string,
-  //   answers:string,
-  //   description:string,
-  //   text:string
-  // }[]=post;
-
   forumPost: ForumPost | undefined;
 
   constructor(private route: ActivatedRoute, private commentService: CommentResolverService) {

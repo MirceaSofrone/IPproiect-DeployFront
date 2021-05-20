@@ -1,9 +1,9 @@
 <section class="glass">
-    <div *ngIf="finalPost !== undefined" >
-      <a id="add_btn" [routerLink]="['/forum-topic', finalPost.id, 'answer']" mat-button color="primary">Add answer</a>
-    </div>
-    <app-extended-post></app-extended-post>
-    <mat-divider></mat-divider>
-    <app-answers-list></app-answers-list>
+  <div *ngIf="forumPost !== undefined">
+    <a id="add_btn" [routerLink]="['/forum-topic', forumPost.postID, 'answer']" mat-button color="primary">Add
+      answer</a>
+  </div>
+  <app-extended-post></app-extended-post>
+  <mat-divider></mat-divider>
+  <app-answers-list></app-answers-list>
 </section>
-

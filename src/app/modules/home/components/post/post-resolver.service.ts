@@ -15,4 +15,8 @@ export class PostResolverService {
   public findAll(): Observable<ForumPost[]> {
     return this.http.get<ForumPost[]>(this.backendurl);
   }
+
+  public save(post: ForumPost) {
+    return this.http.post<ForumPost>(this.backendurl, post);
+  }
 }

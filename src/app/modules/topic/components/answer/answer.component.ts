@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import post from '../../../../_files/info.json';
 import { ActivatedRoute } from '@angular/router';
+import { CommentResolverService } from '../extended-post/comment-resolver.service';
+import { ForumComment } from 'src/app/model/forum-comment';
+import { ForumPost } from 'src/app/model/forum-post';
 
 @Component({
   selector: 'app-answer',
@@ -9,23 +12,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AnswerComponent implements OnInit {
 
+  comments: ForumComment[];
 
-   infoList:{
-    id:string,
-    username:string,
-    question:string,
-    answers:string,
-    text:string
-    }[]=post;
+  //  infoList:{
+  //   id:string,
+  //   username:string,
+  //   question:string,
+  //   answers:string,
+  //   text:string
+  //   }[]=post;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private commentService: CommentResolverService) { }
 
   ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    const postIdFromRoute = String(routeParams.get('id'));
-    this.route.data.subscribe(data => {
-      this.infoList = data.get('id'); 
+    this.commentService.findAll().subscribe((data: ForumPost) => {
+      this.comments = data.comments;
     });
+
   }
 
 }
