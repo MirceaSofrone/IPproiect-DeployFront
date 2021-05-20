@@ -7,7 +7,8 @@ agm-map{
     width:80%;
     display: flex;
     justify-content: center;
-    margin-left: 10vw;
+    margin-left: auto;
+  margin-right: auto;
 
 }
 p{

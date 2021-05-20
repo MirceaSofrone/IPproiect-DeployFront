@@ -2,6 +2,7 @@ a{
   text-decoration:none;
 }
 .card-section{
+  max-width:1650px;
   width:80vw;
   margin: 5vw auto;
   text-align:center;

@@ -20,6 +20,7 @@ export class HouseItemComponent implements OnInit {
   // public toggleSelected() {
   //   this.selected = !this.selected;
   //   this.selectedChange.emit(this.selected); }
+  defaultPhoto="/assets/house.png";
 
 
   handleAddToWishlist() {

@@ -26,8 +26,8 @@ export class Base64galleryComponent implements OnInit {
 
     this.galleryOptions = [
       {
-        width: '45vw',
-        height: '40vw',
+        width: '100%',
+        height: '30vw',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide
       },
