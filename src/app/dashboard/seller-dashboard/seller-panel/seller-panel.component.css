@@ -27,6 +27,7 @@
   padding: 0;
   color: #707070;
   position: absolute;
+  transform: translate(0, -100%);
 }
 
 /* Scrollbar settings */

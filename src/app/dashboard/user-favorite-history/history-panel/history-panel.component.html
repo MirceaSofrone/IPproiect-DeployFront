@@ -5,7 +5,7 @@
       </button>
       <li>
         <div class="list__item" #item_1>
-          <a [routerLink]="['/house', histData[histIndex-1]?.houseID]">
+          <a [routerLink]="['/house-details', histData[histIndex-1]?.houseID]">
             <img [src]="histData[histIndex-1].photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                + histData[histIndex-1].photos[0]) : '../../assets/userDashboard/default.png'" alt="hist1">
@@ -16,7 +16,7 @@
       </li>
       <li>
         <div class="list__item" id="item_2">
-          <a [routerLink]="['/house', histData[histIndex]?.houseID]">
+          <a [routerLink]="['/house-details', histData[histIndex]?.houseID]">
             <img [src]="histData[histIndex].photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                + histData[histIndex].photos[0]) : '../../assets/userDashboard/default.png'" alt="hist2">
@@ -27,7 +27,7 @@
       </li>
       <li>
         <div class="list__item" id="item_3">
-          <a [routerLink]="['/house', histData[histIndex+1]?.houseID]">
+          <a [routerLink]="['/house-details', histData[histIndex+1]?.houseID]">
             <img [src]="histData[histIndex+1].photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                + histData[histIndex+1].photos[0]) : '../../assets/userDashboard/default.png'" alt="hist3">
