@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-seller-house-panel',
@@ -6,25 +7,54 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./seller-house-panel.component.css']
 })
 export class SellerHousePanelComponent implements OnInit {
+  private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/delete/';
+
   @Input() house: any;
- 
+
+  constructor(private http: HttpClient) {
+  }
+
   ngOnInit(): void {
     this.house = JSON.parse(JSON.stringify(this.house));
   }
 
-  getPrice(price: number): string {
-    let stringPrice = '$';
-    let counter = 0;
-    while (price >= 1) {
-      counter++;
-      stringPrice = price % 10 + stringPrice;
-      price = price / 10;
-      if (counter === 3 && price >= 1) {
-        counter = 0;
-        stringPrice = '.' + stringPrice;
-      }
-    }
-    return stringPrice;
+  getPrice(): string {
+    return this.convertPrice(this.house.currentPrice);
   }
 
+  convertPrice(price: number): string {
+    const UNIT_SYMBOL = '$';
+    let resultPrice = '';
+    let counter = 0;
+
+    if (price === undefined) {
+      return '0';
+    }
+
+    for (let i = 0; i < price.toString().length; i++) {
+      counter++;
+      resultPrice += price.toString()[i];
+      if (counter === 3 && i != price.toString().length - 1) {
+        counter = 0;
+        resultPrice += '.';
+      }
+    }
+    resultPrice += UNIT_SYMBOL;
+
+    return resultPrice;
+  }
+
+  deleteHouse = () => this.http.delete(this.URL + this.house.id);
+
+  getImage = () => 'data:image/png;base64,' + this.house.photos[0];
+
+  hasImages = () =>this.house.photos === null;
+
+  getTitle = () => this.house.title;
+
+  getFavoritesNumber = () => this.house.noOfFave;
+
+  getDescription = () => this.house.description;
+
+  saveHouse = () => localStorage.setItem('houseID', this.house.houseID);
 }

@@ -14,7 +14,6 @@ a {
   height: 6em;
   position: relative;
   display: flex;
-  justify-content: space-between;
   box-shadow: #6f6f6f 0 0 0.5em;
 }
 
@@ -35,7 +34,7 @@ a {
 
 .panel-title {
   display: inline-block;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
   color: #707070;
@@ -44,7 +43,7 @@ a {
 }
 
 .panel-content {
-  font-family: "Manrope", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #707070;
 }
 
@@ -54,7 +53,9 @@ a {
 }
 
 .panel-content-likes {
+  position: absolute;
   font-size: 0.9rem;
+  right: 3em;
   margin: 0;
 }
 
@@ -64,7 +65,7 @@ a {
 }
 
 #settings-btn {
-  font-family: "Manrope", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.3rem;
   background-color: transparent;
   border: none;
@@ -90,7 +91,7 @@ a {
 
 .dropdown-menu-content * {
   display: block;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
   margin: 0;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
@@ -116,9 +117,4 @@ a {
 
 .dropdown-menu--container:hover .dropdown-menu-content {
   display: block;
-}
-@media (max-width: 700px) {
-  .panel-title {
-    font-size: 1rem;
-  }
 }

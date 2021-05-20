@@ -5,7 +5,7 @@
       </button>
       <li> 
         <div class="list__item" id="item">
-          <a [routerLink]="['/house', favData[favIndex-1]?.houseID]">
+          <a [routerLink]="['/house-details', favData[favIndex-1]?.houseID]">
             <img [src]="favData[favIndex-1].photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                + favData[favIndex-1].photos[0]) : '../../assets/userDashboard/default.png'" alt="fav1">
@@ -19,7 +19,7 @@
       </li>
       <li>
         <div class="list__item" id="item">
-          <a [routerLink]="['/house', favData[favIndex]?.houseID]">
+          <a [routerLink]="['/house-details', favData[favIndex]?.houseID]">
             <img [src]="favData[favIndex].photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                + favData[favIndex].photos[0]) : '../../assets/userDashboard/default.png'" alt="fav2">
@@ -33,7 +33,7 @@
       </li>
       <li>
         <div class="list__item" id="item">
-          <a [routerLink]="['/house', favData[favIndex+1]?.houseID]">
+          <a [routerLink]="['/house-details', favData[favIndex+1]?.houseID]">
             <img [src]="favData[favIndex+1].photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                + favData[favIndex+1].photos[0]) : '../../assets/userDashboard/default.png'" alt="fav3">
