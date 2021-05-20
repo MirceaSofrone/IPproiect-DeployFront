@@ -44,27 +44,17 @@ export class SellerHousePanelComponent implements OnInit {
     return resultPrice;
   }
 
-  deleteHouse(): void {
-    this.http.delete(this.URL + this.house.id);
-  }
+  deleteHouse = () => this.http.delete(this.URL + this.house.id);
 
-  getImage(): string {
-    return 'data:image/png;base64,' + this.house.photos[0];
-  }
+  getImage = () => 'data:image/png;base64,' + this.house.photos[0];
 
-  hasImages(): boolean {
-    return this.house.photos === null;
-  }
+  hasImages = () =>this.house.photos === null;
 
-  getTitle(): string {
-    return this.house.title;
-  }
+  getTitle = () => this.house.title;
 
-  getFavoritesNumber(): number {
-    return this.house.noOfFave;
-  }
+  getFavoritesNumber = () => this.house.noOfFave;
 
-  getDescription(): string {
-    return this.house.description;
-  }
+  getDescription = () => this.house.description;
+
+  saveHouse = () => localStorage.setItem('houseID', this.house.houseID);
 }
