@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginPayload } from 'src/app/auth/models/auth.model';
 import { AuthenticationService } from 'src/app/auth/services/authentication/authentication.service';
 import { Router } from '@angular/router';
@@ -23,18 +23,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private form: FormBuilder,
     private router: Router,
-    private auth: AuthenticationService,
-    // public loginDialogRef: MatDialogRef<LoginComponent>,
-    // @Inject(MAT_DIALOG_DATA) public loginData: any
+    private auth: AuthenticationService
     ) { }
 
   ngOnInit(): void {
-    this.login=this.form.group(
-      {
+    this.login=this.form.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]]
-      }
-    )
+      })
   }
 
   goToRegister(): void {
@@ -56,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.payload).subscribe(
       res => {
         localStorage.setItem('token', res.accessToken)
+        localStorage.setItem('email', res.email)
         alert('You successfully logged in!')
       },
       err => alert('Email or password are incorrect!')

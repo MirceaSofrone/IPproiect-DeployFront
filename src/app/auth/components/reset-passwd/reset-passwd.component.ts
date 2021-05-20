@@ -1,21 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-@Component({
-  selector: 'dialog-reset-passwd',
-  templateUrl: 'dialog-reset-passwd.html',
-})
-export class DialogResetPasswd {
-  constructor(public dialog: MatDialog) { }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ResetPasswdComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-}
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-reset-passwd',
@@ -31,12 +16,18 @@ export class ResetPasswdComponent implements OnInit {
   newPasswd: string;
   confirmPasswd: string;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.resetForm = this.fb.group({
       newPasswd: ['', [Validators.required, Validators.minLength(8)]],
       confirmPasswd: ['', [Validators.required, Validators.minLength(8)]]
+    })
+  }
+
+  goToLogin(): void {
+    this.router.navigate(['dialog/login'], {
+      skipLocationChange: true
     })
   }
 

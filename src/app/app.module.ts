@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
-import { DialogResetPasswd, ResetPasswdComponent } from './auth/components/reset-passwd/reset-passwd.component';
 import { DialogComponent } from './auth/components/test-dialog/test.dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +13,8 @@ import { DialogWrapperComponent } from './auth/components/dialog-wrapper/dialog-
 import { AppRoutingModule } from './app.routing.module';
 import { ForgotPasswdComponent } from './auth/components/forgot-passwd/forgot-passwd.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SuccessComponent } from './auth/components/success/success.component';
+import { ResetPasswdComponent } from './auth/components/reset-passwd/reset-passwd.component'
 
 @NgModule({
   declarations: [
@@ -22,9 +23,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     DialogComponent,
     RegisterComponent,
     ResetPasswdComponent,
-    DialogResetPasswd,
     DialogWrapperComponent,
-    ForgotPasswdComponent
+    ForgotPasswdComponent,
+    SuccessComponent
   ],
   imports: [
     AppRoutingModule,

@@ -25,8 +25,8 @@ export class DialogWrapperComponent implements AfterViewInit {
 
   dispatchDialog(): void {
     const dialogRef = this.dialog.open(this.dialogTemplate, {
-      width: "auto",
-      height: "auto",
+      width: "90vw",
+      height: "fit-content",
       disableClose: false,
       panelClass: 'pclass'
     });

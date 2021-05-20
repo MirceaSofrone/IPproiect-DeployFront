@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 export class DialogComponent {
   constructor(public router: Router) {}
 
-  openDialog() {
+  openAuthDialog() {
     this.router.navigate(['/dialog']);
-
   }
 }

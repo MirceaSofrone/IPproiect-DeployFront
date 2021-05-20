@@ -1,53 +1,29 @@
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-    <div class="split-content">
-        <div class="split-left">
-            <div class="left-align">
-                <h2>Change Password</h2>
-                <p>Choose a minimum 8 characters' password which contains: a capital letter, a number, a special
-                    character</p>
-
-                <div mat-dialog-content>
-                    <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
-
-                        <mat-form-field id="new-psswd" appearance="outline">
-                            <mat-label>New Password</mat-label>
-                            <input matInput formControlName="newPasswd" [type]="hide ? 'password' : 'text'" required />
-                            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
-                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>
-                        </mat-form-field>
-                        <br>
-                        <mat-form-field id="confirm-psswd" appearance="outline">
-                            <mat-label>Confirm New Password</mat-label>
-                            <input matInput formControlName="confirmPasswd" [type]="hideConfirm ? 'password' : 'text'"
-                                required />
-                            <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" type="button">
-                                <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>
-                        </mat-form-field>
-                        <br>
-                        <button id="button-2" mat-raised-button type="submit" [disabled]="!resetForm.valid"
-                            (click)="onSubmit()">Submit
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="split-right">
-            <div class="imgs">
-                <img id="sun" src="../../../../assets/sun_clouds.png" alt="sun and clouds">
-                <img id="buildings" src="../../../../assets/buildings.png" alt="buildings">
-            </div>
-        </div>
-        <img id="buildings" src="../../../../assets/buildings.png" alt="buildings">
+<mat-dialog-content class="panel">
+    <div class="left">
+        <button id="bck_btn" (click)="goToLogin()" style="cursor: pointer;">
+            <mat-icon id="bck_arw" matSuffix>arrow_back</mat-icon>
+            Back
+        </button>
+        <h2>Change Password</h2>
+        <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
+            <mat-form-field id="new-psswd" appearance="outline">
+                <mat-label>New Password</mat-label>
+                <input matInput formControlName="newPasswd" [type]="hide ? 'password' : 'text'" required />
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+            <br>
+            <mat-form-field id="confirm-psswd" appearance="outline">
+                <mat-label>Confirm New Password</mat-label>
+                <input matInput formControlName="confirmPasswd" [type]="hideConfirm ? 'password' : 'text'"
+                    required />
+                <mat-icon matSuffix (click)="hideConfirm = !hideConfirm">{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button type="submit" class="submit_btn" [disabled]="!resetForm.valid" (click)="onSubmit()">Submit</button>
+        </form>
     </div>
-</body>
-
-</html>
+    <div class="right">
+        <img src="../../../../assets/sun_clouds.png" alt="clouds" width="85%">
+        <img src="../../../../assets/buildings.png" alt="buildings" width="100%">
+    </div>
+</mat-dialog-content>

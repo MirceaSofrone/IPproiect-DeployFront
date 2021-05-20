@@ -40,8 +40,7 @@ import { SuccessComponent } from './components/success/success.component';
       },
     ]),
   ],
-  declarations: [
-  SuccessComponent],
+  declarations: [],
   providers: []
 })
 export class DialogModule {}

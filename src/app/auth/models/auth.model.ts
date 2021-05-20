@@ -11,3 +11,8 @@ export interface RegisterPayload {
   password: String;
   role: String[];
 }
+
+export interface ChangePayload {
+  token: String,
+  newPass: String;
+}

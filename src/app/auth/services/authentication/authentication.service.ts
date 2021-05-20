@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { LoginPayload, RegisterPayload } from '../../models/auth.model'
+import { LoginPayload, RegisterPayload, ChangePayload } from '../../models/auth.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private api: string = 'https://hpp-auth.herokuapp.com/api/auth';
+  private api: string = 'https://back-end-hpp.herokuapp.com/api/auth';
   constructor(private http: HttpClient) { }
 
   public isAuthenticated(): boolean {
@@ -22,6 +22,13 @@ export class AuthenticationService {
     return this.http.post<any>(this.api + '/register', payload)
   }
 
+  public reset(email: String): Observable<any> {
+    return this.http.post<any>(this.api + '/resetPassword?email=' + email, '')
+  }
+
+  public change(payload: ChangePayload): Observable<any> {
+    return this.http.post<any>(this.api + '/changePassword', payload)
+  }
   public logout(): void {
     localStorage.removeItem('token')
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-success',
   templateUrl: './success.component.html',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuccessComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  goToLogin(): void {
+    this.router.navigate(['dialog/login'], {
+      skipLocationChange: true
+    })
   }
 
 }

@@ -6,8 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
-import { from } from 'rxjs';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
     imports: [
         MatButtonModule,
@@ -16,7 +15,8 @@ import { from } from 'rxjs';
         LayoutModule,
         MatIconModule,
         MatButtonToggleModule,
-        MatDialogModule
+        MatDialogModule,
+        MatCheckboxModule
     ],
     exports: [
         MatFormFieldModule,
@@ -25,7 +25,8 @@ import { from } from 'rxjs';
         MatButtonModule,
         MatIconModule,
         MatButtonToggleModule,
-        MatDialogModule
+        MatDialogModule,
+        MatCheckboxModule
     ]
 })
 
