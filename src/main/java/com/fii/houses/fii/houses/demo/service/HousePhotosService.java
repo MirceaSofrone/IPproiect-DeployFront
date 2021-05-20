@@ -43,4 +43,14 @@ public class HousePhotosService {
         }
         return housePhotos;
     }
+
+    public HousePhotos displayPhoto(UUID houseID){
+        List<HousePhotos> allHousesPhotos = housePhotosRepository.findAll();
+        for(HousePhotos photo : allHousesPhotos){
+            if(photo.getHouseID().equals(houseID)){
+                return photo;
+            }
+        }
+        return new HousePhotos();
+    }
 }

@@ -48,4 +48,15 @@ public class HousesPhotosController {
     public List<HousePhotos> getPhotosFromHouseID(@PathVariable UUID houseID){
         return housePhotosService.getPhotosFromHouseID(houseID);
     }
+
+    @ApiOperation(value = "Get a singele photo from a given house")
+    @GetMapping("/display/{houseID}")
+    public ResponseEntity<?> displayPhoto(@PathVariable UUID houseID){
+        HousePhotos photo = housePhotosService.displayPhoto(houseID);
+        if(photo.equals(new HousePhotos())){
+            return new ResponseEntity<>("Nu a fost gasita nicio fotografie", new HttpHeaders(), HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(photo, new HttpHeaders(), HttpStatus.OK);
+        }
+    }
 }
