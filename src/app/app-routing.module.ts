@@ -9,7 +9,7 @@ import { AddHouseComponent } from './dashboard/add-house/add-house.component';
 import { SellerDashboardComponent } from './dashboard/seller-dashboard/seller-dashboard.component';
 
 const routes: Routes = [
-  { path: 'home', component: LandingPageComponent},
+  { path: 'home', component: DashboardComponent},
   { path: 'house-details/:id', component: HouseDetailsComponent},
   { path: 'listing', component: ListComponent},
 
