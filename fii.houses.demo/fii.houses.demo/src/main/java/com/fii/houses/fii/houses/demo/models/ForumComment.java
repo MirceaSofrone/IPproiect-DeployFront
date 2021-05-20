@@ -67,6 +67,6 @@ public class ForumComment implements Comparable<ForumComment> {
 
     @Override
     public int compareTo(ForumComment o) {
-        return creationDate.compareTo(o.creationDate);
+        return o.creationDate.compareTo(creationDate);
     }
 }

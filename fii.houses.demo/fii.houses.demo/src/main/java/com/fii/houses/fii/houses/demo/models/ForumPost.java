@@ -3,6 +3,7 @@ package com.fii.houses.fii.houses.demo.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.*;
 import java.util.*;
@@ -21,17 +22,19 @@ public class ForumPost implements Comparable<ForumPost> {
     @OneToMany(mappedBy = "forumPost")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties("forumPost")
-    private Set<ForumComment> comments = new TreeSet<>();
+    @OrderBy("creationDate DESC")
+    private SortedSet<ForumComment> comments = new TreeSet<>();
 
     @ManyToMany
     @JsonIgnoreProperties("likedPosts")
-    private Set<User> likes;
+    private Set<User> likes = new HashSet<>();
 
     @ManyToMany
     @JsonIgnoreProperties("reportedPosts")
-    private Set<User> reports;
+    private Set<User> reports = new HashSet<>();
 
     private Date creationDate;
+    private String title;
     private String content;
 
     public UUID getPostID() {
@@ -54,7 +57,7 @@ public class ForumPost implements Comparable<ForumPost> {
         return comments;
     }
 
-    public void setComments(Set<ForumComment> comments) {
+    public void setComments(SortedSet<ForumComment> comments) {
         this.comments = comments;
     }
 
@@ -72,6 +75,14 @@ public class ForumPost implements Comparable<ForumPost> {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Set<User> getLikes() {

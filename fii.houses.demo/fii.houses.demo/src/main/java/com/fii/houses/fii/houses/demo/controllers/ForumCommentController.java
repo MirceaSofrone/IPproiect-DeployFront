@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("api/v1/forum/{idPost}")
 public class ForumCommentController {
     @Autowired
