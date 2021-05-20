@@ -80,7 +80,7 @@ export class AddFormComponent{
 
   onSubmit() {
     this.submitted = true;
-    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUxMTczNSwiZXhwIjoxNjIxNTk4MTM1fQ.LMXMHhBV9m-UtXjALX1ikjrOHYb9aEsmh-5SXyB6OAEEVe1Wl9wYfznzo5SSY-XkNeXu-4Z4yt5WsUs-vWac8A';
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUyMjY3NCwiZXhwIjoxNjIxNjA5MDc0fQ.HRNi_VHJwY4x5pQfmMK-HMtH_n9padpSj1kC5qgmeNKoOEoWke1YfxD_E3iAFe-We90Bc-2LP0jEQwLJVSSPVw';
     const headers = {'Authorization': token };
     this.http.post<HouseType>(this.ServerUrlAddHouse, {
       userID: "7",
