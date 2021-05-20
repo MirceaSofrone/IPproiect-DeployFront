@@ -1,4 +1,7 @@
+import { MapsAPILoader } from '@agm/core';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MapComponent } from './map.component';
 
@@ -8,7 +11,8 @@ describe('MapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MapComponent ]
+      imports: [RouterTestingModule,HttpClientModule],
+      declarations: [ MapComponent ],providers: [{ provide: MapsAPILoader, useValue: { load: jasmine.createSpy('load') }}],
     })
     .compileComponents();
   });

@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { NavbarLoggedInComponent } from './navbar-logged-in.component';
 
@@ -8,6 +10,7 @@ describe('NavbarLoggedInComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule,MatMenuModule],
       declarations: [ NavbarLoggedInComponent ]
     })
     .compileComponents();
