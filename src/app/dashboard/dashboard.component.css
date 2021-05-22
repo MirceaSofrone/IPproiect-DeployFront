@@ -14,12 +14,15 @@
   left: 25%;
   top: 12%;
 }
+
 .favorite__history--panel {
   left: -1em;
 }
+
 .statistics__panel {
   left: 2em;
 }
+
 /* responsive design */
 @media (max-width: 1700px) {
   .statistics__panel {

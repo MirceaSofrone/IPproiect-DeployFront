@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
-
-
 import SearchIcon from '@material-ui/icons/Search';
 
 import { AppComponent } from './app.component';

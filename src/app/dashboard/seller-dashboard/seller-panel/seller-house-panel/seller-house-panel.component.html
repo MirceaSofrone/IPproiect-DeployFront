@@ -1,4 +1,5 @@
-<div class="seller-house-panel--container">
+<!-- House panel -->
+<div class="seller-house-panel--container" *ngIf="this.house.houseID !== undefined" [routerLink]="['/house-details', this.house.houseID]">
   <img alt="house image" [src]="getImage()" *ngIf="house.photos?.length">
   <div class="seller-house-panel-content--container">
     <div class="panel-title--container">
@@ -14,5 +15,14 @@
         <button id="delete-btn" (click)="deleteHouse()">Delete</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Loading house panel -->
+<div class="seller-house-panel--container" *ngIf="this.house.houseID === undefined">
+  <div class="loading-house--container">
+    <span class="loading-bullet"></span>
+    <span class="loading-bullet"></span>
+    <span class="loading-bullet"></span>
   </div>
 </div>

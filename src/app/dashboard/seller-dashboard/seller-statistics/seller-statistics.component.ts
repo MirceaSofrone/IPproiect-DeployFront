@@ -18,16 +18,17 @@ export class SellerStatisticsComponent {
 
   constructor(private http: HttpClient) {
     this.http.get<ISellerStatistics[]>(this.URL).subscribe(data => this.rawData = data);
-    console.log('constructor has been called');
   }
 
   getData(): any[] {
     let followersData: any[];
     followersData = [];
-    this.rawData.sort((first, second) => (first.time - second.time)).forEach(follower => {
-      followersData.push({value: follower.followers, name: this.unixToDate(follower.time)});
-    });
-    this.data[0].series = followersData;
+    if (this.rawData !== undefined) {
+      this.rawData.sort((first, second) => (first.time - second.time)).forEach(follower => {
+        followersData.push({value: follower.followers, name: this.unixToDate(follower.time)});
+      });
+      this.data[0].series = followersData;
+    }
     return this.data;
   }
 

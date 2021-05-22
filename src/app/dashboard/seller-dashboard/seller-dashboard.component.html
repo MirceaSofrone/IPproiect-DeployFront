@@ -5,7 +5,7 @@
   <div class="seller-page">
     <div class="seller-house-panel--container">
       <app-dashboard-buttons selectedButton="seller"></app-dashboard-buttons>
-      <app-seller-panel></app-seller-panel>
+      <app-seller-panel [SELLER_ID]="getSellerId()"></app-seller-panel>
     </div>
 
     <div class="seller-statistics--container">
