@@ -17,7 +17,9 @@ export class UserStatisticsPanelComponent {
   }];
 
   constructor(private http: HttpClient) {
-    this.http.get<IUserStatistics[]>(this.URL).subscribe(data => this.rawData = data);
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibHorWXp0bzBoY3FVSUJWdjZqMkxnSWcwS3R2R25PUkt1Mm1hZWhZc0JJPSIsImlhdCI6MTYyMTY5NTgwMSwiZXhwIjoxNjIxNzgyMjAxfQ.X22ReBqnY3AyCEadNk-wNm106KTSS76Mqw4EPW-JRHBqY88YO8E75x7kGFlmXk3KC9kZcCQL7dEKFSwHKr16Xw';
+    const headers = { 'Authorization': token };
+    this.http.get<IUserStatistics[]>(this.URL, { headers }).subscribe(data => this.rawData = data);
   }
 
   // debug(): void {

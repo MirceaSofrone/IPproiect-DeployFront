@@ -16,7 +16,9 @@ export class HistoryPanelComponent {
   @ViewChild("item_1") block: HTMLElement;
 
   constructor(private http: HttpClient, public _sanitizer: DomSanitizer) {
-    this.http.get<IHistory[]>(this.URL).subscribe(
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibHorWXp0bzBoY3FVSUJWdjZqMkxnSWcwS3R2R25PUkt1Mm1hZWhZc0JJPSIsImlhdCI6MTYyMTY5NTgwMSwiZXhwIjoxNjIxNzgyMjAxfQ.X22ReBqnY3AyCEadNk-wNm106KTSS76Mqw4EPW-JRHBqY88YO8E75x7kGFlmXk3KC9kZcCQL7dEKFSwHKr16Xw';
+    const headers = { 'Authorization': token };
+    this.http.get<IHistory[]>(this.URL, { headers }).subscribe(
       data => this.histData = data,
       () => {},
     );

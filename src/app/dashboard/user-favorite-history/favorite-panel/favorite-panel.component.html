@@ -6,9 +6,9 @@
       <li> 
         <div class="list__item" id="item">
           <a [routerLink]="['/house-details', favData[favIndex-1]?.houseID]">
-            <img [src]="favData[favIndex-1].photos[0]!=undefined ?
+            <img [src]="favData[favIndex-1]?.photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
-               + favData[favIndex-1].photos[0]) : '../../assets/userDashboard/default.png'" alt="fav1">
+               + favData[favIndex-1]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="fav1">
           </a>
           <button class="removeFav" id="removeFav" (click)="remove(favData[favIndex-1].houseID, favIndex-1)">
             <img class="remove-Fav-Img" src="../../assets/userDashboard/remove.svg" alt="remove fav">
@@ -20,9 +20,9 @@
       <li>
         <div class="list__item" id="item">
           <a [routerLink]="['/house-details', favData[favIndex]?.houseID]">
-            <img [src]="favData[favIndex].photos[0]!=undefined ?
+            <img [src]="favData[favIndex]?.photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
-               + favData[favIndex].photos[0]) : '../../assets/userDashboard/default.png'" alt="fav2">
+               + favData[favIndex]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="fav2">
           </a>
           <button class="removeFav" id="removeFav" (click)="remove(favData[favIndex].houseID, favIndex)">
             <img class="remove-Fav-Img" src="../../assets/userDashboard/remove.svg" alt="remove fav">
@@ -34,9 +34,9 @@
       <li>
         <div class="list__item" id="item">
           <a [routerLink]="['/house-details', favData[favIndex+1]?.houseID]">
-            <img [src]="favData[favIndex+1].photos[0]!=undefined ?
+            <img [src]="favData[favIndex+1]?.photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
-               + favData[favIndex+1].photos[0]) : '../../assets/userDashboard/default.png'" alt="fav3">
+               + favData[favIndex+1]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="fav3">
           </a>
           <button class="removeFav" id="removeFav" (click)="remove(favData[favIndex+1].houseID, favIndex+1)">
             <img class="remove-Fav-Img" src="../../assets/userDashboard/remove.svg" alt="remove fav">
