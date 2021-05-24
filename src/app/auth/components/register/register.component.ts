@@ -60,8 +60,6 @@ export class RegisterComponent implements OnInit {
         this.payload.username = this.registerForm.get('username').value
         this.payload.role.push('user')        
         
-        console.log(this.payload)
-
         this.auth.register(this.payload).subscribe(
           res => {
             if (res.message === 'User registered successfully!')

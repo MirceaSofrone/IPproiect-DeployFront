@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.payload.username = this.login.get('email').value;
     this.payload.password = this.login.get('password').value;
-    console.log(this.payload);
     this.auth.login(this.payload).subscribe(
       res => {
         localStorage.setItem('token', res.accessToken)

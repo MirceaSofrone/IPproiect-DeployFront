@@ -36,7 +36,6 @@ export class ForgotPasswdComponent implements OnInit {
       res => console.log(res),
       err => console.log(err)
     )
-    console.log('works')
   }
 
 }
