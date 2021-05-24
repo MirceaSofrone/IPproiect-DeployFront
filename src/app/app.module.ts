@@ -56,6 +56,9 @@ import { SellerHousePanelComponent } from './dashboard/seller-dashboard/seller-p
 import { SellerStatisticsPanelComponent } from './dashboard/seller-dashboard/seller-statistics/seller-statistics-panel/seller-statistics-panel.component';
 import { DashFooterComponent } from './dashboard/global-components/dash-footer/dash-footer.component';
 import {LandingModule} from './landing/landing.module';
+import { DialogModule } from './auth/auth.dialog.module';
+import { AuthMaterialModule } from './auth/auth.material.module';
+import { DialogComponent } from './auth/components/test-dialog/test.dialog.component';
 
 
 
@@ -80,7 +83,8 @@ import {LandingModule} from './landing/landing.module';
     AddFormComponent,
     SellerHousePanelComponent,
     SellerStatisticsPanelComponent,
-    DashFooterComponent
+    DashFooterComponent,
+    DialogComponent
 
   ],
   imports: [
@@ -104,8 +108,8 @@ import {LandingModule} from './landing/landing.module';
     MatInputModule,
     MatIconModule,
     LandingModule,
-    AppRoutingModule
-
+    AppRoutingModule,
+    DialogModule
   ],
 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { DialogModule } from 'src/app/auth/auth.dialog.module'
 import { HouseDetailsComponent } from './landing/components/house-details/house-details.component';
 import {LandingPageComponent} from './landing/components/landing-page/landing-page.component';
 import { ListComponent } from './landing/components/list/list.component';
@@ -17,6 +17,13 @@ const routes: Routes = [
   {  path: 'addHouse', component : AddHouseComponent },
   {  path: 'sellerDash', component : SellerDashboardComponent },
   // { path: '', redirectTo: '', pathMatch: 'full'}
+  {
+      path: 'dialog',
+      loadChildren: () => 
+          import('./auth/auth.dialog.module').then(
+              m => m.DialogModule
+          )
+  }
 ];
 
 

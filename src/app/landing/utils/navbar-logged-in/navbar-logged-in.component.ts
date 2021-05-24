@@ -1,4 +1,6 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/auth/services/authentication/authentication.service';
 
 
 
@@ -13,11 +15,23 @@ import { Component, OnInit} from '@angular/core';
 
 export class NavbarLoggedInComponent implements OnInit {
 
-
-  constructor() { }
+  profileRoute: string;
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
 
+  }
+
+  checkRoute(): void {
+    if(this.auth.isAuthenticated()) {
+      this.router.navigate(['/account'])
+    } else {
+      this.router.navigate(['/dialog'])
+    }
+  }
+
+  logout(): void {
+    this.auth.logout()
   }
 
 }
