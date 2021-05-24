@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ['./seller-house-panel.component.css']
 })
 export class SellerHousePanelComponent implements OnInit {
-  private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/delete/';
+  private URL = 'https://back-end-hpp.herokuapp.com/api/v1/delete/';
 
   @Input() house: any;
 
@@ -44,7 +44,11 @@ export class SellerHousePanelComponent implements OnInit {
     return resultPrice;
   }
 
-  deleteHouse = () => this.http.delete(this.URL + this.house.id);
+  deleteHouse = () => {
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUyMjY3NCwiZXhwIjoxNjIxNjA5MDc0fQ.HRNi_VHJwY4x5pQfmMK-HMtH_n9padpSj1kC5qgmeNKoOEoWke1YfxD_E3iAFe-We90Bc-2LP0jEQwLJVSSPVw';
+    const headers = {'Authorization': token };
+    this.http.delete(this.URL + this.house.id, { headers });
+  }
 
   getImage = () => 'data:image/png;base64,' + this.house.photos[0];
 

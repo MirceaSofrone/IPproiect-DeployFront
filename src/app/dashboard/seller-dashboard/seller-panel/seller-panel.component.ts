@@ -9,13 +9,15 @@ import { HttpClient } from '@angular/common/http';
 export class SellerPanelComponent implements OnInit{
   private housesList = [{}, {}, {}];
   @Input() SELLER_ID;
-  private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/all/';
+  private URL = 'https://back-end-hpp.herokuapp.com/api/v1/all/';
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
-    this.http.get(this.URL + this.SELLER_ID).toPromise().then((data) => {
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUyMjY3NCwiZXhwIjoxNjIxNjA5MDc0fQ.HRNi_VHJwY4x5pQfmMK-HMtH_n9padpSj1kC5qgmeNKoOEoWke1YfxD_E3iAFe-We90Bc-2LP0jEQwLJVSSPVw';
+    const headers = {'Authorization': token };
+    this.http.get(this.URL + this.SELLER_ID, {headers}).toPromise().then((data) => {
       this.housesList = JSON.parse(JSON.stringify(data));
     });
   }

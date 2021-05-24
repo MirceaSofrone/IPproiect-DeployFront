@@ -12,7 +12,7 @@ export class SellerDashboardComponent implements OnInit{
 
   constructor(private http: HttpClient) {
   }
-
+//in loc de url, vedem in localstorage
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     this.http.get(this.URL + token).toPromise().then((data) => {

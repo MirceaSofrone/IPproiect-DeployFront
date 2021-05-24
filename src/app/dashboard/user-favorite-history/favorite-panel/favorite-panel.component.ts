@@ -15,8 +15,8 @@ export class FavoritePanelComponent {
   favIndex = 1;
   userID = '6757fff1-e437-4d23-bd45-646a4b419b16';
 
-  URL = 'https://house-prediction-fii.herokuapp.com/api/v1/users/getfavorite/6757fff1-e437-4d23-bd45-646a4b419b16';
-  deleteURL = "https://house-prediction-fii.herokuapp.com/api/v1/users/removefromfavorite/";
+  URL = 'https://back-end-hpp.herokuapp.com/api/v1/users/getfavorite/6757fff1-e437-4d23-bd45-646a4b419b16';
+  deleteURL = "https://back-end-hpp.herokuapp.com/api/v1/users/removefromfavorite/";
   constructor(private http: HttpClient, public _sanitizer: DomSanitizer) {
     const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibHorWXp0bzBoY3FVSUJWdjZqMkxnSWcwS3R2R25PUkt1Mm1hZWhZc0JJPSIsImlhdCI6MTYyMTY5NTgwMSwiZXhwIjoxNjIxNzgyMjAxfQ.X22ReBqnY3AyCEadNk-wNm106KTSS76Mqw4EPW-JRHBqY88YO8E75x7kGFlmXk3KC9kZcCQL7dEKFSwHKr16Xw';
     const headers = { 'Authorization': token };
