@@ -34,3 +34,23 @@
   font-weight: 700;
   width: fit-content;
 }
+/* responsive design */
+@media (max-width: 1150px) {
+  .dashboard-btn--container {
+    margin-left: 0;
+    width: 420px;
+    height: 40px;
+  }
+  .dashboard--btn {
+    font-size: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .dashboard-btn--container {
+    width: 330px;
+    height: 30px;
+  }
+  .dashboard--btn {
+    font-size: 15px;
+  }
+}

@@ -45,7 +45,7 @@ app-dashboard-buttons {
   width: 50%;
   height: 80%;
   padding: 0 1rem;
-  top: -20px;
+  top: -10%;
 }
 
 .seller-statistics--container {
@@ -54,6 +54,7 @@ app-dashboard-buttons {
   width: 40%;
   padding: 0.5rem 1rem;
   top: -70px;
+  background-color: aqua;
 }
 
 .seller-house-panel-content--container {
