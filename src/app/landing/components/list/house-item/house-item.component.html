@@ -33,7 +33,7 @@
     </div>
     <div class="price-wrapper">
       <div class="details price">Price : {{item.currentPrice}}</div>
-      <div class="details detail"><a routerLink="/house-details/{{item.houseID}}">View details</a></div>
+      <div class="details detail"><a (click)="onClick(item.houseID,item.userID)">View details</a></div>
     </div>
 
 

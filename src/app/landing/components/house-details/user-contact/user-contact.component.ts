@@ -14,7 +14,7 @@ export class UserContactComponent implements OnInit {
   // tslint:disable-next-line:typedef
    onSubmit(data){
 
-    const bearer = localStorage.getItem('bearer');
+    const bearer = localStorage.getItem('token');
     const token = `Bearer ${bearer}`;
     console.log(token);
     const httpHeaders = new HttpHeaders({

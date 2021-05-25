@@ -24,7 +24,7 @@ url = 'https://back-end-hpp.herokuapp.com/api/v1/users/';
 
   addToWishlist(houseID) {
     console.log(this.url, 'add to wishlist');
-    const bearer = localStorage.getItem('bearer');
+    const bearer = localStorage.getItem('token');
     const token = `Bearer ${bearer}`;
     console.log(token);
     const httpHeaders = new HttpHeaders({
@@ -36,7 +36,7 @@ url = 'https://back-end-hpp.herokuapp.com/api/v1/users/';
 
   removeFromWishlist(houseID) {
     console.log(this.url, 'add to wishlist');
-    const bearer = localStorage.getItem('bearer');
+    const bearer = localStorage.getItem('token');
     const token = `Bearer ${bearer}`;
     console.log(token);
     const httpHeaders = new HttpHeaders({

@@ -136,11 +136,11 @@ mat-sidenav a {
   display: none;
 }
 
-.mat-focus-indicator,
-mat-button mat-button-base {
-  padding-top: 10px;
-  padding-bottom:10px;
-}
+/*.mat-focus-indicator,*/
+/*mat-button mat-button-base {*/
+/*  padding-top: 10px;*/
+/*  padding-bottom:10px;*/
+/*}*/
 .mat-drawer-inner-container{
   display:none;
 }

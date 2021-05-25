@@ -19,7 +19,7 @@ export class PhotoCarouselService {
   {
 console.log(carouselType);
 if (carouselType === 1) {
-      this.url = 'https://back-end-hpp.herokuapp.com/api/v1/all/' + localStorage.getItem('userID');
+      this.url = 'https://back-end-hpp.herokuapp.com/api/v1/all/' + localStorage.getItem('sellerID');
 }
 if (carouselType === 2) {
       this.url = 'https://back-end-hpp.herokuapp.com/api/v1/similar/' + localStorage.getItem('houseID');
