@@ -35,7 +35,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
-
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SellerDashboardComponent } from './dashboard/seller-dashboard/seller-dashboard.component';
 import { SellerPanelComponent } from './dashboard/seller-dashboard/seller-panel/seller-panel.component';
@@ -59,8 +58,8 @@ import {LandingModule} from './landing/landing.module';
 import { DialogModule } from './auth/auth.dialog.module';
 import { AuthMaterialModule } from './auth/auth.material.module';
 import { DialogComponent } from './auth/components/test-dialog/test.dialog.component';
-
-
+import {MatListModule} from '@angular/material/list';
+import {NavbarLoggedInComponent} from './landing/utils/navbar-logged-in/navbar-logged-in.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +83,8 @@ import { DialogComponent } from './auth/components/test-dialog/test.dialog.compo
     SellerHousePanelComponent,
     SellerStatisticsPanelComponent,
     DashFooterComponent,
-    DialogComponent
+    DialogComponent,
+    NavbarLoggedInComponent
 
   ],
   imports: [
@@ -109,7 +109,9 @@ import { DialogComponent } from './auth/components/test-dialog/test.dialog.compo
     MatIconModule,
     LandingModule,
     AppRoutingModule,
-    DialogModule
+    DialogModule,
+    MatListModule,
+    RouterModule
   ],
 
 
