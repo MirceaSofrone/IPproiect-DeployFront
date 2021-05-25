@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
       res => {
         localStorage.setItem('token', res.accessToken)
         localStorage.setItem('email', res.email)
+        localStorage.setItem('userID', res.id)
         alert('You successfully logged in!')
       },
       err => alert('Email or password are incorrect!')
