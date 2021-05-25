@@ -1,6 +1,8 @@
 <div class="list">
   <div class="image-wrapper-list">
-    <img class="images" [src]="item.img!=undefined ? item.img : '/assets/house.png'" alt="image">
+    <img class="images"  [src]="item.photos[0]!=undefined ?
+       this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+          + item.photos[0]) : '/assets/house.png'" alt="image">
   </div>
   <button id="favorite" mat-icon-button>
 
@@ -31,7 +33,7 @@
     </div>
     <div class="price-wrapper">
       <div class="details price">Price : {{item.currentPrice}}</div>
-      <div class="details detail"><a routerLink="/house-details/{{item.houseID}}">View details</a></div>
+      <div class="details detail"><a (click)="onClick(item.houseID,item.userID)">View details</a></div>
     </div>
 
 

@@ -1,31 +1,44 @@
 .pagination-listing {
     position: relative;
     /*margin: 2vw 0*/
+  margin:1vw auto;
+  width:fit-content;
 }
-
-#search-input-wrapper {
+.list-page{
+  max-width:1920px;
+  margin: 0 auto;
+}
+.search-input-wrapper {
     display: flex;
     flex-direction: column;
-    background: #DFDFDF 0% 0% no-repeat padding-box;
-    width: 30%;
+  /*border-radius: 300px 300px 300px 300px;*/
+  /*background: #DFDFDF 0% 0% no-repeat padding-box;*/
+    width: 70%;
+  /*height:fit-contetnt;*/
+  position: relative;
+  margin:0 auto;
+
 }
 
 #search-form input[type="text"] {
     padding: 1.05vw;
-    width: 55vw;
+    width: 100%;
+
     border: 0;
     border-radius: 300px 300px 300px 300px;
     background: #DFDFDF 0% 0% no-repeat padding-box;
-    margin-left: 13%;
+    /*margin-left: 13%;*/
     margin-top: 1%;
     margin-bottom: 5%;
+  margin-left:auto;
+  margin-right: auto;
 }
 
 #submit {
     background: none;
     border: none;
-    left: 68%;
-    top: 11%;
+  right: 0;
+    top:1.25vw;
     position: absolute;
 }
 

@@ -14,7 +14,7 @@ export class UserContactComponent implements OnInit {
   // tslint:disable-next-line:typedef
    onSubmit(data){
 
-    const bearer = localStorage.getItem('bearer');
+    const bearer = localStorage.getItem('token');
     const token = `Bearer ${bearer}`;
     console.log(token);
     const httpHeaders = new HttpHeaders({
@@ -27,15 +27,15 @@ export class UserContactComponent implements OnInit {
     const message = data.form.value.message;
 
     console.log(httpHeaders);
-    const userEmail = localStorage.getItem('userEmail');
-    const sellerEmail = localStorage.getItem('sellerEmail');
+    const userEmail = localStorage.getItem('userID');
+    const sellerEmail = localStorage.getItem('sellerID');
     const sendData = {
-      emailFrom : userEmail,
-      emailTo : sellerEmail,
+      idClient : parseInt(userEmail),
+      idSeller : parseInt(sellerEmail),
       message
     };
     console.log(sendData);
-    this.http.post('https://hpp-auth.herokuapp.com/api/v1/feedback', sendData, {headers: httpHeaders })
+    this.http.post('https://back-end-hpp.herokuapp.com/api/v1/feedback', sendData, {headers: httpHeaders })
      .subscribe((result) => {
        console.warn('result', result);
      });

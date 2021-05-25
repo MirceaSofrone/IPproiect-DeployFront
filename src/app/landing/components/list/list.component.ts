@@ -95,7 +95,7 @@ if (form !== null){
 console.log(this.typeAll, 'typeall');
 console.log(this.type);
 console.log(this.string);
-console.log(this.housing);
+console.log(this.housing,"housinglist");
 console.log(this.noOfRooms);
 console.log(this.minPrice);
 console.log(this.maxPrice);

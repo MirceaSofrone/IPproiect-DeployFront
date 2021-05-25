@@ -26,8 +26,8 @@ export class Base64galleryComponent implements OnInit {
 
     this.galleryOptions = [
       {
-        width: '45vw',
-        height: '40vw',
+        width: '100%',
+        height: '30vw',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide
       },
@@ -68,8 +68,10 @@ export class Base64galleryComponent implements OnInit {
       console.log(this.data, 'galerie');
       const photos = this.data.photos;
       for (let i = 0; i < 5; i++){
-        const imagePath = 'data:image/jpg;base64,'
-          + photos[i];
+        let imagePath=null
+        if(photos[i]!==undefined)
+         imagePath = 'data:image/jpg;base64,' + photos[i];
+        else  imagePath="/assets/house.png";
         console.log(imagePath, 'image');
         // const image=imagePath.get("changingThisBreaksApplicationSecurity")
         const img = 'data:image/jpg;base64,' + imagePath;
