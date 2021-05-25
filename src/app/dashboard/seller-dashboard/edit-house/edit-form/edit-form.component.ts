@@ -16,7 +16,7 @@ export class EditFormComponent {
   recommendedPrice: number;
   propertyPics: File[] = [];
   numberOfPhotos = 0;
-  house: HouseType = { userID : "7",
+  house: HouseType = { userID : localStorage.getItem('userID'),
     houseID: "",
     description: "",
     title:"",
@@ -36,8 +36,7 @@ export class EditFormComponent {
   };
 
   constructor (private http: HttpClient) {
-    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUyMjY3NCwiZXhwIjoxNjIxNjA5MDc0fQ.HRNi_VHJwY4x5pQfmMK-HMtH_n9padpSj1kC5qgmeNKoOEoWke1YfxD_E3iAFe-We90Bc-2LP0jEQwLJVSSPVw';
-    const headers = {'Authorization': token };
+     const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.get<HouseType>(this.ServerGet.concat(this.houseID), { headers }).subscribe({next: (data:HouseType) => {
         this.house = {
           houseID: data.houseID,
@@ -72,8 +71,7 @@ export class EditFormComponent {
 
   onSubmit() {
     this.submitted = true;
-    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUyMjY3NCwiZXhwIjoxNjIxNjA5MDc0fQ.HRNi_VHJwY4x5pQfmMK-HMtH_n9padpSj1kC5qgmeNKoOEoWke1YfxD_E3iAFe-We90Bc-2LP0jEQwLJVSSPVw';
-    const headers = {'Authorization': token };
+   const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.post<HouseType>(this.ServerPost, {
       houseID:this.houseID,
       description: this.house.description,
