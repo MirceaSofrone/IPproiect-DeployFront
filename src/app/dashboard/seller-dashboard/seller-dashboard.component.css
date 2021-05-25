@@ -5,15 +5,11 @@ app-user-info {
   padding: 2em 0 0 10px;
   overflow: hidden;
 }
-
-app-dashboard-buttons {
-  display: block;
+.user__seller--switcher {
   position: relative;
-  transform: translate(0, -100%);
-  height: 50px;
-  width: 100%;
+  top: -70%;
+  left: 20%;
 }
-
 .user__seller--btns {
   position: absolute;
   top: 12%;

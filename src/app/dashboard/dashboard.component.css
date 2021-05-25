@@ -22,7 +22,11 @@
 .statistics__panel {
   left: 2em;
 }
-
+.user__seller--switcher {
+  position: absolute;
+  top: 3%;
+  left: 35%;
+}
 /* responsive design */
 @media (max-width: 1700px) {
   .statistics__panel {

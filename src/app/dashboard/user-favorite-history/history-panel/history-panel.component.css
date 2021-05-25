@@ -47,6 +47,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 10em;
 }
 
 .navigation__btns {
