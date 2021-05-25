@@ -4,7 +4,7 @@ import {UserContactComponent} from './components/house-details/user-contact/user
 import {HouseInfoComponent} from './components/house-details/house-info/house-info.component';
 import {MapComponent} from './components/house-details/map/map.component';
 import { PhotoCarouselComponent } from './utils/photo-carousel/photo-carousel.component';
-import {NavbarLoggedInComponent} from './utils/navbar-logged-in/navbar-logged-in.component';
+
 import { AgmCoreModule } from '@agm/core';
 import { HammerModule } from '@angular/platform-browser';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
@@ -40,7 +40,7 @@ import {AppRoutingModule} from '../app-routing.module';
     HouseInfoComponent,
     MapComponent,
     PhotoCarouselComponent,
-    NavbarLoggedInComponent,
+
     HouseDetailsComponent,
     LandingSearchComponent,
     LandingBottomComponent,
