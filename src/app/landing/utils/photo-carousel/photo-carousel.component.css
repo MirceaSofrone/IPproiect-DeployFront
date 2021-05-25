@@ -1,6 +1,10 @@
 /* .carousel-container swiper-slide swiper-slide-next {
     width: 242px !important;
 } */
+@font-face{
+  font-family: Montserrat-regular;
+  src:url(../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
+}
 ::ng-deep.image-container{
   width: 100% !important;
 }
@@ -48,6 +52,7 @@ p {
   block-size: fit-content;
   flex-grow: 1;
   font-size: 1.5vw;
+  font-family: Montserrat-regular;
 }
 
 .images {

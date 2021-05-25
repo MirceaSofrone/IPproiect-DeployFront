@@ -1,3 +1,13 @@
+@font-face{
+    font-family: Montserrat-regular;
+    src:url(../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
+    
+}
+@font-face{
+  font-family: Manrope-bold;
+  src:url(../../../../../src/assets/fonts/Manrope-bold.ttf)
+  
+}
 .first-row{
   display: flex;
   flex-direction: row;
@@ -6,7 +16,12 @@
   margin-top: 4vw;
 
 }
-
+p{
+  font-size: 30px;
+    font-family: Manrope-bold;
+    font-weight: 500;
+    color:#707070;
+}
 app-base64gallery{
   /* width: 60vw; */
   align-self: center;

@@ -1,14 +1,14 @@
-/*@font-face {*/
-/*    src: ".assets/fonts/Manrope-Regular.ttf";*/
-/*    font-family: manrope;*/
-/*}*/
+@font-face{
+    font-family: Montserrat-regular;
+    src:url(../../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
+    
+}
+@font-face{
+  font-family: Manrope-bold;
+  src:url(../../../../../../src/assets/fonts/Manrope-Bold.ttf)
+  
+}
 
-/*@font-face {*/
-/*    font-family: montserrat;*/
-/*    src: "./assets/fonts/Montserrat-Regular.ttf";*/
-/*}*/
-
-@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
 .bkg-rectangle {
     height: 35vw;
     width: 25vw;
@@ -21,7 +21,7 @@
     flex-direction: column;
     /* min-width: 450px;
     min-height: 550px; */
-    font-family: manrope;
+    /* font-family: manrope; */
 }
 
 /* .button-wrapper{
@@ -39,7 +39,7 @@
     font-size: 2vw;
     padding-top: 20px;
     padding-bottom: 20px;
-    font-family: montserrat;
+    font-family:Montserrat-regular ;
     color: #707070;
 }
 
@@ -49,7 +49,7 @@
     padding: 10px;
     font-size: 15px;
     /* min-width: 400px; */
-    font-family: montserrat;
+    font-family:Montserrat-regular;
 }
 
 #submit-btn {
@@ -57,18 +57,18 @@
     height: 3vw;
     margin-top: 1vw;
     border-radius: 30px;
-    font-weight: 700;
+    font-weight: 550;
     font-size: 23px;
     border: none;
     background-color: #283655;
     color: #FFFFFF;
-    font-family: 'Manrope', sans-serif;
+    font-family: Manrope-bold;
     outline: none;
 }
 
 input {
-    font-family: montserrat;
-    font-weight: 200;
+    font-family: Montserrat-regular;
+    
 }
 
 .favorites-btn {
@@ -76,12 +76,12 @@ input {
     height: 3vw;
     margin-top: 0.5vw;
     border-radius: 30px;
-    font-weight: 600;
+    font-weight: 550;
     font-size: 23px;
     border: none;
     background-color: #283655;
     color: #FFFFFF;
-    font-family: 'Manrope', sans-serif;
+    font-family: Manrope-bold;
     cursor: pointer;
     outline: none;
 }

@@ -1,11 +1,13 @@
-/*@font-face {*/
-/*    font-family: Montserrat;*/
-/*    src: url(../../assets/fonts/Montserrat/Montserrat-Regular.ttf);*/
-/*}*/
-/*@font-face {*/
-/*    font-family: Montserrat-bold;*/
-/*    src: url(../../assets/fonts/Montserrat/Montserrat-Bold.ttf);*/
-/*}*/
+@font-face{
+    font-family: Montserrat-regular;
+    src:url(../../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
+    
+}
+@font-face{
+  font-family: Manrope-bold;
+  src:url(../../../../../../src/assets/fonts/Manrope-Bold.ttf)
+  
+}
 .container{
     width: 80%;
     margin-left: 10%;
@@ -14,21 +16,24 @@
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
-    position:relative;
+    
     color:#707070;
     align-self: center;
-    font-family: Montserrat;
+    font-family: Montserrat-regular;
     font-size: 17px;
+    text-align: left;
 }
 .price{
-    position:absolute;
+    
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
     right: 1rem;
+    text-align:right;
+    margin-top:4vw;
 }
 .details{
-    position:relative;
+    
     margin-top: 1rem;
 }
 .column {
@@ -46,25 +51,27 @@
     display: table;
     clear: both;
   }
-.description{
+/* .description{
     position: relative;
-}
+} */
 .description p{
     margin-right: 4rem;
     text-align: justify;
 }
 #price{
     font-size: 30px;
-
     color:#283655;
-    font-family: Montserrat-bold;
+    font-family: Manrope-bold;
+    
 }
 #pricem{
     font-size: 16px;
 }
 h1{
     font-size: 30px;
-    font-family: Montserrat-bold;
+    font-family: Manrope-bold;
+    font-weight: 500;
+    
 }
 @media(max-width:850px){
     .column {
@@ -77,7 +84,7 @@ h1{
         flex-direction: column;
       }
       .details{
-        position:relative;
+        /* position:relative; */
         margin-top: 3rem;
     }
     .description p{
