@@ -32,10 +32,11 @@ p {
   box-shadow: 3px -3px 5px #ccc;
   width: fit-content;
   block-size: fit-content;
+  max-width: 350px;
 }
 
 .image-description {
-  height: 80px;
+  height: 100px;
   border-style: solid;
   border-top: none;
   border-width: 1px;
@@ -53,6 +54,9 @@ p {
   flex-grow: 1;
   font-size: 1.5vw;
   font-family: Montserrat-regular;
+  white-space: normal;
+  max-width: 350px;
+  max-height: 80px;
 }
 
 .images {
@@ -123,11 +127,13 @@ p {
   .image-container {
     max-height: 210px;
     width: 100%;
+    
   }
-  .image-description {
-    height: 60px;
-    width: 100%;
+
+  .image-description{
+    font-size: 2.5vw;
   }
+
   .images {
     height: 150px;
     width: 100%;
@@ -139,10 +145,7 @@ p {
     max-height: 180px;
     width: 100%;
   }
-  .image-description {
-    height: 60px;
-    width: 100%;
-  }
+
   .images {
     height: 120px;
     width: 100%;
@@ -155,8 +158,9 @@ p {
     max-height: 160px;
   }
   .image-description {
-    height: 40px;
+    height: 55px;
     width: 100%;
+    font-size: 3vw;
   }
   .images {
     height: 100px;
@@ -166,12 +170,14 @@ p {
 
 @media screen and (max-width: 350px) {
   .image-container {
-    width: 100%;
+    width: 7vw;
     max-height: 140px;
+
   }
   .image-description {
-    height: 40px;
+    height: 60px;
     width: 100%;
+    font-size: 4vw;
   }
   .images {
     height: 80px;
