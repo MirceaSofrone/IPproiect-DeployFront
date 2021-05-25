@@ -22,26 +22,26 @@ export class HouseInfoComponent implements OnInit {
     const url = 'https://back-end-hpp.herokuapp.com/api/v1/housedetails';
     let params = new HttpParams()
       .set('houseID', this.houseID);
-    // if (this.authService.isAuthenticated()){
-    //
-    //   params = params.set('userID', localStorage.getItem('userID'));
-    //   console.log(params)
-    //   const bearer = localStorage.getItem('token');
-    //   const token = `Bearer ${bearer}`;
-    //   const httpHeaders = new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow-Origin': '*',
-    //     Authorization: token });
-    //   console.log(httpHeaders);
-    //   this.http.get(url, {params, headers: httpHeaders})
-    //     .subscribe((result: any) => {
-    //       this.result = result;
-    //       console.warn('result', this.result);
-    //
-    //     });
-    //   console.log(this.result);
-    // }
-    // else
+    if (this.authService.isAuthenticated()){
+
+      params = params.set('userID', localStorage.getItem('userID'));
+      console.log(params)
+      const bearer = localStorage.getItem('token');
+      const token = `Bearer ${bearer}`;
+      const httpHeaders = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        Authorization: token });
+      console.log(httpHeaders);
+      this.http.get(url, {params, headers: httpHeaders})
+        .subscribe((result: any) => {
+          this.result = result;
+          console.warn('result', this.result);
+
+        });
+      console.log(this.result);
+    }
+    else
       {
       this.http.get(url, {params})
         .subscribe((result: any) => {
