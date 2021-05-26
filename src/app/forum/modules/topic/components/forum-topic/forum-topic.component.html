@@ -1,4 +1,4 @@
-<html>
+
 <section class="glass">
   <div *ngIf="forumPost !== undefined">
     <a id="add_btn" [routerLink]="['/forum-topic', forumPost.postID, 'answer']" mat-button color="primary">Add
@@ -7,4 +7,4 @@
   <app-extended-post></app-extended-post>
   <mat-divider></mat-divider>
   <app-answers-list></app-answers-list>
-</section></html>
+</section>

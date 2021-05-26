@@ -27,7 +27,7 @@ import { LandingBottomComponent } from './components/landing-page/landing-bottom
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ListComponent } from './components/list/list.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { FooterComponent } from './utils/footer/footer.component';
+
 import { Base64galleryComponent } from './components/house-details/base64gallery/base64gallery.component';
 import { HouseItemComponent } from './components/list/house-item/house-item.component';
 import {AppRoutingModule} from '../app-routing.module';
@@ -46,7 +46,7 @@ import {AppRoutingModule} from '../app-routing.module';
     LandingBottomComponent,
     LandingPageComponent,
     ListComponent,
-    FooterComponent,
+
     Base64galleryComponent,
     HouseItemComponent
 

@@ -12,7 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-
+// import { MatFormFieldModule, MatInputModule } from '@angular/material';
 @NgModule({
   declarations: [
     QuestionComponent,
@@ -35,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+
   ],
 
 })

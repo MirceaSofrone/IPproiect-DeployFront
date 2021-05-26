@@ -4,7 +4,9 @@
     /* src: url(./assets/fonts/Manrope-Bold.ttf); */
     src: "./assets/fonts/Manrope-Bold.ttf";
 }
-
+.card{
+  text-align: left !important;
+}
 html{
     font-family: Montserrat;
 }
@@ -43,18 +45,18 @@ html{
 a{
     text-decoration: none;
     font-size: 110%;
-    white-space: normal;   
+    white-space: normal;
 }
 
 .details{
-    display:inline-block;  
+    display:inline-block;
     color: #707070;
 }
 
 .card-info{
-    position: relative; 
-    margin:auto; 
-   
+    position: relative;
+    margin:auto;
+
 }
 
 .info{
@@ -64,9 +66,9 @@ a{
 .card{
     position: relative;
     bottom: 5rem;
-    top:5rem; 
+    top:5rem;
     padding-bottom: 5em;
-    padding-top: 2em;  
+    padding-top: 2em;
 }
 
 @media screen and (max-width:1000px){
@@ -117,7 +119,7 @@ a{
         color: #707070;
         padding-left: 30px;
         padding-right: 10px;
-        padding-top: 0px;   
+        padding-top: 0px;
         top: 5em;
     }
 

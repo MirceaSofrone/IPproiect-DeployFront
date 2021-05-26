@@ -1,4 +1,4 @@
-html {
+.html {
     background-color: #283655;
     font-family: 'Segoe UI';
     text-decoration: none;
@@ -15,7 +15,7 @@ html {
     background-color: white;
     border-radius: 2rem;
     margin: 50px;
-    position: relative; 
+    position: relative;
     margin-top: 6rem;
     margin-left: 3rem;
     margin-right: 3rem;
@@ -46,8 +46,8 @@ html {
         padding-bottom: 50px;
         padding-left: 10px;
        }
-   
-    
+
+
     #add_btn{
         margin-bottom: 10vw;
         position: relative;
