@@ -9,7 +9,7 @@
   
 } */
 .container{
-    width: 80%;
+    width: 78%;
     margin-left: 10%;
     margin-right: 10%;
     height: fit-content;
@@ -131,3 +131,11 @@ h1{
         font-size: 15px;
     }
     }
+@media (min-width:1500px){
+    .details,.description{
+        margin-left:3%;
+    }
+    .column{
+        width:40%;
+    }
+}

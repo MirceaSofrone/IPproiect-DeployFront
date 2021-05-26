@@ -36,7 +36,7 @@ export class EditFormComponent {
   };
 
   constructor (private http: HttpClient) {
-     const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.get<HouseType>(this.ServerGet.concat(this.houseID), { headers }).subscribe({next: (data:HouseType) => {
         this.house = {
           houseID: data.houseID,
@@ -71,7 +71,7 @@ export class EditFormComponent {
 
   onSubmit() {
     this.submitted = true;
-   const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.post<HouseType>(this.ServerPost, {
       houseID:this.houseID,
       description: this.house.description,
