@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   goToRegister(): void {
-    this.router.navigate(['dialog/register'])
+    this.router.navigate(['register'])
   }
 
   goToForgotPass(): void {
-    this.router.navigate(['dialog/forgot'])
+    this.router.navigate(['forgot'])
   }
 
   onSubmit() {
