@@ -10,7 +10,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class HistoryPanelComponent {
 
-  private URL = 'https://back-end-hpp.herokuapp.com/api/v1/users/history?userID=6757fff1-e437-4d23-bd45-646a4b419b16';
+  private URL = 'https://back-end-hpp.herokuapp.com/api/v1/users/history?userID=';
   histData: any[] = [];
   histIndex = 1;
 
@@ -18,7 +18,7 @@ export class HistoryPanelComponent {
 
   constructor(private http: HttpClient, public _sanitizer: DomSanitizer) {
    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
-    this.http.get<IHistory[]>(this.URL, { headers }).subscribe(
+    this.http.get<IHistory[]>(this.URL + localStorage.getItem('userID'), { headers }).subscribe(
       data => this.histData = data,
       () => {},
     );

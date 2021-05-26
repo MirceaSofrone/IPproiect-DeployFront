@@ -13,9 +13,9 @@
           <button class="removeFav" id="removeFav" (click)="remove(favData[favIndex-1].houseID, favIndex-1)">
             <img class="remove-Fav-Img" src="../../assets/userDashboard/remove.svg" alt="remove fav">
           </button>
-          <p class="price" [style.display]="favData[favIndex-1]?.photos[0]!=undefined ? 'block' : 'none'">{{ favData[favIndex-1]?.currentPrice }}&euro;</p>
-          <p class="description" [style.display]="favData[favIndex-1]?.photos[0]!=undefined ? 'block' : 'none'">{{ favData[favIndex - 1]?.noOfRooms }} camere, {{ favData[favIndex - 1]?.surface }} mp, {{favData[favIndex - 1]?.address}}, {{favData[favIndex - 1]?.city}}</p>
-          <p class="not_found" [style.display]="favData[favIndex-1]?.photos[0]!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
+          <p class="price" [style.display]="favData[favIndex-1]?.currentPrice!=undefined ? 'block' : 'none'">{{ favData[favIndex-1]?.currentPrice }}&euro;</p>
+          <p class="description" [style.display]="favData[favIndex-1]?.noOfRooms!=undefined ? 'block' : 'none'">{{ favData[favIndex - 1]?.noOfRooms }} camere, {{ favData[favIndex - 1]?.surface }} mp, {{favData[favIndex - 1]?.address}}, {{favData[favIndex - 1]?.city}}</p>
+          <p class="not_found" [style.display]="favData[favIndex-1]?.currentPrice!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
         </div>
       </li>
       <li>
@@ -28,9 +28,9 @@
           <button class="removeFav" id="removeFav" (click)="remove(favData[favIndex].houseID, favIndex)">
             <img class="remove-Fav-Img" src="../../assets/userDashboard/remove.svg" alt="remove fav">
           </button>
-          <p class="price" [style.display]="favData[favIndex]?.photos[0]!=undefined ? 'block' : 'none'">{{ favData[favIndex]?.currentPrice }}&euro;</p>
-          <p class="description" [style.display]="favData[favIndex]?.photos[0]!=undefined ? 'block' : 'none'">{{ favData[favIndex]?.noOfRooms }} camere, {{ favData[favIndex]?.surface }} mp, {{favData[favIndex]?.address}}, {{favData[favIndex]?.city}}</p>
-          <p class="not_found" [style.display]="favData[favIndex]?.photos[0]!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
+          <p class="price" [style.display]="favData[favIndex]?.currentPrice!=undefined ? 'block' : 'none'">{{ favData[favIndex]?.currentPrice }}&euro;</p>
+          <p class="description" [style.display]="favData[favIndex]?.noOfRooms!=undefined ? 'block' : 'none'">{{ favData[favIndex]?.noOfRooms }} camere, {{ favData[favIndex]?.surface }} mp, {{favData[favIndex]?.address}}, {{favData[favIndex]?.city}}</p>
+          <p class="not_found" [style.display]="favData[favIndex]?.currentPrice!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
         </div>
       </li>
       <li>
@@ -43,9 +43,9 @@
           <button class="removeFav" id="removeFav" (click)="remove(favData[favIndex+1].houseID, favIndex+1)">
             <img class="remove-Fav-Img" src="../../assets/userDashboard/remove.svg" alt="remove fav">
           </button>
-          <p class="price" [style.display]="favData[favIndex+1]?.photos[0]!=undefined ? 'block': 'none'">{{ favData[favIndex+1]?.currentPrice }}&euro;</p>
-          <p class="description"[style.display]="favData[favIndex+1]?.photos[0]!=undefined ? 'block': 'none'">{{ favData[favIndex + 1]?.noOfRooms }} camere, {{ favData[favIndex + 1]?.surface }} mp, {{favData[favIndex + 1]?.address}}, {{favData[favIndex + 1]?.city}}</p>
-          <p class="not_found" [style.display]="favData[favIndex+1]?.photos[0]!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
+          <p class="price" [style.display]="favData[favIndex+1]?.currentPrice!=undefined ? 'block': 'none'">{{ favData[favIndex+1]?.currentPrice }}&euro;</p>
+          <p class="description"[style.display]="favData[favIndex+1]?.noOfRooms!=undefined ? 'block': 'none'">{{ favData[favIndex + 1]?.noOfRooms }} camere, {{ favData[favIndex + 1]?.surface }} mp, {{favData[favIndex + 1]?.address}}, {{favData[favIndex + 1]?.city}}</p>
+          <p class="not_found" [style.display]="favData[favIndex+1]?.currentPrice!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
         </div>
       </li>
       <button class="next__btn" class="navigation__btns" id="fav__next" (click)="favNext()">
