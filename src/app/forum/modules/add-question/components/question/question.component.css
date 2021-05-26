@@ -6,7 +6,6 @@
 
 html{
     font-family: Montserrat;
-   
 }
 
 form{
@@ -27,35 +26,9 @@ form{
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); 
     width:400%;
-    
 }
 
-/* #inner1 {
-    float:left; 
- }
- 
- #inner2{
-    margin-top: 4em;
-    float:left; 
-    clear: left;
- }
- 
- #wrapper{
-    margin-left:auto;
-    margin-right:auto;
-    height:auto; 
-    width:auto;
-} */
-
 #submit{
-    /* display: flex; */
-    /* position: relative; */
-    /* margin-top: 5em; */
-    /* margin-right: 3em; */
-    position: absolute;
-    right:    10%;
-    top: 80%;
-    /* bottom: 0%; */
     align-items: center;
      margin-bottom: 0%;
     }
@@ -64,5 +37,16 @@ form{
     mat-form-field{
         font-size: 20px;
     }
-    
+}
+
+@media screen and (max-width:800px) {
+    .form-control{
+        width: 200%;
+    }
+}
+
+@media screen and (max-width:470px) {
+    .form-control{
+        width: 100%;
+    }
 }
