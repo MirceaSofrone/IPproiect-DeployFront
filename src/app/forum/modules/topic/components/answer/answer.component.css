@@ -10,6 +10,8 @@ html{
 }
 .card{
     text-align: left !important;
+    padding-left: 3%;
+    padding-right: 3%;
   }
 .author{
     

@@ -8,7 +8,7 @@
 
     <div class="showingBar" fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLink=''>Home</a>
-      <a mat-button routerLink='/forum'>Forum</a>
+      <a mat-button (click)="checkAuthOrForum()">Forum</a>
 
     </div>
     <span class="spacer"></span>

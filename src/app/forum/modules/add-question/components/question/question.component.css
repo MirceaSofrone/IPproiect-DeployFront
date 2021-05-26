@@ -14,7 +14,10 @@ form{
     position: relative;
     color: #707070;
     padding-top: 100px;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: center;
+    padding-right:10%;
+    padding-left:10%;
 }
 
 .form-control{
@@ -26,12 +29,13 @@ form{
     width:400%;
     
 }
-#inner1 {
+
+/* #inner1 {
     float:left; 
  }
  
  #inner2{
-     margin-top: 4em;
+    margin-top: 4em;
     float:left; 
     clear: left;
  }
@@ -41,18 +45,24 @@ form{
     margin-right:auto;
     height:auto; 
     width:auto;
-}
+} */
 
 #submit{
-    display: flex;
-    position: relative;
-    margin-top: 5em;
-    margin-right: 3em;
+    /* display: flex; */
+    /* position: relative; */
+    /* margin-top: 5em; */
+    /* margin-right: 3em; */
+    position: absolute;
+    right:    10%;
+    top: 80%;
+    /* bottom: 0%; */
     align-items: center;
-}
+     margin-bottom: 0%;
+    }
 
 @media screen and (max-width:1000px) {
     mat-form-field{
         font-size: 20px;
     }
+    
 }
