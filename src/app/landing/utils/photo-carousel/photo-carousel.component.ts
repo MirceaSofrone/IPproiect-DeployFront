@@ -60,6 +60,7 @@ export class PhotoCarouselComponent implements OnInit {
 
   navigation = false;
 
+
   scrollbar: any = false;
   breakpoints = {
     150: {slidesPerView: 2, spaceBetween: 10},

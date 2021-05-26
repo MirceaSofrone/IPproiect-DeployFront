@@ -185,3 +185,7 @@ p {
     width: 100%;
   }
 }
+
+.swiper-button-prev{
+  margin-right: 2vw;
+}

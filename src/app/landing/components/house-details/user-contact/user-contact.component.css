@@ -100,16 +100,16 @@ img{
 
 @media(max-width:1110px){
     .bkg-rectangle {
-        height: 80vw;
-        width: 50vw;
+        height: 70vw;
+        width: 45vw;
     } 
     .form-elements textarea {
-        width: 40vw;
-        height: 30vw;
+        width: 35vw;
+        height: 25vw;
     }
     #submit-btn, .favorites-btn {
-        width: 40vw;
-        height: 7vw;
+        width: 35vw;
+        height: 6vw;
         font-size: 23px;
     }
      img{
