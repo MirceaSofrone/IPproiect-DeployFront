@@ -5,17 +5,18 @@
       <img class="images" [src]="item.photos[0]!=undefined ?
        this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
           + item.photos[0]) : '/assets/house.png'" alt="image">
+        </div>
       <div class="image-description">
 
         <div class="details">{{item.currentPrice}} $ </div>
-        <div class="details">Address: {{item.address}}</div>
-        <div class="details">{{item.description.slice(0,50)}} [...]</div>
+        <div class="details">{{item.address}}</div>
+        <!-- <div class="details">{{item.description.slice(0,50)}} [...]</div> -->
 
 
       </div>
-    </div>
-
 
   </ng-template>
 
 </swiper>
+
+

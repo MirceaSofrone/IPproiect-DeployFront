@@ -1,7 +1,7 @@
 .main {
   top: 10%;
-  height: 40em;
-  width: 50em;
+  height: 32em;
+  width: 38em;
   margin-left: 2em;
   border-radius: 1%;
   position: relative;
@@ -17,14 +17,16 @@
   color: #6d6d6d;
   font-family: "Manrope", sans-serif;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 20px;
   white-space: nowrap;
   margin: 0;
   margin-left: 1em;
+  position: relative;
+  left: -15rem;
 }
 
 /* responsive design */
-@media (max-width: 1610px) {
+/* @media (max-width: 1610px) {
   .text {
     margin-left: 15%;
   }
@@ -49,4 +51,4 @@
     width: 25em;
     margin-right: 0;
   }
-}
+} */

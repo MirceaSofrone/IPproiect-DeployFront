@@ -1,14 +1,7 @@
-app-user-info {
-  display: block;
-  height: 100%;
-  width: 80%;
-  padding: 2em 0 0 10px;
-  overflow: hidden;
-}
+
 .user__seller--switcher {
   position: relative;
   top: -70%;
-  left: 20%;
 }
 .user__seller--btns {
   position: absolute;
@@ -34,23 +27,23 @@ app-user-info {
 }
 
 .seller-house-panel--container {
-  background-color: #fffdfd;
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 50%;
-  height: 80%;
+  width: 40%;
+  height: 70%;
   padding: 0 1rem;
   top: -10%;
+  right: 7%;
 }
 
 .seller-statistics--container {
   background-color: #fffdfd;
   position: relative;
-  width: 40%;
+  width: 35%;
+  right: 5%;
   padding: 0.5rem 1rem;
   top: -70px;
-  background-color: aqua;
 }
 
 .seller-house-panel-content--container {

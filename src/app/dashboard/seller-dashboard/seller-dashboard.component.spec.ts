@@ -10,7 +10,7 @@ describe('SellerDashboardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ SellerDashboardComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

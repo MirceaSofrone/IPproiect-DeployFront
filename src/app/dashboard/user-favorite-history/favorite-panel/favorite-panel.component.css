@@ -5,15 +5,15 @@
   position: relative;
   box-shadow: 1.5px 1.5px 10px 6px rgb(190, 190, 190),
     -1.5px -1.5px 10px 6px #c1c1c1;
-  height: 13em;
-  width: 10em;
+  height: 10em;
+  width: 7.5em;
   margin-left: 5px;
   margin-right: 5px;
 }
 
 img {
-  height: 110px;
-  width: 160px;
+  height: 80px;
+  width: 123px;
 }
 
 .price {
@@ -22,13 +22,27 @@ img {
   margin-top: 0.7em;
 }
 
+.not_found {
+  width: 8em;
+  height: 5em;
+  font-family: "Manrope", serif;
+  font-size: 15px;
+  margin: 0;
+  margin-top: 1em;
+  word-wrap: normal;
+  text-align: center;
+  text-indent: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .description {
-  width: 12em;
+  width: 10em;
   height: 3.5em;
-  font-family: Montserrat, serif;
+  font-family: "Manrope", serif;
   font-size: smaller;
   margin: 0;
-
   text-align: center;
   text-indent: 3px;
   display: flex;
@@ -37,13 +51,13 @@ img {
 }
 
 .fav__slider {
-  width: 30em;
-  height: 15em;
+  width: 26em;
+  height: 13em;
   margin-top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10em;
+  margin-left: 5.5em;
 }
 
 .navigation__btns {
@@ -88,7 +102,7 @@ img {
   column-gap: 1em;
 }
 /* responsive design */
-@media (max-width: 1610px) {
+/* @media (max-width: 1610px) {
   .list__item {
     height: 12em;
     width: 9em;
@@ -121,4 +135,7 @@ img {
   .list__item .description {
     font-size: 9px;
   }
-}
+  .not_found {
+    font-size: 10px;
+  }
+} */
