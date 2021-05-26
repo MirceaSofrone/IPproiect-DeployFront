@@ -52,7 +52,7 @@ p {
   /* width: fit-content; */
   block-size: fit-content;
   flex-grow: 1;
-  font-size: 1.5vw;
+  font-size: 20px;
   font-family: Montserrat-regular;
   white-space: normal;
   max-width: 350px;
@@ -116,6 +116,7 @@ p {
   .image-description {
     height: 60px;
     width: 100%;
+    font-size: 14px;
   }
   .images {
     height: 150px;

@@ -44,3 +44,9 @@ app-base64gallery{
     margin: 0px;
   }
 }
+
+@media (max-width: 500px){
+p{
+  font-size: 25px;
+}
+}

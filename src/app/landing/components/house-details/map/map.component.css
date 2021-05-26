@@ -21,3 +21,10 @@ p{
     font-weight: 500;
     color: #707070;
 }
+
+@media (max-width: 500px){
+  p{
+    font-size: 25px;
+  }
+}
+
