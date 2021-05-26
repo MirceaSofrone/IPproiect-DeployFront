@@ -66,3 +66,11 @@ margin-top: 15px !important;
 .swiper-button-prev,.swiper-button-next{
 color: var(--black-arrow, var(--grey-arrow));
   }
+
+
+  @media screen and (max-width: 470px) {
+  .swiper-button-prev:after,.swiper-button-next:after{
+    font-size: 30px ;
+  }
+
+}

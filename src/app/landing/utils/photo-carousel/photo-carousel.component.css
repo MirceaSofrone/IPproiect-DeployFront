@@ -167,6 +167,10 @@ p {
     height: 100px;
     width: 100%;
   }
+  
+.swiper-button-prev:after,.swiper-button-next:after{
+  font-size: 30px !important;
+}
 }
 
 @media screen and (max-width: 350px) {
@@ -188,4 +192,20 @@ p {
 
 .swiper-button-prev{
   margin-right: 2vw;
+}
+
+
+@media screen and (min-width: 1650px) {
+.swiper-container{
+  width:49%;
+  max-width: 1110px;
+}
+.swiper-button-prev, .swiper-button-next{
+  margin-top:-120px !important;
+  z-index: 5;
+}
+.swiper-button-prev:after, .swiper-button-next:after{
+  margin-top:-120px !important;
+  z-index: 5;
+}
 }
