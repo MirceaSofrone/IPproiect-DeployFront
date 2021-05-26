@@ -1,10 +1,10 @@
 import { Component, ViewChild, TemplateRef, AfterViewInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { MatDialog } from "@angular/material/dialog";
 
-import { take } from "rxjs/operators";
-
+import { take } from "rxjs/operators"; 
+ 
 @Component({
   selector: 'app-dialog-wrapper',
   templateUrl: './dialog-wrapper.component.html',
@@ -13,11 +13,13 @@ import { take } from "rxjs/operators";
 export class DialogWrapperComponent implements AfterViewInit {
   @ViewChild("dialogTemplate") dialogTemplate: TemplateRef<any>;
 
+  currentRoute: string;
+
   constructor(
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
     this.dispatchDialog();
@@ -33,7 +35,7 @@ export class DialogWrapperComponent implements AfterViewInit {
       .afterOpened()
       .pipe(take(1))
       .subscribe(() => {
-        this.router.navigate(["login"], {
+        this.router.navigate([this.router.url], {
           relativeTo: this.route,
           // skipLocationChange: true
         });

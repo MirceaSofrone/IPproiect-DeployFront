@@ -26,7 +26,7 @@ export class NavbarLoggedInComponent implements OnInit {
     if(this.auth.isAuthenticated()) {
       this.router.navigate(['/dashboard'])
     } else {
-      this.router.navigate(['/dialog'])
+      this.router.navigate(['/login'])
     }
   }
 
