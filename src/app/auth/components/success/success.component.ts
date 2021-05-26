@@ -13,7 +13,7 @@ export class SuccessComponent implements OnInit {
   }
 
   goToLogin(): void {
-    this.router.navigate(['dialog/login'])
+    this.router.navigate(['/login'])
   }
 
 }
