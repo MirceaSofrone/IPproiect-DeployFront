@@ -21,8 +21,8 @@ export class ResetPasswdComponent implements OnInit {
   subscription: Subscription;
   token: string;
   payload: ChangePayload = {
-    newPass: '',
-    token: ''
+    token: '',
+    password: ''
   };
 
   constructor(
@@ -54,7 +54,7 @@ export class ResetPasswdComponent implements OnInit {
     this.payload.token = this.token
     this.newPasswd = this.resetForm.get('newPasswd').value
     this.confirmPasswd = this.resetForm.get('confirmPasswd').value
-    this.payload.newPass = this.newPasswd
+    this.payload.password = this.newPasswd
     if (this.newPasswd !== this.confirmPasswd) {
       alert('Passwords must match!')
     } else {
