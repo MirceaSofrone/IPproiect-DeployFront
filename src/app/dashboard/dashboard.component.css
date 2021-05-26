@@ -3,7 +3,7 @@
   top: 5%;
   left: 20%;
   height: 78%;
-  width: 70%;
+  width: 40%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -16,22 +16,16 @@
 }
 
 .favorite__history--panel {
-  left: -1em;
+  left: 30%;
+  position: relative;
 }
 
 .statistics__panel {
-  left: 2em;
+  position: relative;
+  left: 50%;
 }
 .user__seller--switcher {
   position: absolute;
   top: 3%;
-  left: 35%;
-}
-/* responsive design */
-@media (max-width: 1700px) {
-  .statistics__panel {
-    position: absolute;
-    top: 115%;
-    left: 25%;
-  }
+  left: 22%;
 }
