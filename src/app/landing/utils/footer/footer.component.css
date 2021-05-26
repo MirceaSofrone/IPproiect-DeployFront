@@ -1,7 +1,7 @@
-@font-face{
+/* @font-face{
   font-family: Montserrat-regular;
   src:url(../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
-}
+} */
 
 .container{
   display:flex;

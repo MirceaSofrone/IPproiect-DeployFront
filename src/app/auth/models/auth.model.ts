@@ -14,5 +14,5 @@ export interface RegisterPayload {
 
 export interface ChangePayload {
   token: String,
-  newPass: String;
+  password: String;
 }

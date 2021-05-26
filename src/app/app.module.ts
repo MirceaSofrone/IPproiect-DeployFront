@@ -56,12 +56,12 @@ import {DashboardModule} from './dashboard/dashboard.module';
     MatIconModule,
     LandingModule,
     AppRoutingModule,
-
     DashboardModule,
-AuthMaterialModule,
+    AuthMaterialModule,
     DialogModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
 
   ],
 
