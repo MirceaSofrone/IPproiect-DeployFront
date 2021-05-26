@@ -1,0 +1,73 @@
+
+<div>
+   
+    <mat-toolbar class="mat-elevation">
+        <div class="showing" fxShow="false" fxHide.gt-sm="false">
+            <button mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
+        </div>
+
+        <div id="bck_btn" class="showingBar" fxShow="true" fxHide.lt-md="true">
+            <label id="bck_label">
+            <mat-icon id="bck_arw" matSuffix>arrow_back</mat-icon>
+            <a mat-button routerLink='home'>Back to main website</a></label>
+        </div>
+
+        <span class="spacer"></span>
+
+        <div class="showingBar" fxShow="true" fxHide.lt-md="true">
+            <a class="options" mat-button routerLink='account'>
+                <mat-icon>account_circle</mat-icon>
+            </a>
+            <a class="options" mat-button routerLink='favorites'>
+                <mat-icon>favorite</mat-icon>
+            </a>
+            <button class="options" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>arrow_drop_down_circle</mat-icon>
+      </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink='settings'>
+          <span>Account settings</span>
+        </button>
+                <button mat-menu-item routerLink='profile'>
+          <span>Your profile</span>
+        </button>
+                <button mat-menu-item routerLink='home'>
+          <span>Log out</span>
+        </button>
+            </mat-menu>
+        </div>
+
+    </mat-toolbar>
+
+
+    <mat-sidenav-container #myContainer fxFlexFill class="example-container">
+
+        <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+
+            <div class="menu-items" fxLayout="column">
+                <div>
+                    <a mat-button routerLink='home'>Home</a>
+                </div>
+                <div>
+                    <a mat-button routerLink='about'>Your profile</a>
+                </div>
+                <div>
+                    <a mat-button routerLink='favorites'>Wishlist</a>
+                </div>
+                <div>
+                    <a mat-button routerLink='about'>About</a>
+                </div>
+                <div>
+                    <a mat-button routerLink='logout'>Log out</a>
+                </div>
+
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

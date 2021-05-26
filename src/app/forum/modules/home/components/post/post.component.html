@@ -1,0 +1,50 @@
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+
+<div class="card" *ngFor="let post of forumPosts | slice:0:10; let i=index">
+  <section class="card-info">
+    <div class=first-line>
+      <a id="user-icon" class="icon-display">
+        <mat-icon>account_circle</mat-icon>
+      </a>
+
+
+      <div class="text">
+        <a [routerLink]="['/forum-topic', $any(post).postID]">
+          <a class="author">
+            {{$any(post).author.username}} asked:
+          </a>
+
+          <a class="question">
+            {{$any(post).title}}
+          </a>
+        </a>
+      </div>
+    </div>
+    <div class="info">
+
+      <span class="details">
+        <mat-icon>chat</mat-icon>
+        <a>
+          {{$any(post).comments.length}} answers</a>
+      </span>
+
+      <span class="details" (click)="like(i)">
+        <mat-icon *ngIf="liked[i]">favorite</mat-icon>
+        <mat-icon *ngIf="!liked[i]">favorite_border</mat-icon>
+        bookmark question
+      </span>
+
+      <span class="details" (click)="report(i)">
+        <mat-icon *ngIf="reported[i]">flag</mat-icon>
+        <mat-icon *ngIf="!reported[i]">outlined_flag</mat-icon>
+        report question
+      </span>
+    </div>
+
+
+    <ng-content></ng-content>
+  </section>
+
+</div>

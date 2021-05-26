@@ -1,0 +1,140 @@
+
+@font-face {
+    font-family: Manrope-bold;
+    /* src: url(./assets/fonts/Manrope-Bold.ttf); */
+    src: "./assets/fonts/Manrope-Bold.ttf";
+}
+
+html{
+    font-family: Montserrat;
+}
+
+.author{
+    font-size: 30px;
+    color: #283655;
+    font-weight: bold;
+    margin: 0em 0em 0em 5.5em;
+}
+
+.question{
+    font-size: 30px;
+    color: #707070;
+    font-weight: bold;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.material-icons
+ {
+    color: #707070;
+    padding-left: 30px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+#user-icon{
+    position:relative;
+    top:2.7em;
+    left:4em;
+}
+
+a{
+    text-decoration: none;
+    font-size: 110%;
+    white-space: normal;   
+}
+
+.details{
+    display:inline-block;  
+    color: #707070;
+}
+
+.card-info{
+    position: relative; 
+    margin:auto; 
+   
+}
+
+.info{
+    margin: 0em 0em 0em 10.5em;
+}
+
+.card{
+    position: relative;
+    bottom: 5rem;
+    top:5rem; 
+    padding-bottom: 5em;
+    padding-top: 2em;  
+}
+
+@media screen and (max-width:1000px){
+    #user-icon{
+        position: relative;
+        font-size: 30px;
+        top:-2.5em;
+        left:0em;
+    }
+
+    .author{
+        font-size: 28px;
+        color: #283655;
+        font-weight: bold;
+        margin: 0em 0em 0em 0.5em;
+        position: relative;
+        top: -70px;
+    }
+
+    .question{
+        font-size: 28px;
+        color: #707070;
+        font-weight: bold;
+        position: relative;
+        margin: 0em 0em 0em 0.5em;
+        top: -70px;
+    }
+
+    .mat-card {
+        position: relative;
+        margin-inline: 3em 6em;
+        margin-top: -10em;
+        margin-bottom: 3em;
+        color: #707070;
+    }
+
+    .details{
+        color: #707070;
+        margin-left: 20px;
+        margin-top: -3px;
+        padding-top: -10px;
+        font-size: 13px;
+        display: flex;
+        flex-direction: row;
+    }
+
+   .material-icons{
+        color: #707070;
+        padding-left: 30px;
+        padding-right: 10px;
+        padding-top: 0px;   
+        top: 5em;
+    }
+
+    .first-line{
+        position: relative;
+        font-size: 18px;
+        color: #283655;
+        font-weight: bold;
+        margin: 0em 0em 0em 0.5em;
+        position: relative;
+        top:60px;
+        /* display: flex; */
+    }
+
+    .mat-card{
+       margin-bottom: 6em;
+    }
+
+
+}
