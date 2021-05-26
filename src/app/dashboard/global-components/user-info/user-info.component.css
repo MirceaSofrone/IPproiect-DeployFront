@@ -2,16 +2,17 @@
   border: none;
   display: flex;
   flex-direction: column;
-  margin-left: 5%;
+  margin-left: 3%;
   height: 80%;
   width: 100%;
 }
 
 .profile__pic {
-  height: fit-content;
-  width: fit-content;
+  height: 10%;
+  width: 4%;
   display: block;
   margin-top: 7%;
+  margin-left: 2%;
 }
 
 .text {
@@ -19,13 +20,12 @@
   text-align: left;
   font-family: "Manrope", sans-serif;
   font-weight: bold;
-  font-size: medium;
+  font-size: small;
   color: rgba(112, 112, 112, 1);
-  margin: 7% 0;
+  margin: 5% 0;
 }
 
 .btns {
-  margin-top: 2em;
   display: flex;
   flex-direction: column;
 }
@@ -51,7 +51,7 @@
   white-space: nowrap;
   text-align: left;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   background-color: white;
 }
 
@@ -72,28 +72,28 @@
   width: 15%;
   left: 3%;
   position: relative;
-  margin-top: 10%;
   height: 100%;
+  top:-4em;
 }
 
 .edit__field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 2.5em 0;
-  font-size: medium;
+  margin: 2em 0;
+  font-size: small;
   font-family: "Manrope", sans-serif;
   color: rgba(112, 112, 112, 1);
 }
 .edit__input {
-  height: 1.5em;
-  width: 10em;
+  height: 1.3em;
+  width: 9em;
   margin-left: 1em;
 }
 .btn {
   background-color: #283655;
-  height: 3em;
-  width: 10em;
+  height: em;
+  width: 8em;
   color: #fff;
 }
 .save--btn {
@@ -101,7 +101,7 @@
   left: 15%;
 }
 .title {
-  font-size: 25px;
+  font-size: 20px;
   font-family: "Manrope", sans-serif;
   position: absolute;
   top: -2.5em;

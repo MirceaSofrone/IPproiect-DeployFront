@@ -12,7 +12,7 @@ export class EditFormComponent {
   ServerGet = "https://back-end-hpp.herokuapp.com/api/v1/housedetails?houseID=";
   ServerPost = "https://back-end-hpp.herokuapp.com/api/v1/update ";
   submitted = false;
-  houseID: string = "7509bdbf-249f-463c-95f7-f55a314cf500";
+  houseID: string = localStorage.getItem("houseID");
   recommendedPrice: number;
   propertyPics: File[] = [];
   numberOfPhotos = 0;
