@@ -6,14 +6,15 @@
       <input type="text" name="string" ngModel>
   
       <button id="submit" type="button" (click)="renderPage(form)" >
-        <mat-icon>search</mat-icon>
+        <mat-icon class="submit-icon">search</mat-icon>
       </button>
     </div>
     <div class="browsing">
       Browsing listings
     </div>
   
-    <div class="form">
+    
+      <div class="first-row">
       <div class="form1">
   
         <select ngModel  name="noOfRooms">
@@ -94,6 +95,8 @@
   
   
       </div>
+    
+   
       <div class="form5">
   
         <select  ngModel name="floor" >
@@ -126,7 +129,7 @@
       <div class="form7">
   
         <select ngModel  name="City">
-          <option value="" selected> City</option>
+          <option value="" selected> City name</option>
           <option value="1">Iasi</option>
           <option value="2">Bucuresti</option>
           <option value="3">Cluj</option>
@@ -143,6 +146,7 @@
   
       </div>
     </div>
+    
   
   </form>
   
