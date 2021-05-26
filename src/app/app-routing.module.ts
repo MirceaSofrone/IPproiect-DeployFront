@@ -9,7 +9,6 @@ import { AddHouseComponent } from './dashboard/add-house/add-house.component';
 import { SellerDashboardComponent } from './dashboard/seller-dashboard/seller-dashboard.component';
 import { EditHouseComponent } from './dashboard/seller-dashboard/edit-house/edit-house.component';
 
-
 const routes: Routes = [
 
   { path: 'home', component: DashboardComponent},

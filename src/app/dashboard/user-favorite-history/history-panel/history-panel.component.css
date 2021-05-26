@@ -21,6 +21,22 @@ img {
   border: 0;
 }
 
+.not_found {
+  width: 8em;
+  height: 5em;
+  font-family: Montserrat, serif;
+  font-size: 20px;
+  margin: 0;
+  margin-top: 1em;
+  
+  word-wrap: normal;
+  text-align: center;
+  text-indent: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .price {
   color: #6d6d6d;
   margin: 0;
@@ -95,5 +111,8 @@ img {
   }
   .list__item .description {
     font-size: 9px;
+  }
+  .not_found {
+    font-size: 10px;
   }
 }
