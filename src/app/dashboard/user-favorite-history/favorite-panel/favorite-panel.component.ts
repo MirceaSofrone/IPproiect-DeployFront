@@ -21,19 +21,19 @@ export class FavoritePanelComponent {
     this.http.get<IFavourite[]>(this.URL + localStorage.getItem('userID'), { headers }).subscribe(
       data => this.favData = data,
       () => {},
-      );
-    }
+    );
+  }
 
-    remove(id: string, index: number): void {
-      const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
-      this.http.delete<any>(this.deleteURL + localStorage.getItem('userID') + '/' + id, { headers }).subscribe(
-          { next:(result) =>{ console.log(result);},
-            error:(err:any) => {console.log(err);}, 
-            complete:()=> { console.log("complete");
-                            this.favData.splice(index, 1);}
-          }
-        );
+  remove(id: string, index: number): void {
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    this.http.delete<any>(this.deleteURL + localStorage.getItem('userID') + '/' + id, { headers }).subscribe(
+      { next:(result) =>{ console.log(result);},
+        error:(err:any) => {console.log(err);},
+        complete:()=> { console.log("complete");
+          this.favData.splice(index, 1);}
       }
+    );
+  }
 
   favPrev(): void {
     if (this.favIndex - 1 !== 0 && this.favData.length >= 3) {

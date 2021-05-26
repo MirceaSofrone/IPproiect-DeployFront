@@ -15,7 +15,7 @@ export class SellerPanelComponent implements OnInit{
   }
 
   ngOnInit(): void {
-   const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token')};
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token')};
     this.http.get(this.URL + localStorage.getItem('userID'), {headers}).toPromise().then((data) => {
       this.housesList = JSON.parse(JSON.stringify(data));
     });

@@ -17,7 +17,7 @@ export class HistoryPanelComponent {
   @ViewChild("item_1") block: HTMLElement;
 
   constructor(private http: HttpClient, public _sanitizer: DomSanitizer) {
-   const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.get<IHistory[]>(this.URL + localStorage.getItem('userID'), { headers }).subscribe(
       data => this.histData = data,
       () => {},

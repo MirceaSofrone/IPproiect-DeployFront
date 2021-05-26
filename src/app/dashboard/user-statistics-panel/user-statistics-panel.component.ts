@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IUserStatistics } from './userStatistics';
-import { DatePipe, formatDate  } from '@angular/common'
+import { formatDate  } from '@angular/common'
 
 @Component({
   selector: 'app-user-statistics-panel',
@@ -21,11 +21,11 @@ export class UserStatisticsPanelComponent {
   keyArr: any[];
 
   constructor(private http: HttpClient) {
-   const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.get<IUserStatistics[]>(this.URL + localStorage.getItem('userID'), { headers }).subscribe(
-      data => this.statData = data, 
+      data => this.statData = data,
       () => {},
-      );
+    );
   }
 
   getData(): any[] {
@@ -36,7 +36,7 @@ export class UserStatisticsPanelComponent {
         { value: this.statData[0].priceHistory[this.keyArr[0]],
           name: this.transformDate(this.keyArr[0])
         }
-        );
+      );
     });
     this.data[0].series = followersData;
     return this.data;

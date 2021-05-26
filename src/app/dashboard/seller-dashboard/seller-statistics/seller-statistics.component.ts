@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IHouse } from "../seller-panel/house";
 
@@ -8,7 +8,7 @@ import { IHouse } from "../seller-panel/house";
   styleUrls: ['./seller-statistics.component.css']
 })
 export class SellerStatisticsComponent {
-  private SELLER_ID = '6757fff1-e437-4d23-bd45-646a4b419b16';
+  @Input() SELLER_ID;
   private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/all/';
   housesList: any[];
   rawData: any[] = [];
@@ -18,15 +18,12 @@ export class SellerStatisticsComponent {
   }];
 
   constructor(private http: HttpClient) {
-    console.log('das');
   }
 
   ngOnInit(): void {
-    console.log('OK');
     const followersData: any[] = [];
     this.http.get<IHouse[]>(this.URL + this.SELLER_ID).toPromise().then((data) => {
       this.housesList = JSON.parse(JSON.stringify(data));
-      console.log(this.housesList);
 
       this.housesList.forEach(house => {
         for (const favorite in house.favoriteHistory) {
@@ -60,7 +57,6 @@ export class SellerStatisticsComponent {
   }
 
   getData(): any[] {
-    console.log('data');
     return this.data;
   }
 
