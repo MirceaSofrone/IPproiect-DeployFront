@@ -38,5 +38,7 @@ import { MatInputModule } from '@angular/material/input';
 
   ],
 
+  exports: [ MatFormFieldModule, MatInputModule ]
+
 })
 export class AddQuestionModule { }

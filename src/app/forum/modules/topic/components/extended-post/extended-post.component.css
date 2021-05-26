@@ -9,6 +9,9 @@ html{
     font-family: Montserrat;
 }
 
+.card{
+    text-align: left !important;
+  }
 .author{
     font-size: 48px;
     color: #283655;

@@ -4,9 +4,11 @@
     /* src: url(./assets/fonts/Manrope-Bold.ttf); */
     src: "./assets/fonts/Manrope-Bold.ttf";
 }
+
 .card{
   text-align: left !important;
 }
+
 html{
     font-family: Montserrat;
 }

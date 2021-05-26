@@ -8,7 +8,9 @@
 html{
     font-family: Montserrat;
 }
-
+.card{
+    text-align: left !important;
+  }
 .author{
     
     font-size: 30px;
