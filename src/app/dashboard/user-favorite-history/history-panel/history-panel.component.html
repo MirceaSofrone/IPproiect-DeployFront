@@ -10,9 +10,9 @@
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                + histData[histIndex-1]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="hist1">
           </a>
-          <p class="price" [style.display]="histData[histIndex-1]?.currentPrice!=undefined ? 'block' : 'none'">{{ histData[histIndex-1]?.currentPrice }}&euro;</p>
-          <p class="description" [style.display]="histData[histIndex-1]?.noOfRooms!=undefined ? 'block' : 'none'">{{ histData[histIndex - 1]?.noOfRooms }} camere, {{ histData[histIndex - 1]?.surface }} mp, {{histData[histIndex - 1]?.address}}, {{histData[histIndex - 1]?.city}}</p>
-          <p class="not_found" [style.display]="histData[histIndex-1]?.currentPrice!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
+          <p class="price" [style.display]="histData[histIndex-1]?.currentPrice!=undefined ? 'flex' : 'none'">{{ histData[histIndex-1]?.currentPrice }}&euro;</p>
+          <p class="description" [style.display]="histData[histIndex-1]?.noOfRooms!=undefined ? 'flex' : 'none'">{{ histData[histIndex - 1]?.noOfRooms }} camere, {{ histData[histIndex - 1]?.surface }} mp, {{histData[histIndex - 1]?.address}}, {{histData[histIndex - 1]?.city}}</p>
+          <p class="not_found" [style.display]="histData[histIndex-1]?.currentPrice!=undefined ? 'none' : 'flex'">Nothing here yet :(</p>
         </div>
       </li>
       <li>
@@ -23,8 +23,8 @@
                + histData[histIndex]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="hist2">
           </a>
           <p class="price" [style.display]="histData[histIndex]?.currentPrice!=undefined ? 'block' : 'none'">{{ histData[histIndex]?.currentPrice }}&euro;</p>
-          <p class="description" [style.display]="histData[histIndex]?.noOfRooms!=undefined ? 'block' : 'none'">{{ histData[histIndex]?.noOfRooms }} camere, {{ histData[histIndex]?.surface }} mp, {{histData[histIndex]?.address}}, {{histData[histIndex]?.city}}</p>
-          <p class="not_found" [style.display]="histData[histIndex]?.currentPrice!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
+          <p class="description" [style.display]="histData[histIndex]?.noOfRooms!=undefined ? 'flex' : 'none'">{{ histData[histIndex]?.noOfRooms }} camere, {{ histData[histIndex]?.surface }} mp, {{histData[histIndex]?.address}}, {{histData[histIndex]?.city}}</p>
+          <p class="not_found" [style.display]="histData[histIndex]?.currentPrice!=undefined ? 'none' : 'flex'">Nothing here yet :(</p>
         </div>
       </li>
       <li>
@@ -35,8 +35,8 @@
                + histData[histIndex+1]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="hist3">
           </a>
           <p class="price" [style.display]="histData[histIndex+1]?.currentPrice!=undefined ? 'block' : 'none'">{{ histData[histIndex+1]?.currentPrice }}&euro;</p>
-          <p class="description" [style.display]="histData[histIndex+1]?.noOfRooms!=undefined ? 'block' : 'none'">{{ histData[histIndex + 1]?.noOfRooms }} camere, {{ histData[histIndex + 1]?.surface }} mp, {{histData[histIndex + 1]?.address}}, {{histData[histIndex + 1]?.city}}</p>
-          <p class="not_found" [style.display]="histData[histIndex+1]?.currentPrice!=undefined ? 'none' : 'block'">Nothing here yet :(</p>
+          <p class="description" [style.display]="histData[histIndex+1]?.noOfRooms!=undefined ? 'flex' : 'none'">{{ histData[histIndex + 1]?.noOfRooms }} camere, {{ histData[histIndex + 1]?.surface }} mp, {{histData[histIndex + 1]?.address}}, {{histData[histIndex + 1]?.city}}</p>
+          <p class="not_found" [style.display]="histData[histIndex+1]?.currentPrice!=undefined ? 'none' : 'flex'">Nothing here yet :(</p>
         </div>
       </li>
       <button class="next__btn" class="navigation__btns" id="history__next" (click)="histNext()">

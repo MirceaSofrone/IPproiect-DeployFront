@@ -63,8 +63,6 @@
   display: none;
 }
 
-
-
 /*edit zone*/
 .edit__info__form {
   display: flex;
@@ -73,7 +71,7 @@
   left: 3%;
   position: relative;
   height: 100%;
-  top:-4em;
+  top: 4em;
 }
 
 .edit__field {
@@ -110,90 +108,4 @@
 /*hide*/
 .hide {
   display: none;
-}
-/* responsive design*/
-@media (max-width: 1900px) {
-  .profile__pic {
-    top: 10%;
-  }
-  .info {
-    left: 4%;
-  }
-}
-@media (max-width: 1800px) {
-  .btn.edit__input {
-    position: absolute;
-    top: 105%;
-    left: 7%;
-  }
-  .btn.save--btn {
-    top: 130%;
-    left: 9%;
-  }
-}
-@media (max-width: 1700px) {
-  .btns {
-    top: 57%;
-  }
-  .edit__info__form {
-    margin-top: 12%;
-  }
-}
-@media (max-width: 1610px) {
-  .edit__info__form {
-    margin-top: 15%;
-  }
-}
-@media (max-width: 1480px) {
-  .edit__field {
-    width: 50%;
-  }
-  .edit__input {
-    margin-top: 5%;
-  }
-  .title {
-    font-size: 20px;
-  }
-}
-@media (max-width: 1330px) {
-  .info {
-    top: 0%;
-  }
-}
-@media (max-width: 1100px) {
-  .info {
-    top: 5%;
-  }
-  .btns {
-    top: 55%;
-  }
-}
-@media (max-width: 950px) {
-  .edit__info__form {
-    margin-top: 20%;
-  }
-  .edit__input {
-    width: 8em;
-  }
-  .btn.edit__input {
-    width: 11em;
-    left: 10%;
-  }
-}
-@media (max-width: 800px) {
-  .info {
-    top: 10%;
-    width: 25%;
-  }
-  .btns {
-    top: 50%;
-  }
-}
-@media (max-width: 430px) {
-  .info {
-    top: 10%;
-  }
-  .btns {
-    top: 50%;
-  }
 }
