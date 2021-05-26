@@ -1,12 +1,12 @@
 @font-face{
-    font-family: Montserrat-regular;
-    src:url(../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
-    
+  font-family: Montserrat-regular;
+  src:url(../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
+
 }
 @font-face{
   font-family: Manrope-bold;
-  src:url(../../../../../src/assets/fonts/Manrope-bold.ttf)
-  
+  src:url(../../../../../src/assets/fonts/Manrope-Bold.ttf)
+
 }
 .first-row{
   display: flex;
@@ -18,9 +18,9 @@
 }
 p{
   font-size: 30px;
-    font-family: Manrope-bold;
-    font-weight: 500;
-    color:#707070;
+  font-family: Manrope-bold;
+  font-weight: 500;
+  color:#707070;
 }
 app-base64gallery{
   /* width: 60vw; */
@@ -35,18 +35,18 @@ app-base64gallery{
     flex-direction: column;
   }
 
-   app-user-contact {
+  app-user-contact {
     align-self: center;
     margin-top: 20px;
-  } 
+  }
 
   app-base64gallery{
-    margin: 0px;
+    margin: 0;
   }
 }
 
 @media (max-width: 500px){
-p{
-  font-size: 25px;
-}
+  p{
+    font-size: 25px;
+  }
 }

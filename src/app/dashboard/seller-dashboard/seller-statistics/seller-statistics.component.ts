@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {ISellerStatistics} from './sellerStatistics';
+import { HttpClient } from '@angular/common/http';
+import { IHouse } from "../seller-panel/house";
 
 @Component({
   selector: 'app-seller-statistics',
@@ -8,28 +8,68 @@ import {ISellerStatistics} from './sellerStatistics';
   styleUrls: ['./seller-statistics.component.css']
 })
 export class SellerStatisticsComponent {
-  private URL = '/assets/data/sellerStatistics.json';
-  rawData: any[];
+  private SELLER_ID = '6757fff1-e437-4d23-bd45-646a4b419b16';
+  private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/all/';
+  housesList: any[];
+  rawData: any[] = [];
   data: any[] = [{
     name: 'Average Houses Followers',
     series: []
   }];
 
-
   constructor(private http: HttpClient) {
-    this.http.get<ISellerStatistics[]>(this.URL).subscribe(data => this.rawData = data);
+    console.log('das');
+  }
+
+  ngOnInit(): void {
+    console.log('OK');
+    const followersData: any[] = [];
+    this.http.get<IHouse[]>(this.URL + this.SELLER_ID).toPromise().then((data) => {
+      this.housesList = JSON.parse(JSON.stringify(data));
+      console.log(this.housesList);
+
+      this.housesList.forEach(house => {
+        for (const favorite in house.favoriteHistory) {
+          if (house.favoriteHistory.hasOwnProperty(favorite)) {
+            let hasDate = false;
+
+            // Appends to an existent entry
+            this.rawData.forEach(raw => {
+              if (this.unixToDate(raw.time) === this.unixToDate(this.timestampToUnix(favorite))) {
+                raw.favorites = raw.favorites + house.favoriteHistory[favorite];
+                hasDate = true;
+              }
+            });
+
+            // Adds new entry
+            if (!hasDate) {
+              this.rawData.push({time: this.timestampToUnix(favorite), favorites: house.favoriteHistory[favorite]});
+            }
+          }
+        }
+      });
+
+      // Creates data for the graph
+      if (this.rawData !== undefined && this.rawData.length !== 0) {
+        this.rawData.sort((first, second) => (first.time - second.time)).forEach(follower => {
+          followersData.push({value: follower.favorites, name: this.unixToDate(follower.time)});
+        });
+        this.data[0].series = followersData;
+      }
+    });
   }
 
   getData(): any[] {
-    let followersData: any[];
-    followersData = [];
-    if (this.rawData !== undefined) {
-      this.rawData.sort((first, second) => (first.time - second.time)).forEach(follower => {
-        followersData.push({value: follower.followers, name: this.unixToDate(follower.time)});
-      });
-      this.data[0].series = followersData;
-    }
+    console.log('data');
     return this.data;
+  }
+
+  isData(): boolean {
+    return (this.data[0].series !== undefined && this.data[0].series.length !== 0);
+  }
+
+  timestampToUnix(timestamp: string): number {
+    return Math.trunc(Date.parse(timestamp) / 1000);
   }
 
   unixToDate(unixtime: number): string {
