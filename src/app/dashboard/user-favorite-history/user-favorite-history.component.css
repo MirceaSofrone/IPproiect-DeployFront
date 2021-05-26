@@ -24,6 +24,9 @@
   position: relative;
   left: -15rem;
 }
+#history {
+  margin-top: -1em;
+}
 
 /* responsive design */
 /* @media (max-width: 1610px) {

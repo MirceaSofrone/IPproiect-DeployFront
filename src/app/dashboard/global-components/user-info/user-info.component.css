@@ -109,3 +109,9 @@
 .hide {
   display: none;
 }
+/* responsive design */
+@media (max-width: 1390px) {
+  .acc__info {
+    margin-left: 1%;
+  }
+}
