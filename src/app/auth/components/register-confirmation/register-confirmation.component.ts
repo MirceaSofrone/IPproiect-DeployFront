@@ -25,7 +25,7 @@ export class RegisterConfirmationComponent implements OnInit, OnDestroy {
         }
       )
       console.log(this.token)
-    //this.auth.activate(this.token)
+    this.auth.activate(this.token)
   }
 
   goToLogin(): void {
