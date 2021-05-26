@@ -3,6 +3,10 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url(../node_modules/font-awesome/css/font-awesome.css);
 @import '~swiper/swiper-bundle';
+:root{
+    --black-arrow: #283655;
+    --grey-arrow:#b1b1b1 ;
+}
 html,
 body {
     height: 100%;
@@ -59,3 +63,6 @@ margin-top: 15px !important;
 :root {
     scrollbar-width: none !important;
 }
+.swiper-button-prev,.swiper-button-next{
+color: var(--black-arrow, var(--grey-arrow));
+  }
