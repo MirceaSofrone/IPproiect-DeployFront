@@ -20,7 +20,10 @@ export class ResetPasswdComponent implements OnInit {
   confirmPasswd: string;
   subscription: Subscription;
   token: string;
-  payload: ChangePayload;
+  payload: ChangePayload = {
+    token: '',
+    password: ''
+  };
 
   constructor(
     private fb: FormBuilder, 
@@ -48,16 +51,23 @@ export class ResetPasswdComponent implements OnInit {
 
   onSubmit() {
     this.submitted=true;
-    if (this.resetForm.get('newPasswd').value !== this.resetForm.get('confirmPasswd').value) {
+    this.payload.token = this.token
+    this.newPasswd = this.resetForm.get('newPasswd').value
+    this.confirmPasswd = this.resetForm.get('confirmPasswd').value
+    this.payload.password = this.newPasswd
+    if (this.newPasswd !== this.confirmPasswd) {
       alert('Passwords must match!')
     } else {
-      this.payload = this.resetForm.get('newPasswd').value
-      this.payload.token = this.token
 
+      console.log(this.payload)
       this.auth.change(this.payload).subscribe(
         res => console.log(res),
         err => console.log(err)
       )
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
