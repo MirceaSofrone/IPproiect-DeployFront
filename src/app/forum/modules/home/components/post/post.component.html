@@ -1,5 +1,5 @@
 
-<div class="card" *ngFor="let post of forumPosts | slice:0:10; let i=index">
+<div class="card" *ngFor="let post of forumPosts ; let i=index">
   <section class="card-info">
     <div class=first-line>
       <a id="user-icon" class="icon-display">
@@ -8,15 +8,13 @@
 
 
       <div class="text">
-        <a [routerLink]="['/forum-topic', $any(post).postID]" >
-          <a class="author" >
+        <a [routerLink]="['/forum-topic', $any(post).postID]" class="author">
             {{$any(post).author.username}} asked:
           </a>
 
-          <a class="question">
+          <a [routerLink]="['/forum-topic', $any(post).postID]" class="question">
             {{$any(post).title}}
           </a>
-        </a>
       </div>
     </div>
     <div class="info">
