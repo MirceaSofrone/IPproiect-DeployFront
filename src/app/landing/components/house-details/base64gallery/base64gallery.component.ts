@@ -32,7 +32,7 @@ export class Base64galleryComponent implements OnInit {
         imageAnimation: NgxGalleryAnimation.Slide
       },
       {
-        breakpoint: 1110,
+        breakpoint: 1000,
         width: '70vw',
         height: '60vw',
         imagePercent: 80,

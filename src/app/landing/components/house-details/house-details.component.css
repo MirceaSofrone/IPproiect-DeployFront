@@ -28,7 +28,7 @@ app-base64gallery{
   margin-right: 20px;;
 }
 
-@media (max-width: 1110px) {
+@media (max-width: 1000px) {
   .first-row {
     display: flex;
     flex-wrap: wrap;
