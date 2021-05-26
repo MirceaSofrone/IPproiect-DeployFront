@@ -28,3 +28,8 @@ p{
   }
 }
 
+@media (min-width:1500px){
+  p{
+      margin-left:12.5%;
+  }
+}
