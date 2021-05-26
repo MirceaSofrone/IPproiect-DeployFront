@@ -51,7 +51,8 @@ export class ResetPasswdComponent implements OnInit {
     if (this.resetForm.get('newPasswd').value !== this.resetForm.get('confirmPasswd').value) {
       alert('Passwords must match!')
     } else {
-      this.payload.newPass = this.resetForm.get('newPasswd').value
+      this.newPasswd = this.resetForm.get('newPasswd').value
+      this.payload.newPass = this.newPasswd
       this.payload.token = this.token
 
       this.auth.change(this.payload).subscribe(
