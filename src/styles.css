@@ -74,3 +74,9 @@ color: var(--black-arrow, var(--grey-arrow));
   }
 
 }
+@media screen and (min-width:1500px) {
+    .swiper-button-prev:after, .swiper-button-next:after{
+      margin-top:-120px !important;
+      z-index: 5;
+    }
+  }

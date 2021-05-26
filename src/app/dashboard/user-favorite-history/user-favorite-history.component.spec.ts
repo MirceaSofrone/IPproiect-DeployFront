@@ -10,7 +10,7 @@ describe('UserFavoriteHistoryComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ UserFavoriteHistoryComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
