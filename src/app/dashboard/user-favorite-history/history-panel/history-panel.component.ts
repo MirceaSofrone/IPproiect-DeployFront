@@ -13,6 +13,7 @@ export class HistoryPanelComponent {
   private URL = 'https://back-end-hpp.herokuapp.com/api/v1/users/history?userID=6757fff1-e437-4d23-bd45-646a4b419b16';
   histData: any[] = [];
   histIndex = 1;
+
   @ViewChild("item_1") block: HTMLElement;
 
   constructor(private http: HttpClient, public _sanitizer: DomSanitizer) {
