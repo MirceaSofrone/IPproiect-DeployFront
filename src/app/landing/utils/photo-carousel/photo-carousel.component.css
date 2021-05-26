@@ -8,6 +8,27 @@
 ::ng-deep.image-container{
   width: 100% !important;
 }
+::ng-deep.swiper-button-next:after,.custom-swiper-button-next:after{
+  content: "play_arrow";
+  font-family: "Material Icons";
+  width:45px ;
+  height:45px;
+  /* margin-top: 0px !important;
+position: absolute !important;
+top: 50% !important;
+right: -40px !important;
+width: 45px !important;
+height: 45px !important;
+transform: translateY(-50%) !important; */
+}
+::ng-deep.swiper-button-prev:after,.custom-swiper-button-prev{
+  content: "play_arrow";
+  transform: rotate(180deg) !important;
+  font-family: "Material Icons";
+  width:45px ;
+  height:45px;
+}
+
 swiper{
   max-width:1650px;
 }
@@ -204,8 +225,21 @@ p {
   margin-top:-120px !important;
   z-index: 5;
 }
-.swiper-button-prev:after, .swiper-button-next:after{
-  margin-top:-150px !important;
-  z-index: 5;
+
+
 }
+@media screen and (min-width: 1500px) {
+    .image-container{
+      width: 100%;
+      max-width:unset;
+    }
+    .swiper-container{
+      width:64vw;
+      max-width: unset;
+      height:55%;
+    }
+    .image-description{
+      width: 100%;
+      max-width:unset;
+    }
 }
