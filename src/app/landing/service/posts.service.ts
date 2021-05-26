@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PostsService {
-  url = 'https://house-prediction-fii.herokuapp.com/api/v1/allhouses';
+  url = 'https://back-end-hpp.herokuapp.com/api/v1/allhouses';
 
   constructor(private http: HttpClient) {
   }
@@ -20,8 +20,8 @@ export class PostsService {
 
     if (typeAll === 1)
     {
-      this.url = 'https://house-prediction-fii.herokuapp.com/api/v1/search';
-      console.log(noOfRooms, 'typee');
+      this.url = 'https://back-end-hpp.herokuapp.com/api/v1/search';
+      console.log(housing, 'housinggg');
       if (housing != undefined && housing !== '') {
         console.warn('doferot de type');
         params = params.set('houseType', housing);

@@ -1,7 +1,7 @@
 export class House {
 
   houseID: any;
-  photos:any[];
+  photos: any[];
   title: string;
   city: string;
   noOfRooms: number;
@@ -10,9 +10,10 @@ export class House {
   currentPrice: number;
   imageUrl: string;
   sellType: any;
+  userID:  any;
 
 
-  constructor(houseID: any, photos:any[], title: string, city: string, noOfRooms: number, surface: string, type: string, currentPrice: number, imageUrl: string, sellType: any) {
+  constructor(houseID: any, photos: any[], title: string, city: string, noOfRooms: number, surface: string, type: string, currentPrice: number, imageUrl: string, sellType: any, userID: any) {
     this.houseID = houseID;
     this.photos = photos[0];
     this.title = title;
@@ -23,5 +24,6 @@ export class House {
     this.currentPrice = currentPrice;
     this.imageUrl = imageUrl;
     this.sellType = sellType;
+    this.userID = userID;
   }
 }

@@ -28,7 +28,7 @@ export class MapComponent implements OnInit {
       this.houseID = params.id;
       console.log(this.houseID, 'house id');
     });
-    const url = 'https://house-prediction-fii.herokuapp.com/api/v1/housedetails';
+    const url = 'https://back-end-hpp.herokuapp.com/api/v1/housedetails';
     const params = new HttpParams()
       .set('houseID', this.houseID);
 

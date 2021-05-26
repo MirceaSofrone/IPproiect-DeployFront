@@ -9,7 +9,7 @@ import { IUserStatistics } from './userStatistics';
 })
 export class UserStatisticsPanelComponent {
 
-  private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/users/getfavorite/6757fff1-e437-4d23-bd45-646a4b419b16';
+  private URL = 'https://back-end-hpp.herokuapp.com/api/v1/users/getfavorite/6757fff1-e437-4d23-bd45-646a4b419b16';
   private rawData: any[];
   data: any[] = [{
     name: 'Average Price',
@@ -17,7 +17,8 @@ export class UserStatisticsPanelComponent {
   }];
 
   constructor(private http: HttpClient) {
-    this.http.get<IUserStatistics[]>(this.URL).subscribe(data => this.rawData = data);
+   const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    this.http.get<IUserStatistics[]>(this.URL, { headers }).subscribe(data => this.rawData = data);
   }
 
   // debug(): void {

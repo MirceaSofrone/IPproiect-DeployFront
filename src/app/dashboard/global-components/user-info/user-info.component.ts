@@ -8,22 +8,24 @@ import { IUser } from './user-type';
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent {
-  private getUserInfo = 'https://house-prediction-fii.herokuapp.com/api/v1/users/';
-  private updateUserInfoUrl = 'https://house-prediction-fii.herokuapp.com/api/v1/users/update';
+  private getUserInfo = 'https://back-end-hpp.herokuapp.com/api/v1/users/';
+  private updateUserInfoUrl = 'https://back-end-hpp.herokuapp.com/api/v1/users/update';
   changeUserDetails : boolean = false;
-  userToken : string = '6757fff1-e437-4d23-bd45-646a4b419b16';
   user : IUser = {
-    userId: 0,
-    firstName: "",
-    lastName: "",
+    userId: localStorage.getItem('userID'),
+    name: "",
     email: "",
     phoneNumber:""
   };
 
   constructor(private http: HttpClient){
-    this.http.get<IUser>(this.getUserInfo.concat(this.userToken)).subscribe(data => {this.user = data;
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
+
+    console.log(headers);
+    this.http.get<IUser>(this.getUserInfo + localStorage.getItem('userID'), { headers }).subscribe(data => {this.user = data;
     if(this.user.email == null) this.user.email = "no email address";
     if(this.user.phoneNumber == null) this.user.phoneNumber = "no phone number";
+    console.log("GET USER INFO");
   }); }
 
   updateUserInfo():void{
@@ -41,7 +43,9 @@ export class UserInfoComponent {
       editSection.classList.add('hide');
       userInfoSection.classList.remove('hide');
 
-      this.http.post<IUser>(this.updateUserInfoUrl,this.user).subscribe(data => {this.user = data;
+     
+      const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token')  };
+      this.http.post<IUser>(this.updateUserInfoUrl,this.user, { headers }).subscribe(data => {this.user = data;
       if(this.user.email == null) this.user.email = "no email address";
       if(this.user.phoneNumber == null) this.user.phoneNumber = "no phone number";
     });

@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ['./seller-house-panel.component.css']
 })
 export class SellerHousePanelComponent implements OnInit {
-  private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/delete/';
+  private URL = 'https://back-end-hpp.herokuapp.com/api/v1/delete/';
 
   @Input() house: any;
 
@@ -44,27 +44,20 @@ export class SellerHousePanelComponent implements OnInit {
     return resultPrice;
   }
 
-  deleteHouse(): void {
-    this.http.delete(this.URL + this.house.id);
+  deleteHouse = () => {
+     const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    this.http.delete(this.URL + this.house.id, { headers });
   }
 
-  getImage(): string {
-    return 'data:image/png;base64,' + this.house.photos[0];
-  }
+  getImage = () => 'data:image/png;base64,' + this.house.photos[0];
 
-  hasImages(): boolean {
-    return this.house.photos === null;
-  }
+  hasImages = () =>this.house.photos === null;
 
-  getTitle(): string {
-    return this.house.title;
-  }
+  getTitle = () => this.house.title;
 
-  getFavoritesNumber(): number {
-    return this.house.noOfFave;
-  }
+  getFavoritesNumber = () => this.house.noOfFave;
 
-  getDescription(): string {
-    return this.house.description;
-  }
+  getDescription = () => this.house.description;
+
+  saveHouse = () => localStorage.setItem('houseID', this.house.houseID);
 }

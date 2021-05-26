@@ -14,18 +14,21 @@ export class FavoritePanelComponent {
   favData: any[] = [];
   favIndex = 1;
   userID = '6757fff1-e437-4d23-bd45-646a4b419b16';
-  
-  URL = 'https://house-prediction-fii.herokuapp.com/api/v1/users/getfavorite/6757fff1-e437-4d23-bd45-646a4b419b16';
-  deleteURL = "https://house-prediction-fii.herokuapp.com/api/v1/users/removefromfavorite/";
+
+  URL = 'https://back-end-hpp.herokuapp.com/api/v1/users/getfavorite/';
+  deleteURL = "https://back-end-hpp.herokuapp.com/api/v1/users/removefromfavorite/";
   constructor(private http: HttpClient, public _sanitizer: DomSanitizer) {
-    this.http.get<IFavourite[]>(this.URL).subscribe(
+    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibHorWXp0bzBoY3FVSUJWdjZqMkxnSWcwS3R2R25PUkt1Mm1hZWhZc0JJPSIsImlhdCI6MTYyMTY5NTgwMSwiZXhwIjoxNjIxNzgyMjAxfQ.X22ReBqnY3AyCEadNk-wNm106KTSS76Mqw4EPW-JRHBqY88YO8E75x7kGFlmXk3KC9kZcCQL7dEKFSwHKr16Xw';
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token')};
+    this.http.get<IFavourite[]>(this.URL + localStorage.getItem('userID'), { headers }).subscribe(
       data => this.favData = data,
       () => {},
       );
     }
     
     remove(id: string, index: number): void {
-      this.http.delete<any>(this.deleteURL + this.userID + '/' + id).subscribe(
+      const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+      this.http.delete<any>(this.deleteURL + localStorage.getItem('userID') + '/' + id, { headers }).subscribe(
           { next:(result) =>{ console.log(result);},
             error:(err:any) => {console.log(err);}, 
             complete:()=> { console.log("complete");

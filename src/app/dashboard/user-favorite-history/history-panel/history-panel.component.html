@@ -6,9 +6,9 @@
       <li>
         <div class="list__item" #item_1>
           <a [routerLink]="['/house-details', histData[histIndex-1]?.houseID]">
-            <img [src]="histData[histIndex-1].photos[0]!=undefined ?
+            <img [src]="histData[histIndex-1]?.photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
-               + histData[histIndex-1].photos[0]) : '../../assets/userDashboard/default.png'" alt="hist1">
+               + histData[histIndex-1]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="hist1">
           </a>
           <p class="price">{{ histData[histIndex-1]?.currentPrice }}&euro;</p>
           <p class="description">{{ histData[histIndex - 1]?.noOfRooms }} camere, {{ histData[histIndex - 1]?.surface }} mp, {{histData[histIndex - 1]?.address}}, {{histData[histIndex - 1]?.city}}</p>
@@ -17,9 +17,9 @@
       <li>
         <div class="list__item" id="item_2">
           <a [routerLink]="['/house-details', histData[histIndex]?.houseID]">
-            <img [src]="histData[histIndex].photos[0]!=undefined ?
+            <img [src]="histData[histIndex]?.photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
-               + histData[histIndex].photos[0]) : '../../assets/userDashboard/default.png'" alt="hist2">
+               + histData[histIndex]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="hist2">
           </a>
           <p class="price">{{ histData[histIndex]?.currentPrice }}&euro;</p>
           <p class="description">{{ histData[histIndex]?.noOfRooms }} camere, {{ histData[histIndex]?.surface }} mp, {{histData[histIndex]?.address}}, {{histData[histIndex]?.city}}</p>
@@ -28,9 +28,9 @@
       <li>
         <div class="list__item" id="item_3">
           <a [routerLink]="['/house-details', histData[histIndex+1]?.houseID]">
-            <img [src]="histData[histIndex+1].photos[0]!=undefined ?
+            <img [src]="histData[histIndex+1]?.photos[0]!=undefined ?
             this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
-               + histData[histIndex+1].photos[0]) : '../../assets/userDashboard/default.png'" alt="hist3">
+               + histData[histIndex+1]?.photos[0]) : '../../assets/userDashboard/default.png'" alt="hist3">
           </a>
           <p class="price">{{ histData[histIndex+1]?.currentPrice }}&euro;</p>
           <p class="description">{{ histData[histIndex + 1]?.noOfRooms }} camere, {{ histData[histIndex + 1]?.surface }} mp, {{histData[histIndex + 1]?.address}}, {{histData[histIndex + 1]?.city}}</p>

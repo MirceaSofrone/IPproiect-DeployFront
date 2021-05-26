@@ -19,10 +19,10 @@
 /*  !*margin-left: auto !important;*!*/
 /*  padding-right:0 !important;*/
 /*}*/
-.small_menu{
-  position: absolute;
-  margin-left: 100px;
-}
+/*.small_menu{*/
+/*  position: absolute;*/
+/*  margin-left: 100px;*/
+/*}*/
 .spacer {
   flex: 1 1 auto;
 }
@@ -136,10 +136,11 @@ mat-sidenav a {
   display: none;
 }
 
-.mat-focus-indicator,
-mat-button mat-button-base {
-  padding-bottom: 20px;
-}
+/*.mat-focus-indicator,*/
+/*mat-button mat-button-base {*/
+/*  padding-top: 10px;*/
+/*  padding-bottom:10px;*/
+/*}*/
 .mat-drawer-inner-container{
   display:none;
 }
