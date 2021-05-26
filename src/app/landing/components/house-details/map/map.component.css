@@ -1,7 +1,8 @@
-/*@font-face {*/
-/*    font-family: Montserrat-bold;*/
-/*    src: url(../../../assets/fonts/Montserrat/Montserrat-Bold.ttf);*/
-/*}*/
+@font-face{
+  font-family: Manrope-bold;
+  src:url(../../../../../../src/assets/fonts/Manrope-bold.ttf)
+  
+}
 agm-map{
     height:400px;
     width:80%;
@@ -12,10 +13,18 @@ agm-map{
 
 }
 p{
-    position: relative;
+    text-align: left;
     margin-left:10%;
     margin-top:5vw;
     font-size: 30px;
-    font-family: Montserrat-bold;
+    font-family: Manrope-bold;
+    font-weight: 500;
     color: #707070;
 }
+
+@media (max-width: 500px){
+  p{
+    font-size: 25px;
+  }
+}
+
