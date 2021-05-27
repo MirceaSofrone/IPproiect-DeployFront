@@ -125,3 +125,8 @@
     margin-left: 0%;
   }
 }
+@media (max-width: 550px) {
+  img {
+    width: 20%;
+  }
+}
