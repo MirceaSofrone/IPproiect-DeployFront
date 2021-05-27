@@ -35,7 +35,7 @@
   width: fit-content;
 }
 /* responsive design */
-@media (max-width: 1150px) {
+/* @media (max-width: 1150px) {
   .dashboard-btn--container {
     margin-left: 0;
     width: 420px;
@@ -52,5 +52,16 @@
   }
   .dashboard--btn {
     font-size: 15px;
+  }
+} */
+
+@media (max-width: 1412px) {
+  .dashboard-btn--container {
+    margin-left: 8.5em;
+  }
+}
+@media (max-width: 1050px) {
+  .dashboard-btn--container {
+    margin-left: 10em;
   }
 }

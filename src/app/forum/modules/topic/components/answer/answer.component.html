@@ -1,0 +1,25 @@
+
+<div class="card" *ngFor="let comment of comments">
+  <section class="card-info">
+    <div class=first-line>
+      <a class="icon-display">
+        <mat-icon id="user-icon">account_circle</mat-icon>
+      </a>
+
+      <div class="text">
+        <a class="author">
+          {{comment.author.username}} answered:
+        </a>
+      </div>
+    </div>
+
+    <div class="textarea">
+      <mat-card>
+        <mat-card-content>{{comment.content}}</mat-card-content>
+      </mat-card>
+    </div>
+
+    <ng-content></ng-content>
+  </section>
+
+</div>
