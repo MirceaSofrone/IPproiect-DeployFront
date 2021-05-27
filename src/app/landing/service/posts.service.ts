@@ -12,7 +12,7 @@ export class PostsService {
   constructor(private http: HttpClient) {
   }
 
-  getPosts(typeAll, page, number, type, string, housing, noOfRooms, floor, surface, noOfBathrooms, minPrice, maxPrice): Observable<House[]> {
+  getPosts(typeAll, page, number, type, string, housing, noOfRooms, floor, surface, noOfBathrooms, minPrice, maxPrice, city): Observable<House[]> {
     let params = new HttpParams()
       .set('page', page)
       .set('number', number);
@@ -52,6 +52,8 @@ export class PostsService {
       if (maxPrice != undefined &&  maxPrice !== '') {
         params =  params.set('maxPrice', maxPrice);
       }
+      if (city != undefined &&  city !== '')
+        params =  params.set('city', city);
 
     }
 
