@@ -34,7 +34,7 @@ export class HouseItemComponent implements OnInit {
   handleAddToWishlist() {
     if (this.authService.isAuthenticated()) {
       this.wishlistService.addToWishlist(this.item.houseID).subscribe((result) => {
-        console.log(result);
+
         this.addedToWishlist = true;
       });
     }
@@ -48,7 +48,7 @@ export class HouseItemComponent implements OnInit {
   handleRemoveFromWishlist() {
     if (this.authService.isAuthenticated()) {
       this.wishlistService.removeFromWishlist(this.item.houseID).subscribe((result) => {
-        console.log(result);
+
         this.addedToWishlist = false;
       });
     }
