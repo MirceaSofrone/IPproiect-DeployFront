@@ -55,18 +55,18 @@
 /* responsive design */
 @media (max-width: 1412px) {
   .seller-statistics--container {
-    top: 40%;
+    margin-top: 60em;
     left: -40%;
     width: 50%;
   }
   .seller-house-panel--container {
     left: 10%;
     width: 50%;
-    /* background-color: yellow; */
   }
   .seller-page {
     width: 100%;
   }
+ 
 }
 @media (max-width: 1050px) {
   .seller-house-panel--container {
