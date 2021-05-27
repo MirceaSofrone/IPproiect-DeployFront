@@ -117,7 +117,7 @@ img {
 } */
 @media (max-width: 850px) {
   .list__item {
-    height: 8.5em;
+    height: 9em;
     width: 6em;
   }
   .list__item img {
@@ -131,5 +131,10 @@ img {
   .not_found {
     font-size: 12px;
     width: 8em;
+  }
+}
+@media (max-width: 850px) {
+  .history__slider {
+    margin-left: 1.3em;
   }
 }

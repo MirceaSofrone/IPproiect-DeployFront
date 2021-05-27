@@ -144,5 +144,25 @@ form {
 .add__house--form {
   position: absolute;
   left: -13%;
+  display: flex;
+  flex-direction: column;
   top: -20%;
+}
+@media (max-width: 1350px) {
+  .add__house--form {
+    left: -35%;
+    margin-bottom: 100px;
+    background-color: aqua;
+  }
+}
+@media (max-width: 1105px) {
+  .add__house--form {
+    margin-bottom: 300px;
+    background-color: blueviolet;
+  }
+}
+@media (max-width: 750px) {
+  .add__house--form {
+    left: -100%;
+  }
 }

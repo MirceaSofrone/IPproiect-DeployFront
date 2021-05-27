@@ -44,9 +44,8 @@
   flex-direction: column;
   margin-top: 2em;
   left: 5em;
-  height: 50%;
+  height: 100%;
   width: 100%;
-  overflow: hidden;
   margin-left: 10%;
 }
 
@@ -76,7 +75,6 @@
   height: 100%;
   top: 4em;
 }
-
 .edit__field {
   display: flex;
   flex-direction: column;
@@ -90,6 +88,7 @@
   height: 1.3em;
   width: 9em;
   margin-left: 1em;
+  margin-top: 1em;
 }
 .btn {
   background-color: #283655;
@@ -119,5 +118,10 @@
   }
   .btnUser {
     font-size: 13px;
+  }
+}
+@media (max-width: 700px) {
+  .acc__info {
+    margin-left: 0%;
   }
 }

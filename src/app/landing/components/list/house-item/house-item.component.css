@@ -2,8 +2,11 @@
 h1,p{
   margin:0;
   }
-  
+.details.title h1:first-of-type{
+  font-size :2vw !important;
+}
   .list{
+    max-width: 1650px;
     width:85%;
     margin-left: auto;
     margin-right: auto;
@@ -12,6 +15,7 @@ h1,p{
     border: 3px solid #ccc;
     padding: 10px;
     box-shadow: -0.3em 0 .4em #ccc, -0.3em 0 .4em #ccc;
+    text-align: left;
   }
   .image-wrapper-list{
     position: relative;
@@ -25,25 +29,27 @@ h1,p{
     margin-bottom: 1vw;
     margin-left: 1vw;
     margin-top: 1vw;
+    object-fit: cover;
   }
   #favorite{
     display: flex;
     position: absolute;
     top: 1.5vw;
     left: 2vw;
-    
+
   }
   .heart.red{
     color:rgba(255, 0, 0, 0.781);
-    
+
     }
   .heart{
     font-size:3vw;
   }
-  
-  
+
+
   .price{
     margin-right:1vw;
+    white-space: nowrap;
   }
   .house-description{
     display: flex;
@@ -58,8 +64,8 @@ h1,p{
     display: flex;
     flex-direction: column;
   }
-  
-  
+
+
   .details.title{
     font-size:2vw;
     color: rgba(43, 57, 81, 255);
@@ -68,19 +74,21 @@ h1,p{
     justify-content: space-between;
   }
   .details.location{
-    font-size:2.5vw;
+    font-size:1.5vw;
     margin-top: 1vw;
    text-align: left;
-  
+
   }
   .additional-info{
     display:flex;
     flex-direction: row;
     margin-top: 2vw;
     font-size:2.5vw;
-    
+
   }
-  
+.additional-info p {
+  font-size:1vw !important;
+}
   .leaf{
     border: 1px solid #ccc;
     background-color: #ccc;
@@ -89,7 +97,7 @@ h1,p{
       height: fit-content;
       padding:0.5vw 1vw;
       margin-left:1vw;
-  
+
   }
   .leaf:first-of-type{
     margin-left:0;
@@ -99,7 +107,7 @@ h1,p{
     flex-direction: row;
   }
   .price-wrapper{
-   
+
     margin-top:1vw;
     margin-left:3vw;
   }
@@ -109,6 +117,7 @@ h1,p{
     font-size: 3vw;
     margin-right: 1vw;
     margin-left: 1vw;
+    white-space: nowrap;
   }
   .details.detail{
   display: flex;
@@ -121,12 +130,20 @@ h1,p{
     border: 1px solid #ccc;
     width:fit-content;
     margin-top: 5vw
-    
+
   }
   a {
     text-decoration: none;
     color:white;
   }
+@media(min-width:2000px){
+  .images {
+
+    width: 20vw;
+    height: 100%;
+
+  }
+}
   @media(max-width:600px){
     .leaf{font-size:3.2vw;}
     .details.title{
@@ -145,8 +162,24 @@ h1,p{
       height: 3vw;
     }
   }
-  
-  
-    
-  
-  
+
+@media(max-width:900px){
+  .heart{
+    font-size: 5vw;
+  }
+  .details.detail{
+    padding: 1vw 2.5vw;
+    font-size: 3.5vw;
+  }
+  .details.location{
+    font-size:4vw;
+  }
+  .details.title h1:first-of-type{
+    font-size :4vw !important;
+  }
+  .additional-info p {
+    font-size:3vw !important;
+  }
+}
+
+

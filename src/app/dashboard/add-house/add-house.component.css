@@ -24,3 +24,8 @@
   top: 1%;
   left: -10%;
 }
+@media (max-width: 1050px) {
+  .user__info {
+    left: 0;
+  }
+}
