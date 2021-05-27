@@ -21,9 +21,9 @@ export class PostsService {
     if (typeAll === 1)
     {
       this.url = 'https://back-end-hpp.herokuapp.com/api/v1/search';
-      console.log(housing, 'housinggg');
+
       if (housing != undefined && housing !== '') {
-        console.warn('doferot de type');
+
         params = params.set('houseType', housing);
       }
 
@@ -58,8 +58,8 @@ export class PostsService {
     }
 
 
-    console.log(this.url);
-    console.log(params.toString(), 'PARAMAS');
+
+
     return this.http.get<House[]>(this.url, {params});
   }
 }

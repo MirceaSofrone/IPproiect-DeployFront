@@ -23,10 +23,10 @@ url = 'https://back-end-hpp.herokuapp.com/api/v1/users/';
   }
 
   addToWishlist(houseID) {
-    console.log(this.url, 'add to wishlist');
+
     const bearer = localStorage.getItem('token');
     const token = `Bearer ${bearer}`;
-    console.log(token);
+
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -35,15 +35,15 @@ url = 'https://back-end-hpp.herokuapp.com/api/v1/users/';
   }
 
   removeFromWishlist(houseID) {
-    console.log(this.url, 'add to wishlist');
+
     const bearer = localStorage.getItem('token');
     const token = `Bearer ${bearer}`;
-    console.log(token);
+
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       Authorization: token });
-    console.log(this.url, 'remove from wishlist');
+
     return this.http.delete(this.url + 'removefromfavorite/' + localStorage.getItem('userID') + '/' + houseID,{headers:httpHeaders});
   }
 }

@@ -40,7 +40,7 @@ export class Base64galleryComponent implements OnInit {
         thumbnailsMargin: 20,
         thumbnailMargin: 20
       },
-      // max-width 800
+
       {
         breakpoint: 800,
         width: '70vw',
@@ -50,7 +50,7 @@ export class Base64galleryComponent implements OnInit {
         thumbnailsMargin: 5,
         thumbnailMargin: 5
       },
-      // max-width 400
+
       {
         breakpoint: 400,
         preview: false
@@ -58,44 +58,33 @@ export class Base64galleryComponent implements OnInit {
     ];
     this.routeSub = this.route.params.subscribe(params => {
       this.houseID = params.id;
-      console.log(this.houseID, 'house id');
+
     });
     this.galleryImages = [];
 
     this.postData.getPosts(this.houseID).subscribe((result) => {
-      // console.warn("result", result);
+
       this.data = result;
-      console.log(this.data, 'galerie');
+
       const photos = this.data.photos;
       for (let i = 0; i < 5; i++){
         let imagePath=null
         if(photos[i]!==undefined)
          imagePath = 'data:image/jpg;base64,' + photos[i];
         else  imagePath="/assets/house.png";
-        console.log(imagePath, 'image');
-        // const image=imagePath.get("changingThisBreaksApplicationSecurity")
+
+
         const img = 'data:image/jpg;base64,' + imagePath;
-        console.log('suntem aici');
+
         this.galleryImages.push({ small : imagePath, medium : imagePath, big : imagePath});
-        console.log(this.galleryImages, 'asets');
+
       }
     });
-    // this.galleryImages = [
-    //   {
-    //     small: '/assets/house.png',
-    //     medium: '/assets/house.png',
-    //     big: '/assets/house.png'
-    //   },
-    //   {
-    //     small: 'assets/2-small.jpg',
-    //     medium: 'assets/2-medium.jpg',
-    //     big: 'assets/2-big.jpg'
-    //   },
-    //   {
-    //     small: 'assets/3-small.jpg',
-    //     medium: 'assets/3-medium.jpg',
-    //     big: 'assets/3-big.jpg'
-    //   }
-    // ];
+
+
+
+
+
+
   }
 }

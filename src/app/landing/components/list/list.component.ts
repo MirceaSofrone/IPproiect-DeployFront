@@ -38,9 +38,9 @@ export class ListComponent implements OnInit {
   minPrice = undefined;
   maxPrice = undefined;
   value = undefined;
-city=undefined
+city = undefined;
 
-  constructor( private authService: AuthenticationService,private wishlistService: WishlistService, private productService: PostsService, private router: Router, private _sanitizer: DomSanitizer, private changeDetectorRef: ChangeDetectorRef) {
+  constructor( private authService: AuthenticationService, private wishlistService: WishlistService, private productService: PostsService, private router: Router, private _sanitizer: DomSanitizer, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -51,27 +51,29 @@ city=undefined
 
   renderPage(form: NgForm) {
 
-    console.log(this.page, 'pageeee');
-    console.log(form, 'form');
-    console.log;
-    console.log(this.minPrice);
+    console.log('aici');
+    window.scrollTo(0, 0);
+    console.log('aici3');
+
+
+
     const myStorage = localStorage.getItem('search');
-    console.warn(myStorage);
+
     let searchKey;
 
 
     if (myStorage != null) {
       searchKey = JSON.parse(myStorage);
-      console.warn(searchKey);
+
       this.type = searchKey.type;
-      console.warn(this.type);
+
       this.string = searchKey.string;
-      console.warn(this.string);
+
       this.housing = searchKey.housing;
-      console.warn(this.housing);
+
       this.typeAll = 1;
     }
-    console.log(form, 'formmmmmm');
+
     if (form !== null) {
       this.typeAll = 1;
 
@@ -93,19 +95,19 @@ city=undefined
 
 
       this.noOfBathrooms = form.value.noOfBathrooms;
-        this.city=form.value.city
+      this.city = form.value.city;
 
     }
-    console.log(this.typeAll, 'typeall');
-    console.log(this.type);
-    console.log(this.string);
-    console.log(this.housing, 'housinglist');
-    console.log(this.noOfRooms);
-    console.log(this.minPrice);
-    console.log(this.maxPrice);
-    console.log(this.surface);
-    console.log(this.floor);
-    console.log(this.noOfBathrooms);
+
+
+
+
+
+
+
+
+
+
     this.productService.getPosts(
       this.typeAll,
       this.page,
@@ -115,27 +117,27 @@ city=undefined
       this.housing,
       this.noOfRooms, this.floor,
       this.surface, this.noOfBathrooms,
-      this.minPrice, this.maxPrice,this.city).subscribe((result) => {
-      console.warn('AICI CALL', result);
+      this.minPrice, this.maxPrice, this.city).subscribe((result) => {
+
       this.data = result;
 
-      this.productList = result['second'];
-      console.log(this.productList, 'productList');
-      this.totalRecords = result['first'];
-      console.log(this.totalRecords);
-      setTimeout(()=>{
-        window.scroll(0,0);
+      this.productList = result.second;
+
+      this.totalRecords = result.first;
+
+      setTimeout(() => {
+        window.scroll(0, 0);
       }, 0);
 
     }, (error) => {
-      console.error('error caught in component listing , no result returned ');
-      this.productList=[];
-      this.totalRecords =0;
+
+      this.productList = [];
+      this.totalRecords = 0;
     });
     if (this.authService.isAuthenticated()) {
       this.wishlistService.getWishlist().subscribe(result => {
         this.wishlist = result;
-        console.log(result, 'wishlist');
+
       });
     }
   }
@@ -143,8 +145,11 @@ city=undefined
 
   paginationChange(newPage: number) {
     this.page = newPage;
-    console.log(this.page,"page in list component");
+    console.log('aici');
+    window.scrollTo(0, 0);
+    console.log('aici3');
     // window.location.hash = '#top';
+
     this.renderPage(null);
 
   }

@@ -18,14 +18,14 @@ export class HouseInfoComponent implements OnInit {
     this.houseID = localStorage.getItem('houseID');
     this.routeSub = this.route.params.subscribe(params => {
       if(params.id!==this.houseID){
-        console.log(params.id,this.houseID)
+
         this.houseID = params.id;
         localStorage.setItem('houseID',this.houseID)
             window.location.reload();
       }
 
 
-      console.log(this.houseID, 'house id');
+
     });
     const url = 'https://back-end-hpp.herokuapp.com/api/v1/housedetails';
     let params = new HttpParams()
@@ -33,32 +33,32 @@ export class HouseInfoComponent implements OnInit {
     if (this.authService.isAuthenticated()){
 
       params = params.set('userID', localStorage.getItem('userID'));
-      console.log(params)
+
       const bearer = localStorage.getItem('token');
       const token = `Bearer ${bearer}`;
       const httpHeaders = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         Authorization: token });
-      console.log(httpHeaders);
+
       this.http.get(url, {params, headers: httpHeaders})
         .subscribe((result: any) => {
           this.result = result;
-          console.warn('result', this.result);
+
 
         });
-      console.log(this.result);
+
     }
     else
       {
       this.http.get(url, {params})
         .subscribe((result: any) => {
           this.result = result;
-          console.warn('result', this.result);
+
           localStorage.setItem('sellerID', result.userID);
           localStorage.setItem('houseID', result.houseID);
         });
-      console.log(this.result);
+
     }
 
   }
