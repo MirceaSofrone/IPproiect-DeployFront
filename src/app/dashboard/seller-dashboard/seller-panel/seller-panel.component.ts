@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SellerPanelComponent implements OnInit{
   private housesList = [{}, {}, {}];
-  @Input() SELLER_ID;
   private URL = 'https://back-end-hpp.herokuapp.com/api/v1/all/';
 
   constructor(private http: HttpClient) {
