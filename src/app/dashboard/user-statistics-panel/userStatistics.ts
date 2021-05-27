@@ -1,5 +1,5 @@
 export interface IUserStatistics {
-  houseID: string;
+  //houseID: string;
   priceHistory: {
     [key: string]: number;
   }
