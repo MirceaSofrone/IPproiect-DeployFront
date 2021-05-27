@@ -15,8 +15,16 @@ export class HouseInfoComponent implements OnInit {
   constructor( private route: ActivatedRoute, private http: HttpClient, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.houseID = localStorage.getItem('houseID');
     this.routeSub = this.route.params.subscribe(params => {
-      this.houseID = params.id;
+      if(params.id!==this.houseID){
+        console.log(params.id,this.houseID)
+        this.houseID = params.id;
+        localStorage.setItem('houseID',this.houseID)
+            window.location.reload();
+      }
+
+
       console.log(this.houseID, 'house id');
     });
     const url = 'https://back-end-hpp.herokuapp.com/api/v1/housedetails';

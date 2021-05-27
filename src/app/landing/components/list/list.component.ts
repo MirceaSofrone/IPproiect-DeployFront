@@ -6,6 +6,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {House} from '../../models/house';
 import {WishlistService} from '../../service/wishlist.service';
 import {NgForm} from '@angular/forms';
+import {AuthenticationService} from '../../../auth/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-list',
@@ -20,7 +21,7 @@ export class ListComponent implements OnInit {
   //   new House('1', '1', '1', '1', 1, '1', '1', 1, '1', '1')
   // ];
   productList: House[] = [];
-  wishlist: number[] = [];
+  private  wishlist: number[] = [];
 
   data: any;
   totalRecords: any;
@@ -38,14 +39,18 @@ export class ListComponent implements OnInit {
   maxPrice = undefined;
   value = undefined;
 
-  constructor(private wishlistService: WishlistService, private productService: PostsService, private router: Router, private _sanitizer: DomSanitizer, private changeDetectorRef: ChangeDetectorRef) {
+
+  constructor( private authService: AuthenticationService,private wishlistService: WishlistService, private productService: PostsService, private router: Router, private _sanitizer: DomSanitizer, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.renderPage(null);
   }
 
+
+
   renderPage(form: NgForm) {
+
     console.log(this.page, 'pageeee');
     console.log(form, 'form');
     console.log;
@@ -123,19 +128,23 @@ export class ListComponent implements OnInit {
       this.productList=[];
       this.totalRecords =0;
     });
-    this.wishlistService.getWishlist().subscribe(result => {
-      this.wishlist = result;
-      console.log(result, 'wishlist');
-    });
-
+    if (this.authService.isAuthenticated()) {
+      this.wishlistService.getWishlist().subscribe(result => {
+        this.wishlist = result;
+        console.log(result, 'wishlist');
+      });
+    }
   }
 
 
   paginationChange(newPage: number) {
     this.page = newPage;
-    console.log(this.page);
+    console.log(this.page,"page in list component");
+    window.location.hash = '#top';
     this.renderPage(null);
+
   }
+
 }
 
 

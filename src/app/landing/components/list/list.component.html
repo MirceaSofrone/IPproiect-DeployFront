@@ -126,8 +126,8 @@
   </div>
 
 </form>
-
-<div  *ngFor="let product of productList  | paginate: { id: 'listing_pagination', itemsPerPage: 8, currentPage: page,totalItems:totalRecords}">
+  <a name="top"></a>
+<div *ngFor="let product of productList  | paginate: { id: 'listing_pagination', itemsPerPage: 8, currentPage: page,totalItems:totalRecords}">
   <app-house-item [item]="product" [addedToWishlist]="wishlist.indexOf(product.houseID) >= 0"></app-house-item>
 </div>
 
