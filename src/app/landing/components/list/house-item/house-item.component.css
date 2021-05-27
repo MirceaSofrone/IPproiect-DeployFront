@@ -29,7 +29,7 @@ h1,p{
   #favorite{
     display: flex;
     position: absolute;
-    top: 1vw;
+    top: 1.5vw;
     left: 2vw;
     
   }
@@ -61,7 +61,7 @@ h1,p{
   
   
   .details.title{
-    font-size:3vw;
+    font-size:2vw;
     color: rgba(43, 57, 81, 255);
     display: flex;
     flex-direction: row;
@@ -112,7 +112,7 @@ h1,p{
   }
   .details.detail{
   display: flex;
-    font-size:3vw;
+    font-size:2.3vw;
     text-align: center;
    padding:0.5vw 1vw;
    align-self: flex-end;
@@ -129,6 +129,9 @@ h1,p{
   }
   @media(max-width:600px){
     .leaf{font-size:3.2vw;}
+    .details.title{
+      font-size:3vw;
+    }
     .details.detail{
       font-size:4vw;
     }
