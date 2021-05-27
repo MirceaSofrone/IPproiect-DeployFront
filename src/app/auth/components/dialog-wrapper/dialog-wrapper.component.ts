@@ -1,4 +1,4 @@
-import { Component, ViewChild, TemplateRef, AfterViewInit } from "@angular/core";
+import { Component, ViewChild, TemplateRef, AfterViewInit, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { MatDialog } from "@angular/material/dialog";
@@ -10,11 +10,11 @@ import { take } from "rxjs/operators";
   templateUrl: './dialog-wrapper.component.html',
   styleUrls: ['./dialog-wrapper.component.css']
 })
-export class DialogWrapperComponent implements AfterViewInit {
+export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   @ViewChild("dialogTemplate") dialogTemplate: TemplateRef<any>;
 
   currentRoute: string;
-
+  dialogRef: any;
   constructor(
     private dialog: MatDialog,
     private router: Router,
@@ -26,12 +26,12 @@ export class DialogWrapperComponent implements AfterViewInit {
   }
 
   dispatchDialog(): void {
-    const dialogRef = this.dialog.open(this.dialogTemplate, {
+    this.dialogRef = this.dialog.open(this.dialogTemplate, {
       disableClose: false,
       panelClass: 'pclass'
     });
 
-    dialogRef
+    this.dialogRef
       .afterOpened()
       .pipe(take(1))
       .subscribe(() => {
@@ -41,12 +41,16 @@ export class DialogWrapperComponent implements AfterViewInit {
         });
       });
 
-    dialogRef
+    this.dialogRef
       .afterClosed()
       .pipe(take(1))
       .subscribe(() => {
         this.router.navigate(["/"]);
       });
+  }
+
+  ngOnDestroy(): void {
+    this.dialog.closeAll();
   }
   
 }
