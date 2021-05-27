@@ -1,10 +1,10 @@
 /* .carousel-container swiper-slide swiper-slide-next {
     width: 242px !important;
 } */
-@font-face{
+/* @font-face{
   font-family: Montserrat-regular;
   src:url(../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
-}
+} */
 ::ng-deep.image-container{
   width: 100% !important;
 }

@@ -1,4 +1,3 @@
-
 .user__seller--switcher {
   position: relative;
   top: -70%;
@@ -14,7 +13,10 @@
   top: 7%;
   left: 30%;
 }
-
+.user__info {
+  width: 20%;
+  height: 90%;
+}
 .seller-page {
   position: absolute;
   display: flex;

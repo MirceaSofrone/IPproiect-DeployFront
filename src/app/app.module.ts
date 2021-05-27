@@ -27,15 +27,19 @@ import { DialogComponent } from './auth/components/test-dialog/test.dialog.compo
 import {MatListModule} from '@angular/material/list';
 import {NavbarLoggedInComponent} from './landing/utils/navbar-logged-in/navbar-logged-in.component';
 import {DashboardModule} from './dashboard/dashboard.module';
+import { ForumModule } from './forum/forum.module';
+import { FooterComponent } from './landing/utils/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
-    NavbarLoggedInComponent
+    NavbarLoggedInComponent,
+    FooterComponent
 
   ],
   imports: [
+    ForumModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -62,6 +66,7 @@ import {DashboardModule} from './dashboard/dashboard.module';
     MatListModule,
     RouterModule,
     ReactiveFormsModule
+
 
   ],
 

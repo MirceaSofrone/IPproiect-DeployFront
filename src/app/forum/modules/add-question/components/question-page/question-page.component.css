@@ -1,0 +1,21 @@
+.html {
+    background-color: #283655;
+    font-family: 'Segoe UI';
+    text-decoration: none;
+    font-size: 1vw !important;
+    color: #ffffff;
+    width: 100%;
+    padding-top: 3%;
+    padding-bottom: 7%;
+}
+.glass {
+    width: 93%;
+    background-color: white;
+    border-radius: 2rem;
+    margin-top: 6rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 8em;
+    margin-right: auto;
+    margin-left: auto;
+}

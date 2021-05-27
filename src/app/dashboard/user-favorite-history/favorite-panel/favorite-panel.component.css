@@ -41,7 +41,7 @@ img {
   width: 10em;
   height: 3.5em;
   font-family: "Manrope", serif;
-  font-size: smaller;
+  font-size: 12px;
   margin: 0;
   text-align: center;
   text-indent: 3px;
@@ -53,7 +53,7 @@ img {
 .fav__slider {
   width: 26em;
   height: 13em;
-  margin-top: 0;
+  margin-top: -1em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,40 +102,25 @@ img {
   column-gap: 1em;
 }
 /* responsive design */
-/* @media (max-width: 1610px) {
+@media (max-width: 850px) {
   .list__item {
-    height: 12em;
-    width: 9em;
+    height: 8.5em;
+    width: 6em;
   }
   .list__item img {
-    height: 100px;
-    width: 145px;
+    height: 70px;
+    width: 95px;
   }
   .list__item .remove-Fav-Img {
-    height: 25px;
-    width: 25px;
+    width: 18px;
+    height: 18px;
   }
-  .list__item .description {
+  .description {
     font-size: 12px;
-  }
-}
-@media (max-width: 1140px) {
-  .list__item {
-    height: 10em;
-    width: 7em;
-  }
-  .list__item img {
-    height: 80px;
-    width: 113px;
-  }
-  .list__item .remove-Fav-Img {
-    height: 15px;
-    width: 15px;
-  }
-  .list__item .description {
-    font-size: 9px;
+    width: 8em;
   }
   .not_found {
-    font-size: 10px;
+    font-size: 12px;
+    width: 8em;
   }
-} */
+}
