@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs';
 import { ChangePayload } from '../../models/auth.model';
@@ -29,7 +30,8 @@ export class ResetPasswdComponent implements OnInit {
     private fb: FormBuilder, 
     private router: Router,
     private readonly route: ActivatedRoute,
-    private auth: AuthenticationService) { }
+    private auth: AuthenticationService,
+    private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.resetForm = this.fb.group({
@@ -42,7 +44,6 @@ export class ResetPasswdComponent implements OnInit {
         this.token = params['token']
       }
     )
-      console.log(this.token)
   }
 
   goToLogin(): void {
@@ -56,13 +57,24 @@ export class ResetPasswdComponent implements OnInit {
     this.confirmPasswd = this.resetForm.get('confirmPasswd').value
     this.payload.password = this.newPasswd
     if (this.newPasswd !== this.confirmPasswd) {
-      alert('Passwords must match!')
+      this.snackbar.open('Passwords must match!', 'Close', {
+        duration: 5000
+      })
     } else {
-
-      console.log(this.payload)
       this.auth.change(this.payload).subscribe(
-        res => console.log(res),
-        err => console.log(err)
+        res => {
+          if(res.message === 'Password changed successfully') {
+            this.snackbar.open('Your password has been changed successfully! Now you can login!', 'Close', {
+              duration: 3000
+            })
+          }
+          this.router.navigate(['/login'])
+        },
+        err => {
+          this.snackbar.open('Oops! Something went wrong, please try again!', 'Close', {
+            duration: 5000
+          })
+        }
       )
     }
   }

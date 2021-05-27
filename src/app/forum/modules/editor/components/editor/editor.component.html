@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit($event)" #postForm="ngForm">
+  <mat-form-field class="form-control">
+    <mat-label>Type your answer here</mat-label>
+    <input type="text" name="content" matInput #content minlength="1" maxlength="5000"
+      placeholder="Ex. I need help with..." required>
+    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+    <mat-hint align="end">{{content.value.length}} / 5000</mat-hint>
+  </mat-form-field>
+
+
+  <button type="submit" id="submit" mat-raised-button [disabled]="!postForm.form.valid">
+    Submit answer
+  </button>
+
+</form>

@@ -30,6 +30,22 @@ export class NavbarLoggedInComponent implements OnInit {
     }
   }
 
+  logged(): string {
+    if(this.auth.isAuthenticated()) {
+      return 'display: block;'
+    } else {
+      return 'display: none;'
+    }
+  }
+  
+  checkAuthOrForum(): void {
+    if(this.auth.isAuthenticated()) {
+      this.router.navigate(['/forum'])
+    } else {
+      this.router.navigate(['/login'])
+    }
+  }
+
   logout(): void {
     this.auth.logout()
   }

@@ -3,38 +3,44 @@
     <img class="images"  [src]="item.photos[0]!=undefined ?
        this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
           + item.photos[0]) : '/assets/house.png'" alt="image">
+
+
+
+
+        <button id="favorite" mat-icon-button>
+
+          <mat-icon [ngStyle]="{'color':'red'}" class="heart"
+            *ngIf="addedToWishlist" (click)="handleRemoveFromWishlist()"
+            aria-label="Example icon-button with a heart icon">
+            favorite
+          </mat-icon>
+
+          <mat-icon  [ngStyle]="{'color':'red'}"class="heart red"
+            *ngIf="!addedToWishlist" (click)="handleAddToWishlist()"
+            aria-label="Example icon-button with a heart icon">
+            favorite_border
+          </mat-icon></button>
   </div>
-  <button id="favorite" mat-icon-button>
-
-    <mat-icon
-      *ngIf="addedToWishlist" (click)="handleRemoveFromWishlist()"
-      aria-label="Example icon-button with a heart icon">
-      favorite
-    </mat-icon>
-
-    <mat-icon
-      *ngIf="!addedToWishlist" (click)="handleAddToWishlist()"
-      aria-label="Example icon-button with a heart icon">
-      favorite_border
-    </mat-icon>
-
-  </button>
   <div class="house-description">
     <div class="house-details-wrapper">
-      <div class="details title">{{item.title}} </div>
+      <div class="details title">
+        <h1>{{item.title}} </h1>
+        <h1 class="price">{{item.currentPrice}} €</h1>
+      </div>
 
       <div class="details location">{{item.city}}</div>
-      <div class="details room">Rooms : {{item.noOfRooms}}</div>
-      <div class="details surface">Surface: {{item.surface}}</div>
-      <div class="details type">Type:
-        <div *ngIf="item.sellType==1; else elseBlock">Rent</div>
-        <ng-template #elseBlock>Buy</ng-template>
-      </div>
+         <div class="additional-info">
+      <div class="details room leaf"> <p>Rooms : {{item.noOfRooms}}</p></div>
+      <div class="details surface leaf"><p>Surface: {{item.surface}}</p></div>
+             <div class="details type leaf"><p>Type:</p>
+                 <p  *ngIf="item.sellType==1; else elseBlock">Rent</p>
+                 <ng-template #elseBlock> <p>Buy</p></ng-template>
+             </div>
+
+         </div>
+         <a class="details detail" routerLink="/house-details/{{item.houseID}}">View details</a>
     </div>
-    <div class="price-wrapper">
-      <div class="details price">Price : {{item.currentPrice}}</div>
-      <div class="details detail"><a (click)="onClick(item.houseID,item.userID)">View details</a></div>
-    </div>
+
 
 
   </div>

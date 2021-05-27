@@ -19,7 +19,7 @@
         </mat-form-field>
       </section>
       <section class="form-footer">
-        <mat-checkbox style="justify-self: flex-start;" color="primary">Remember me</mat-checkbox>
+        <mat-checkbox (change)="rememberMe = !rememberMe" style="justify-self: flex-start;" color="primary">Remember me</mat-checkbox>
         <a (click)="goToForgotPass()" style="cursor: pointer; justify-self: flex-end;">Forgot Password?</a>
       </section>
       <button mat-raised-button type="submit" class="log_btn" [disabled]="!login.valid">Log In</button>
