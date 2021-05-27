@@ -1,5 +1,5 @@
 <!-- House panel -->
-<div class="seller-house-panel--container" *ngIf="this.house.houseID !== undefined" [routerLink]="['/house-details', this.house.houseID]">
+<div class="seller-house-panel--container" *ngIf="this.house.houseID !== undefined" >
   <img alt="house image" [src]="getImage()" *ngIf="house.photos?.length">
   <div class="seller-house-panel-content--container">
     <div class="panel-title--container">
@@ -12,7 +12,7 @@
       <button id="settings-btn">...</button>
       <div class="dropdown-menu-content">
         <a routerLink='/editHouse' (click)="saveHouse()">Edit</a>
-        <button id="delete-btn" (click)="deleteHouse()">Delete</button>
+        <button (click)="deleteHouse(this.house.houseID)" id="delete-btn" >Delete</button>
       </div>
     </div>
   </div>

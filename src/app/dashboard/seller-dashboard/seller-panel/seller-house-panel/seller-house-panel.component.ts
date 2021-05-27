@@ -9,6 +9,7 @@ import { HttpClient } from "@angular/common/http";
 export class SellerHousePanelComponent implements OnInit {
   private URL = 'https://back-end-hpp.herokuapp.com/api/v1/delete/';
 
+
   @Input() house: any;
 
   constructor(private http: HttpClient) {
@@ -44,9 +45,10 @@ export class SellerHousePanelComponent implements OnInit {
     return resultPrice;
   }
 
-  deleteHouse = () => {
+  deleteHouse(houseId){
      const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
-    this.http.delete(this.URL + this.house.id, { headers });
+    this.http.delete(this.URL + houseId, { headers }).subscribe(res => { location.reload(); console.log(res); });
+    
   }
 
   getImage = () => 'data:image/png;base64,' + this.house.photos[0];
