@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
@@ -15,7 +16,8 @@ export class RegisterConfirmationComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private auth: AuthenticationService,
-    private readonly route: ActivatedRoute) {
+    private readonly route: ActivatedRoute,
+    private snackbar: MatSnackBar) {
     }
     
   ngOnInit(): void {
@@ -27,8 +29,19 @@ export class RegisterConfirmationComponent implements OnInit, OnDestroy {
       console.log(this.token)
 
     this.auth.activate(this.token).subscribe(
-      res => console.log(res),
-      err => console.log(err)
+      res => {
+        if(res.message === 'Succesgully confirmed!') {
+          this.snackbar.open('Now you can LogIn!', 'Close', {
+            duration: 4000
+          })
+          this.router.navigate(["/login"])
+        }    
+      },
+      err => {
+        this.snackbar.open('Oops! Something went wrong, please try again!', 'Close', {
+          duration: 5000
+        })
+      }
     )
   }
 
