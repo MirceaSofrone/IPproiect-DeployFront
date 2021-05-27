@@ -3,7 +3,7 @@
   src:url(../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
 } */
 
-.container{
+.container-footer{
   display:flex;
   align-self: flex-end;
 }

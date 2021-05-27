@@ -4,8 +4,8 @@
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
-  top: 12em;
-  left: 40em;
+  top: 8em;
+  left: 30%;
   height: 50%;
   width: 50%;
 }
@@ -24,8 +24,9 @@
   top: 1%;
   left: -10%;
 }
-@media (max-width: 1050px) {
-  .user__info {
-    left: 0;
+
+@media screen and (max-width: 1200px) {
+  .center{
+    left: 50%;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IHouse } from "../seller-panel/house";
 
@@ -8,12 +8,16 @@ import { IHouse } from "../seller-panel/house";
   styleUrls: ['./seller-statistics.component.css']
 })
 export class SellerStatisticsComponent {
-  @Input() SELLER_ID;
-  private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/all/';
-  housesList: any[];
-  rawData: any[] = [];
-  data: any[] = [{
+  private URL = 'https://back-end-hpp.herokuapp.com/api/v1/all/';
+  private housesList: any[];
+  private rawFavoriteData: any[] = [];
+  private rawViewsData: any[] = [];
+  private data: any[] = [{
     name: 'Average Houses Followers',
+    series: []
+  },
+  {
+    name: 'Average Houses Visitors',
     series: []
   }];
 
@@ -21,37 +25,38 @@ export class SellerStatisticsComponent {
   }
 
   ngOnInit(): void {
-    const followersData: any[] = [];
-    this.http.get<IHouse[]>(this.URL + this.SELLER_ID).toPromise().then((data) => {
+    const favoriteData: any[] = [];
+    const viewsData: any[] = [];
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    this.http.get<IHouse[]>(this.URL + localStorage.getItem('userID'), { headers }).toPromise().then((data) => {
       this.housesList = JSON.parse(JSON.stringify(data));
 
       this.housesList.forEach(house => {
+        // get house favorite history
         for (const favorite in house.favoriteHistory) {
           if (house.favoriteHistory.hasOwnProperty(favorite)) {
-            let hasDate = false;
+            this.rawFavoriteData.push({time: this.timestampToUnix(favorite), favorites: house.favoriteHistory[favorite]});
+          }
+        }
 
-            // Appends to an existent entry
-            this.rawData.forEach(raw => {
-              if (this.unixToDate(raw.time) === this.unixToDate(this.timestampToUnix(favorite))) {
-                raw.favorites = raw.favorites + house.favoriteHistory[favorite];
-                hasDate = true;
-              }
-            });
-
-            // Adds new entry
-            if (!hasDate) {
-              this.rawData.push({time: this.timestampToUnix(favorite), favorites: house.favoriteHistory[favorite]});
-            }
+        // get house views history
+        for (const views in house.viewsHistory) {
+          if (house.viewsHistory.hasOwnProperty(views)) {
+            this.rawViewsData.push({time: this.timestampToUnix(views), views: house.viewsHistory[views]});
           }
         }
       });
 
       // Creates data for the graph
-      if (this.rawData !== undefined && this.rawData.length !== 0) {
-        this.rawData.sort((first, second) => (first.time - second.time)).forEach(follower => {
-          followersData.push({value: follower.favorites, name: this.unixToDate(follower.time)});
+      if (this.rawFavoriteData !== undefined && this.rawFavoriteData.length !== 0) {
+        this.rawFavoriteData.sort((first, second) => (first.time - second.time)).forEach(follower => {
+          favoriteData.push({value: follower.favorites, name: this.unixToDate(follower.time)});
         });
-        this.data[0].series = followersData;
+        this.rawViewsData.sort((first, second) => (first.time - second.time)).forEach(follower => {
+          viewsData.push({value: follower.views, name: this.unixToDate(follower.time)});
+        });
+        this.data[0].series = favoriteData;
+        this.data[1].series = viewsData;
       }
     });
   }

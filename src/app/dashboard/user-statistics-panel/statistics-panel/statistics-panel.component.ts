@@ -15,7 +15,9 @@ export class StatisticsPanelComponent {
   showYAxisLabel = true;
   showXAxisLabel = true;
   autoScale = true;
+  xAxisLabel1="Date";
+  yAxisLabel1="Price";
   colorScheme = {
-    domain: ['#3c5bff']
+  domain: ['#024cf7', '#a8329e', '#09d7de']
   };
 }
