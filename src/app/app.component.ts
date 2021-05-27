@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   data: any;
   title = 'IPproiect';
+
+  ngOnInit(): void {
+    if(sessionStorage.length === 0 && localStorage.getItem('remember') === 'false') {
+      localStorage.clear()
+    }
+  }
 }

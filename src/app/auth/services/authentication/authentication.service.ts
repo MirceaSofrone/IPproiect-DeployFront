@@ -36,5 +36,6 @@ export class AuthenticationService {
 
   public logout(): void {
     localStorage.clear()
+    sessionStorage.clear()
   }
 }
