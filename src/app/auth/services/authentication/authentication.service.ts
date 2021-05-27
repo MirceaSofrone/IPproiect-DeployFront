@@ -35,7 +35,6 @@ export class AuthenticationService {
   }
 
   public logout(): void {
-    localStorage.removeItem('token')
-    localStorage.removeItem('email')
+    localStorage.clear()
   }
 }
