@@ -81,22 +81,6 @@ export class AddFormComponent{
   onSubmit() {
     this.submitted = true;
     const userId = localStorage.getItem('userID').toString();
-    console.log(userId); 
-    console.log(this.description); 
-    console.log(this.title); 
-    console.log(this.city);; 
-    console.log(this.country); 
-    console.log(this.address); 
-    console.log(this.constructionYear); 
-    console.log(this.noOfRooms); 
-    console.log(this.floor);
-    console.log(this.surface); 
-    console.log(this.landSurface); 
-    console.log(this.noOfBathrooms); 
-    console.log(this.houseType); 
-    console.log(this.sellType); 
-    console.log(this.currentPrice); 
-
 
     const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.post<HouseType>(this.ServerUrlAddHouse, {
