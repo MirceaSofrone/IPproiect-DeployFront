@@ -39,3 +39,17 @@
     left: 45%;
   }
 }
+@media (max-width: 850px) {
+  .main {
+    width: 30em;
+  }
+  .text {
+    font-size: 15px;
+    left: -10em;
+  }
+}
+@media (max-width: 770px) {
+  .main {
+    margin-left: 5em;
+  }
+}

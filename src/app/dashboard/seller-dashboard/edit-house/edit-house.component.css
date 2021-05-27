@@ -8,13 +8,10 @@
   width: 75%;
 }
 
-.edit-form{
+.edit-form {
   margin-top: 5%;
 }
-app-user-info {
-  display: block;
-  height: 100%;
-  padding: 0 0 0 10px;
-  overflow: hidden;
+.user__info {
+  width: 20%;
+  height: 90%;
 }
-

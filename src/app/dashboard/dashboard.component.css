@@ -45,3 +45,8 @@
     width: 30%;
   }
 }
+@media (max-width: 780px) {
+  .user__info {
+    width: 40%;
+  }
+}

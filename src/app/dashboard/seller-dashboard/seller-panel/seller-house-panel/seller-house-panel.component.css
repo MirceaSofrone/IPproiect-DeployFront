@@ -34,7 +34,7 @@ a {
 
 .panel-title {
   display: inline-block;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 1.1rem;
   font-weight: bold;
   color: #707070;
@@ -135,32 +135,32 @@ a {
   margin-right: 1em;
   border-radius: 50%;
   background-color: #acacac;
-  animation: loading 1s cubic-bezier(.04,.57,.67,.98) infinite;
+  animation: loading 1s cubic-bezier(0.04, 0.57, 0.67, 0.98) infinite;
 }
 
 @keyframes loading {
-  0%{
+  0% {
     transform: translateX(0);
   }
-  25%{
+  25% {
     transform: translateX(15px);
   }
-  50%{
+  50% {
     transform: translateX(-15px);
   }
-  100%{
+  100% {
     transform: translateX(0);
   }
 }
 
-.loading-bullet:nth-child(1){
+.loading-bullet:nth-child(1) {
   animation-delay: 0.1s;
 }
 
-.loading-bullet:nth-child(2){
+.loading-bullet:nth-child(2) {
   animation-delay: 0.2s;
 }
 
-.loading-bullet:nth-child(3){
+.loading-bullet:nth-child(3) {
   animation-delay: 0.3s;
 }
