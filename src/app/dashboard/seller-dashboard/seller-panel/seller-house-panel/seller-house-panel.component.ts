@@ -45,8 +45,7 @@ export class SellerHousePanelComponent implements OnInit {
   }
 
   deleteHouse = () => {
-    const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXdITHFUbHoybnZIMzdKZzFSd1lJNEJab2xBdVZVYXNBT1Jab2ZiSVBVPSIsImlhdCI6MTYyMTUyMjY3NCwiZXhwIjoxNjIxNjA5MDc0fQ.HRNi_VHJwY4x5pQfmMK-HMtH_n9padpSj1kC5qgmeNKoOEoWke1YfxD_E3iAFe-We90Bc-2LP0jEQwLJVSSPVw';
-    const headers = {'Authorization': token };
+     const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.delete(this.URL + this.house.id, { headers });
   }
 

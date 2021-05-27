@@ -24,9 +24,17 @@ export class NavbarLoggedInComponent implements OnInit {
 
   checkRoute(): void {
     if(this.auth.isAuthenticated()) {
-      this.router.navigate(['/account'])
+      this.router.navigate(['/dashboard'])
     } else {
-      this.router.navigate(['/dialog'])
+      this.router.navigate(['/login'])
+    }
+  }
+
+  checkAuthOrForum(): void {
+    if(this.auth.isAuthenticated()) {
+      this.router.navigate(['/forum'])
+    } else {
+      this.router.navigate(['/login'])
     }
   }
 

@@ -14,7 +14,7 @@ export class SellerDashboardComponent implements OnInit{
   }
 //in loc de url, vedem in localstorage
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
+    const token =  localStorage.getItem('token');
     this.http.get(this.URL + token).toPromise().then((data) => {
       this.sellerId = JSON.parse(JSON.stringify(data)).id;
     });

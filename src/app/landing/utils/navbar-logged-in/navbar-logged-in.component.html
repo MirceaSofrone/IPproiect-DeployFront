@@ -8,7 +8,7 @@
 
     <div class="showingBar" fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLink=''>Home</a>
-      <a mat-button routerLink='/about'>Forum</a>
+      <a mat-button (click)="checkAuthOrForum()">Forum</a>
 
     </div>
     <span class="spacer"></span>
@@ -17,17 +17,17 @@
       <a mat-button (click)="checkRoute()">
         <mat-icon>account_circle</mat-icon>
       </a>
-      <a mat-button routerLink='/favorites'>
+      <a mat-button routerLink='/sellerDash'>
         <mat-icon>favorite</mat-icon>
       </a>
       <button mat-icon-button [matMenuTriggerFor]="menu"  yPosition="above" aria-label="Example icon-button with a menu">
         <mat-icon>arrow_drop_down_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink] ="['/Settings']">
+        <button mat-menu-item [routerLink] ="['/dashboard']">
           <span>Account settings</span>
         </button>
-        <button mat-menu-item routerLink='/profile'>
+        <button mat-menu-item routerLink='/dashboard'>
           <span>Your profile</span>
         </button>
         <button mat-menu-item routerLink='/' (click)="logout()">
@@ -48,10 +48,10 @@
           <a mat-button routerLink=''>Home</a>
         </div>
         <div>
-          <a mat-button routerLink='/about'>Your profile</a>
+          <a mat-button routerLink='/dashboard'>Your profile</a>
         </div>
         <div>
-          <a mat-button routerLink='/favorites'>Wishlist</a>
+          <a mat-button routerLink='/dashboard'>Wishlist</a>
         </div>
         <div>
           <a mat-button routerLink='/about'>About</a>
@@ -64,6 +64,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>
+      <app-footer></app-footer>
     </mat-sidenav-content>
 
   </mat-sidenav-container>

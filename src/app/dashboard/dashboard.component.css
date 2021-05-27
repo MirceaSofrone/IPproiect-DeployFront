@@ -1,9 +1,9 @@
 .panels {
   position: absolute;
-  top: 15%;
+  top: 5%;
   left: 20%;
   height: 78%;
-  width: 70%;
+  width: 40%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -12,22 +12,36 @@
 .user__seller--btns {
   position: absolute;
   left: 25%;
-  top: 12%;
+  top: 3%;
 }
-
+.user__info {
+  width: 20%;
+  height: 90%;
+}
 .favorite__history--panel {
-  left: -1em;
+  left: 30%;
+  position: relative;
+  margin-left: 1em;
 }
 
 .statistics__panel {
-  left: 2em;
+  position: relative;
+  left: 50%;
 }
-
+.user__seller--switcher {
+  position: absolute;
+  top: 3%;
+  left: 22%;
+}
 /* responsive design */
-@media (max-width: 1700px) {
+@media (max-width: 1412px) {
   .statistics__panel {
-    position: absolute;
-    top: 115%;
-    left: 25%;
+    top: 110%;
+    left: -42%;
+  }
+}
+@media (max-width: 1050px) {
+  .user__info {
+    width: 30%;
   }
 }
