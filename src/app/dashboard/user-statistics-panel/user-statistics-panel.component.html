@@ -1,6 +1,6 @@
 <div class="dashboard-statistics--container">
     <h2 class="statistics-title">Statistics</h2>
     <p class="not_found" [style.display]="this.statData.length != 0 ? 'none' : 'block'" >Add something to favorites to view statistics</p>
-    <app-statistics-panel [data]="getReqData()"></app-statistics-panel>
+    <app-statistics-panel ng-hide="true" [data]="getReqData()"></app-statistics-panel>
 </div>
   
