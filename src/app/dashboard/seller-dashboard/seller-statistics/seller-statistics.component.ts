@@ -9,7 +9,7 @@ import { IHouse } from "../seller-panel/house";
 })
 export class SellerStatisticsComponent {
   @Input() SELLER_ID;
-  private URL = 'https://house-prediction-fii.herokuapp.com/api/v1/all/';
+  private URL = 'https://back-end-hpp.herokuapp.com/api/v1/all/';
   housesList: any[];
   rawData: any[] = [];
   data: any[] = [{
@@ -21,8 +21,9 @@ export class SellerStatisticsComponent {
   }
 
   ngOnInit(): void {
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     const followersData: any[] = [];
-    this.http.get<IHouse[]>(this.URL + this.SELLER_ID).toPromise().then((data) => {
+    this.http.get<IHouse[]>(this.URL + localStorage.getItem('userID'), { headers }).toPromise().then((data) => {
       this.housesList = JSON.parse(JSON.stringify(data));
 
       this.housesList.forEach(house => {
