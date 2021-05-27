@@ -10,6 +10,7 @@ import { SuccessComponent } from './components/success/success.component';
 import { AuthMaterialModule } from './auth.material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './components/test-dialog/test.dialog.component';
+import { RegisterConfirmationComponent } from './components/register-confirmation/register-confirmation.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { DialogComponent } from './components/test-dialog/test.dialog.component'
             component: RegisterComponent,
           },
           {
-            path: 'reset',
+            path: 'reset/:token',
             component: ResetPasswdComponent,
           },
           {
@@ -40,6 +41,10 @@ import { DialogComponent } from './components/test-dialog/test.dialog.component'
           {
             path: 'success',
             component: SuccessComponent
+          },
+          {
+            path: 'confirmation/:token',
+            component: RegisterConfirmationComponent
           }
         ],
       },
@@ -52,6 +57,7 @@ import { DialogComponent } from './components/test-dialog/test.dialog.component'
     ForgotPasswdComponent,
     SuccessComponent,
     DialogWrapperComponent,
+    RegisterConfirmationComponent
     // DialogComponent
   ],
   providers: []

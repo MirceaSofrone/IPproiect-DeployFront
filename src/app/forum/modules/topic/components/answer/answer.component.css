@@ -1,0 +1,134 @@
+
+@font-face {
+    font-family: Manrope-bold;
+    /* src: url(./assets/fonts/Manrope-Bold.ttf); */
+    src: "./assets/fonts/Manrope-Bold.ttf";
+}
+
+html{
+    font-family: Montserrat;
+}
+.card{
+    text-align: left !important;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+.author{
+    
+    font-size: 30px;
+    color: #283655;
+    font-weight: bold;
+    margin: 0em 0em 0em 5.5em;
+}
+
+.question{
+   
+    font-size: 30px;
+    color: #707070;
+    font-weight: bold;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.material-icons
+ {
+    color: #707070;
+    padding-left: 30px;
+    padding-right: 10px;
+    padding-top: 10px;  
+}
+
+#user-icon{
+    position:relative;
+    top:1.7em;
+    left:4em;
+}
+
+a {
+    text-decoration: none;
+    font-size: 110%;
+    white-space: normal;
+}
+
+.details{
+    display:inline-block;  
+    color: #707070;
+}
+
+.card-info{
+    position: relative; 
+    margin:auto; 
+   
+}
+
+.info{
+    margin: 0em 0em 0em 10.5em;
+    
+}
+
+.card{
+    position: relative; 
+}
+
+.textarea{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0 2px 1px -1px rgb(207, 207, 207), 
+                0 1px 1px 0 rgb(97, 97, 97), 
+                0 1px 3px 0 rgb(77, 77, 77);
+}
+
+.mat-card{
+    position: relative;
+    margin-inline: 13em 13em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #707070;
+}
+
+@media screen and (max-width:440px){
+    #user-icon{
+        position: relative;
+        font-size: 30px;
+        top:-2.5em;
+        left:0em;
+    }
+
+    .author{
+        font-size: 18px;
+        color: #283655;
+        font-weight: bold;
+        margin: 0em 0em 0em 0.5em;
+        position: relative;
+        top: -70px;
+    }
+
+    .question{
+        font-size: 18px;
+        color: #707070;
+        font-weight: bold;
+        position: relative;
+        margin: 0em 0em 0em 0.5em;
+        top: -70px;
+    }
+
+    .first-line{
+        position: relative;
+        font-size: 18px;
+        color: #283655;
+        font-weight: bold;
+        margin: 0em 0em 0em 0.5em;
+        position: relative;
+        top:60px;
+    }
+
+    .mat-card{
+        margin-bottom: 6em;
+    }
+}
+

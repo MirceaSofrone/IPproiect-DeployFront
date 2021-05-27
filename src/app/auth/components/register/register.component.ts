@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     username: '',
     password: '',
     name: '',
-    phone: '',
+    phoneNumber: '',
     email: '',
     role: []
   }
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
   }
 
   goToLogin(): void {
-    this.router.navigate(['dialog/login'])
+    this.router.navigate(['/login'])
   }
  
   onSubmit() {
@@ -56,14 +56,14 @@ export class RegisterComponent implements OnInit {
         this.payload.password = this.registerForm.get('passwd').value
         this.payload.name = this.registerForm.get('fullName').value
         this.payload.email = this.registerForm.get('emailAddress').value
-        this.payload.phone = this.registerForm.get('phoneNumber').value
+        this.payload.phoneNumber = this.registerForm.get('phoneNumber').value
         this.payload.username = this.registerForm.get('username').value
         this.payload.role.push('user')        
         
         this.auth.register(this.payload).subscribe(
           res => {
             if (res.message === 'User registered successfully!')
-            this.router.navigate(['/dialog/success'])
+            this.router.navigate(['/success'])
           },
           err => {
             if (err.error.message === 'Error: Email is already in use!') {

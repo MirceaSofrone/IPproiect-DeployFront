@@ -1,5 +1,5 @@
 export interface IFavourite {
-    houseID: number;
+    houseID: string;
     address: string;
     currentPrice: number;
     city: string;

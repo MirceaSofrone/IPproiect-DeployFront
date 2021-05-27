@@ -27,7 +27,7 @@ export class ForgotPasswdComponent implements OnInit {
   }
 
   goToLogin(): void {
-    this.router.navigate(['dialog/login'])
+    this.router.navigate(['/login'])
   }
 
   onSubmit(): void {

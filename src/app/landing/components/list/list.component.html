@@ -153,11 +153,11 @@
   <div  *ngFor="let product of productList  | paginate: { id: 'listing_pagination', itemsPerPage: 8, currentPage: page,totalItems:totalRecords}">
     <app-house-item [item]="product" [addedToWishlist]="wishlist.indexOf(product.houseID) >= 0"></app-house-item>
   </div>
+
   
   <div class="pagination-listing">
     <pagination-controls id="listing_pagination" directionsLink="true" (pageChange)="paginationChange($event)"></pagination-controls>
   </div>
   
   </section>
-  <app-footer></app-footer>
-  
+

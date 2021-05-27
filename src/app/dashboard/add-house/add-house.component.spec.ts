@@ -10,7 +10,7 @@ describe('AddHouseComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ AddHouseComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

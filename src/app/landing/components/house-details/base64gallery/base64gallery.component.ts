@@ -26,14 +26,14 @@ export class Base64galleryComponent implements OnInit {
 
     this.galleryOptions = [
       {
-        width: '100%',
-        height: '30vw',
+        width: '50vw',
+        height: '35vw',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide
       },
       {
-        breakpoint: 1110,
-        width: '100%',
+        breakpoint: 1000,
+        width: '70vw',
         height: '60vw',
         imagePercent: 80,
         thumbnailsPercent: 20,
@@ -43,7 +43,7 @@ export class Base64galleryComponent implements OnInit {
       // max-width 800
       {
         breakpoint: 800,
-        width: '100%',
+        width: '70vw',
         height: '80vw',
         imagePercent: 80,
         thumbnailsPercent: 20,
