@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -10,10 +10,23 @@ import {Location} from '@angular/common';
 })
 export class HouseDetailsComponent implements OnInit {
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
+    // Code snippet
+    this.subscribeRouteChange();
   }
-
   ngOnInit(): void {
-  }
 
+  }
+  ngonChanges(changes: SimpleChanges){
+    // window.location.reload();
+  }
+  subscribeRouteChange() {
+    this.activatedRoute.params.subscribe((params = {}) => {
+      // Will log any change to the route.
+      // You can add your own logic here
+
+      console.log(params.id),"idul de la params";
+
+    });
+  }
 }
