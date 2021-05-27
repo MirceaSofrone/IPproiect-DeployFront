@@ -16,7 +16,7 @@ import SwiperCore, {
 } from 'swiper/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
-// install Swiper components
+
 SwiperCore.use([
   Navigation,
   Pagination,
@@ -38,14 +38,14 @@ export class PhotoCarouselComponent implements OnInit {
   @Input() carouselType;
   constructor(private postData: PhotoCarouselService, private cd: ChangeDetectorRef, private router: Router, private _sanitizer: DomSanitizer) {}
 
-//   constructor(private photoCarousel:PhotoCarouselService) { }
+
   data: any;
 
   @ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
 
   show: boolean;
   thumbs: any;
-  // constructor(private cd: ChangeDetectorRef) {}
+
 
 
   thumbsSwiper: any;
@@ -79,17 +79,17 @@ export class PhotoCarouselComponent implements OnInit {
 
 
   onSwiper(swiper) {
-    console.log(swiper);
+
   }
   onSlideChange() {
-    console.log('slide change');
+
   }
 
 
 
   ngOnInit() {
     this.postData.getPosts(this.carouselType).subscribe((result) => {
-      console.warn('result', result);
+
       this.data = result;
 
     });
@@ -100,8 +100,7 @@ export class PhotoCarouselComponent implements OnInit {
     this.router.navigate(['/house-details', item.houseID]);
     if(this.carouselType==1 || this.carouselType==2)
     {  localStorage.setItem('houseID',item.houseID);
-      // window.location.reload();
-
+      localStorage.setItem('sellerID',item.userID);
     }
   }
 

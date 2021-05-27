@@ -35,25 +35,6 @@
   width: fit-content;
 }
 /* responsive design */
-/* @media (max-width: 1150px) {
-  .dashboard-btn--container {
-    margin-left: 0;
-    width: 420px;
-    height: 40px;
-  }
-  .dashboard--btn {
-    font-size: 20px;
-  }
-}
-@media (max-width: 600px) {
-  .dashboard-btn--container {
-    width: 330px;
-    height: 30px;
-  }
-  .dashboard--btn {
-    font-size: 15px;
-  }
-} */
 
 @media (max-width: 1412px) {
   .dashboard-btn--container {
@@ -63,5 +44,22 @@
 @media (max-width: 1050px) {
   .dashboard-btn--container {
     margin-left: 10em;
+  }
+}
+@media (max-width: 850px) {
+  .dashboard-btn--container {
+    font-size: 13px;
+    width: 32em;
+    height: 2.2em;
+    margin-left: 8em;
+  }
+}
+@media (max-width: 630px) {
+  .dashboard-btn--container {
+    width: 20em;
+    height: 1.8em;
+  }
+  .dashboard--btn {
+    font-size: 11.5px;
   }
 }

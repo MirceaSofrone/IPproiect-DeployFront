@@ -12,7 +12,7 @@ export class PostsService {
   constructor(private http: HttpClient) {
   }
 
-  getPosts(typeAll, page, number, type, string, housing, noOfRooms, floor, surface, noOfBathrooms, minPrice, maxPrice): Observable<House[]> {
+  getPosts(typeAll, page, number, type, string, housing, noOfRooms, floor, surface, noOfBathrooms, minPrice, maxPrice, city): Observable<House[]> {
     let params = new HttpParams()
       .set('page', page)
       .set('number', number);
@@ -21,9 +21,9 @@ export class PostsService {
     if (typeAll === 1)
     {
       this.url = 'https://back-end-hpp.herokuapp.com/api/v1/search';
-      console.log(housing, 'housinggg');
+
       if (housing != undefined && housing !== '') {
-        console.warn('doferot de type');
+
         params = params.set('houseType', housing);
       }
 
@@ -52,12 +52,14 @@ export class PostsService {
       if (maxPrice != undefined &&  maxPrice !== '') {
         params =  params.set('maxPrice', maxPrice);
       }
+      if (city != undefined &&  city !== '')
+        params =  params.set('city', city);
 
     }
 
 
-    console.log(this.url);
-    console.log(params.toString(), 'PARAMAS');
+
+
     return this.http.get<House[]>(this.url, {params});
   }
 }

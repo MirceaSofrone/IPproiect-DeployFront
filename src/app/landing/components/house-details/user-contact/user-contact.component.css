@@ -1,12 +1,12 @@
 /* @font-face{
     font-family: Montserrat-regular;
     src:url(../../../../../../src/assets/fonts/Montserrat/Montserrat-Regular.ttf)
-    
+
 }
 @font-face{
   font-family: Manrope-bold;
   src:url(../../../../../../src/assets/fonts/Manrope-Bold.ttf)
-  
+
 } */
 
 .bkg-rectangle {
@@ -68,7 +68,7 @@
 
 input {
     font-family: Montserrat-regular;
-    
+
 }
 
 .favorites-btn {
@@ -96,13 +96,15 @@ input {
 img{
     height:5vw;
     width:5vw;
+  margin-top:-1vw;
+  margin-bottom:5vw;
 }
 
 @media(max-width:1000px){
     .bkg-rectangle {
         height: 65vw;
         width: 45vw;
-    } 
+    }
     .form-elements textarea {
         width: 35vw;
         height: 25vw;
@@ -126,7 +128,7 @@ img{
     .form-elements textarea {
         width: 80%;
         height: 30vw;
-       
+
     }
     #submit-btn, .favorites-btn {
         width: 50vw;
