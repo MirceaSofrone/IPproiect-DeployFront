@@ -17,7 +17,9 @@ app-base64gallery{
   align-self: center;
   margin-right: 20px;;
 }
-
+#car2{
+  margin-bottom:5vw
+}
 @media (max-width: 1000px) {
   .first-row {
     display: flex;
