@@ -38,9 +38,9 @@ export class ListComponent implements OnInit {
   minPrice = undefined;
   maxPrice = undefined;
   value = undefined;
-city = undefined;
+city=undefined
 
-  constructor( private authService: AuthenticationService, private wishlistService: WishlistService, private productService: PostsService, private router: Router, private _sanitizer: DomSanitizer, private changeDetectorRef: ChangeDetectorRef) {
+  constructor( private authService: AuthenticationService,private wishlistService: WishlistService, private productService: PostsService, private router: Router, private _sanitizer: DomSanitizer, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -50,10 +50,6 @@ city = undefined;
 
 
   renderPage(form: NgForm) {
-
-    console.log('aici');
-    window.scrollTo(0, 0);
-    console.log('aici3');
 
 
 
@@ -95,7 +91,7 @@ city = undefined;
 
 
       this.noOfBathrooms = form.value.noOfBathrooms;
-      this.city = form.value.city;
+        this.city=form.value.city
 
     }
 
@@ -117,22 +113,22 @@ city = undefined;
       this.housing,
       this.noOfRooms, this.floor,
       this.surface, this.noOfBathrooms,
-      this.minPrice, this.maxPrice, this.city).subscribe((result) => {
+      this.minPrice, this.maxPrice,this.city).subscribe((result) => {
 
       this.data = result;
 
-      this.productList = result.second;
+      this.productList = result['second'];
 
-      this.totalRecords = result.first;
+      this.totalRecords = result['first'];
 
-      setTimeout(() => {
-        window.scroll(0, 0);
+      setTimeout(()=>{
+        window.scroll(0,0);
       }, 0);
 
     }, (error) => {
 
-      this.productList = [];
-      this.totalRecords = 0;
+      this.productList=[];
+      this.totalRecords =0;
     });
     if (this.authService.isAuthenticated()) {
       this.wishlistService.getWishlist().subscribe(result => {
@@ -145,10 +141,6 @@ city = undefined;
 
   paginationChange(newPage: number) {
     this.page = newPage;
-    console.log('aici');
-    window.scrollTo(0, 0);
-    console.log('aici3');
-    // window.location.hash = '#top';
 
     this.renderPage(null);
 
