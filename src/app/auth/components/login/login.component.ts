@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginPayload } from 'src/app/auth/models/auth.model';
 import { AuthenticationService } from 'src/app/auth/services/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public hide = true;
+  rememberMe = false;
   login: FormGroup;
   email: String;
   password: String;
@@ -23,7 +25,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private form: FormBuilder,
     private router: Router,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private snackbar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -49,9 +52,16 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.accessToken)
         localStorage.setItem('email', res.email)
         localStorage.setItem('userID', res.id)
-        alert('You successfully logged in!')
+        this.snackbar.open('You successfully logged in!', 'Close', {
+          duration: 3000
+        })
+        this.router.navigate(["/"])
+        console.log(this.rememberMe)
       },
-      err => alert('Email or password are incorrect!')
+      err => this.snackbar.open('Email or password are incorrect!', 'Close', {
+        duration: 5000
+      })
     )
   }
+
 }

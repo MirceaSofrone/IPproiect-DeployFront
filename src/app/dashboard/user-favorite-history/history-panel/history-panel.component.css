@@ -115,3 +115,21 @@ img {
     font-size: 10px;
   }
 } */
+@media (max-width: 850px) {
+  .list__item {
+    height: 8.5em;
+    width: 6em;
+  }
+  .list__item img {
+    height: 70px;
+    width: 95px;
+  }
+  .description {
+    font-size: 12px;
+    width: 8em;
+  }
+  .not_found {
+    font-size: 12px;
+    width: 8em;
+  }
+}

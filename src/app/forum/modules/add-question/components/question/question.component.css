@@ -1,0 +1,52 @@
+
+@font-face {
+    font-family: Manrope-bold;
+    src: "./assets/fonts/Manrope-Bold.ttf";
+}
+
+html{
+    font-family: Montserrat;
+}
+
+form{
+    display: flex;
+    position: relative;
+    color: #707070;
+    padding-top: 100px;
+    align-items: flex-end;
+    justify-content: center;
+    padding-right:10%;
+    padding-left:10%;
+}
+
+.form-control{
+    
+    top: 20%;
+    left: 70%; 
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); 
+    width:400%;
+}
+
+#submit{
+    align-items: center;
+     margin-bottom: 0%;
+    }
+
+@media screen and (max-width:1000px) {
+    mat-form-field{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .form-control{
+        width: 200%;
+    }
+}
+
+@media screen and (max-width:470px) {
+    .form-control{
+        width: 100%;
+    }
+}

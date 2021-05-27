@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterPayload } from 'src/app/auth/models/auth.model';
 import { AuthenticationService } from 'src/app/auth/services/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -26,10 +27,11 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   confirmPasswd: string;
 
-  constructor(private fb: FormBuilder, private auth: AuthenticationService,
-    private router: Router
-
-    ) { }
+  constructor(
+    private fb: FormBuilder, 
+    private auth: AuthenticationService,
+    private router: Router,
+    private snackbar: MatSnackBar) { }
   
   ngOnInit(): void {
   
@@ -51,7 +53,9 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted=true;
     if (this.registerForm.get('passwd').value !== this.registerForm.get("confirmPasswd").value) {
-        alert("Passwords must match!")
+        this.snackbar.open('Passwords must match!', 'Close', {
+          duration: 3000
+        })
     } else {
         this.payload.password = this.registerForm.get('passwd').value
         this.payload.name = this.registerForm.get('fullName').value
@@ -63,13 +67,21 @@ export class RegisterComponent implements OnInit {
         this.auth.register(this.payload).subscribe(
           res => {
             if (res.message === 'User registered successfully!')
-            this.router.navigate(['/success'])
+              this.router.navigate(['/success'])
           },
           err => {
             if (err.error.message === 'Error: Email is already in use!') {
-              alert('Email already taken!')
+              this.snackbar.open('Email is already taken!', 'Close', {
+                duration: 5000
+              })
             } else if (err.error.message === 'Error: Username is already taken!') {
-              alert('Username already taken!')
+              this.snackbar.open('Username is already taken!', 'Close', {
+                duration: 5000
+              })
+            } else {
+              this.snackbar.open('Oops! Something went wrong, please try again!', 'Close', {
+                duration: 5000
+              })
             }
           }
         )
