@@ -26,7 +26,7 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.houseID = params.id;
-      console.log(this.houseID, 'house id');
+
     });
     const url = 'https://back-end-hpp.herokuapp.com/api/v1/housedetails';
     const params = new HttpParams()
@@ -37,14 +37,14 @@ export class MapComponent implements OnInit {
         this.lat = result.latitude;
         this.lng = result.longitude;
         this.circles.push({lat: this.lat, lng: this.lng});
-        console.warn('result', this.result);
+
       });
-    console.log('aici');
-    console.log(this.result);
+
+
     this.lat = this.result.latitude;
-    console.log(this.lat, 'latitudine');
+
     this.lng = this.result.longitude;
-    console.log(this.lng, 'longitudine');
+
 
   }
 

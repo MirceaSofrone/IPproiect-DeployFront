@@ -12,15 +12,15 @@ export class LandingSearchComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    // console.log('aici');
+    //
     // const user = document.getElementById('search-form');
-    // console.log(user);
+    //
   }
 
  getValues(val){
 
     localStorage.setItem('search', JSON.stringify(val));
-    console.warn(val);
+
     this.router.navigateByUrl('/listing');
 }
 

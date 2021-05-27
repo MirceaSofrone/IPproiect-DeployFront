@@ -10,6 +10,9 @@ margin: 0 auto;
 #search-form input[type="text"]:focus {outline:0;
 
 }
+form{
+  margin-top: 3vw;
+}
 .search-input-wrapper {
   display: flex;
   flex-direction: column;
@@ -18,7 +21,9 @@ position: relative;
 margin:0 auto;
 
 }
-
+::ng-deep.ngx-pagination{
+  padding-left:0;
+}
 #search-form input[type="text"] {
   padding: 1.05vw;
   width: 100%;
@@ -43,10 +48,10 @@ font-size:2.5vw;
 }
 .browsing {
 text-align: center;
-  font-size: 5vw;
+  font-size: 3.5vw;
   font-weight: bold;
   color: rgb(97, 97, 97);
-  margin-left: 9.5vw;
+  /*margin-left: 9.5vw;*/
 }
 
 
@@ -54,6 +59,8 @@ text-align: center;
 display:flex;
 flex-direction: row;
 flex-wrap:wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .form1
@@ -62,7 +69,7 @@ select {
   margin-top: 2vw;
   border-radius: 10px;
   color: grey;
-  font-size: 2vw;
+  font-size:1.5vw;
 }
 
 .form2
@@ -70,7 +77,8 @@ select {
  margin-left: 0.8vw;
   margin-top: 2vw;
   border-radius: 10px;
-  font-size: 2vw;
+  font-size:1.5vw;
+  color: grey;
 }
 
 .form3
@@ -79,7 +87,7 @@ margin-left: 0.8vw;
 margin-top: 2vw;
 border-radius: 10px;
   color: grey;
-  font-size: 2vw;
+  font-size:1.5vw;
 }
 
 .form4
@@ -88,7 +96,7 @@ margin-left: 0.8vw;
 margin-top: 2vw;
 border-radius: 10px;
   color: grey;
-  font-size: 2vw;
+  font-size:1.5vw;
 }
 
 .form5
@@ -97,7 +105,7 @@ margin-left: 0.8vw;
 margin-top: 2vw;
 border-radius: 10px;
   color: grey;
-  font-size: 2vw;
+  font-size:1.5vw;
 }
 
 .form6
@@ -106,43 +114,43 @@ margin-left: 0.8vw;
 margin-top: 2vw;
 border-radius: 10px;
   color: grey;
-  font-size: 2vw;
+  font-size:1.5vw;
 }
-.form7 
+.form7
 select
 {
  margin-left: 0.8vw;
   margin-top: 2vw;
   border-radius: 10px;
   color: grey;
-  font-size: 2vw;
-  
+  font-size:1.5vw;
+
 }
 #listing_pagination{
   font-size:2.5vw;
 }
 @media(max-width:600px){
-.form7 
+.form7
 select{
   font-size: 3vw;
 }
-.form6 
+.form6
 select{
   font-size: 3vw;
 }
-.form5 
+.form5
 select{
   font-size: 3vw;
 }
-.form4 
+.form4
 select{
   font-size: 3vw;
 }
-.form3 
+.form3
 select{
   font-size: 3vw;
 }
-.form2 
+.form2
 select{
   font-size: 3vw;
 }
@@ -155,10 +163,21 @@ select{
 }
 
 
+@media(max-width:900px){
+  .browsing{
+    font-size:10vw;
+    margin: 3vw auto;
+  }
+ form select {
+   font-size:4vw
+ }
+  #listing_pagination {
+    font-size: 4.5vw;
+  }
+}
 
 
 
 
 
-  
 

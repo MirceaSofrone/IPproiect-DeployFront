@@ -23,11 +23,11 @@ export class UserContactComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.houseID = params.id;
-      console.log(this.houseID, 'house id');
+
     });
     this.wishlistService.getWishlist().subscribe(result => {
       this.wishlist = result;
-      console.log(result, 'wishlist');
+
     });
   }
 
@@ -38,7 +38,7 @@ if (this.authService.isAuthenticated()){
 
     const bearer = localStorage.getItem('token');
     const token = `Bearer ${bearer}`;
-    console.log(token);
+
     const httpHeaders = new HttpHeaders({
        'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -48,18 +48,18 @@ if (this.authService.isAuthenticated()){
     // httpHeaders.append('Authorization', token);
     const message = data.form.value.message;
 
-    console.log(httpHeaders);
+
     const userEmail = localStorage.getItem('userID');
     const sellerEmail = localStorage.getItem('sellerID');
     const sendData = {
-      idClient : parseInt(userEmail),
-      idSeller : parseInt(sellerEmail),
+      idClient : userEmail,
+      idSeller : sellerEmail,
       message
     };
-    console.log(sendData);
+console.log(sendData, httpHeaders);
     this.http.post('https://back-end-hpp.herokuapp.com/api/v1/feedback', sendData, {headers: httpHeaders })
      .subscribe((result) => {
-       console.warn('result', result);
+
      });
 
 }
@@ -72,16 +72,28 @@ else{
 
   addToFavorite() {
     if (this.authService.isAuthenticated()) {
+      this.wishlistService.getWishlist().subscribe(result => {
+        this.wishlist = result;
+
+      });
       if (!this.wishlist.includes(this.houseID)) {
       this.wishlistService.addToWishlist(this.houseID).subscribe((result) => {
-        console.log(result);
+
       });
+        this.snackbar.open('Added to favorites', 'Close', {
+          duration: 3000
+        })
+
       }
       else {
         this.wishlistService.removeFromWishlist(this.houseID).subscribe((result) => {
-          console.log(result);
+
 
         });
+        this.snackbar.open('Removed from favorites', 'Close', {
+          duration: 3000
+        })
+
       }
     }
     else{
