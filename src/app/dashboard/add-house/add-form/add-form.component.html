@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <div class="component">
-    <div [hidden]="submitted">
+    <div [hidden]="submitted" class="add__house--form">
         <p id="title">Add a new property</p>
         <form (ngSubmit)="onSubmit()" #addForm="ngForm">
             <div class="columnForm">

@@ -27,37 +27,36 @@ import { PortalModule} from '@angular/cdk/portal';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 @NgModule({
-    declarations: [
-      DashboardComponent,
-      SellerDashboardComponent,
-      SellerPanelComponent,
-      SellerStatisticsComponent,
-      EditHouseComponent,
-      EditFormComponent,
-      DashboardButtonsComponent,
-      UserInfoComponent,
-      HeaderComponent,
-      UserStatisticsPanelComponent,
-      UserFavoriteHistoryComponent,
-      StatisticsPanelComponent,
-      FavoritePanelComponent,
-      HistoryPanelComponent,
-      AddHouseComponent,
-      AddFormComponent,
-      SellerHousePanelComponent,
-      SellerStatisticsPanelComponent,
-      DashFooterComponent
-  
-    ],
-    imports: [
-      NgxChartsModule,
-      AppRoutingModule,
-      BrowserModule,
-      BrowserAnimationsModule,
-      PortalModule,
-      HttpClientModule,
-      FormsModule
-    ]
+  declarations: [
+    DashboardComponent,
+    SellerDashboardComponent,
+    SellerPanelComponent,
+    SellerStatisticsComponent,
+    EditHouseComponent,
+    EditFormComponent,
+    DashboardButtonsComponent,
+    UserInfoComponent,
+    HeaderComponent,
+    UserStatisticsPanelComponent,
+    UserFavoriteHistoryComponent,
+    StatisticsPanelComponent,
+    FavoritePanelComponent,
+    HistoryPanelComponent,
+    AddHouseComponent,
+    AddFormComponent,
+    SellerHousePanelComponent,
+    SellerStatisticsPanelComponent,
+    DashFooterComponent
+
+  ],
+  imports: [
+    NgxChartsModule,
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    PortalModule,
+    HttpClientModule,
+    FormsModule
+  ]
 })
 export class DashboardModule{ }
-  

@@ -9,9 +9,9 @@ a {
 }
 
 .seller-house-panel--container {
-  padding: 1em 0.6em;
+  padding: 0.8em 0.5em;
   margin-left: 2rem;
-  height: 6em;
+  height: 5em;
   position: relative;
   display: flex;
   box-shadow: #6f6f6f 0 0 0.5em;
@@ -35,7 +35,7 @@ a {
 .panel-title {
   display: inline-block;
   font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: #707070;
   padding: 0;
@@ -49,19 +49,19 @@ a {
 
 .panel-content-price {
   font-size: 0.8rem;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.35rem;
 }
 
 .panel-content-likes {
   position: absolute;
-  font-size: 0.9rem;
-  right: 3em;
+  font-size: 1rem;
+  right: 2em;
   margin: 0;
 }
 
 .panel-content-text {
   overflow: hidden;
-  height: 3.5em;
+  height: 3em;
 }
 
 #settings-btn {
@@ -72,20 +72,20 @@ a {
   outline: none;
   cursor: pointer;
   text-align: center;
-  padding: 0 0 0.5rem 0.5rem;
+  padding: 0 0 0.3rem 0.3rem;
 }
 
 .dropdown-menu--container {
   display: inline-block;
   position: absolute;
-  right: 1rem;
+  right: 0.7rem;
   top: 0;
 }
 
 .dropdown-menu-content {
   position: absolute;
   right: 0;
-  top: 2rem;
+  top: 1.2rem;
   display: none;
 }
 
@@ -94,8 +94,8 @@ a {
   font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   margin: 0;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
-  padding: 0.5rem 0.7rem;
+  box-shadow: 0 0.3rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+  padding: 0.4rem 0.6rem;
   background-color: #f2f2f2;
 }
 
@@ -130,9 +130,9 @@ a {
 
 .loading-bullet {
   display: block;
-  height: 1em;
-  width: 1em;
-  margin-right: 1.2em;
+  height: 0.7em;
+  width: 0.7em;
+  margin-right: 1em;
   border-radius: 50%;
   background-color: #acacac;
   animation: loading 1s cubic-bezier(.04,.57,.67,.98) infinite;

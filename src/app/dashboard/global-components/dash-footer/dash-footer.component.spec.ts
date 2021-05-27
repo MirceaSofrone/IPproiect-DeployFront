@@ -10,7 +10,7 @@ describe('DashFooterComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DashFooterComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

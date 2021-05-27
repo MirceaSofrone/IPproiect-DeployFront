@@ -23,32 +23,32 @@ export class UserInfoComponent {
 
     console.log(headers);
     this.http.get<IUser>(this.getUserInfo + localStorage.getItem('userID'), { headers }).subscribe(data => {this.user = data;
-    if(this.user.email == null) this.user.email = "no email address";
-    if(this.user.phoneNumber == null) this.user.phoneNumber = "no phone number";
-    console.log("GET USER INFO");
-  }); }
+      if(this.user.email == null) this.user.email = "no email address";
+      if(this.user.phoneNumber == null) this.user.phoneNumber = "no phone number";
+      console.log("GET USER INFO");
+    }); }
 
   updateUserInfo():void{
     let editSection = (<HTMLInputElement>document.querySelector('.edit__info__form'));
     let userInfoSection = (<HTMLInputElement>document.querySelector('.acc__info'));
     editSection.classList.remove('hide');
-    userInfoSection.classList.add('hide'); 
+    userInfoSection.classList.add('hide');
     this.changeUserDetails=true;
-    }
+  }
 
-    saveChanges(){
-      this.changeUserDetails = false;
-      let editSection = (<HTMLInputElement>document.querySelector('.edit__info__form'));
-      let userInfoSection = (<HTMLInputElement>document.querySelector('.acc__info'));
-      editSection.classList.add('hide');
-      userInfoSection.classList.remove('hide');
+  saveChanges(){
+    this.changeUserDetails = false;
+    let editSection = (<HTMLInputElement>document.querySelector('.edit__info__form'));
+    let userInfoSection = (<HTMLInputElement>document.querySelector('.acc__info'));
+    editSection.classList.add('hide');
+    userInfoSection.classList.remove('hide');
 
-     
-      const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token')  };
-      this.http.post<IUser>(this.updateUserInfoUrl,this.user, { headers }).subscribe(data => {this.user = data;
+
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token')  };
+    this.http.post<IUser>(this.updateUserInfoUrl,this.user, { headers }).subscribe(data => {this.user = data;
       if(this.user.email == null) this.user.email = "no email address";
       if(this.user.phoneNumber == null) this.user.phoneNumber = "no phone number";
     });
-    
-    }
+
+  }
 }

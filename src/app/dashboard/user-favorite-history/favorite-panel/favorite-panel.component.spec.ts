@@ -10,7 +10,7 @@ describe('FavoritePanelComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ FavoritePanelComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

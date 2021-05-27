@@ -8,10 +8,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddHouseComponent } from './dashboard/add-house/add-house.component';
 import { SellerDashboardComponent } from './dashboard/seller-dashboard/seller-dashboard.component';
 import { EditHouseComponent } from './dashboard/seller-dashboard/edit-house/edit-house.component';
+
 import { ForumComponent } from './forum/modules/home/components/forum/forum.component';
 import { QuestionPageComponent } from './forum/modules/add-question/components/question-page/question-page.component';
 import { EditorPageComponent } from './forum/modules/editor/components/editor-page/editor-page.component';
 import { ForumTopicComponent } from './forum/modules/topic/components/forum-topic/forum-topic.component';
+
 const routes: Routes = [
 
   { path: 'home', component: DashboardComponent},

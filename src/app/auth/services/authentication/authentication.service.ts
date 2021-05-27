@@ -29,6 +29,11 @@ export class AuthenticationService {
   public change(payload: ChangePayload): Observable<any> {
     return this.http.post<any>(this.api + '/changePassword', payload)
   }
+
+  public activate(token: String): Observable<any> {
+    return this.http.get(this.api + '/confirm?token=' + token)
+  }
+
   public logout(): void {
     localStorage.removeItem('token')
     localStorage.removeItem('email')

@@ -60,12 +60,13 @@ import { FooterComponent } from './landing/utils/footer/footer.component';
     MatIconModule,
     LandingModule,
     AppRoutingModule,
-
     DashboardModule,
-AuthMaterialModule,
+    AuthMaterialModule,
     DialogModule,
     MatListModule,
     RouterModule,
+    ReactiveFormsModule
+
 
   ],
 

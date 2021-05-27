@@ -4,21 +4,36 @@
   align-items: center;
   box-shadow: 1.5px 1.5px 10px 6px rgb(190, 190, 190),
     -1.5px -1.5px 10px 6px #c1c1c1;
-  height: 13em;
-  width: 10em;
+  height: 10em;
+  width: 7.5em;
   margin-left: 5px;
   margin-right: 5px;
 }
 
 img {
-  height: 110px;
-  width: 160px;
+  height: 80px;
+  width: 123px;
 }
 
 .scroll__btn {
   height: 25px;
   width: 25px;
   border: 0;
+}
+
+.not_found {
+  width: 8em;
+  height: 5em;
+  font-family: "Manrope", serif;
+  font-size: 15px;
+  margin: 0;
+  margin-top: 1em;
+  word-wrap: normal;
+  text-align: center;
+  text-indent: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .price {
@@ -28,10 +43,10 @@ img {
 }
 
 .description {
-  width: 12em;
+  width: 10em;
   height: 3.5em;
-  font-family: Montserrat, serif;
-  font-size: smaller;
+  font-family: "Manrope", serif;
+  font-size: 12px;
   margin: 0;
   text-align: center;
   text-indent: 3px;
@@ -41,13 +56,13 @@ img {
 }
 
 .history__slider {
-  width: 30em;
-  height: 15em;
-  margin-top: 0;
+  width: 26em;
+  height: 13em;
+  margin-top: -1em;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10em;
+  margin-left: 5.5em;
 }
 
 .navigation__btns {
@@ -71,7 +86,7 @@ img {
   column-gap: 1em;
 }
 /* responsive design */
-@media (max-width: 1610px) {
+/* @media (max-width: 1610px) {
   .list__item {
     height: 12em;
     width: 9em;
@@ -95,5 +110,26 @@ img {
   }
   .list__item .description {
     font-size: 9px;
+  }
+  .not_found {
+    font-size: 10px;
+  }
+} */
+@media (max-width: 850px) {
+  .list__item {
+    height: 8.5em;
+    width: 6em;
+  }
+  .list__item img {
+    height: 70px;
+    width: 95px;
+  }
+  .description {
+    font-size: 12px;
+    width: 8em;
+  }
+  .not_found {
+    font-size: 12px;
+    width: 8em;
   }
 }
