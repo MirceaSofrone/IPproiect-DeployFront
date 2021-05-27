@@ -9,7 +9,6 @@ import { ForgotPasswdComponent } from './components/forgot-passwd/forgot-passwd.
 import { SuccessComponent } from './components/success/success.component';
 import { AuthMaterialModule } from './auth.material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DialogComponent } from './components/test-dialog/test.dialog.component';
 import { RegisterConfirmationComponent } from './components/register-confirmation/register-confirmation.component';
 
 @NgModule({
@@ -58,7 +57,6 @@ import { RegisterConfirmationComponent } from './components/register-confirmatio
     SuccessComponent,
     DialogWrapperComponent,
     RegisterConfirmationComponent
-    // DialogComponent
   ],
   providers: []
 })
