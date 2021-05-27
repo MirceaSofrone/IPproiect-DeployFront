@@ -3,18 +3,18 @@
     <img class="images"  [src]="item.photos[0]!=undefined ?
        this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
           + item.photos[0]) : '/assets/house.png'" alt="image">
-        
-       
-      
-        
+
+
+
+
         <button id="favorite" mat-icon-button>
-      
-          <mat-icon class="heart"
+
+          <mat-icon [ngStyle]="{'color':'red'}" class="heart"
             *ngIf="addedToWishlist" (click)="handleRemoveFromWishlist()"
             aria-label="Example icon-button with a heart icon">
             favorite
           </mat-icon>
-      
+
           <mat-icon  [ngStyle]="{'color':'red'}"class="heart red"
             *ngIf="!addedToWishlist" (click)="handleAddToWishlist()"
             aria-label="Example icon-button with a heart icon">
@@ -40,7 +40,7 @@
          </div>
          <a class="details detail" routerLink="/house-details/{{item.houseID}}">View details</a>
     </div>
-    
+
 
 
   </div>
