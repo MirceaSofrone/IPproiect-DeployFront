@@ -27,8 +27,12 @@ import { DialogComponent } from './auth/components/test-dialog/test.dialog.compo
 import {MatListModule} from '@angular/material/list';
 import {NavbarLoggedInComponent} from './landing/utils/navbar-logged-in/navbar-logged-in.component';
 import {DashboardModule} from './dashboard/dashboard.module';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { ForumModule } from './forum/forum.module';
 import { FooterComponent } from './landing/utils/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { FooterComponent } from './landing/utils/footer/footer.component';
 
   ],
   imports: [
+
+    MatSnackBarModule,
+
     ForumModule,
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

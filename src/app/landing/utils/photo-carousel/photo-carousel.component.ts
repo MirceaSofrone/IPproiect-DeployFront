@@ -98,6 +98,11 @@ export class PhotoCarouselComponent implements OnInit {
 
   onSelect(item){
     this.router.navigate(['/house-details', item.houseID]);
+    if(this.carouselType==1 || this.carouselType==2)
+    {  localStorage.setItem('houseID',item.houseID);
+      // window.location.reload();
+
+    }
   }
 
 
@@ -128,7 +133,7 @@ export class PhotoCarouselComponent implements OnInit {
       this.scrollbar = false;
     }
   }
-  
+
   breakpointChange() {
     this.breakPointsToggle = !this.breakPointsToggle;
     this.breakpoints = {

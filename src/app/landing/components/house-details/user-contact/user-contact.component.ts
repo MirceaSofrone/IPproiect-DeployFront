@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { AuthenticationService } from 'src/app/auth/services/authentication/authentication.service';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {WishlistService} from '../../../service/wishlist.service';
+import {ListComponent} from '../../list/list.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-user-contact',
   templateUrl: './user-contact.component.html',
@@ -7,12 +14,27 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 })
 export class UserContactComponent implements OnInit {
 
-  constructor(private http: HttpClient ) { }
+  private routeSub: Subscription;
+  houseID: any;
+  result: any;
+  wishlist: number[] = [];
+  constructor(  private snackbar: MatSnackBar, private wishlistService: WishlistService, private route: ActivatedRoute, private http: HttpClient, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe(params => {
+      this.houseID = params.id;
+      console.log(this.houseID, 'house id');
+    });
+    this.wishlistService.getWishlist().subscribe(result => {
+      this.wishlist = result;
+      console.log(result, 'wishlist');
+    });
   }
-  // tslint:disable-next-line:typedef
+
    onSubmit(data){
+
+if (this.authService.isAuthenticated()){
+
 
     const bearer = localStorage.getItem('token');
     const token = `Bearer ${bearer}`;
@@ -40,6 +62,32 @@ export class UserContactComponent implements OnInit {
        console.warn('result', result);
      });
 
+}
+else{
+  this.snackbar.open('Please Login!', 'Close', {
+    duration: 3000
+  })
+}
+  }
 
+  addToFavorite() {
+    if (this.authService.isAuthenticated()) {
+      if (!this.wishlist.includes(this.houseID)) {
+      this.wishlistService.addToWishlist(this.houseID).subscribe((result) => {
+        console.log(result);
+      });
+      }
+      else {
+        this.wishlistService.removeFromWishlist(this.houseID).subscribe((result) => {
+          console.log(result);
+
+        });
+      }
+    }
+    else{
+      this.snackbar.open('Please Login!', 'Close', {
+        duration: 3000
+      })
+    }
   }
 }
