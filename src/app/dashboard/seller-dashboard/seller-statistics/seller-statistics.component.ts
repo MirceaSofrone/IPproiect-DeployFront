@@ -21,8 +21,8 @@ export class SellerStatisticsComponent {
   }
 
   ngOnInit(): void {
-    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     const followersData: any[] = [];
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.get<IHouse[]>(this.URL + localStorage.getItem('userID'), { headers }).toPromise().then((data) => {
       this.housesList = JSON.parse(JSON.stringify(data));
 

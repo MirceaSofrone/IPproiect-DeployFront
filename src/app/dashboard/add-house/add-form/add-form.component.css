@@ -132,11 +132,7 @@ form p {
   color: rgba(40, 54, 85, 1);
 }
 
-form {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
+
 
 .columnForm {
   margin-right: 1em;
@@ -145,4 +141,16 @@ form {
   position: absolute;
   left: -13%;
   top: -20%;
+}
+.form_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+/*1240*/
+
+@media screen and (max-width: 1200px) {
+  .form_container{
+    flex-direction: column;
+  }
 }

@@ -14,6 +14,7 @@ export class UserStatisticsPanelComponent {
   once = false;
 
   statData: any[] = [];
+
   data: any[] = [{
     name: 'Price',
     series: []

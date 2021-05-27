@@ -3,7 +3,7 @@
 <div class="component">
     <div [hidden]="submitted" class="add__house--form">
         <p id="title">Add a new property</p>
-        <form (ngSubmit)="onSubmit()" #addForm="ngForm">
+        <form (ngSubmit)="onSubmit()" #addForm="ngForm" class="form_container">
             <div class="columnForm">
                 <div class="form-group">
                     <label for="city">City</label>
