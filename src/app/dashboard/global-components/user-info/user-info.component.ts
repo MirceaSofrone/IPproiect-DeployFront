@@ -21,11 +21,9 @@ export class UserInfoComponent {
   constructor(private http: HttpClient){
     const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
 
-    console.log(headers);
     this.http.get<IUser>(this.getUserInfo + localStorage.getItem('userID'), { headers }).subscribe(data => {this.user = data;
       if(this.user.email == null) this.user.email = "no email address";
       if(this.user.phoneNumber == null) this.user.phoneNumber = "no phone number";
-      console.log("GET USER INFO");
     }); }
 
   updateUserInfo():void{

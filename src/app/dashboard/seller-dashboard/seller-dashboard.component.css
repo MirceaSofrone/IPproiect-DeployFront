@@ -14,6 +14,7 @@
   left: 30%;
 }
 .user__info {
+  margin-top: 5em ;
   width: 20%;
   height: 90%;
 }
@@ -52,3 +53,4 @@
   display: flex;
   flex-direction: column;
 }
+

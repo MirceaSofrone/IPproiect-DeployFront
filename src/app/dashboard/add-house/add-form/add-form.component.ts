@@ -32,8 +32,8 @@ export class AddFormComponent{
   noOfBathrooms: number;
   noOfRooms: number;
   description: string;
-  sellType: number;
-  houseType: number;
+  sellType: number = 0;
+  houseType: number = 0;
   currentPrice: number;
   title: string;
   landSurface: number;
@@ -72,17 +72,35 @@ export class AddFormComponent{
 
   onCitySet(city :any){ this.city = city.control.value; }
 
-  onSellTypeSet(event:any){ this.sellType = +event.target.value; }
+  onSellTypeSet(event:any){ this.sellType = event.target.value; }
 
-  onHouseTypeSet(event:any){ this.houseType = +event.target.value;}
+  onHouseTypeSet(event:any){ this.houseType = event.target.value; }
 
 
 
   onSubmit() {
     this.submitted = true;
+    const userId = localStorage.getItem('userID').toString();
+    console.log(userId); 
+    console.log(this.description); 
+    console.log(this.title); 
+    console.log(this.city);; 
+    console.log(this.country); 
+    console.log(this.address); 
+    console.log(this.constructionYear); 
+    console.log(this.noOfRooms); 
+    console.log(this.floor);
+    console.log(this.surface); 
+    console.log(this.landSurface); 
+    console.log(this.noOfBathrooms); 
+    console.log(this.houseType); 
+    console.log(this.sellType); 
+    console.log(this.currentPrice); 
+
+
     const headers = {'Authorization': 'Bearer ' + localStorage.getItem('token') };
     this.http.post<HouseType>(this.ServerUrlAddHouse, {
-      userID:  localStorage.getItem('userID'),
+      userID: userId,
       description: this.description,
       title: this.title,
       city: this.city,
