@@ -38,7 +38,7 @@ export class ListComponent implements OnInit {
   minPrice = undefined;
   maxPrice = undefined;
   value = undefined;
-
+city=undefined
 
   constructor( private authService: AuthenticationService,private wishlistService: WishlistService, private productService: PostsService, private router: Router, private _sanitizer: DomSanitizer, private changeDetectorRef: ChangeDetectorRef) {
   }
@@ -93,7 +93,7 @@ export class ListComponent implements OnInit {
 
 
       this.noOfBathrooms = form.value.noOfBathrooms;
-
+        this.city=form.value.city
 
     }
     console.log(this.typeAll, 'typeall');
@@ -115,7 +115,7 @@ export class ListComponent implements OnInit {
       this.housing,
       this.noOfRooms, this.floor,
       this.surface, this.noOfBathrooms,
-      this.minPrice, this.maxPrice).subscribe((result) => {
+      this.minPrice, this.maxPrice,this.city).subscribe((result) => {
       console.warn('AICI CALL', result);
       this.data = result;
 
@@ -123,6 +123,10 @@ export class ListComponent implements OnInit {
       console.log(this.productList, 'productList');
       this.totalRecords = result['first'];
       console.log(this.totalRecords);
+      setTimeout(()=>{
+        window.scroll(0,0);
+      }, 0);
+
     }, (error) => {
       console.error('error caught in component listing , no result returned ');
       this.productList=[];
@@ -140,7 +144,7 @@ export class ListComponent implements OnInit {
   paginationChange(newPage: number) {
     this.page = newPage;
     console.log(this.page,"page in list component");
-    window.location.hash = '#top';
+    // window.location.hash = '#top';
     this.renderPage(null);
 
   }
